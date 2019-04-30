@@ -1,0 +1,199 @@
+/**
+ * Created by user on 2019/4/30.
+ */
+
+import yargs = require('yargs');
+import updateNotifier = require('update-notifier');
+import pkg = require('../package.json');
+import { console, consoleDebug, findRoot, fsYarnLock, yarnLockDiff } from '../lib/index';
+import path = require('path');
+import fs = require('fs-extra');
+import crossSpawn = require('cross-spawn-extra');
+import { Dedupe } from '../lib/cli/dedupe';
+import { flagsYarnAdd } from '../lib/cli/add';
+
+updateNotifier({ pkg }).notify();
+
+yargs
+	.option('cwd', {
+		desc: `current working directory or package directory`,
+		normalize: true,
+		default: process.cwd(),
+	})
+	//.usage('$0 <dedupe> [cwd]')
+	.command('dedupe [cwd]', `Data deduplication for yarn.lock`, dummy, (argv) =>
+	{
+		let root = findRoot(argv);
+		let hasWorkspace = root.ws != null;
+
+		let yarnlock_cache = fsYarnLock(root.root);
+
+		let { yarnlock_file, yarnlock_exists, yarnlock_old } = yarnlock_cache;
+
+
+		consoleDebug.info(`Deduplication yarn.lock`);
+		consoleDebug.gray.info(`${yarnlock_file}`);
+
+		if (!yarnlock_exists)
+		{
+			consoleDebug.error(`yarn.lock not exists`);
+
+			return;
+		}
+
+		let ret = Dedupe(yarnlock_old);
+
+		let msg = yarnLockDiff(ret.yarnlock_old, ret.yarnlock_new);
+
+		if (msg)
+		{
+			console.log(msg);
+		}
+		else
+		{
+			consoleDebug.warn(`yarn.lock no need data deduplication`);
+		}
+	})
+	.command('add [name]', ``, (yargs) => {
+		return yargs
+			.option('dev', {
+				alias: 'D',
+				desc: `install packages to devDependencies.`,
+				boolean: true,
+			})
+			.option('peer', {
+				alias: 'P',
+				desc: `install packages to peerDependencies.`,
+				boolean: true,
+			})
+			.option('optional', {
+				alias: 'O',
+				desc: `install packages to optionalDependencies.`,
+				boolean: true,
+			})
+			.option('exact', {
+				alias: 'E',
+				desc: `see https://yarnpkg.com/lang/en/docs/cli/add/`,
+				boolean: true,
+			})
+			.option('tilde', {
+				alias: 'T',
+				desc: `see https://yarnpkg.com/lang/en/docs/cli/add/`,
+				boolean: true,
+			})
+			.option('ignore-workspace-root-check', {
+				alias: 'W',
+				desc: `see https://yarnpkg.com/lang/en/docs/cli/add/`,
+				boolean: true,
+			})
+			.option('audit', {
+				desc: `see https://yarnpkg.com/lang/en/docs/cli/add/`,
+				boolean: true,
+			})
+			.option(`name`, {
+				type: 'string',
+				demandOption: true,
+			})
+			.option('dedupe', {
+				alias: ['d'],
+				desc: `Data deduplication for yarn.lock`,
+				boolean: true,
+			})
+		;
+	}, (argv) => {
+
+		if (argv._[0] === 'add')
+		{
+			argv._ = argv._.slice(1);
+		}
+
+		if (argv.name)
+		{
+			argv._.unshift(argv.name);
+		}
+
+		//console.dir(argv);
+
+		if (!argv._.length)
+		{
+//			yargs.showHelp();
+
+			consoleDebug.error(`Missing list of packages to add to your project.`);
+
+			return process.exit(1);
+		}
+
+		const { cwd } = argv;
+
+		let cmd_argv = [
+			'add',
+
+			...argv._,
+
+			...flagsYarnAdd(argv),
+
+		].filter(v => v != null);
+
+		consoleDebug.debug(cmd_argv);
+
+		let { dedupe } = argv;
+
+		const root = findRoot(argv).root;
+
+		let yarnlock_cache = dedupe && fsYarnLock(root);
+
+		if (!yarnlock_cache || !yarnlock_cache.yarnlock_exists)
+		{
+			dedupe = false;
+		}
+		else
+		{
+			let ret = Dedupe(yarnlock_cache.yarnlock_old);
+
+			if (ret.yarnlock_changed)
+			{
+				yarnlock_cache.yarnlock_old = ret.yarnlock_new;
+
+				fs.writeFileSync(yarnlock_cache.yarnlock_file, yarnlock_cache.yarnlock_old);
+
+				consoleDebug.info(`Deduplication yarn.lock`);
+				consoleDebug.gray.info(`${yarnlock_cache.yarnlock_file}`);
+			}
+		}
+
+		let cp = crossSpawn.sync('yarn', cmd_argv, {
+			cwd,
+			stdio: 'inherit',
+		});
+
+		if (cp.error)
+		{
+			throw cp.error
+		}
+
+		if (dedupe)
+		{
+			let yarnlock_cache2 = fsYarnLock(root);
+
+			if (yarnlock_cache2 && yarnlock_cache2.yarnlock_exists)
+			{
+				let msg = yarnLockDiff(yarnlock_cache.yarnlock_old, yarnlock_cache2.yarnlock_old);
+
+				if (msg)
+				{
+					console.log(msg);
+				}
+			}
+		}
+
+	})
+	.demandCommand()
+	.help(true)
+	.showHelpOnFail(true)
+	.argv
+;
+
+function dummy<T>(yarg: yargs.Argv<T>)
+{
+	return yarg
+}
