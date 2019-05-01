@@ -1,7 +1,5 @@
+#!/usr/bin/env node
 "use strict";
-/**
- * Created by user on 2019/4/30.
- */
 Object.defineProperty(exports, "__esModule", { value: true });
 const yargs = require("yargs");
 const updateNotifier = require("update-notifier");

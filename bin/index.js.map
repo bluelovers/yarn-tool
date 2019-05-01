@@ -1,1 +1,1 @@
-{"version":3,"file":"index.js","sourceRoot":"","sources":["index.ts"],"names":[],"mappings":";AAAA;;GAEG;;AAEH,uBAAqB","sourcesContent":["/**\n * Created by user on 2019/4/30.\n */\n\nimport './yarn-tool';\n"]}
+{"version":3,"file":"index.js","sourceRoot":"","sources":["index.ts"],"names":[],"mappings":";;;AAEA,uBAAqB","sourcesContent":["#!/usr/bin/env node\n\nimport './yarn-tool';\n"]}

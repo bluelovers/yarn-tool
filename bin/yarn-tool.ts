@@ -1,6 +1,4 @@
-/**
- * Created by user on 2019/4/30.
- */
+#!/usr/bin/env node
 
 import yargs = require('yargs');
 import updateNotifier = require('update-notifier');
