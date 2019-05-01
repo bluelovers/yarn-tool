@@ -1,6 +1,6 @@
 {
   "name": "yarn-tool",
-  "version": "1.0.2",
+  "version": "1.0.4",
   "description": "yarn cli tool helper",
   "keywords": [
     "dedupe",
@@ -15,6 +15,7 @@
     "cli",
     "npm",
     "yarn",
+    "install",
     "yarn-tool",
     "tool",
     "yarn.lock"
@@ -30,6 +31,7 @@
     "lib": "lib"
   },
   "scripts": {
+    "prepublishOnly": "npx ncu -u",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {

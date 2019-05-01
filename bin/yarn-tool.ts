@@ -18,6 +18,13 @@ let cli = yargs
 		normalize: true,
 		default: process.cwd(),
 	})
+	.option('skipCheckWorkspace', {
+		desc: `this options is for search yarn.lock, pkg root, workspace root, not same as --ignore-workspace-root-check`,
+		boolean: true,
+	})
+	.help(true)
+	.showHelpOnFail(true)
+	.strict()
 ;
 
 interface ICachedCommond
@@ -31,7 +38,7 @@ interface ICachedCommond
 const cached_commond: ICachedCommond = {};
 
 cli = cli
-	//.usage('$0 <dedupe> [cwd]')
+//.usage('$0 <dedupe> [cwd]')
 	.command('dedupe [cwd]', `Data deduplication for yarn.lock`, ...create_commond(cli, 'dedupe', (argv) =>
 	{
 		let root = findRoot(argv);
@@ -40,7 +47,6 @@ cli = cli
 		let yarnlock_cache = fsYarnLock(root.root);
 
 		let { yarnlock_file, yarnlock_exists, yarnlock_old } = yarnlock_cache;
-
 
 		consoleDebug.info(`Deduplication yarn.lock`);
 		consoleDebug.gray.info(`${yarnlock_file}`);
@@ -58,6 +64,8 @@ cli = cli
 
 		if (msg)
 		{
+			fs.writeFileSync(yarnlock_file, ret.yarnlock_new);
+
 			console.log(msg);
 		}
 		else
@@ -65,7 +73,8 @@ cli = cli
 			consoleDebug.warn(`yarn.lock no need data deduplication`);
 		}
 	}))
-	.command('add [name]', ``, (yargs) => {
+	.command('add [name]', ``, (yargs) =>
+	{
 		return yargs
 			.option('dev', {
 				alias: 'D',
@@ -92,11 +101,6 @@ cli = cli
 				desc: `see https://yarnpkg.com/lang/en/docs/cli/add/`,
 				boolean: true,
 			})
-			.option('ignore-workspace-root-check', {
-				alias: 'W',
-				desc: `see https://yarnpkg.com/lang/en/docs/cli/add/`,
-				boolean: true,
-			})
 			.option('audit', {
 				desc: `see https://yarnpkg.com/lang/en/docs/cli/add/`,
 				boolean: true,
@@ -111,8 +115,14 @@ cli = cli
 				boolean: true,
 				default: true,
 			})
-		;
-	}, (argv) => {
+			.option('ignore-workspace-root-check', {
+				alias: ['W'],
+				desc: `see https://yarnpkg.com/lang/en/docs/cli/add/`,
+				boolean: true,
+			})
+			;
+	}, (argv) =>
+	{
 
 		let args = argv._.slice();
 
@@ -208,9 +218,64 @@ cli = cli
 		}
 
 	})
+	.command('install', `this will do [dedupe , install , dedupe , install]`, dummy, function (argv)
+	{
+		const { cwd } = argv;
+		const root = findRoot(argv).root;
+		let yarnlock_cache = fsYarnLock(root);
+
+		if (yarnlock_cache.yarnlock_exists)
+		{
+			let ret1 = Dedupe(yarnlock_cache.yarnlock_old);
+
+			if (ret1.yarnlock_changed)
+			{
+				fs.writeFileSync(yarnlock_cache.yarnlock_file, ret1.yarnlock_new);
+			}
+
+			let cp = crossSpawn.sync('yarn', [], {
+				cwd,
+				stdio: 'inherit',
+			});
+
+			let ret2 = Dedupe(fs.readFileSync(yarnlock_cache.yarnlock_file, 'utf8'));
+
+			if (ret2.yarnlock_changed)
+			{
+				fs.writeFileSync(yarnlock_cache.yarnlock_file, ret2.yarnlock_new);
+
+				consoleDebug.debug(`yarn.lock changed, do install again`);
+
+				let cp = crossSpawn.sync('yarn', [], {
+					cwd,
+					stdio: 'inherit',
+				});
+			}
+
+			let msg = yarnLockDiff(yarnlock_cache.yarnlock_old, fs.readFileSync(yarnlock_cache.yarnlock_file, 'utf8'));
+
+			if (msg)
+			{
+				console.log(msg);
+			}
+		}
+		else
+		{
+			consoleDebug.error(`yarn.lock not exists`);
+
+			let cp = crossSpawn.sync('yarn', [], {
+				cwd,
+				stdio: 'inherit',
+			});
+		}
+	})
+	.command('help', 'Show help', (yarg) => {
+
+		yargs.showHelp('log');
+
+		return yargs;
+	})
 	.demandCommand()
-	.help(true)
-	.showHelpOnFail(true)
 ;
 
 cli.argv;
@@ -220,7 +285,11 @@ function dummy<T>(yarg: yargs.Argv<T>)
 	return yarg
 }
 
-function create_commond<T, U extends T>(yarg: yargs.Argv<T>, commond: string, handler: (args: yargs.Arguments<U>) => void, builder?: (yarg: yargs.Argv<T>) => yargs.Argv<U>)
+function create_commond<T, U extends T>(yarg: yargs.Argv<T>,
+	commond: string,
+	handler: (args: yargs.Arguments<U>) => void,
+	builder?: (yarg: yargs.Argv<T>) => yargs.Argv<U>,
+)
 {
 	// @ts-ignore
 	builder = builder || dummy;
