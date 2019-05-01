@@ -85,6 +85,7 @@ cli = cli
         alias: ['d'],
         desc: `Data deduplication for yarn.lock`,
         boolean: true,
+        default: true,
     });
 }, (argv) => {
     let args = argv._.slice();
