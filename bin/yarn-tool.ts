@@ -14,14 +14,27 @@ import { flagsYarnAdd } from '../lib/cli/add';
 
 updateNotifier({ pkg }).notify();
 
-yargs
+let cli = yargs
 	.option('cwd', {
 		desc: `current working directory or package directory`,
 		normalize: true,
 		default: process.cwd(),
 	})
+;
+
+interface ICachedCommond
+{
+	[cmd: string]: {
+		builder: <U>(yarg: yargs.Argv<any>) => yargs.Argv<U>
+		handler: <T>(args: yargs.Arguments<T>) => void
+	}
+}
+
+const cached_commond: ICachedCommond = {};
+
+cli = cli
 	//.usage('$0 <dedupe> [cwd]')
-	.command('dedupe [cwd]', `Data deduplication for yarn.lock`, dummy, (argv) =>
+	.command('dedupe [cwd]', `Data deduplication for yarn.lock`, ...create_commond(cli, 'dedupe', (argv) =>
 	{
 		let root = findRoot(argv);
 		let hasWorkspace = root.ws != null;
@@ -53,7 +66,7 @@ yargs
 		{
 			consoleDebug.warn(`yarn.lock no need data deduplication`);
 		}
-	})
+	}))
 	.command('add [name]', ``, (yargs) => {
 		return yargs
 			.option('dev', {
@@ -102,19 +115,21 @@ yargs
 		;
 	}, (argv) => {
 
-		if (argv._[0] === 'add')
+		let args = argv._.slice();
+
+		if (args[0] === 'add')
 		{
-			argv._ = argv._.slice(1);
+			args.shift();
 		}
 
 		if (argv.name)
 		{
-			argv._.unshift(argv.name);
+			args.unshift(argv.name);
 		}
 
 		//console.dir(argv);
 
-		if (!argv._.length)
+		if (!args.length)
 		{
 //			yargs.showHelp();
 
@@ -128,7 +143,7 @@ yargs
 		let cmd_argv = [
 			'add',
 
-			...argv._,
+			...args,
 
 			...flagsYarnAdd(argv),
 
@@ -140,24 +155,31 @@ yargs
 
 		const root = findRoot(argv).root;
 
-		let yarnlock_cache = dedupe && fsYarnLock(root);
+		let yarnlock_cache = fsYarnLock(root);
 
 		if (!yarnlock_cache || !yarnlock_cache.yarnlock_exists)
 		{
 			dedupe = false;
 		}
-		else
+		else if (dedupe)
 		{
 			let ret = Dedupe(yarnlock_cache.yarnlock_old);
 
 			if (ret.yarnlock_changed)
 			{
-				yarnlock_cache.yarnlock_old = ret.yarnlock_new;
-
-				fs.writeFileSync(yarnlock_cache.yarnlock_file, yarnlock_cache.yarnlock_old);
+				fs.writeFileSync(yarnlock_cache.yarnlock_file, ret.yarnlock_new);
 
 				consoleDebug.info(`Deduplication yarn.lock`);
 				consoleDebug.gray.info(`${yarnlock_cache.yarnlock_file}`);
+
+				let msg = yarnLockDiff(yarnlock_cache.yarnlock_old, ret.yarnlock_new);
+
+				if (msg)
+				{
+					console.log(msg);
+				}
+
+				yarnlock_cache.yarnlock_old = ret.yarnlock_new;
 			}
 		}
 
@@ -171,7 +193,7 @@ yargs
 			throw cp.error
 		}
 
-		if (dedupe)
+		if (0 && dedupe)
 		{
 			let yarnlock_cache2 = fsYarnLock(root);
 
@@ -190,10 +212,31 @@ yargs
 	.demandCommand()
 	.help(true)
 	.showHelpOnFail(true)
-	.argv
 ;
+
+cli.argv;
 
 function dummy<T>(yarg: yargs.Argv<T>)
 {
 	return yarg
+}
+
+function create_commond<T, U extends T>(yarg: yargs.Argv<T>, commond: string, handler: (args: yargs.Arguments<U>) => void, builder?: (yarg: yargs.Argv<T>) => yargs.Argv<U>)
+{
+	// @ts-ignore
+	builder = builder || dummy;
+
+	cached_commond[commond] = {
+		// @ts-ignore
+		builder,
+		// @ts-ignore
+		handler,
+	};
+
+	return [builder, handler] as const
+}
+
+function call_commond<T, U>(yarg: yargs.Argv<T>, commond: string, argv?: yargs.Arguments<U>)
+{
+	return cached_commond[commond].handler(argv == null ? yarg.argv : argv)
 }
