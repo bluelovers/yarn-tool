@@ -20,7 +20,8 @@ export const consoleDebug = new Console2(null, {
 export function findRoot(options: {
 	cwd: string,
 	skipCheckWorkspace?: string,
-})
+	throwError?: boolean,
+}, throwError?: boolean)
 {
 	let hasWorkspace: string;
 
@@ -30,6 +31,12 @@ export function findRoot(options: {
 	}
 
 	let pkg = pkgDir.sync(options.cwd);
+
+	if (pkg == null && (options.throwError || (options.throwError == null && throwError)))
+	{
+		let err = new TypeError(`can't found package root from target directory '${options.cwd}'`);
+		throw err;
+	}
 
 	return {
 		pkg,

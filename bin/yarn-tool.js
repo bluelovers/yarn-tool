@@ -27,7 +27,7 @@ const cached_commond = {};
 cli = cli
     //.usage('$0 <dedupe> [cwd]')
     .command('dedupe [cwd]', `Data deduplication for yarn.lock`, ...create_commond(cli, 'dedupe', (argv) => {
-    let root = index_1.findRoot(argv);
+    let root = index_1.findRoot(argv, true);
     let hasWorkspace = root.ws != null;
     let yarnlock_cache = index_1.fsYarnLock(root.root);
     let { yarnlock_file, yarnlock_exists, yarnlock_old } = yarnlock_cache;
@@ -115,7 +115,7 @@ cli = cli
     ].filter(v => v != null);
     index_1.consoleDebug.debug(cmd_argv);
     let { dedupe } = argv;
-    const root = index_1.findRoot(argv).root;
+    const root = index_1.findRoot(argv, true).root;
     let yarnlock_cache = index_1.fsYarnLock(root);
     if (!yarnlock_cache || !yarnlock_cache.yarnlock_exists) {
         dedupe = false;
@@ -150,9 +150,9 @@ cli = cli
         }
     }
 })
-    .command('install', `this will do [dedupe , install , dedupe , install]`, dummy, function (argv) {
+    .command('install [cwd]', `this will do [dedupe , install , dedupe , install]`, dummy, function (argv) {
     const { cwd } = argv;
-    const root = index_1.findRoot(argv).root;
+    const root = index_1.findRoot(argv, true).root;
     let yarnlock_cache = index_1.fsYarnLock(root);
     if (yarnlock_cache.yarnlock_exists) {
         let ret1 = dedupe_1.Dedupe(yarnlock_cache.yarnlock_old);

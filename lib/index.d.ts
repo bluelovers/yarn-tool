@@ -7,7 +7,8 @@ export declare const consoleDebug: Console2;
 export declare function findRoot(options: {
     cwd: string;
     skipCheckWorkspace?: string;
-}): {
+    throwError?: boolean;
+}, throwError?: boolean): {
     pkg: string;
     ws: string;
     root: string;
