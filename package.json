@@ -1,6 +1,6 @@
 {
   "name": "yarn-tool",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "description": "yarn cli tool helper",
   "keywords": [
     "cli",
@@ -20,6 +20,14 @@
     "yarn-tool",
     "yarn.lock"
   ],
+  "homepage": "https://github.com/bluelovers/yarn-tool#readme",
+  "bugs": {
+    "url": "https://github.com/bluelovers/yarn-tool/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bluelovers/yarn-tool.git"
+  },
   "license": "ISC",
   "author": "",
   "main": "index.js",
