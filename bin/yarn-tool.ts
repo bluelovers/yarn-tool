@@ -7,7 +7,7 @@ import { console, consoleDebug, findRoot, fsYarnLock, yarnLockDiff } from '../li
 import path = require('path');
 import fs = require('fs-extra');
 import crossSpawn = require('cross-spawn-extra');
-import { Dedupe } from '../lib/cli/dedupe';
+import { Dedupe, wrapDedupe } from '../lib/cli/dedupe';
 import { flagsYarnAdd } from '../lib/cli/add';
 
 updateNotifier({ pkg }).notify();
@@ -147,75 +147,42 @@ cli = cli
 			return process.exit(1);
 		}
 
-		const { cwd } = argv;
+		wrapDedupe(yargs, argv, {
 
-		let cmd_argv = [
-			'add',
-
-			...args,
-
-			...flagsYarnAdd(argv),
-
-		].filter(v => v != null);
-
-		consoleDebug.debug(cmd_argv);
-
-		let { dedupe } = argv;
-
-		const root = findRoot(argv, true).root;
-
-		let yarnlock_cache = fsYarnLock(root);
-
-		if (!yarnlock_cache || !yarnlock_cache.yarnlock_exists)
-		{
-			dedupe = false;
-		}
-		else if (dedupe)
-		{
-			let ret = Dedupe(yarnlock_cache.yarnlock_old);
-
-			if (ret.yarnlock_changed)
+			main(yarg, argv, cache)
 			{
-				fs.writeFileSync(yarnlock_cache.yarnlock_file, ret.yarnlock_new);
 
-				consoleDebug.info(`Deduplication yarn.lock`);
-				consoleDebug.gray.info(`${yarnlock_cache.yarnlock_file}`);
+				let cmd_argv = [
+					'add',
 
-				let msg = yarnLockDiff(yarnlock_cache.yarnlock_old, ret.yarnlock_new);
+					...args,
 
-				if (msg)
+					...flagsYarnAdd(argv),
+
+				].filter(v => v != null);
+
+				consoleDebug.debug(cmd_argv);
+
+				let cp = crossSpawn.sync('yarn', cmd_argv, {
+					cwd: argv.cwd,
+					stdio: 'inherit',
+				});
+
+				if (cp.error)
 				{
-					console.log(msg);
+					throw cp.error
 				}
 
-				yarnlock_cache.yarnlock_old = ret.yarnlock_new;
-			}
-		}
+			},
 
-		let cp = crossSpawn.sync('yarn', cmd_argv, {
-			cwd,
-			stdio: 'inherit',
+			end(yarg, argv, cache)
+			{
+				if (cache.yarnlock_msg)
+				{
+					console.log(cache.yarnlock_msg);
+				}
+			}
 		});
-
-		if (cp.error)
-		{
-			throw cp.error
-		}
-
-		if (0 && dedupe)
-		{
-			let yarnlock_cache2 = fsYarnLock(root);
-
-			if (yarnlock_cache2 && yarnlock_cache2.yarnlock_exists)
-			{
-				let msg = yarnLockDiff(yarnlock_cache.yarnlock_old, yarnlock_cache2.yarnlock_old);
-
-				if (msg)
-				{
-					console.log(msg);
-				}
-			}
-		}
 
 	})
 	.command('install [cwd]', `this will do [dedupe , install , dedupe , install]`, dummy, function (argv)

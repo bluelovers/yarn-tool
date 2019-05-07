@@ -2,7 +2,7 @@
  * Created by user on 2019/4/30.
  */
 
-import findYarnWorkspaceRoot = require('find-yarn-workspace-root');
+import findYarnWorkspaceRoot = require('find-yarn-workspace-root2');
 import pkgDir = require('pkg-dir');
 import { DiffService } from 'yarn-lock-diff/lib/diff-service';
 import { FormatterService } from 'yarn-lock-diff/lib/formatter';
@@ -23,6 +23,11 @@ export function findRoot(options: {
 	throwError?: boolean,
 }, throwError?: boolean)
 {
+	if (!options.cwd)
+	{
+		throw new TypeError(`options.cwd is '${options.cwd}'`)
+	}
+
 	let hasWorkspace: string;
 
 	if (!options.skipCheckWorkspace)
@@ -63,7 +68,7 @@ export function fsYarnLock(root: string)
 
 	let yarnlock_exists = fs.existsSync(yarnlock_file);
 
-	let yarnlock_old = yarnlock_exists && fs.readFileSync(yarnlock_file, 'utf8');
+	let yarnlock_old = yarnlock_exists && fs.readFileSync(yarnlock_file, 'utf8') || null;
 
 	return {
 		yarnlock_file,
