@@ -33,6 +33,10 @@ export interface IWrapDedupeCache {
      */
     readonly yarnlock_old?: string;
     /**
+     * 執行前的 yarn.lock 是否存在
+     */
+    readonly yarnlock_old_exists?: string;
+    /**
      * yarn.lock 是否有變動
      */
     yarnlock_changed?: boolean;
@@ -100,5 +104,14 @@ export declare function wrapDedupe<T extends {
     yarg: yargs.Argv<T>;
     argv: yargs.Arguments<U>;
     cache: C;
+};
+export declare function infoFromDedupeCache<C extends IWrapDedupeCache>(cache: C): {
+    yarnlock_file: string;
+    yarnlock_old_exists: string;
+    yarnlock_exists: boolean;
+    yarnlock_changed: boolean;
+    pkg: string;
+    ws: string;
+    root: string;
 };
 export default Dedupe;

@@ -19,7 +19,7 @@ export const consoleDebug = new Console2(null, {
 
 export function findRoot(options: {
 	cwd: string,
-	skipCheckWorkspace?: string,
+	skipCheckWorkspace?: boolean | string,
 	throwError?: boolean,
 }, throwError?: boolean)
 {

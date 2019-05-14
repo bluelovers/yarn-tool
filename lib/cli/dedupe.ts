@@ -48,6 +48,10 @@ export interface IWrapDedupeCache
 	 */
 	readonly yarnlock_old?: string,
 	/**
+	 * 執行前的 yarn.lock 是否存在
+	 */
+	readonly yarnlock_old_exists?: string,
+	/**
 	 * yarn.lock 是否有變動
 	 */
 	yarnlock_changed?: boolean,
@@ -156,10 +160,13 @@ export function wrapDedupe<T extends {
 	// @ts-ignore
 	cache.yarnlock_cache = cache.yarnlock_cache || fsYarnLock(cache.rootData.root);
 
-	LABEL1: {
+	// @ts-ignore
+	cache.yarnlock_old = cache.yarnlock_cache.yarnlock_old;
 
-		// @ts-ignore
-		cache.yarnlock_old = cache.yarnlock_cache.yarnlock_old;
+	// @ts-ignore
+	cache.yarnlock_old_exists = cache.yarnlock_cache.yarnlock_exists;
+
+	LABEL1: {
 
 		// @ts-ignore
 		cache.ret.init = init ? !!init(yarg, argv, cache) : null;
@@ -175,6 +182,8 @@ export function wrapDedupe<T extends {
 		{
 			break LABEL1;
 		}
+
+		cache.yarnlock_cache = fsYarnLock(cache.rootData.root);
 
 		if (cache.yarnlock_cache.yarnlock_exists)
 		{
@@ -231,6 +240,10 @@ export function wrapDedupe<T extends {
 				consoleDebug.info(`Deduplication yarn.lock`);
 				consoleDebug.gray.info(`${cache.yarnlock_cache.yarnlock_file}`);
 			}
+			else if (cache.yarnlock_changed == null)
+			{
+				cache.yarnlock_changed = ret1.yarnlock_changed;
+			}
 		}
 
 		if (cache.yarnlock_changed)
@@ -269,6 +282,21 @@ export function wrapDedupe<T extends {
 		argv,
 		cache,
 	}
+}
+
+export function infoFromDedupeCache<C extends IWrapDedupeCache>(cache: C)
+{
+	let { yarnlock_changed, yarnlock_old_exists } = cache;
+
+	let { yarnlock_file, yarnlock_exists } = cache.yarnlock_cache;
+
+	return {
+		...cache.rootData,
+		yarnlock_file,
+		yarnlock_old_exists,
+		yarnlock_exists,
+		yarnlock_changed,
+	};
 }
 
 export default Dedupe;

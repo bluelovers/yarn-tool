@@ -5,10 +5,12 @@ const yargs = require("yargs");
 const updateNotifier = require("update-notifier");
 const pkg = require("../package.json");
 const index_1 = require("../lib/index");
+const path = require("path");
 const fs = require("fs-extra");
 const crossSpawn = require("cross-spawn-extra");
 const dedupe_1 = require("../lib/cli/dedupe");
 const add_1 = require("../lib/cli/add");
+const install_1 = require("../lib/cli/install");
 updateNotifier({ pkg }).notify();
 let cli = yargs
     .option('cwd', {
@@ -48,49 +50,9 @@ cli = cli
     }
 }))
     .command('add [name]', ``, (yargs) => {
-    return yargs
-        .option('dev', {
-        alias: 'D',
-        desc: `install packages to devDependencies.`,
-        boolean: true,
-    })
-        .option('peer', {
-        alias: 'P',
-        desc: `install packages to peerDependencies.`,
-        boolean: true,
-    })
-        .option('optional', {
-        alias: 'O',
-        desc: `install packages to optionalDependencies.`,
-        boolean: true,
-    })
-        .option('exact', {
-        alias: 'E',
-        desc: `see https://yarnpkg.com/lang/en/docs/cli/add/`,
-        boolean: true,
-    })
-        .option('tilde', {
-        alias: 'T',
-        desc: `see https://yarnpkg.com/lang/en/docs/cli/add/`,
-        boolean: true,
-    })
-        .option('audit', {
-        desc: `see https://yarnpkg.com/lang/en/docs/cli/add/`,
-        boolean: true,
-    })
-        .option(`name`, {
-        type: 'string',
-        demandOption: true,
-    })
-        .option('dedupe', {
-        alias: ['d'],
-        desc: `Data deduplication for yarn.lock`,
-        boolean: true,
-        default: true,
-    })
-        .option('ignore-workspace-root-check', {
-        alias: ['W'],
-        desc: `see https://yarnpkg.com/lang/en/docs/cli/add/`,
+    return add_1.setupYarnAddToYargs(yargs)
+        .option('types', {
+        desc: `try auto install @types/*`,
         boolean: true,
     });
 }, (argv) => {
@@ -109,10 +71,11 @@ cli = cli
     }
     dedupe_1.wrapDedupe(yargs, argv, {
         main(yarg, argv, cache) {
+            let flags = add_1.flagsYarnAdd(argv).filter(v => v != null);
             let cmd_argv = [
                 'add',
                 ...args,
-                ...add_1.flagsYarnAdd(argv),
+                ...flags,
             ].filter(v => v != null);
             index_1.consoleDebug.debug(cmd_argv);
             let cp = crossSpawn.sync('yarn', cmd_argv, {
@@ -122,48 +85,138 @@ cli = cli
             if (cp.error) {
                 throw cp.error;
             }
+            if (argv.types) {
+                let { rootData } = cache;
+                let pkg_file = path.join(rootData.pkg, 'package.json');
+                let pkg = fs.readJSONSync(pkg_file);
+                let args_types = add_1.listToTypes(args);
+                if (args_types.length) {
+                    args_types
+                        .forEach(name => {
+                        if (add_1.existsDependencies(name, pkg)) {
+                            return;
+                        }
+                        let cmd_argv = [
+                            'add',
+                            name,
+                            ...flags,
+                        ].filter(v => v != null);
+                        index_1.consoleDebug.debug(cmd_argv);
+                        let cp = crossSpawn.sync('yarn', cmd_argv, {
+                            cwd: argv.cwd,
+                        });
+                    });
+                }
+            }
         },
         end(yarg, argv, cache) {
             if (cache.yarnlock_msg) {
                 index_1.console.log(cache.yarnlock_msg);
             }
-        }
+            index_1.console.dir(dedupe_1.infoFromDedupeCache(cache));
+        },
     });
 })
-    .command('install [cwd]', `this will do [dedupe , install , dedupe , install]`, dummy, function (argv) {
+    .command('install [cwd]', `do dedupe when yarn install`, (yargs) => {
+    return install_1.default(yargs);
+}, function (argv) {
     const { cwd } = argv;
-    const root = index_1.findRoot(argv, true).root;
-    let yarnlock_cache = index_1.fsYarnLock(root);
-    if (yarnlock_cache.yarnlock_exists) {
-        let ret1 = dedupe_1.Dedupe(yarnlock_cache.yarnlock_old);
-        if (ret1.yarnlock_changed) {
+    let _once = true;
+    dedupe_1.wrapDedupe(yargs, argv, {
+        before(yarg, argv, cache) {
+            let info = dedupe_1.infoFromDedupeCache(cache);
+            if (!info.yarnlock_old_exists) {
+                crossSpawn.sync('yarn', [], {
+                    cwd,
+                    stdio: 'inherit',
+                });
+                _once = false;
+            }
+        },
+        main(yarg, argv, cache) {
+            let info = dedupe_1.infoFromDedupeCache(cache);
+            if (info.yarnlock_changed) {
+                index_1.consoleDebug.debug(`yarn.lock changed, do install again`);
+            }
+            if (_once || info.yarnlock_changed) {
+                crossSpawn.sync('yarn', [], {
+                    cwd,
+                    stdio: 'inherit',
+                });
+                _once = true;
+            }
+        },
+        after(yarg, argv, cache) {
+            let info = dedupe_1.infoFromDedupeCache(cache);
+            if (_once && info.yarnlock_changed) {
+                index_1.consoleDebug.debug(`yarn.lock changed, do install again`);
+                crossSpawn.sync('yarn', [], {
+                    cwd,
+                    stdio: 'inherit',
+                });
+                _once = false;
+            }
+        },
+        end(yarg, argv, cache) {
+            if (cache.yarnlock_msg) {
+                index_1.console.log(cache.yarnlock_msg);
+            }
+            index_1.console.dir(dedupe_1.infoFromDedupeCache(cache));
+        },
+    });
+    return;
+    /*
+
+    const { cwd } = argv;
+    const root = findRoot(argv, true).root;
+    let yarnlock_cache = fsYarnLock(root);
+
+    if (yarnlock_cache.yarnlock_exists)
+    {
+        let ret1 = Dedupe(yarnlock_cache.yarnlock_old);
+
+        if (ret1.yarnlock_changed)
+        {
             fs.writeFileSync(yarnlock_cache.yarnlock_file, ret1.yarnlock_new);
         }
+
         let cp = crossSpawn.sync('yarn', [], {
             cwd,
             stdio: 'inherit',
         });
-        let ret2 = dedupe_1.Dedupe(fs.readFileSync(yarnlock_cache.yarnlock_file, 'utf8'));
-        if (ret2.yarnlock_changed) {
+
+        let ret2 = Dedupe(fs.readFileSync(yarnlock_cache.yarnlock_file, 'utf8'));
+
+        if (ret2.yarnlock_changed)
+        {
             fs.writeFileSync(yarnlock_cache.yarnlock_file, ret2.yarnlock_new);
-            index_1.consoleDebug.debug(`yarn.lock changed, do install again`);
+
+            consoleDebug.debug(`yarn.lock changed, do install again`);
+
             let cp = crossSpawn.sync('yarn', [], {
                 cwd,
                 stdio: 'inherit',
             });
         }
-        let msg = index_1.yarnLockDiff(yarnlock_cache.yarnlock_old, fs.readFileSync(yarnlock_cache.yarnlock_file, 'utf8'));
-        if (msg) {
-            index_1.console.log(msg);
+
+        let msg = yarnLockDiff(yarnlock_cache.yarnlock_old, fs.readFileSync(yarnlock_cache.yarnlock_file, 'utf8'));
+
+        if (msg)
+        {
+            console.log(msg);
         }
     }
-    else {
-        index_1.consoleDebug.error(`yarn.lock not exists`);
+    else
+    {
+        consoleDebug.error(`yarn.lock not exists`);
+
         let cp = crossSpawn.sync('yarn', [], {
             cwd,
             stdio: 'inherit',
         });
     }
+
+     */
 })
     .command('help', 'Show help', (yarg) => {
     yargs.showHelp('log');

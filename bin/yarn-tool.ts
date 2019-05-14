@@ -7,8 +7,9 @@ import { console, consoleDebug, findRoot, fsYarnLock, yarnLockDiff } from '../li
 import path = require('path');
 import fs = require('fs-extra');
 import crossSpawn = require('cross-spawn-extra');
-import { Dedupe, wrapDedupe } from '../lib/cli/dedupe';
-import { flagsYarnAdd } from '../lib/cli/add';
+import { Dedupe, infoFromDedupeCache, wrapDedupe } from '../lib/cli/dedupe';
+import { existsDependencies, flagsYarnAdd, setupYarnAddToYargs, listToTypes } from '../lib/cli/add';
+import setupYarnInstallToYargs from '../lib/cli/install';
 
 updateNotifier({ pkg }).notify();
 
@@ -75,49 +76,9 @@ cli = cli
 	}))
 	.command('add [name]', ``, (yargs) =>
 	{
-		return yargs
-			.option('dev', {
-				alias: 'D',
-				desc: `install packages to devDependencies.`,
-				boolean: true,
-			})
-			.option('peer', {
-				alias: 'P',
-				desc: `install packages to peerDependencies.`,
-				boolean: true,
-			})
-			.option('optional', {
-				alias: 'O',
-				desc: `install packages to optionalDependencies.`,
-				boolean: true,
-			})
-			.option('exact', {
-				alias: 'E',
-				desc: `see https://yarnpkg.com/lang/en/docs/cli/add/`,
-				boolean: true,
-			})
-			.option('tilde', {
-				alias: 'T',
-				desc: `see https://yarnpkg.com/lang/en/docs/cli/add/`,
-				boolean: true,
-			})
-			.option('audit', {
-				desc: `see https://yarnpkg.com/lang/en/docs/cli/add/`,
-				boolean: true,
-			})
-			.option(`name`, {
-				type: 'string',
-				demandOption: true,
-			})
-			.option('dedupe', {
-				alias: ['d'],
-				desc: `Data deduplication for yarn.lock`,
-				boolean: true,
-				default: true,
-			})
-			.option('ignore-workspace-root-check', {
-				alias: ['W'],
-				desc: `see https://yarnpkg.com/lang/en/docs/cli/add/`,
+		return setupYarnAddToYargs(yargs)
+			.option('types', {
+				desc: `try auto install @types/*`,
 				boolean: true,
 			})
 			;
@@ -151,13 +112,14 @@ cli = cli
 
 			main(yarg, argv, cache)
 			{
+				let flags = flagsYarnAdd(argv).filter(v => v != null);
 
 				let cmd_argv = [
 					'add',
 
 					...args,
 
-					...flagsYarnAdd(argv),
+					...flags,
 
 				].filter(v => v != null);
 
@@ -173,6 +135,46 @@ cli = cli
 					throw cp.error
 				}
 
+				if (argv.types)
+				{
+					let { rootData } = cache;
+
+					let pkg_file = path.join(rootData.pkg, 'package.json');
+
+					let pkg = fs.readJSONSync(pkg_file);
+
+					let args_types = listToTypes(args);
+
+					if (args_types.length)
+					{
+						args_types
+							.forEach(name =>
+							{
+
+								if (existsDependencies(name, pkg))
+								{
+									return;
+								}
+
+								let cmd_argv = [
+									'add',
+
+									name,
+
+									...flags,
+
+								].filter(v => v != null);
+
+								consoleDebug.debug(cmd_argv);
+
+								let cp = crossSpawn.sync('yarn', cmd_argv, {
+									cwd: argv.cwd,
+									//stdio: 'inherit',
+								});
+							})
+						;
+					}
+				}
 			},
 
 			end(yarg, argv, cache)
@@ -181,12 +183,92 @@ cli = cli
 				{
 					console.log(cache.yarnlock_msg);
 				}
-			}
+
+				console.dir(infoFromDedupeCache(cache));
+			},
 		});
 
 	})
-	.command('install [cwd]', `this will do [dedupe , install , dedupe , install]`, dummy, function (argv)
+	.command('install [cwd]', `do dedupe when yarn install`, (yargs) =>
 	{
+		return setupYarnInstallToYargs(yargs);
+	}, function (argv)
+	{
+		const { cwd } = argv;
+
+		let _once = true;
+
+		wrapDedupe(yargs, argv, {
+
+			before(yarg, argv, cache)
+			{
+				let info = infoFromDedupeCache(cache);
+
+				if (!info.yarnlock_old_exists)
+				{
+					crossSpawn.sync('yarn', [], {
+						cwd,
+						stdio: 'inherit',
+					});
+
+					_once = false;
+				}
+			},
+
+			main(yarg, argv, cache)
+			{
+				let info = infoFromDedupeCache(cache);
+
+				if (info.yarnlock_changed)
+				{
+					consoleDebug.debug(`yarn.lock changed, do install again`);
+				}
+
+				if (_once || info.yarnlock_changed)
+				{
+					crossSpawn.sync('yarn', [], {
+						cwd,
+						stdio: 'inherit',
+					});
+
+					_once = true;
+				}
+
+			},
+
+			after(yarg, argv, cache)
+			{
+				let info = infoFromDedupeCache(cache);
+
+				if (_once && info.yarnlock_changed)
+				{
+					consoleDebug.debug(`yarn.lock changed, do install again`);
+
+					crossSpawn.sync('yarn', [], {
+						cwd,
+						stdio: 'inherit',
+					});
+
+					_once = false;
+				}
+			},
+
+			end(yarg, argv, cache)
+			{
+				if (cache.yarnlock_msg)
+				{
+					console.log(cache.yarnlock_msg);
+				}
+
+				console.dir(infoFromDedupeCache(cache));
+			},
+
+		});
+
+		return;
+
+		/*
+
 		const { cwd } = argv;
 		const root = findRoot(argv, true).root;
 		let yarnlock_cache = fsYarnLock(root);
@@ -235,8 +317,11 @@ cli = cli
 				stdio: 'inherit',
 			});
 		}
+
+		 */
 	})
-	.command('help', 'Show help', (yarg) => {
+	.command('help', 'Show help', (yarg) =>
+	{
 
 		yargs.showHelp('log');
 
