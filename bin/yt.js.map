@@ -1,1 +1,0 @@
-{"version":3,"file":"yt.js","sourceRoot":"","sources":["yt.ts"],"names":[],"mappings":";;;AAEA,uBAAqB","sourcesContent":["#!/usr/bin/env node\n\nimport './yarn-tool';\n"]}

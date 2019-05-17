@@ -3,44 +3,23 @@
 import yargs = require('yargs');
 import updateNotifier = require('update-notifier');
 import pkg = require('../package.json');
-import { console, consoleDebug, findRoot, fsYarnLock, yarnLockDiff } from '../lib/index';
 import path = require('path');
 import fs = require('fs-extra');
 import crossSpawn = require('cross-spawn-extra');
+import { console, consoleDebug, findRoot, fsYarnLock, yarnLockDiff } from '../lib/index';
 import { Dedupe, infoFromDedupeCache, wrapDedupe } from '../lib/cli/dedupe';
-import { existsDependencies, flagsYarnAdd, setupYarnAddToYargs, listToTypes } from '../lib/cli/add';
+import { existsDependencies, flagsYarnAdd, listToTypes, setupYarnAddToYargs } from '../lib/cli/add';
 import setupYarnInstallToYargs from '../lib/cli/install';
+
+import { create_command, getYargs } from '../lib/cli';
 
 updateNotifier({ pkg }).notify();
 
-let cli = yargs
-	.option('cwd', {
-		desc: `current working directory or package directory`,
-		normalize: true,
-		default: process.cwd(),
-	})
-	.option('skipCheckWorkspace', {
-		desc: `this options is for search yarn.lock, pkg root, workspace root, not same as --ignore-workspace-root-check`,
-		boolean: true,
-	})
-	.help(true)
-	.showHelpOnFail(true)
-	.strict()
-;
-
-interface ICachedCommond
-{
-	[cmd: string]: {
-		builder: <U>(yarg: yargs.Argv<any>) => yargs.Argv<U>
-		handler: <T>(args: yargs.Arguments<T>) => void
-	}
-}
-
-const cached_commond: ICachedCommond = {};
+let cli = getYargs();
 
 cli = cli
 //.usage('$0 <dedupe> [cwd]')
-	.command('dedupe [cwd]', `Data deduplication for yarn.lock`, ...create_commond(cli, 'dedupe', (argv) =>
+	.command('dedupe [cwd]', `Data deduplication for yarn.lock`, ...create_command(cli, 'dedupe', (argv) =>
 	{
 		let root = findRoot(argv, true);
 		let hasWorkspace = root.ws != null;
@@ -266,97 +245,9 @@ cli = cli
 		});
 
 		return;
-
-		/*
-
-		const { cwd } = argv;
-		const root = findRoot(argv, true).root;
-		let yarnlock_cache = fsYarnLock(root);
-
-		if (yarnlock_cache.yarnlock_exists)
-		{
-			let ret1 = Dedupe(yarnlock_cache.yarnlock_old);
-
-			if (ret1.yarnlock_changed)
-			{
-				fs.writeFileSync(yarnlock_cache.yarnlock_file, ret1.yarnlock_new);
-			}
-
-			let cp = crossSpawn.sync('yarn', [], {
-				cwd,
-				stdio: 'inherit',
-			});
-
-			let ret2 = Dedupe(fs.readFileSync(yarnlock_cache.yarnlock_file, 'utf8'));
-
-			if (ret2.yarnlock_changed)
-			{
-				fs.writeFileSync(yarnlock_cache.yarnlock_file, ret2.yarnlock_new);
-
-				consoleDebug.debug(`yarn.lock changed, do install again`);
-
-				let cp = crossSpawn.sync('yarn', [], {
-					cwd,
-					stdio: 'inherit',
-				});
-			}
-
-			let msg = yarnLockDiff(yarnlock_cache.yarnlock_old, fs.readFileSync(yarnlock_cache.yarnlock_file, 'utf8'));
-
-			if (msg)
-			{
-				console.log(msg);
-			}
-		}
-		else
-		{
-			consoleDebug.error(`yarn.lock not exists`);
-
-			let cp = crossSpawn.sync('yarn', [], {
-				cwd,
-				stdio: 'inherit',
-			});
-		}
-
-		 */
-	})
-	.command('help', 'Show help', (yarg) =>
-	{
-
-		yargs.showHelp('log');
-
-		return yargs;
 	})
 	.demandCommand()
 ;
 
 cli.argv;
 
-function dummy<T>(yarg: yargs.Argv<T>)
-{
-	return yarg
-}
-
-function create_commond<T, U extends T>(yarg: yargs.Argv<T>,
-	commond: string,
-	handler: (args: yargs.Arguments<U>) => void,
-	builder?: (yarg: yargs.Argv<T>) => yargs.Argv<U>,
-)
-{
-	// @ts-ignore
-	builder = builder || dummy;
-
-	cached_commond[commond] = {
-		// @ts-ignore
-		builder,
-		// @ts-ignore
-		handler,
-	};
-
-	return [builder, handler] as const
-}
-
-function call_commond<T, U>(yarg: yargs.Argv<T>, commond: string, argv?: yargs.Arguments<U>)
-{
-	return cached_commond[commond].handler(argv == null ? yarg.argv : argv)
-}

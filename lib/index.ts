@@ -9,6 +9,7 @@ import { FormatterService } from 'yarn-lock-diff/lib/formatter';
 import { Console2 } from 'debug-color2';
 import path = require('path');
 import fs = require('fs-extra');
+import { createFnChalkByConsole } from 'debug-color2/lib/util';
 
 export const console = new Console2();
 
@@ -83,5 +84,7 @@ export function lazyFlags(keys: string[], argv: {
 {
 	return keys.map(key => argv[key] && '--' + key)
 }
+
+export const chalkByConsole = createFnChalkByConsole(console);
 
 export default exports as typeof import('./index');

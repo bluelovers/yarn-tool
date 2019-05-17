@@ -1,1 +1,0 @@
-{"version":3,"file":"ncu.js","sourceRoot":"","sources":["ncu.ts"],"names":[],"mappings":";AAAA;;GAEG;;AAEH,SAAS,GAAG;AAGZ,CAAC;AAED,kBAAe,OAAiC,CAAC","sourcesContent":["/**\n * Created by user on 2019/4/30.\n */\n\nfunction ncu()\n{\n\n}\n\nexport default exports as typeof import('./ncu');\n"]}

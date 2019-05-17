@@ -22,5 +22,6 @@ export declare function fsYarnLock(root: string): {
 export declare function lazyFlags(keys: string[], argv: {
     [k: string]: boolean;
 }): string[];
+export declare const chalkByConsole: <R, C extends Console2 = Console2>(cb: (chalk: C["chalk"], _console: C) => R, _console?: C) => R;
 declare const _default: typeof import(".");
 export default _default;
