@@ -1,6 +1,6 @@
 {
   "name": "yarn-tool",
-  "version": "1.0.9",
+  "version": "1.0.10",
   "description": "yarn cli tool helper",
   "keywords": [
     "cli",
@@ -40,6 +40,7 @@
   },
   "scripts": {
     "coverage": "npx nyc npm run test",
+    "lint": "eslint .",
     "ncu": "npx npm-check-updates -u",
     "prepublishOnly": "npx npm-check-updates -u && npm run sort-package-json",
     "sort-package-json": "npx sort-package-json ./package.json",
@@ -49,13 +50,13 @@
     "@ts-type/package-dts": "^1.0.1",
     "array-hyper-unique": "^1.0.7",
     "cli-table3": "^0.5.1",
-    "create-yarn-workspaces": "^1.0.18",
+    "create-yarn-workspaces": "^1.0.19",
     "cross-spawn-extra": "^1.0.5",
     "debug-color2": "^1.1.5",
     "find-yarn-workspace-root2": "^1.2.2",
     "fs-extra": "^8.0.1",
     "npm-check-updates": "^3.1.9",
-    "npm-init2": "^1.0.28",
+    "npm-init2": "^1.0.29",
     "pkg-dir": "^4.1.0",
     "semver": "^6.0.0",
     "semver-utils": "^1.1.4",

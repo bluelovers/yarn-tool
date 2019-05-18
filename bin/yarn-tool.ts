@@ -10,7 +10,8 @@ import { console, consoleDebug, findRoot, fsYarnLock, yarnLockDiff } from '../li
 import { Dedupe, infoFromDedupeCache, wrapDedupe } from '../lib/cli/dedupe';
 import { existsDependencies, flagsYarnAdd, listToTypes, setupYarnAddToYargs } from '../lib/cli/add';
 import setupYarnInstallToYargs from '../lib/cli/install';
-import semver = require('semver')
+import semver = require('semver');
+import setupInitToYargs from 'npm-init2/lib/yargs-setting';
 
 import {
 	create_command,
@@ -32,6 +33,8 @@ import {
 	removeResolutionsCore, stripDepsName,
 } from '../lib/yarnlock';
 import { ITSIteratorLazy, ITSValueOfArray } from 'ts-type';
+import { setupWorkspacesInitToYargs } from 'create-yarn-workspaces/yargs-setting';
+import { checkModileExists, crossSpawnOther, processArgvSlice } from '../lib/spawn';
 
 updateNotifier({ pkg }).notify();
 
@@ -100,6 +103,7 @@ let cli = getYargs()
 
 				main(yarg, argv, cache)
 				{
+					// @ts-ignore
 					let flags = flagsYarnAdd(argv).filter(v => v != null);
 
 					let cmd_argv = [
@@ -327,6 +331,7 @@ let cli = getYargs()
 
 						if (ver_old)
 						{
+							// @ts-ignore
 							a[name] = ver_new;
 						}
 
@@ -434,43 +439,93 @@ let cli = getYargs()
 		},
 		handler(argv)
 		{
+			let cmd_list = processArgvSlice(['publish', 'push']).argv;
 
-			let cmd_list: string[] = [];
-
-			[
-				'tag',
-				'access',
-				'tag',
-				'tag',
-			].forEach(k => {
-
-				let v = argv[k];
-
-				if (v)
-				{
-					cmd_list.push('--' + k);
-
-					if (typeof v === 'string')
-					{
-						cmd_list.push(v)
-					}
-				}
-			});
-
-			crossSpawn.sync('npm', [
+			crossSpawnOther('npm', [
 
 				'publish',
 
-				...argv._.slice(1),
-
 				...cmd_list,
-
-			].filter(v => v != null), {
-				stdio: 'inherit',
-				cwd: argv.cwd,
-			})
+			], argv);
 		}
 	})
+	.command(create_command2<IUnpackMyYargsArgv>({
+		command: 'init',
+		describe: `create a package.json file`,
+		builder: setupInitToYargs,
+		async handler(argv)
+		{
+			let ret = checkModileExists({
+				name: 'npm-init2',
+				requireName: 'npm-init2/bin/npm-init2',
+			});
+
+			if (!ret)
+			{
+				process.exit(1);
+			}
+
+			let cmd_list = processArgvSlice('init').argv;
+
+			crossSpawnOther('node', [
+
+				ret,
+
+				...cmd_list,
+			], argv);
+
+		},
+	}))
+	.command(create_command2<IUnpackMyYargsArgv>({
+		command: 'workspaces',
+		aliases: ['ws', 'workspaces'],
+		describe: `create yarn workspaces`,
+		// @ts-ignore
+		builder(yargs)
+		{
+			return yargs
+				.command({
+					command: 'init',
+					describe: `create yarn workspaces`,
+					builder(yargs)
+					{
+						return setupWorkspacesInitToYargs(yargs)
+					},
+					async handler(argv)
+					{
+						let ret = checkModileExists({
+							name: 'create-yarn-workspaces',
+							requireName: 'create-yarn-workspaces/bin/yarn-ws-init',
+						});
+
+						if (!ret)
+						{
+							process.exit(1);
+						}
+
+						let cmd_list = processArgvSlice('init').argv;
+
+						crossSpawnOther('node', [
+
+							ret,
+
+							...cmd_list,
+						], argv);
+					},
+				})
+				.strict()
+				.demandCommand()
+			;
+		},
+		async handler(argv)
+		{
+
+		},
+	}))
+	.help(true)
+	.showHelpOnFail(true)
+	.strict()
+	.demandCommand()
 ;
 
 cli.argv;

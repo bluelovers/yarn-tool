@@ -8,10 +8,15 @@ import { Arguments, Argv, CommandBuilder, Omit } from 'yargs';
 const cached_command: ICachedCommond = {};
 
 export const cli = yargs
-	.help(true)
-	.showHelpOnFail(true)
-	.strict()
-	.demandCommand()
+	.option('cwd', {
+		desc: `current working directory or package directory`,
+		normalize: true,
+		default: process.cwd(),
+	})
+	.option('skipCheckWorkspace', {
+		desc: `this options is for search yarn.lock, pkg root, workspace root, not same as --ignore-workspace-root-check`,
+		boolean: true,
+	})
 	.command({
 		command: 'help',
 		describe: 'Show help',
@@ -26,22 +31,16 @@ export const cli = yargs
 	.command({
 		command: 'version',
 		describe: 'Show version',
-		builder: dummy_builder,
+		builder(yarg)
+		{
+			return yarg;
+		},
 		async handler()
 		{
 			return import('../package.json')
 				.then(v => console.log(v.version))
 				;
 		},
-	})
-	.option('cwd', {
-		desc: `current working directory or package directory`,
-		normalize: true,
-		default: process.cwd(),
-	})
-	.option('skipCheckWorkspace', {
-		desc: `this options is for search yarn.lock, pkg root, workspace root, not same as --ignore-workspace-root-check`,
-		boolean: true,
 	})
 ;
 
@@ -67,12 +66,12 @@ export interface ICachedCommond
 	[cmd: string]: yargs.CommandModule
 }
 
-export function dummy_builder<T>(yarg: T): T
+export function dummy_builder<T extends {}>(yarg: yargs.Argv<T>)
 {
 	return yarg
 }
 
-export function dummy_handler<T>(args: yargs.Arguments<T>): any
+export function dummy_handler<T extends {}>(args: yargs.Arguments<T>): any
 {
 	return args
 }
@@ -101,9 +100,9 @@ export function call_commond<T, U>(yarg: yargs.Argv<T>, commond: string, argv?: 
 	return cached_command[commond].handler(argv == null ? yarg.argv : argv)
 }
 
-export type ICommandBuilder<T, U> = (args: yargs.Argv<T>) => yargs.Argv<IUnpackMyYargsArgv & U>;
+export type ICommandBuilder<T extends {}, U extends {}> = (args: yargs.Argv<T>) => yargs.Argv<IUnpackMyYargsArgv & U>;
 
-export type ICommandModule<T, U = IUnpackMyYargsArgv> =
+export type ICommandModule<T extends {}, U extends {} = IUnpackMyYargsArgv> =
 {
 	command?: ReadonlyArray<string> | string;
 	aliases?: ReadonlyArray<string> | string;
@@ -113,7 +112,7 @@ export type ICommandModule<T, U = IUnpackMyYargsArgv> =
 	handler(args: yargs.Arguments<IUnpackMyYargsArgv & U>): any,
 }
 
-export function create_command2<U extends any>(conf: ICommandModule<IUnpackMyYargsArgv, U> & {
+export function create_command2<U extends {}>(conf: ICommandModule<IUnpackMyYargsArgv, U> & {
 	//yarg?: yargs.Argv<T>,
 	desc?: ICommandModule<IUnpackMyYargsArgv, U>["describe"],
 }): yargs.CommandModule<IUnpackMyYargsArgv, U>
