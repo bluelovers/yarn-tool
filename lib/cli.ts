@@ -17,6 +17,9 @@ export const cli = yargs
 		desc: `this options is for search yarn.lock, pkg root, workspace root, not same as --ignore-workspace-root-check`,
 		boolean: true,
 	})
+	.option('yt-debug-mode', {
+		boolean: true,
+	})
 	.command({
 		command: 'help',
 		describe: 'Show help',

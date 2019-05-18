@@ -26,7 +26,7 @@ const cmdModule = createCommandModuleExports({
 	{
 		let ret = checkModileExists({
 			name: 'npm-init2',
-			requireName: 'npm-init2/bin/npm-init2',
+			requireName: 'npm-init2',
 			processExit: true,
 		});
 
@@ -35,6 +35,8 @@ const cmdModule = createCommandModuleExports({
 		crossSpawnOther('node', [
 
 			ret,
+
+			//'--',
 
 			...cmd_list,
 		], argv);

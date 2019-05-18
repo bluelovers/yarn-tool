@@ -81,9 +81,9 @@ export function _crossSpawnOther<T>(cp: T)
 
 export function crossSpawnOther(bin: string, cmd_list: string[], argv)
 {
-	consoleDebug.debug(bin, cmd_list);
+	//consoleDebug.debug(bin, cmd_list);
 
-	let cp = crossSpawn.sync('npm', cmd_list.filter(v => v != null), {
+	let cp = crossSpawn.sync(bin, cmd_list.filter(v => v != null), {
 		stdio: 'inherit',
 		cwd: argv.cwd,
 	});
@@ -93,10 +93,9 @@ export function crossSpawnOther(bin: string, cmd_list: string[], argv)
 
 export function crossSpawnOtherAsync(bin: string, cmd_list: string[], argv)
 {
+	//consoleDebug.debug(bin, cmd_list);
 
-	consoleDebug.debug(bin, cmd_list);
-
-	return crossSpawn.async('npm', cmd_list.filter(v => v != null), {
+	return crossSpawn.async(bin, cmd_list.filter(v => v != null), {
 		stdio: 'inherit',
 		cwd: argv.cwd,
 	})

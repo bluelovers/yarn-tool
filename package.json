@@ -1,6 +1,6 @@
 {
   "name": "yarn-tool",
-  "version": "1.0.11",
+  "version": "1.0.12",
   "description": "yarn cli tool helper",
   "keywords": [
     "cli",
@@ -11,13 +11,13 @@
     "diff",
     "duplicated",
     "install",
+    "lerna",
     "lockfile",
     "npm",
     "package",
     "package manager",
     "tool",
     "yarn",
-    "lerna",
     "yarn-tool",
     "yarn.lock"
   ],
