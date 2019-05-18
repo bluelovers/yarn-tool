@@ -17,6 +17,7 @@
     "package manager",
     "tool",
     "yarn",
+    "lerna",
     "yarn-tool",
     "yarn.lock"
   ],
@@ -60,6 +61,7 @@
     "pkg-dir": "^4.1.0",
     "semver": "^6.0.0",
     "semver-utils": "^1.1.4",
+    "source-map-support": "^0.5.12",
     "ts-type": "^1.2.1",
     "update-notifier": "^3.0.0",
     "yargs": "^13.2.4",

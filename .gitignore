@@ -28,6 +28,7 @@ tests/temp*
 tests/**/*.map
 
 bin/*.d.ts
+bin/**/*.d.ts
 
 /packages/*/bin/*.d.ts
 /packages/*/test/**/*.js
@@ -72,3 +73,6 @@ yarn-error.log*
 *.vue.d.ts
 *.vue.js.map
 /.eslintrc.json.tpl
+/.eslintignore
+/.browserslistrc
+/.nvmrc

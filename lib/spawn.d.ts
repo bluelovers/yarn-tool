@@ -10,6 +10,7 @@ export declare function checkModileExists(argv: {
     msg?: string;
     requireName?: string;
     installCmd?: string;
+    processExit?: boolean | number;
 }): string;
 export declare function _crossSpawnOther<T>(cp: T): T;
 export declare function crossSpawnOther(bin: string, cmd_list: string[], argv: any): crossSpawn.SpawnSyncReturns<Buffer>;

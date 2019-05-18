@@ -32,6 +32,7 @@ export function checkModileExists(argv: {
 	msg?: string,
 	requireName?: string,
 	installCmd?: string
+	processExit?: boolean | number,
 })
 {
 	let ret = requireResolve(argv.requireName || argv.name);
@@ -45,6 +46,11 @@ export function checkModileExists(argv: {
 		if (argv.msg)
 		{
 			console.log(`${argv.msg}\n`);
+		}
+
+		if (argv.processExit)
+		{
+			process.exit((argv.processExit as number) | 0);
 		}
 
 		return null;

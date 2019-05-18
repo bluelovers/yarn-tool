@@ -42,6 +42,7 @@ export const cli = yargs
 				;
 		},
 	})
+	.recommendCommands()
 ;
 
 export type IMyYargsArgv = typeof cli;
