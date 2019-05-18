@@ -1,4 +1,5 @@
 import { Argv, Omit } from 'yargs';
+import IPackageJson from '@ts-type/package-dts/package-json';
 export declare function flagsYarnAdd(argv: {
     [k: string]: boolean;
 }): string[];
@@ -28,5 +29,5 @@ export declare function parseArgvPkgName(input: string): {
     version: string;
 };
 export declare function listToTypes(input: string[]): string[];
-export declare function existsDependencies(name: string, pkg: Record<'dependencies' | 'devDependencies' | 'optionalDependencies', Record<string, string>>): string;
+export declare function existsDependencies(name: string, pkg: IPackageJson | Partial<Record<'dependencies' | 'devDependencies' | 'optionalDependencies', Record<string, string>>>): string;
 export default flagsYarnAdd;

@@ -99,6 +99,8 @@ export declare function wrapDedupe<T extends {
     rootData: {
         pkg: string;
         ws: string;
+        hasWorkspace: boolean;
+        isWorkspace: boolean;
         root: string;
     };
     yarg: yargs.Argv<T>;
@@ -112,6 +114,8 @@ export declare function infoFromDedupeCache<C extends IWrapDedupeCache>(cache: C
     yarnlock_changed: boolean;
     pkg: string;
     ws: string;
+    hasWorkspace: boolean;
+    isWorkspace: boolean;
     root: string;
 };
 export default Dedupe;

@@ -11,6 +11,8 @@ export declare function findRoot(options: {
 }, throwError?: boolean): {
     pkg: string;
     ws: string;
+    hasWorkspace: boolean;
+    isWorkspace: boolean;
     root: string;
 };
 export declare function yarnLockDiff(yarnlock_old: string, yarnlock_new: string): string;

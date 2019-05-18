@@ -5,6 +5,7 @@
 import lockfile = require('@yarnpkg/lockfile');
 import fs = require('fs-extra');
 import { ITSValueOfArray, ITSArrayListMaybeReadonly } from 'ts-type';
+import { readPackageJson } from './pkg';
 
 export interface IYarnLockfileParseFull<T extends ITSArrayListMaybeReadonly<string> = string[]>
 {
@@ -81,7 +82,7 @@ export function filterResolutions<T extends ITSArrayListMaybeReadonly<string>>(p
 			{
 				let n = stripDepsName(k);
 
-				a.deps[n[0]] = a.deps[n[0]] || [];
+				a.deps[n[0]] = a.deps[n[1]] || [];
 
 				a.deps[n[0]][n[1]] = yarnlock[k];
 
@@ -91,22 +92,37 @@ export function filterResolutions<T extends ITSArrayListMaybeReadonly<string>>(p
 				deps: {},
 			} as {
 				names: T,
-				deps: Record<ITSValueOfArray<T & ['*']>, IYarnLockfileParseObjectRow>
+				deps: Record<ITSValueOfArray<T>, Record<string | '*', IYarnLockfileParseObjectRow>>
 			})
 			;
 	}
 
-
-
 	return null;
 }
 
+/**
+ *
+ * @example ```
+ let pkg = readPackageJson('G:/Users/The Project/nodejs-yarn/ws-create-yarn-workspaces/package.json');
+
+ let y = readYarnLockfile('G:/Users/The Project/nodejs-yarn/ws-create-yarn-workspaces/yarn.lock')
+
+ console.dir(removeResolutions(pkg, y), {
+	depth: null,
+});
+ ```
+ */
 export function removeResolutions<T extends ITSArrayListMaybeReadonly<string>>(pkg: {
 	resolutions?: IDependencies<T>
 }, yarnlock_old: IYarnLockfileParseObject<T>)
 {
 	let result = filterResolutions(pkg, yarnlock_old);
 
+	return removeResolutionsCore(result, yarnlock_old);
+}
+
+export function removeResolutionsCore<T extends ITSArrayListMaybeReadonly<string>>(result: ReturnType<typeof filterResolutions>, yarnlock_old: IYarnLockfileParseObject<T>)
+{
 	let yarnlock_new: IYarnLockfileParseObject<T> = result.names
 		// @ts-ignore
 		.reduce(function (a: IYarnLockfileParseObject<T>, b)
@@ -137,11 +153,3 @@ export function removeResolutions<T extends ITSArrayListMaybeReadonly<string>>(p
 		result,
 	}
 }
-
-let pkg = fs.readJSONSync('G:/Users/The Project/nodejs-yarn/ws-create-yarn-workspaces/package.json') as typeof import('../../../package.json');
-
-let y = readYarnLockfile('G:/Users/The Project/nodejs-yarn/ws-create-yarn-workspaces/yarn.lock')
-
-console.dir(removeResolutions(pkg, y), {
-	depth: null,
-});

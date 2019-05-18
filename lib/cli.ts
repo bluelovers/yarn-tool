@@ -3,11 +3,37 @@
  */
 
 import yargs = require('yargs');
-import { Argv } from 'yargs';
+import { Arguments, Argv, CommandBuilder, Omit } from 'yargs';
 
 const cached_command: ICachedCommond = {};
 
 export const cli = yargs
+	.help(true)
+	.showHelpOnFail(true)
+	.strict()
+	.demandCommand()
+	.command({
+		command: 'help',
+		describe: 'Show help',
+		aliases: ['h'],
+		builder(yarg)
+		{
+			yarg.showHelp('log');
+			return yarg;
+		},
+		handler: dummy_handler,
+	})
+	.command({
+		command: 'version',
+		describe: 'Show version',
+		builder: dummy_builder,
+		async handler()
+		{
+			return import('../package.json')
+				.then(v => console.log(v.version))
+				;
+		},
+	})
 	.option('cwd', {
 		desc: `current working directory or package directory`,
 		normalize: true,
@@ -17,30 +43,16 @@ export const cli = yargs
 		desc: `this options is for search yarn.lock, pkg root, workspace root, not same as --ignore-workspace-root-check`,
 		boolean: true,
 	})
-	.help(true)
-	.showHelpOnFail(true)
-	.strict()
-	/*
-	.command('help', 'Show help', (yarg) =>
-	{
-		yarg.showHelp('log');
-		return yarg;
-	})
-	*/
-	.command(create_command2({
-		command: 'help',
-		describe: 'Show help',
-		builder(yarg)
-		{
-			yarg.showHelp('log');
-			return yarg;
-		},
-	}))
 ;
 
 export type IMyYargsArgv = typeof cli;
 
-export function getYargs<T =  IUnpackYargsArgv<IMyYargsArgv>>(): yargs.Argv<T>
+export type IUnpackMyYargsArgv = {
+	cwd: string;
+	skipCheckWorkspace: boolean;
+};
+
+export function getYargs(): yargs.Argv<IUnpackMyYargsArgv>
 {
 	// @ts-ignore
 	return cli;
@@ -55,12 +67,12 @@ export interface ICachedCommond
 	[cmd: string]: yargs.CommandModule
 }
 
-function dummy_builder<T>(yarg: yargs.Argv<T>)
+export function dummy_builder<T>(yarg: T): T
 {
 	return yarg
 }
 
-function dummy_handler<T>(args: yargs.Arguments<T>): any
+export function dummy_handler<T>(args: yargs.Arguments<T>): any
 {
 	return args
 }
@@ -89,24 +101,29 @@ export function call_commond<T, U>(yarg: yargs.Argv<T>, commond: string, argv?: 
 	return cached_command[commond].handler(argv == null ? yarg.argv : argv)
 }
 
-export type ICommandModule<T, U> = Omit<yargs.CommandModule<T, U>, 'handler' | 'builder'> & ({
-	handler?: yargs.CommandModule<T, U>["handler"],
-	builder(args: Argv<T>): Argv<U>,
-} | {
-	handler: yargs.CommandModule<T, U>["handler"],
-	builder?: yargs.CommandModule<T, U>["builder"],
-});
+export type ICommandBuilder<T, U> = (args: yargs.Argv<T>) => yargs.Argv<IUnpackMyYargsArgv & U>;
 
-export function create_command2<T, U extends T = T>(conf: ICommandModule<T, U | T> & {
-	yarg?: yargs.Argv<T>,
-	desc?: yargs.CommandModule<T, U>["describe"],
-}): yargs.CommandModule<T, U>
+export type ICommandModule<T, U = IUnpackMyYargsArgv> =
 {
+	command?: ReadonlyArray<string> | string;
+	aliases?: ReadonlyArray<string> | string;
+	describe?: string | false;
+
+	builder?: ICommandBuilder<T, U>,
+	handler(args: yargs.Arguments<IUnpackMyYargsArgv & U>): any,
+}
+
+export function create_command2<U extends any>(conf: ICommandModule<IUnpackMyYargsArgv, U> & {
+	//yarg?: yargs.Argv<T>,
+	desc?: ICommandModule<IUnpackMyYargsArgv, U>["describe"],
+}): yargs.CommandModule<IUnpackMyYargsArgv, U>
+{
+	// @ts-ignore
 	let { handler = dummy_handler, builder = dummy_builder, desc } = conf;
 	let { describe = desc } = conf;
 
-	let opts: yargs.CommandModule<T, U> = {
-		...(conf as yargs.CommandModule<T, U>),
+	let opts: yargs.CommandModule<IUnpackMyYargsArgv, U> = {
+		...(conf as yargs.CommandModule<IUnpackMyYargsArgv, U>),
 		// @ts-ignore
 		builder,
 		handler,
@@ -132,6 +149,7 @@ export function create_command2<T, U extends T = T>(conf: ICommandModule<T, U | 
 
 	function _delete(opts: typeof conf)
 	{
+		// @ts-ignore
 		delete opts.yarg;
 		delete opts.desc;
 	}

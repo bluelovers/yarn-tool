@@ -4,6 +4,7 @@
 import { lazyFlags } from '../index';
 import { Argv, Omit } from 'yargs';
 import { array_unique, array_unique_overwrite } from 'array-hyper-unique';
+import IPackageJson from '@ts-type/package-dts/package-json';
 
 export function flagsYarnAdd(argv: {
 	[k: string]: boolean,
@@ -100,12 +101,12 @@ export function listToTypes(input: string[])
 }
 
 export function existsDependencies(name: string,
-	pkg: Record<'dependencies' | 'devDependencies' | 'optionalDependencies', Record<string, string>>,
+	pkg: IPackageJson | Partial<Record<'dependencies' | 'devDependencies' | 'optionalDependencies', Record<string, string>>>,
 )
 {
-	return pkg.dependencies[name]
-		|| pkg.devDependencies[name]
-		|| pkg.optionalDependencies[name]
+	return pkg.dependencies && pkg.dependencies[name]
+		|| pkg.devDependencies && pkg.devDependencies[name]
+		|| pkg.optionalDependencies && pkg.optionalDependencies[name]
 	;
 }
 

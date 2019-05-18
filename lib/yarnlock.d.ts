@@ -24,8 +24,20 @@ export declare function filterResolutions<T extends ITSArrayListMaybeReadonly<st
     resolutions?: IDependencies<T>;
 }, yarnlock: IYarnLockfileParseObject<T>): {
     names: T;
-    deps: Record<(T & ["*"])[number | Exclude<keyof T, string | symbol>], IYarnLockfileParseObjectRow<string[]>>;
+    deps: Record<T[Exclude<keyof T, string | symbol>], Record<string, IYarnLockfileParseObjectRow<string[]>>>;
 };
+/**
+ *
+ * @example ```
+ let pkg = readPackageJson('G:/Users/The Project/nodejs-yarn/ws-create-yarn-workspaces/package.json');
+
+ let y = readYarnLockfile('G:/Users/The Project/nodejs-yarn/ws-create-yarn-workspaces/yarn.lock')
+
+ console.dir(removeResolutions(pkg, y), {
+    depth: null,
+});
+ ```
+ */
 export declare function removeResolutions<T extends ITSArrayListMaybeReadonly<string>>(pkg: {
     resolutions?: IDependencies<T>;
 }, yarnlock_old: IYarnLockfileParseObject<T>): {
@@ -42,7 +54,25 @@ export declare function removeResolutions<T extends ITSArrayListMaybeReadonly<st
      */
     yarnlock_changed: boolean;
     result: {
-        names: T;
-        deps: Record<(T & ["*"])[number | Exclude<keyof T, string | symbol>], IYarnLockfileParseObjectRow<string[]>>;
+        names: ITSArrayListMaybeReadonly<string>;
+        deps: Record<string, Record<string, IYarnLockfileParseObjectRow<string[]>>>;
+    };
+};
+export declare function removeResolutionsCore<T extends ITSArrayListMaybeReadonly<string>>(result: ReturnType<typeof filterResolutions>, yarnlock_old: IYarnLockfileParseObject<T>): {
+    /**
+     * 執行前的 yarn.lock
+     */
+    yarnlock_old: Record<string, IYarnLockfileParseObjectRow<T>>;
+    /**
+     * 執行後的 yarn.lock
+     */
+    yarnlock_new: Record<string, IYarnLockfileParseObjectRow<T>>;
+    /**
+     * yarn.lock 是否有變動
+     */
+    yarnlock_changed: boolean;
+    result: {
+        names: ITSArrayListMaybeReadonly<string>;
+        deps: Record<string, Record<string, IYarnLockfileParseObjectRow<string[]>>>;
     };
 };

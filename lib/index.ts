@@ -29,11 +29,11 @@ export function findRoot(options: {
 		throw new TypeError(`options.cwd is '${options.cwd}'`)
 	}
 
-	let hasWorkspace: string;
+	let ws: string;
 
 	if (!options.skipCheckWorkspace)
 	{
-		hasWorkspace = findYarnWorkspaceRoot(options.cwd);
+		ws = findYarnWorkspaceRoot(options.cwd);
 	}
 
 	let pkg = pkgDir.sync(options.cwd);
@@ -44,10 +44,16 @@ export function findRoot(options: {
 		throw err;
 	}
 
+	let hasWorkspace = ws && ws != null;
+	let isWorkspace = hasWorkspace && ws === pkg;
+	let root = hasWorkspace ? ws : pkg;
+
 	return {
 		pkg,
-		ws: hasWorkspace,
-		root: hasWorkspace == null ? pkg : hasWorkspace,
+		ws,
+		hasWorkspace,
+		isWorkspace,
+		root,
 	}
 }
 
