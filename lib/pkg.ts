@@ -13,6 +13,16 @@ export function parsePackageJson(text: string): IPackageJson
 	return JSON.parse(text);
 }
 
+export function writePackageJson(file: string, data, options: WriteOptions = {})
+{
+	let { spaces = 2 } = options;
+
+	return fs.writeJSONSync(file, data, {
+		...options,
+		spaces
+	});
+}
+
 export function writeJSONSync(file: string, data, options: WriteOptions = {})
 {
 	let { spaces = 2 } = options;

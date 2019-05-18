@@ -12,6 +12,7 @@ import { existsDependencies, flagsYarnAdd, listToTypes, setupYarnAddToYargs } fr
 import setupYarnInstallToYargs from '../lib/cli/install';
 import semver = require('semver');
 import setupInitToYargs from 'npm-init2/lib/yargs-setting';
+import { sortPackageJson } from 'sort-package-json';
 
 import {
 	create_command,
@@ -21,7 +22,7 @@ import {
 	IUnpackMyYargsArgv,
 	IUnpackYargsArgv,
 } from '../lib/cli';
-import { readPackageJson, writeJSONSync } from '../lib/pkg';
+import { readPackageJson, writeJSONSync, writePackageJson } from '../lib/pkg';
 import IPackageJson from '@ts-type/package-dts/package-json';
 import setupNcuToYargs, { npmCheckUpdates } from '../lib/cli/ncu';
 import {
@@ -453,7 +454,7 @@ let cli = getYargs()
 		command: 'init',
 		describe: `create a package.json file`,
 		builder: setupInitToYargs,
-		async handler(argv)
+		handler(argv)
 		{
 			let ret = checkModileExists({
 				name: 'npm-init2',
@@ -477,7 +478,7 @@ let cli = getYargs()
 		},
 	}))
 	.command(create_command2<IUnpackMyYargsArgv>({
-		command: 'workspaces',
+		command: 'workspaces <init|run>',
 		aliases: ['ws', 'workspaces'],
 		describe: `create yarn workspaces`,
 		// @ts-ignore
@@ -491,7 +492,7 @@ let cli = getYargs()
 					{
 						return setupWorkspacesInitToYargs(yargs)
 					},
-					async handler(argv)
+					handler(argv)
 					{
 						let ret = checkModileExists({
 							name: 'create-yarn-workspaces',
@@ -513,12 +514,65 @@ let cli = getYargs()
 						], argv);
 					},
 				})
+				.command({
+					command: 'run',
+					describe: `run by lerna`,
+					builder(yargs)
+					{
+						return yargs
+					},
+					handler(argv)
+					{
+						let ret = checkModileExists({
+							name: 'lerna',
+						});
+
+						if (!ret)
+						{
+							process.exit(1);
+						}
+
+						let cmd_list = processArgvSlice('run').argv;
+
+						crossSpawnOther('lerna', [
+
+							'run',
+
+							...cmd_list,
+						], argv);
+					},
+				})
 				.strict()
 				.demandCommand()
 			;
 		},
 		async handler(argv)
 		{
+
+		},
+	}))
+	.command(create_command2<IUnpackMyYargsArgv>({
+		command: 'sort',
+		describe: `sort package.json file`,
+		builder(yargs)
+		{
+			return yargs
+		},
+		handler(argv)
+		{
+			let rootData = findRoot({
+				...argv,
+				cwd: argv.cwd,
+			}, true);
+
+			let json_file = path.join(rootData.pkg, 'package.json');
+
+			let json = readPackageJson(json_file);
+
+			sortPackageJson(json);
+			writePackageJson(json_file, json);
+
+			consoleDebug.log(`sort: ${json_file}`);
 
 		},
 	}))
