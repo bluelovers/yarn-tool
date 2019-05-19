@@ -14,7 +14,7 @@ import { Arguments, Argv } from 'yargs';
 
 const cmdModule = createCommandModuleExports({
 
-	command: basenameStrip(__filename),
+	command: basenameStrip(__filename) + ' <cmd>',
 
 	aliases: ['ws', 'workspaces', 'workspace'],
 	describe: `yarn workspaces`,

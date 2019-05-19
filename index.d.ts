@@ -1,5 +1,6 @@
 /**
  * Created by user on 2019/4/30.
  */
-declare const _default: typeof import(".");
-export default _default;
+export declare const YT_ROOT: string;
+export declare const YT_BIN: string;
+export default YT_ROOT;

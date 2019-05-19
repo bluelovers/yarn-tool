@@ -60,7 +60,7 @@ let cli = yargs
 		aliases: ['h'],
 		builder(yarg)
 		{
-			yarg.showHelp('log');
+			require('yargs').showHelp('log');
 			return yarg;
 		},
 		handler: dummy_handler,
@@ -86,6 +86,7 @@ let cli = yargs
 	.showHelpOnFail(true)
 	.strict()
 	.demandCommand()
+	.scriptName('yt')
 ;
 
 cli.argv;

@@ -3,31 +3,49 @@
  */
 import { basenameStrip, createCommandModuleExports } from '../../lib/cmd_dir';
 import path = require('upath2');
-import { console, consoleDebug, findRoot, fsYarnLock, printRootData } from '../../lib/index';
+import {
+	chalkByConsole,
+	console,
+	consoleDebug,
+	findRoot,
+	fsYarnLock,
+	printRootData,
+	yarnProcessExit,
+} from '../../lib/index';
 import IPackageJson, { readPackageJson } from '@ts-type/package-dts';
 import { writeJSONSync, writePackageJson } from '../../lib/pkg';
 import { sortPackageJson } from 'sort-package-json';
 import { IUnpackMyYargsArgv } from '../../lib/cmd_dir';
-import setupNcuToYargs, { npmCheckUpdates } from '../../lib/cli/ncu';
+import setupNcuToYargs, { checkResolutionsUpdate, isBadVersion, npmCheckUpdates } from '../../lib/cli/ncu';
 import {
 	filterResolutions,
 	IDependencies,
 	IYarnLockfileParseObjectRow,
 	parse as parseYarnLock, removeResolutionsCore, stringify as stringifyYarnLock,
-	stripDepsName,
+	stripDepsName, writeYarnLockfile, yarnLockDiff,
 } from '../../lib/yarnlock';
 import fs = require('fs-extra');
 import semver = require('semver');
+import Bluebird = require('bluebird');
+import { toDependencyTable } from '../../lib/table';
 
 const cmdModule = createCommandModuleExports({
 
-	command: basenameStrip(__filename),
+	command: basenameStrip(__filename) + ' [-u]',
 	aliases: ['update'],
 	describe: `Find newer versions of dependencies than what your package.json or bower.json allows`,
 
 	builder(yargs)
 	{
 		return setupNcuToYargs(yargs)
+			.option('resolutions', {
+				alias: ['R'],
+				desc: 'do with resolutions only',
+				boolean: true,
+			})
+			.option('safe', {
+				boolean: true,
+			})
 	},
 
 	async handler(argv)
@@ -61,6 +79,101 @@ const cmdModule = createCommandModuleExports({
 			resolutions = pkg_data_ws.resolutions;
 		}
 
+		if (argv.resolutions)
+		{
+			if (!resolutions || !Object.keys(resolutions).length)
+			{
+				return yarnProcessExit(`resolutions is not exists in package.json`)
+			}
+
+			let yl = fsYarnLock(rootData.root);
+
+			let ret = await checkResolutionsUpdate(resolutions, yl.yarnlock_old);
+
+			if (ret.yarnlock_changed)
+			{
+				writeYarnLockfile(yl.yarnlock_file, ret.yarnlock_new_obj);
+
+				chalkByConsole((chalk, console) =>
+				{
+					let p = chalk.cyan(path.relative(argv.cwd, yl.yarnlock_file));
+
+					console.log(`${p} is updated!`);
+
+				}, console);
+
+				let msg = yarnLockDiff(stringifyYarnLock(ret.yarnlock_old_obj), stringifyYarnLock(ret.yarnlock_new_obj));
+
+				if (msg)
+				{
+					console.log(`\n${msg}\n`);
+				}
+			}
+
+			if (ret.update_list)
+			{
+				let ls = ret.update_list
+					.filter(name => !isBadVersion(resolutions[name]))
+				;
+
+				if (ls.length)
+				{
+					let fromto = ls
+						.reduce((a, name) =>
+						{
+
+							a.from[name] = resolutions[name];
+							a.to[name] = ret.deps2[name];
+
+							resolutions[name] = ret.deps2[name];
+
+							return a;
+						}, {} as Parameters<typeof toDependencyTable>[0])
+					;
+
+					let msg = toDependencyTable(fromto);
+
+					console.log(`\n${msg}\n`);
+
+					if (argv.upgrade)
+					{
+						if (doWorkspace)
+						{
+							pkg_data_ws.resolutions = resolutions;
+
+							writePackageJson(pkg_file_ws, pkg_data_ws);
+
+							chalkByConsole((chalk, console) =>
+							{
+								let p = chalk.cyan(path.relative(argv.cwd, pkg_file_ws));
+
+								console.log(`${p} is updated!`);
+
+							}, console);
+						}
+						else
+						{
+							pkg_data.resolutions = resolutions;
+
+							writePackageJson(pkg_file, pkg_data);
+
+							chalkByConsole((chalk, console) =>
+							{
+
+								let p = chalk.cyan(path.relative(rootData.ws || rootData.pkg, pkg_file));
+
+								console.log(`${p} is updated!`);
+
+							}, console);
+						}
+					}
+
+				}
+			}
+
+			return;
+		}
+
 		printRootData(rootData, argv);
 
 		let pkgNcu = await npmCheckUpdates({
@@ -74,7 +187,7 @@ const cmdModule = createCommandModuleExports({
 
 		if (pkgNcu.json_changed && argv.upgrade)
 		{
-			writeJSONSync(pkg_file, pkgNcu.json_new)
+			writeJSONSync(pkg_file, pkgNcu.json_new);
 			consoleDebug.info(`package.json updated`);
 		}
 
@@ -90,6 +203,11 @@ const cmdModule = createCommandModuleExports({
 
 					if (ver_old)
 					{
+						if (ver_new === 'latest')
+						{
+							ver_new = '*';
+						}
+
 						// @ts-ignore
 						a[name] = ver_new;
 					}
@@ -100,59 +218,17 @@ const cmdModule = createCommandModuleExports({
 
 			let yl = fsYarnLock(rootData.root);
 
-			let yarnlock_old_obj = parseYarnLock(yl.yarnlock_old);
-
-			let result = filterResolutions({
-				resolutions: ls
-			}, yarnlock_old_obj);
-
-			let r2 = result.names
-				.filter(name => {
-
-					let n = stripDepsName(name);
-
-					let da = result.deps[n[0]];
-
-					if (!da)
-					{
-						return false;
-					}
-
-					if (da['*'] || ls[n[0]] == '*')
-					{
-						return true;
-					}
-
-					return Object.values(da).some(dr => {
-
-						if (ls[name] == null)
-						{
-							return true;
-						}
-
-						let bool = semver.lt(dr.version, ls[name]);
-
-						return bool
-					});
-				})
-				.reduce((a, name) => {
-
-					let n = stripDepsName(name);
-
-					a.names.push(name);
-					a.deps[n[0]] = result.deps[n[0]];
-
-					return a;
-				}, {
-					names: [] as string[],
-					deps: {} as Record<string, Record<string | '*', IYarnLockfileParseObjectRow>>,
-				})
-			;
-
-			let ret = removeResolutionsCore(r2, yarnlock_old_obj);
+			let ret = await checkResolutionsUpdate(resolutions, yl.yarnlock_old);
 
 			if (ret.yarnlock_changed)
 			{
+				let msg = yarnLockDiff(stringifyYarnLock(ret.yarnlock_old_obj), stringifyYarnLock(ret.yarnlock_new_obj));
+
+				if (msg)
+				{
+					console.log(`\n${msg}\n`);
+				}
+
 				if (!argv.upgrade)
 				{
 					consoleDebug.magenta.info(`your dependencies version high than resolutions`);
@@ -160,11 +236,12 @@ const cmdModule = createCommandModuleExports({
 				}
 				else
 				{
-					fs.writeFileSync(yl.yarnlock_file, stringifyYarnLock(ret.yarnlock_new));
+					writeYarnLockfile(yl.yarnlock_file, ret.yarnlock_new_obj);
 
 					consoleDebug.magenta.info(`Deduplication yarn.lock`);
 					consoleDebug.log(`you can do `, console.bold.cyan.chalk(`yt install`), ` , for upgrade dependencies now`);
 				}
+
 			}
 		}
 

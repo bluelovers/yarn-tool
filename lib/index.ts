@@ -102,4 +102,10 @@ export function printRootData(rootData: ReturnType<typeof findRoot>, argv: Argum
 	consoleDebug.info(`${pkg_data.name}@${pkg_data.version}`, path.relative(doWorkspace ? rootData.ws : argv.cwd, rootData.pkg));
 }
 
+export function yarnProcessExit(msg: string, code: number = 1)
+{
+	console.error(msg);
+	process.exit(code)
+}
+
 export default exports as typeof import('./index');

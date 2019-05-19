@@ -13,6 +13,8 @@ import { colorizeDiff, createDependencyTable } from './table';
 import { consoleDebug, console } from './index';
 import { DiffArray } from 'deep-diff';
 import { Chalk } from 'chalk';
+import { IVersionValue } from './cli/ncu';
+import semver = require('semver');
 
 const { _formatVersion } = FormatterService;
 
@@ -24,11 +26,23 @@ export interface IYarnLockfileParseFull<T extends ITSArrayListMaybeReadonly<stri
 
 export type IYarnLockfileParseObject<T extends ITSArrayListMaybeReadonly<string> = string[]> = Record<string, IYarnLockfileParseObjectRow<T>>
 
+/**
+ * yarn.lock 資料
+ */
 export interface IYarnLockfileParseObjectRow<T extends ITSArrayListMaybeReadonly<string> = string[]>
 {
 	version: string;
+	/**
+	 * 安裝來源網址
+	 */
 	resolved: string;
+	/**
+	 * hash key
+	 */
 	integrity: string;
+	/**
+	 * 依賴列表
+	 */
 	dependencies?: IDependencies<T>;
 }
 
@@ -44,7 +58,7 @@ export function parse(text: string | Buffer)
 	return parseFull(text).object
 }
 
-export function stringify(json: object): string
+export function stringify(json: IYarnLockfileParseObject): string
 {
 	return lockfile.stringify(json)
 }
@@ -56,7 +70,12 @@ export function readYarnLockfile(file: string)
 	return parse(data)
 }
 
-export function stripDepsName(name: string): [string, string]
+export function writeYarnLockfile(file: string, data: IYarnLockfileParseObject)
+{
+	return fs.writeFileSync(file, stringify(data))
+}
+
+export function stripDepsName<T = string>(name: string): [T, IVersionValue]
 {
 	let m = name.match(/^(.+)@(.+)$/);
 
@@ -65,17 +84,60 @@ export function stripDepsName(name: string): [string, string]
 		throw new TypeError(`name is not dependencies, ${name}`)
 	}
 
-	let r = m.slice(1) as [string, string];
+	let r = m.slice(1);
 
 	//console.dir(r);
 	//process.exit()
 
-	return r
+	return r as any
+}
+
+export interface IFilterResolutions<T extends ITSArrayListMaybeReadonly<string>>
+{
+	/**
+	 * yarn.lock key 列表
+	 */
+	names: T,
+	/**
+	 * 過濾後的 yarn lock deps
+	 */
+	deps: {
+		/**
+		 * 模組名稱
+		 */
+		[P in (keyof ITSValueOfArray<T> | string)]: {
+			/**
+			 * 版本資料
+			 */
+			[P in IVersionValue]: IYarnLockfileParseObjectRow<T>;
+		}
+	},
+	/**
+	 * 實際安裝的版本編號
+	 */
+	installed?: {
+		/**
+		 * 實際安裝的版本編號
+		 */
+		[P in ITSValueOfArray<T>]: IVersionValue[];
+	},
+	/**
+	 * 每個模組最大的安裝版本
+	 */
+	max?: {
+		/**
+		 * 每個模組最大的安裝版本
+		 */
+		[P in ITSValueOfArray<T>]: {
+			key: ITSValueOfArray<T>,
+			value: IYarnLockfileParseObjectRow<T>
+		}
+	},
 }
 
 export function filterResolutions<T extends ITSArrayListMaybeReadonly<string>>(pkg: {
 	resolutions?: IDependencies<T>
-}, yarnlock: IYarnLockfileParseObject<T>)
+}, yarnlock: IYarnLockfileParseObject<T>): IFilterResolutions<T>
 {
 	if (pkg.resolutions)
 	{
@@ -89,24 +151,69 @@ export function filterResolutions<T extends ITSArrayListMaybeReadonly<string>>(p
 		return ks
 			.reduce(function (a, k)
 			{
-				let n = stripDepsName(k);
+				let n = stripDepsName<ITSValueOfArray<T>>(k);
 
-				a.deps[n[0]] = a.deps[n[1]] || [];
+				let name = n[0];
+				let key = n[1];
 
-				a.deps[n[0]][n[1]] = yarnlock[k];
+				let data = yarnlock[k];
+
+				// @ts-ignore
+				(a.deps[name] = a.deps[name] || {})[key] = data;
+
+				a.installed[name] = a.installed[n[0]] || [];
+
+				if (!a.installed[name].includes(data.version))
+				{
+					a.installed[name].push(data.version);
+
+					if (a.max[name] != null)
+					{
+						if (semver.lt(a.max[name].value.version, data.version))
+						{
+							a.max[name] = {
+								key: k,
+								value: data,
+							};
+						}
+					}
+					else
+					{
+						a.max[name] = {
+							key: k,
+							value: data,
+						};
+					}
+				}
 
 				return a;
 			}, {
 				names: ks,
 				deps: {},
-			} as {
-				names: T,
-				deps: Record<ITSValueOfArray<T>, Record<string | '*', IYarnLockfileParseObjectRow>>
-			})
+				installed: {},
+				max: {},
+			} as IFilterResolutions<T>)
 			;
 	}
 
 	return null;
+}
+
+export interface IRemoveResolutions<T extends ITSArrayListMaybeReadonly<string>>
+{
+	/**
+	 * 執行前的 yarn.lock
+	 */
+	yarnlock_old: IYarnLockfileParseObject<T>;
+	/**
+	 * 執行後的 yarn.lock
+	 */
+	yarnlock_new: IYarnLockfileParseObject<T>;
+	/**
+	 * yarn.lock 是否有變動
+	 */
+	yarnlock_changed: boolean;
+	result: IFilterResolutions<T>;
 }
 
 /**
@@ -123,16 +230,16 @@ export function filterResolutions<T extends ITSArrayListMaybeReadonly<string>>(p
  */
 export function removeResolutions<T extends ITSArrayListMaybeReadonly<string>>(pkg: {
 	resolutions?: IDependencies<T>
-}, yarnlock_old: IYarnLockfileParseObject<T>)
+}, yarnlock_old: IYarnLockfileParseObject<T>): IRemoveResolutions<T>
 {
 	let result = filterResolutions(pkg, yarnlock_old);
 
-	return removeResolutionsCore(result, yarnlock_old);
+	return removeResolutionsCore<T>(result, yarnlock_old);
 }
 
-export function removeResolutionsCore<T extends ITSArrayListMaybeReadonly<string>>(result: ReturnType<typeof filterResolutions>,
+export function removeResolutionsCore<T extends ITSArrayListMaybeReadonly<string>>(result: IFilterResolutions<T>,
 	yarnlock_old: IYarnLockfileParseObject<T>,
-)
+): IRemoveResolutions<T>
 {
 	let yarnlock_new: IYarnLockfileParseObject<T> = result.names
 		// @ts-ignore
