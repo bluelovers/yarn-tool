@@ -3,7 +3,7 @@
  */
 import { basenameStrip, createCommandModuleExports } from '../../lib/cmd_dir';
 import path = require('path');
-import { consoleDebug, findRoot } from '../../lib/index';
+import { chalkByConsole, consoleDebug, findRoot } from '../../lib/index';
 import { readPackageJson } from '@ts-type/package-dts';
 import { writePackageJson } from '../../lib/pkg';
 import { sortPackageJson } from 'sort-package-json';
@@ -18,6 +18,10 @@ const cmdModule = createCommandModuleExports({
 	builder(yargs)
 	{
 		return yargs
+			.option('silent', {
+				boolean: true,
+			})
+
 	},
 
 	handler(argv)
@@ -35,7 +39,14 @@ const cmdModule = createCommandModuleExports({
 
 		writePackageJson(json_file, json);
 
-		consoleDebug.log(`sort: ${json_file}`);
+		!argv.silent && chalkByConsole((chalk, console) => {
+
+			let p = chalk.cyan(path.relative(argv.cwd, json_file));
+
+			console.log(`${p} is sorted!`);
+
+		}, consoleDebug);
+
 	},
 
 });

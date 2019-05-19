@@ -7,7 +7,7 @@ import pkg = require('../package.json');
 import path = require('path');
 import fs = require('fs-extra');
 import crossSpawn = require('cross-spawn-extra');
-import { console, consoleDebug, findRoot, fsYarnLock, yarnLockDiff } from '../lib/index';
+import { console, consoleDebug, findRoot, fsYarnLock} from '../lib/index';
 import { Dedupe, infoFromDedupeCache, wrapDedupe } from '../lib/cli/dedupe';
 import { existsDependencies, flagsYarnAdd, listToTypes, setupYarnAddToYargs } from '../lib/cli/add';
 import setupYarnInstallToYargs from '../lib/cli/install';
@@ -32,7 +32,7 @@ import {
 	IYarnLockfileParseObjectRow,
 	parse as parseYarnLock,
 	stringify as stringifyYarnLock,
-	removeResolutionsCore, stripDepsName,
+	removeResolutionsCore, stripDepsName, yarnLockDiff,
 } from '../lib/yarnlock';
 import { ITSIteratorLazy, ITSValueOfArray } from 'ts-type';
 import { setupWorkspacesInitToYargs } from 'create-yarn-workspaces/yargs-setting';

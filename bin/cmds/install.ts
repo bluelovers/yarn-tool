@@ -44,6 +44,8 @@ const cmdModule = createCommandModuleExports({
 
 					_once = false;
 				}
+
+				//console.log(1, cache.yarnlock_msg, cache.yarnlock_changed);
 			},
 
 			main(yarg, argv, cache)
@@ -65,6 +67,8 @@ const cmdModule = createCommandModuleExports({
 					_once = true;
 				}
 
+				//console.log(2, cache.yarnlock_msg, cache.yarnlock_changed);
+
 			},
 
 			after(yarg, argv, cache)
@@ -82,16 +86,21 @@ const cmdModule = createCommandModuleExports({
 
 					_once = false;
 				}
+
+				//console.log(3, cache.yarnlock_msg, cache.yarnlock_changed);
 			},
 
 			end(yarg, argv, cache)
 			{
-				if (cache.yarnlock_old_exists && cache.yarnlock_msg)
+
+				if (cache.yarnlock_msg)
 				{
-					console.log(cache.yarnlock_msg);
+					console.log(`\n${cache.yarnlock_msg}\n`);
 				}
 
-				console.dir(infoFromDedupeCache(cache));
+				//console.log(4, cache.yarnlock_msg, cache.yarnlock_changed);
+
+				//console.dir(infoFromDedupeCache(cache));
 			},
 
 		});

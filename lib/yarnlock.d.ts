@@ -2,7 +2,9 @@
  * Created by user on 2019/5/17.
  */
 /// <reference types="node" />
-import { ITSValueOfArray, ITSArrayListMaybeReadonly } from 'ts-type';
+import { ITSArrayListMaybeReadonly, ITSValueOfArray } from 'ts-type';
+import * as deepDiff from 'deep-diff';
+import { Chalk } from 'chalk';
 export interface IYarnLockfileParseFull<T extends ITSArrayListMaybeReadonly<string> = string[]> {
     type: string;
     object: IYarnLockfileParseObject<T>;
@@ -76,3 +78,5 @@ export declare function removeResolutionsCore<T extends ITSArrayListMaybeReadonl
         deps: Record<string, Record<string, IYarnLockfileParseObjectRow<string[]>>>;
     };
 };
+export declare function yarnLockDiff(yarnlock_old: string, yarnlock_new: string): string;
+export declare function _diffArray(array: deepDiff.DiffArray<{}, {}>, chalk: Chalk): string[];

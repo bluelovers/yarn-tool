@@ -8,8 +8,9 @@ import { IDependency } from './cli/ncu';
 
 import Table = require('cli-table3');
 import _ = require('lodash');
+import { IStylesColorNames } from 'debug-color2/lib/styles';
 
-function createDependencyTable()
+export function createDependencyTable()
 {
 	return new Table({
 		colAligns: ['left', 'right', 'right', 'right'],
@@ -49,7 +50,11 @@ export function toDependencyTable(args: {
 	return table;
 }
 
-function colorizeDiff(from: string, to: string, con = console)
+export function colorizeDiff(from: string, to: string,
+	_colors: [
+		IStylesColorNames, IStylesColorNames, IStylesColorNames
+		] = ['red', 'cyan', 'green'], con = console,
+)
 {
 	return chalkByConsole(function (chalk)
 	{
@@ -73,9 +78,9 @@ function colorizeDiff(from: string, to: string, con = console)
 		// major = red (or any change before 1.0.0)
 		// minor = cyan
 		// patch = green
-		const color = i === 0 || partsToColor[0] === '0' ? 'red' :
-			i === 1 ? 'cyan' :
-				'green';
+		const color = i === 0 || partsToColor[0] === '0' ? _colors[0] :
+			i === 1 ? _colors[1] :
+				_colors[2];
 
 		// if we are colorizing only part of the word, add a dot in the middle
 		const middot = i > 0 && i < partsToColor.length ? '.' : '';

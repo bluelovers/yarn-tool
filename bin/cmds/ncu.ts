@@ -154,15 +154,14 @@ const cmdModule = createCommandModuleExports({
 				if (!argv.upgrade)
 				{
 					consoleDebug.magenta.info(`your dependencies version high than resolutions`);
-					consoleDebug.log(`you can do`, console.cyan.chalk(`yt ncu -u`));
+					consoleDebug.log(`you can do `, console.bold.cyan.chalk(`yt ncu -u`), ` , for update package.json`);
 				}
 				else
 				{
 					fs.writeFileSync(yl.yarnlock_file, stringifyYarnLock(ret.yarnlock_new));
 
 					consoleDebug.magenta.info(`Deduplication yarn.lock`);
-					consoleDebug.log(`you can do`, console.cyan.chalk(`yt install`));
-					consoleDebug.log(`for upgrade dependencies now`);
+					consoleDebug.log(`you can do `, console.bold.cyan.chalk(`yt install`), ` , for upgrade dependencies now`);
 				}
 			}
 		}

@@ -136,7 +136,7 @@ const cmdModule = createCommandModuleExports({
 			{
 				if (cache.yarnlock_msg)
 				{
-					console.log(cache.yarnlock_msg);
+					console.log(`\n${cache.yarnlock_msg}\n`);
 				}
 
 				console.dir(infoFromDedupeCache(cache));

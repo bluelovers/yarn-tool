@@ -32,6 +32,7 @@ export interface IWrapDedupeCache {
      * 執行前的 yarn.lock
      */
     readonly yarnlock_old?: string;
+    yarnlock_old2?: string;
     /**
      * 執行前的 yarn.lock 是否存在
      */

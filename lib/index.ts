@@ -4,11 +4,9 @@
 
 import findYarnWorkspaceRoot = require('find-yarn-workspace-root2');
 import pkgDir = require('pkg-dir');
-import { DiffService } from 'yarn-lock-diff/lib/diff-service';
-import { FormatterService } from 'yarn-lock-diff/lib/formatter';
-import { Console2 } from 'debug-color2';
 import path = require('path');
 import fs = require('fs-extra');
+import { Console2 } from 'debug-color2';
 import { createFnChalkByConsole } from 'debug-color2/lib/util';
 
 export const console = new Console2();
@@ -55,18 +53,6 @@ export function findRoot(options: {
 		isWorkspace,
 		root,
 	}
-}
-
-export function yarnLockDiff(yarnlock_old: string, yarnlock_new: string): string
-{
-	let r2: string[] = [];
-
-	let r = DiffService.buildDiff([yarnlock_old], [yarnlock_new])
-		.map(FormatterService.buildDiffTable)
-		.map(r => r2.push(r))
-	;
-
-	return r2[0];
 }
 
 export function fsYarnLock(root: string)

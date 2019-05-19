@@ -4,10 +4,11 @@
 
 import yargs = require('yargs');
 import { fixDuplicates } from 'yarn-deduplicate';
-import { console, consoleDebug, findRoot, fsYarnLock, yarnLockDiff } from '../index';
+import { console, consoleDebug, findRoot, fsYarnLock} from '../index';
 import fs = require('fs-extra');
 import { Console2 } from 'debug-color2';
 import path = require('path');
+import { yarnLockDiff } from '../yarnlock';
 
 export function Dedupe(yarnlock_old: string)
 {
@@ -47,6 +48,7 @@ export interface IWrapDedupeCache
 	 * 執行前的 yarn.lock
 	 */
 	readonly yarnlock_old?: string,
+	yarnlock_old2?: string,
 	/**
 	 * 執行前的 yarn.lock 是否存在
 	 */
@@ -163,6 +165,8 @@ export function wrapDedupe<T extends {
 	// @ts-ignore
 	cache.yarnlock_old = cache.yarnlock_cache.yarnlock_old;
 
+	cache.yarnlock_old2 = cache.yarnlock_old;
+
 	// @ts-ignore
 	cache.yarnlock_old_exists = cache.yarnlock_cache.yarnlock_exists;
 
@@ -224,6 +228,11 @@ export function wrapDedupe<T extends {
 
 			if (ret1.yarnlock_changed)
 			{
+				if (cache.yarnlock_old2 == null)
+				{
+					cache.yarnlock_old2 = ret1.yarnlock_old;
+				}
+
 				fs.writeFileSync(cache.yarnlock_cache.yarnlock_file, ret1.yarnlock_new);
 
 				let msg = yarnLockDiff(ret1.yarnlock_old, ret1.yarnlock_new);
@@ -261,13 +270,35 @@ export function wrapDedupe<T extends {
 			break LABEL1;
 		}
 
-		if (cache.yarnlock_changed)
-		{
-			let msg = yarnLockDiff(cache.yarnlock_old, cache.yarnlock_cache.yarnlock_old);
+		cache.yarnlock_cache = fsYarnLock(cache.rootData.root);
 
-			if (msg)
+		if (cache.yarnlock_cache.yarnlock_exists)
+		{
+			if (cache.yarnlock_changed)
 			{
-				cache.yarnlock_msg = msg;
+				let msg = yarnLockDiff(cache.yarnlock_old || cache.yarnlock_old2, cache.yarnlock_cache.yarnlock_old);
+
+				if (msg)
+				{
+					cache.yarnlock_msg = msg;
+				}
+			}
+			else
+			{
+				let yarnlock_now = fs.readFileSync(cache.yarnlock_cache.yarnlock_file).toString();
+				let yarnlock_old2 = cache.yarnlock_old || cache.yarnlock_old2;
+
+				if (yarnlock_old2)
+				{
+					let msg = yarnLockDiff(yarnlock_old2, yarnlock_now);
+
+					if (msg)
+					{
+						cache.yarnlock_msg = msg;
+
+						cache.yarnlock_changed = true;
+					}
+				}
 			}
 		}
 	}
