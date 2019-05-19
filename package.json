@@ -52,7 +52,7 @@
     "array-hyper-unique": "^1.0.7",
     "cli-table3": "^0.5.1",
     "create-yarn-workspaces": "^1.0.19",
-    "cross-spawn-extra": "^1.0.5",
+    "cross-spawn-extra": "^1.0.6",
     "debug-color2": "^1.1.5",
     "find-yarn-workspace-root2": "^1.2.2",
     "fs-extra": "^8.0.1",
