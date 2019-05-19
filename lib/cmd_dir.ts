@@ -9,6 +9,7 @@ import yargs = require('yargs');
 import { CommandModule, Arguments, Argv, CommandBuilder, Options } from 'yargs';
 import { ITSOverwrite } from 'ts-type/lib/helper';
 import path = require('upath2');
+import { checkModileExists, crossSpawnOther, processArgvSlice } from './spawn';
 
 export interface IUnpackMyYargsArgv
 {
@@ -86,4 +87,21 @@ export function commandDirStrip(name: string, suffix = '_cmds')
 export function commandDirJoin(root: string, name: string, suffix = '_cmds')
 {
 	return path.join(root, commandDirStrip(name))
+}
+
+export function lazySpawnArgvSlice<T = IUnpackMyYargsArgv>(options: {
+	bin: string,
+	command: string | string[],
+	cmd?: string | string[],
+	argv: Arguments<T>,
+})
+{
+	let cmd_list = processArgvSlice(options.command).argv;
+
+	return crossSpawnOther(options.bin, [
+
+		...(Array.isArray(options.cmd) ? options.cmd : [options.cmd]),
+
+		...cmd_list,
+	], options.argv);
 }

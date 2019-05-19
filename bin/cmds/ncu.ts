@@ -22,7 +22,7 @@ import semver = require('semver');
 const cmdModule = createCommandModuleExports({
 
 	command: basenameStrip(__filename),
-	aliases: ['update', 'upgrade', 'up'],
+	aliases: ['update'],
 	describe: `Find newer versions of dependencies than what your package.json or bower.json allows`,
 
 	builder(yargs)

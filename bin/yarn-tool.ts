@@ -37,8 +37,9 @@ import { ITSIteratorLazy, ITSValueOfArray } from 'ts-type';
 import { setupWorkspacesInitToYargs } from 'create-yarn-workspaces/yargs-setting';
 import { checkModileExists, crossSpawnOther, processArgvSlice } from '../lib/spawn';
 import osLocale = require('os-locale');
+import isNpx = require('is-npx');
 
-updateNotifier({ pkg }).notify();
+!isNpx() && updateNotifier({ pkg }).notify();
 
 let cli = yargs
 	.option('cwd', {

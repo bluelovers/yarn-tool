@@ -4,6 +4,7 @@
  * 但是依然BUG...
  * 放棄修正
  */
+/// <reference types="node" />
 import yargs = require('yargs');
 import { CommandModule, Arguments, Argv, Options } from 'yargs';
 export interface IUnpackMyYargsArgv {
@@ -35,3 +36,9 @@ export declare function _dummyHandler<T extends {}>(args: Arguments<T>): any;
 export declare function basenameStrip(name: string): string;
 export declare function commandDirStrip(name: string, suffix?: string): string;
 export declare function commandDirJoin(root: string, name: string, suffix?: string): string;
+export declare function lazySpawnArgvSlice<T = IUnpackMyYargsArgv>(options: {
+    bin: string;
+    command: string | string[];
+    cmd?: string | string[];
+    argv: Arguments<T>;
+}): import("cross-spawn-extra").SpawnSyncReturns<Buffer>;

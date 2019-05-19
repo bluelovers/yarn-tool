@@ -1,6 +1,6 @@
 {
   "name": "yarn-tool",
-  "version": "1.0.14",
+  "version": "1.0.15",
   "description": "yarn cli tool helper",
   "keywords": [
     "cli",
@@ -15,9 +15,14 @@
     "lockfile",
     "npm",
     "package",
+    "packages",
     "package manager",
     "tool",
     "yarn",
+    "workspace",
+    "workspaces",
+    "ws",
+    "project",
     "yarn-tool",
     "yarn.lock"
   ],
@@ -56,6 +61,7 @@
     "debug-color2": "^1.1.5",
     "find-yarn-workspace-root2": "^1.2.2",
     "fs-extra": "^8.0.1",
+    "is-npx": "^1.0.0",
     "npm-check-updates": "^3.1.9",
     "npm-init2": "^1.0.30",
     "os-locale": "^3.1.0",
