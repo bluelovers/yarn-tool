@@ -15,7 +15,11 @@ import PackageManagersNpm = require('npm-check-updates/lib/package-managers/npm'
 import {
 	queryVersions as _queryVersions,
 	getVersionTarget as _getVersionTarget,
+	isUpgradeable as _isUpgradeable,
+	upgradeDependencyDeclaration,
 } from 'npm-check-updates/lib/versionmanager';
+
+const versionUtil = require('npm-check-updates/lib/version-util');
 import Bluebird = require('bluebird');
 import {
 	filterResolutions,
@@ -27,6 +31,9 @@ import {
 } from '../yarnlock';
 import path = require('upath2');
 import semver = require('semver');
+import _ = require('lodash');
+import semverutils = require('semver-utils');
+import packageJson = require('package-json');
 
 export type IVersionValue = 'latest' | '*' | string | EnumVersionValue | EnumVersionValue2;
 
@@ -92,6 +99,8 @@ export type IOptions = IUnpackYargsArgv<ReturnType<typeof setupNcuToYargs>> & {
 	versionTarget?: EnumVersionValue,
 
 	current?: IDependency;
+
+	noSafe?: boolean;
 }
 
 export function getVersionTarget(options: Partial<IOptions> | string | IOptions['versionTarget']): IOptions['versionTarget']
@@ -178,7 +187,6 @@ export function packageMapToKeyObject(packageMap: IPackageMap, versionTarget: IV
 		.entries(packageMap)
 		.map(([name, version_old]) =>
 		{
-
 			return objVersionCache({
 				name, version_old, versionTarget,
 			})
@@ -223,11 +231,10 @@ export function queryRemoteVersions(packageMap: IPackageMap | string[], options:
 	return Bluebird.resolve()
 		.then(async function ()
 		{
-			options = {
-				...options,
-			};
+			options = npmCheckUpdatesOptions(options);
 
-			options.packageManager = 'npm';
+			//console.dir(options);
+
 			options.loglevel = 'silent';
 
 			let versionTarget = options.versionTarget = getVersionTarget(options) || EnumVersionValue.latest;
@@ -281,6 +288,20 @@ export function queryRemoteVersions(packageMap: IPackageMap | string[], options:
 						{
 							let version_new = ret[name];
 
+							if (version_old.includes('~'))
+							{
+								if (!options.noSafe || version_new == null)
+								{
+									version_new = await fetchVersion(name, {
+										filter(version)
+										{
+											return semver.satisfies(version, version_old)
+										}
+									}, options)
+										.then(ret => ret.pop())
+								}
+							}
+
 							if (version_new == null && isBadVersion(version_old))
 							{
 								version_new = await queryPackageManagersNpm(name, null, versionTarget);
@@ -331,6 +352,27 @@ export function isBadVersion(version: IVersionValue)
 	return bool;
 }
 
+export function npmCheckUpdatesOptions(ncuOptions: Partial<IOptions> | IOptions): IOptions
+{
+	ncuOptions = {
+		...ncuOptions,
+	};
+
+	delete ncuOptions.upgrade;
+	delete ncuOptions.global;
+
+	ncuOptions.packageManager = 'npm';
+
+	if (ncuOptions.json_old)
+	{
+		ncuOptions.packageData = JSON.stringify(ncuOptions.json_old);
+	}
+
+	ncuOptions.jsonUpgraded = true;
+
+	return ncuOptions as IOptions
+}
+
 export async function npmCheckUpdates<C extends IWrapDedupeCache>(cache: Partial<C>, ncuOptions: IOptions)
 {
 	//ncuOptions.silent = false;
@@ -342,22 +384,9 @@ export async function npmCheckUpdates<C extends IWrapDedupeCache>(cache: Partial
 
 	//ncuOptions.loglevel = 'verbose';
 
-	delete ncuOptions.upgrade;
-	delete ncuOptions.global;
-
-	if (ncuOptions.safe)
-	{
-		ncuOptions.semverLevel = EnumVersionValue.minor;
-	}
-
-	delete ncuOptions.safe;
-
-	ncuOptions.packageManager = 'npm';
-
-	ncuOptions.packageData = JSON.stringify(ncuOptions.json_old);
+	ncuOptions = npmCheckUpdatesOptions(ncuOptions);
 
 	ncuOptions.cwd = cache.cwd;
-	ncuOptions.jsonUpgraded = true;
 
 	ncuOptions.json_new = JSON.parse(ncuOptions.packageData);
 
@@ -409,7 +438,7 @@ export async function npmCheckUpdates<C extends IWrapDedupeCache>(cache: Partial
 		to: ncuOptions.list_updated,
 	}).toString();
 
-	table && console.log(table);
+	table && console.log(`\n${table}\n`);
 
 	return ncuOptions;
 }
@@ -473,7 +502,10 @@ export function setupNcuToYargs<T extends any>(yargs: Argv<T>)
 		;
 }
 
-export function checkResolutionsUpdate(resolutions: IPackageMap, yarnlock_old_obj: IYarnLockfileParseObject | string, options: Partial<IOptions> = {})
+export function checkResolutionsUpdate(resolutions: IPackageMap,
+	yarnlock_old_obj: IYarnLockfileParseObject | string,
+	options: Partial<IOptions>,
+)
 {
 	return Bluebird.resolve()
 		.then(async function ()
@@ -484,15 +516,26 @@ export function checkResolutionsUpdate(resolutions: IPackageMap, yarnlock_old_ob
 			}
 
 			let result = filterResolutions({
-				resolutions
+				resolutions,
 			}, yarnlock_old_obj);
 
 			let deps = await queryRemoteVersions(resolutions, options);
 
+			//console.log(deps);
+
 			let deps2 = keyObjectToPackageMap(deps, true);
 
+			let deps3 = Object.values(deps)
+				.reduce(function (a, b)
+				{
+					a[b.name] = b;
+
+					return a;
+				}, {})
+			;
+
 			let yarnlock_new_obj = {
-				...yarnlock_old_obj
+				...yarnlock_old_obj,
 			};
 
 			let update_list: string[] = [];
@@ -504,7 +547,8 @@ export function checkResolutionsUpdate(resolutions: IPackageMap, yarnlock_old_ob
 					if (semver.lt(data.value.version, deps2[name]))
 					{
 						Object.keys(result.deps[name])
-							.forEach(version => {
+							.forEach(version =>
+							{
 
 								let key = name + '@' + version;
 
@@ -521,7 +565,8 @@ export function checkResolutionsUpdate(resolutions: IPackageMap, yarnlock_old_ob
 						if (result.installed[name].length > 1)
 						{
 							Object.keys(result.deps[name])
-								.forEach(version => {
+								.forEach(version =>
+								{
 
 									let key = name + '@' + version;
 
@@ -543,9 +588,10 @@ export function checkResolutionsUpdate(resolutions: IPackageMap, yarnlock_old_ob
 				yarnlock_changed,
 				deps,
 				deps2,
+				deps3,
 			}
 		})
-	;
+		;
 }
 
 /*
@@ -567,5 +613,60 @@ export function checkResolutionsUpdate(resolutions: IPackageMap, yarnlock_old_ob
 
 })();
  */
+
+export function isUpgradeable(current: IVersionValue, latest: IVersionValue): boolean
+{
+	return _isUpgradeable(current, latest)
+}
+
+export function updateSemver(current: IVersionValue,
+	latest: IVersionValue,
+	options: Partial<IOptions> = {},
+): IVersionValue
+{
+	return upgradeDependencyDeclaration(current, latest, options);
+}
+
+export function fetchVersion(packageName: string, options: {
+	field?: string | 'time' | 'versions' | 'dist-tags.latest',
+	filter?(version: IVersionValue): boolean,
+}, ncuOptions: Partial<IOptions>)
+{
+	let { field = 'versions' } = options;
+
+	return Bluebird
+		.resolve(packageJson(packageName, { allVersions: true }))
+		.then<IVersionValue[]>(function (result)
+		{
+			if (field.startsWith('dist-tags.'))
+			{
+				const split = field.split('.');
+				if (result[split[0]])
+				{
+					return result[split[0]][split[1]];
+				}
+			}
+			else if (field === 'versions')
+			{
+				return Object.keys(result[field]);
+			}
+			else
+			{
+				return result[field];
+			}
+		})
+		.then(result => {
+
+			if (options.filter)
+			{
+				return result.filter(options.filter)
+			}
+
+			//console.dir(result);
+
+			return result;
+		})
+		;
+}
 
 export default setupNcuToYargs

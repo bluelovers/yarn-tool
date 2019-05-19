@@ -16,7 +16,12 @@ import IPackageJson, { readPackageJson } from '@ts-type/package-dts';
 import { writeJSONSync, writePackageJson } from '../../lib/pkg';
 import { sortPackageJson } from 'sort-package-json';
 import { IUnpackMyYargsArgv } from '../../lib/cmd_dir';
-import setupNcuToYargs, { checkResolutionsUpdate, isBadVersion, npmCheckUpdates } from '../../lib/cli/ncu';
+import setupNcuToYargs, {
+	checkResolutionsUpdate,
+	isBadVersion,
+	isUpgradeable,
+	npmCheckUpdates, npmCheckUpdatesOptions, updateSemver,
+} from '../../lib/cli/ncu';
 import {
 	filterResolutions,
 	IDependencies,
@@ -43,7 +48,7 @@ const cmdModule = createCommandModuleExports({
 				desc: 'do with resolutions only',
 				boolean: true,
 			})
-			.option('safe', {
+			.option('no-safe', {
 				boolean: true,
 			})
 	},
@@ -88,7 +93,9 @@ const cmdModule = createCommandModuleExports({
 
 			let yl = fsYarnLock(rootData.root);
 
-			let ret = await checkResolutionsUpdate(resolutions, yl.yarnlock_old);
+			let ret = await checkResolutionsUpdate(resolutions, yl.yarnlock_old, argv);
+
+			//console.log(ret);
 
 			if (ret.yarnlock_changed)
 			{
@@ -110,64 +117,70 @@ const cmdModule = createCommandModuleExports({
 				}
 			}
 
-			if (ret.update_list)
-			{
-				let ls = ret.update_list
-					.filter(name => !isBadVersion(resolutions[name]))
-				;
+			let ls2 = Object.values(ret.deps)
+				.filter(data => {
 
-				if (ls.length)
+					let { name, version_old, version_new } = data;
+
+					return isUpgradeable(version_old, version_new)
+				})
+			;
+
+			let ncuOptions = npmCheckUpdatesOptions(argv);
+
+			let fromto = ls2
+				.reduce((a, data) =>
 				{
-					let fromto = ls
-						.reduce((a, name) =>
-						{
+					let { name, version_old, version_new } = data;
 
-							a.from[name] = resolutions[name];
-							a.to[name] = ret.deps2[name];
+					let new_semver = updateSemver(version_old, version_new, ncuOptions);
 
-							resolutions[name] = ret.deps2[name];
+					a.from[name] = version_old;
+					a.to[name] = new_semver;
 
-							return a;
-						}, {} as Parameters<typeof toDependencyTable>[0])
-					;
+					resolutions[name] = new_semver;
 
-					let msg = toDependencyTable(fromto);
+					return a;
+				}, {
+					from: {},
+					to: {},
+				} as Parameters<typeof toDependencyTable>[0])
+			;
 
-					console.log(`\n${msg}\n`);
+			let msg = toDependencyTable(fromto);
 
-					if (argv.upgrade)
+			console.log(`\n${msg}\n`);
+
+			if (argv.upgrade)
+			{
+				if (doWorkspace)
+				{
+					pkg_data_ws.resolutions = resolutions;
+
+					writePackageJson(pkg_file_ws, pkg_data_ws);
+
+					chalkByConsole((chalk, console) =>
 					{
-						if (doWorkspace)
-						{
-							pkg_data_ws.resolutions = resolutions;
+						let p = chalk.cyan(path.relative(argv.cwd, pkg_file_ws));
 
-							writePackageJson(pkg_file_ws, pkg_data_ws);
+						console.log(`${p} is updated!`);
 
-							chalkByConsole((chalk, console) =>
-							{
-								let p = chalk.cyan(path.relative(argv.cwd, pkg_file_ws));
+					}, console);
+				}
+				else
+				{
+					pkg_data.resolutions = resolutions;
 
-								console.log(`${p} is updated!`);
+					writePackageJson(pkg_file, pkg_data);
 
-							}, console);
-						}
-						else
-						{
-							pkg_data.resolutions = resolutions;
+					chalkByConsole((chalk, console) =>
+					{
 
-							writePackageJson(pkg_file, pkg_data);
+						let p = chalk.cyan(path.relative(rootData.ws || rootData.pkg, pkg_file));
 
-							chalkByConsole((chalk, console) =>
-							{
+						console.log(`${p} is updated!`);
 
-								let p = chalk.cyan(path.relative(rootData.ws || rootData.pkg, pkg_file));
-
-								console.log(`${p} is updated!`);
-
-							}, console);
-						}
-					}
-
+					}, console);
 				}
 			}
 
@@ -218,7 +231,7 @@ const cmdModule = createCommandModuleExports({
 
 			let yl = fsYarnLock(rootData.root);
 
-			let ret = await checkResolutionsUpdate(resolutions, yl.yarnlock_old);
+			let ret = await checkResolutionsUpdate(resolutions, yl.yarnlock_old, argv);
 
 			if (ret.yarnlock_changed)
 			{
@@ -228,21 +241,22 @@ const cmdModule = createCommandModuleExports({
 				{
 					console.log(`\n${msg}\n`);
 				}
-
-				if (!argv.upgrade)
-				{
-					consoleDebug.magenta.info(`your dependencies version high than resolutions`);
-					consoleDebug.log(`you can do `, console.bold.cyan.chalk(`yt ncu -u`), ` , for update package.json`);
-				}
-				else
-				{
-					writeYarnLockfile(yl.yarnlock_file, ret.yarnlock_new_obj);
-
-					consoleDebug.magenta.info(`Deduplication yarn.lock`);
-					consoleDebug.log(`you can do `, console.bold.cyan.chalk(`yt install`), ` , for upgrade dependencies now`);
-				}
-
 			}
+
+			if (pkgNcu.json_changed && !argv.upgrade)
+			{
+				ret.yarnlock_changed && consoleDebug.magenta.info(`your dependencies version high than resolutions`);
+				consoleDebug.log(`you can do `, console.bold.cyan.chalk(`yt ncu -u`), ` , for update package.json`);
+			}
+
+			if (ret.yarnlock_changed && argv.upgrade)
+			{
+				writeYarnLockfile(yl.yarnlock_file, ret.yarnlock_new_obj);
+
+				consoleDebug.magenta.info(`Deduplication yarn.lock`);
+				consoleDebug.log(`you can do `, console.bold.cyan.chalk(`yt install`), ` , for upgrade dependencies now`);
+			}
+
 		}
 
 	},
