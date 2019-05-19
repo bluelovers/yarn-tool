@@ -4,10 +4,13 @@
 
 import findYarnWorkspaceRoot = require('find-yarn-workspace-root2');
 import pkgDir = require('pkg-dir');
-import path = require('path');
+import path = require('upath2');
 import fs = require('fs-extra');
 import { Console2 } from 'debug-color2';
 import { createFnChalkByConsole } from 'debug-color2/lib/util';
+import { readPackageJson } from '@ts-type/package-dts';
+import { Arguments } from 'yargs';
+import { IUnpackMyYargsArgv } from './cmd_dir';
 
 export const console = new Console2();
 
@@ -15,6 +18,16 @@ export const consoleDebug = new Console2(null, {
 	label: true,
 	time: true,
 });
+
+export function pathNormalize(input: string)
+{
+	return path.normalize(input)
+}
+
+export function pathEqual(a: string, b: string)
+{
+	return path.normalize(a) === path.normalize(b)
+}
 
 export function findRoot(options: {
 	cwd: string,
@@ -43,7 +56,7 @@ export function findRoot(options: {
 	}
 
 	let hasWorkspace = ws && ws != null;
-	let isWorkspace = hasWorkspace && ws === pkg;
+	let isWorkspace = hasWorkspace && pathEqual(ws, pkg);
 	let root = hasWorkspace ? ws : pkg;
 
 	return {
@@ -78,5 +91,15 @@ export function lazyFlags(keys: string[], argv: {
 }
 
 export const chalkByConsole = createFnChalkByConsole(console);
+
+export function printRootData(rootData: ReturnType<typeof findRoot>, argv: Arguments<IUnpackMyYargsArgv>)
+{
+	let doWorkspace = !rootData.isWorkspace && rootData.hasWorkspace;
+
+	let pkg_file = path.join(rootData.pkg, 'package.json');
+	let pkg_data = readPackageJson(pkg_file);
+
+	consoleDebug.info(`${pkg_data.name}@${pkg_data.version}`, path.relative(doWorkspace ? rootData.ws : argv.cwd, rootData.pkg));
+}
 
 export default exports as typeof import('./index');

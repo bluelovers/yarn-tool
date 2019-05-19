@@ -9,6 +9,7 @@ import { CommandModule, Arguments, Argv, Options } from 'yargs';
 export interface IUnpackMyYargsArgv {
     cwd: string;
     skipCheckWorkspace: boolean;
+    ytDebugMode: boolean;
 }
 export declare type IUnpackMyYargsArgvPartial = Partial<IUnpackMyYargsArgv>;
 export declare type IUnpackYargsArgv<T extends Argv, D = any> = T extends Argv<infer U> ? U : D;

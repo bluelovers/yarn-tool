@@ -2,7 +2,7 @@
  * Created by user on 2019/5/19.
  */
 import { basenameStrip, createCommandModuleExports } from '../../lib/cmd_dir';
-import path = require('path');
+import path = require('upath2');
 import { console, consoleDebug, findRoot } from '../../lib/index';
 import { readPackageJson } from '@ts-type/package-dts';
 import { writePackageJson } from '../../lib/pkg';
@@ -26,6 +26,7 @@ const cmdModule = createCommandModuleExports({
 	handler(argv, ...a)
 	{
 		wrapDedupe(require('yargs'), argv, {
+
 			main(yarg, argv, cache)
 			{
 

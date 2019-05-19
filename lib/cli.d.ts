@@ -2,14 +2,8 @@
  * Created by user on 2019/5/17.
  */
 import yargs = require('yargs');
-export declare const cli: yargs.Argv<unknown>;
-export declare type IMyYargsArgv = typeof cli;
-export declare type IUnpackMyYargsArgv = {
-    cwd: string;
-    skipCheckWorkspace: boolean;
-};
-export declare function getYargs(): yargs.Argv<IUnpackMyYargsArgv>;
-export default cli;
+import { IUnpackMyYargsArgv } from './cmd_dir';
+export { IUnpackMyYargsArgv };
 export declare type IUnpackYargsArgv<T extends yargs.Argv> = T extends yargs.Argv<infer U> ? U : never;
 export interface ICachedCommond {
     [cmd: string]: yargs.CommandModule;

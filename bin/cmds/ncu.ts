@@ -2,8 +2,8 @@
  * Created by user on 2019/5/19.
  */
 import { basenameStrip, createCommandModuleExports } from '../../lib/cmd_dir';
-import path = require('path');
-import { console, consoleDebug, findRoot, fsYarnLock } from '../../lib/index';
+import path = require('upath2');
+import { console, consoleDebug, findRoot, fsYarnLock, printRootData } from '../../lib/index';
 import IPackageJson, { readPackageJson } from '@ts-type/package-dts';
 import { writeJSONSync, writePackageJson } from '../../lib/pkg';
 import { sortPackageJson } from 'sort-package-json';
@@ -39,7 +39,7 @@ const cmdModule = createCommandModuleExports({
 			cwd,
 		}, true);
 
-		console.dir(rootData);
+		//console.dir(rootData);
 
 		let pkg_file_root = path.join(rootData.root, 'package.json');
 
@@ -61,6 +61,8 @@ const cmdModule = createCommandModuleExports({
 			resolutions = pkg_data_ws.resolutions;
 		}
 
+		printRootData(rootData, argv);
+
 		let pkgNcu = await npmCheckUpdates({
 			cwd,
 			rootData,
@@ -79,7 +81,7 @@ const cmdModule = createCommandModuleExports({
 		if (argv.dedupe && Object.keys(resolutions).length)
 		{
 
-			let ls = Object.entries(pkgNcu.json_new.dependencies)
+			let ls = Object.entries(pkgNcu.json_new.dependencies || {})
 				.concat(Object.entries(pkgNcu.json_new.devDependencies || {}), Object.entries(pkgNcu.json_new.optionalDependencies || {}))
 
 				.reduce(function (a, [name, ver_new])

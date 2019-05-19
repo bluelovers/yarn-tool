@@ -8,12 +8,13 @@
 import yargs = require('yargs');
 import { CommandModule, Arguments, Argv, CommandBuilder, Options } from 'yargs';
 import { ITSOverwrite } from 'ts-type/lib/helper';
-import path = require('path');
+import path = require('upath2');
 
 export interface IUnpackMyYargsArgv
 {
 	cwd: string;
 	skipCheckWorkspace: boolean;
+	ytDebugMode: boolean;
 }
 
 export type IUnpackMyYargsArgvPartial = Partial<IUnpackMyYargsArgv>;

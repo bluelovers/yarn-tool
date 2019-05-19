@@ -4,64 +4,11 @@
 
 import yargs = require('yargs');
 import { Arguments, Argv, CommandBuilder, Omit } from 'yargs';
+import { IUnpackMyYargsArgv } from './cmd_dir';
 
 const cached_command: ICachedCommond = {};
 
-export const cli = yargs
-	.option('cwd', {
-		desc: `current working directory or package directory`,
-		normalize: true,
-		default: process.cwd(),
-	})
-	.option('skipCheckWorkspace', {
-		desc: `this options is for search yarn.lock, pkg root, workspace root, not same as --ignore-workspace-root-check`,
-		boolean: true,
-	})
-	.option('yt-debug-mode', {
-		boolean: true,
-	})
-	.command({
-		command: 'help',
-		describe: 'Show help',
-		aliases: ['h'],
-		builder(yarg)
-		{
-			yarg.showHelp('log');
-			return yarg;
-		},
-		handler: dummy_handler,
-	})
-	.command({
-		command: 'version',
-		describe: 'Show version',
-		builder(yarg)
-		{
-			return yarg;
-		},
-		async handler()
-		{
-			return import('../package.json')
-				.then(v => console.log(v.version))
-				;
-		},
-	})
-	.recommendCommands()
-;
-
-export type IMyYargsArgv = typeof cli;
-
-export type IUnpackMyYargsArgv = {
-	cwd: string;
-	skipCheckWorkspace: boolean;
-};
-
-export function getYargs(): yargs.Argv<IUnpackMyYargsArgv>
-{
-	// @ts-ignore
-	return cli;
-}
-
-export default cli
+export { IUnpackMyYargsArgv }
 
 export type IUnpackYargsArgv<T extends yargs.Argv> = T extends yargs.Argv<infer U> ? U : never;
 

@@ -7,7 +7,7 @@ import { fixDuplicates } from 'yarn-deduplicate';
 import { console, consoleDebug, findRoot, fsYarnLock} from '../index';
 import fs = require('fs-extra');
 import { Console2 } from 'debug-color2';
-import path = require('path');
+import path = require('upath2');
 import { yarnLockDiff } from '../yarnlock';
 
 export function Dedupe(yarnlock_old: string)
