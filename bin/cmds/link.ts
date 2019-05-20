@@ -18,6 +18,8 @@ const cmdModule = createCommandModuleExports({
 	builder(yargs)
 	{
 		return yargs
+			.example(`$0 link`, `in package you want to link`)
+			.example(`$0 link [package]`, `Use yarn link [package] to link another package that you’d like to test into your current project. To follow the above example, in the react-relay project, you’d run yarn link react to use your local version of react that you previously linked.`)
 	},
 
 	handler(argv)

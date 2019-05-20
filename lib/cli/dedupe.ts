@@ -12,7 +12,9 @@ import { yarnLockDiff } from '../yarnlock';
 
 export function Dedupe(yarnlock_old: string)
 {
-	let yarnlock_new: string = fixDuplicates(yarnlock_old);
+	let yarnlock_new: string = fixDuplicates(yarnlock_old, {
+		//useMostCommon: true,
+	});
 
 	return {
 		/**

@@ -77,7 +77,7 @@ export function writeYarnLockfile(file: string, data: IYarnLockfileParseObject)
 
 export function stripDepsName<T = string>(name: string): [T, IVersionValue]
 {
-	let m = name.match(/^(.+)@(.+)$/);
+	let m = name.match(/^(@?.+?)@(.+)$/);
 
 	if (!m)
 	{
@@ -141,59 +141,10 @@ export function filterResolutions<T extends ITSArrayListMaybeReadonly<string>>(p
 {
 	if (pkg.resolutions)
 	{
-		let ks = Object.keys(yarnlock)
-			.filter(k =>
-			{
-				let n = stripDepsName(k)[0];
-				return pkg.resolutions[n] != null
-			});
-
-		return ks
-			.reduce(function (a, k)
-			{
-				let n = stripDepsName<ITSValueOfArray<T>>(k);
-
-				let name = n[0];
-				let key = n[1];
-
-				let data = yarnlock[k];
-
-				// @ts-ignore
-				(a.deps[name] = a.deps[name] || {})[key] = data;
-
-				a.installed[name] = a.installed[n[0]] || [];
-
-				if (!a.installed[name].includes(data.version))
-				{
-					a.installed[name].push(data.version);
-
-					if (a.max[name] != null)
-					{
-						if (semver.lt(a.max[name].value.version, data.version))
-						{
-							a.max[name] = {
-								key: k,
-								value: data,
-							};
-						}
-					}
-					else
-					{
-						a.max[name] = {
-							key: k,
-							value: data,
-						};
-					}
-				}
-
-				return a;
-			}, {
-				names: ks,
-				deps: {},
-				installed: {},
-				max: {},
-			} as IFilterResolutions<T>)
-			;
+		return exportYarnLock(yarnlock, (key, index, array_keys, yarnlock1) => {
+			let name = stripDepsName(key)[0];
+			return pkg.resolutions[name] != null
+		})
 	}
 
 	return null;
@@ -402,3 +353,81 @@ let s = yarnLockDiff(stringify(ob), stringify(ret2.yarnlock_new));
 
 console.log(s);
 */
+
+export function filterDuplicateYarnLock<T extends ITSArrayListMaybeReadonly<string>>(yarnlock: IYarnLockfileParseObject<T>)
+{
+	let fy = exportYarnLock(yarnlock);
+
+	let ks = Object.keys(fy.installed)
+		.filter(function (value)
+		{
+			return fy.installed[value].length > 1
+		})
+	;
+
+	return exportYarnLock(yarnlock, (key, index, array_keys, yarnlock1) => {
+		let n = stripDepsName<ITSValueOfArray<T>>(key)[0];
+
+		return ks.includes(n)
+	});
+}
+
+export function exportYarnLock<T extends ITSArrayListMaybeReadonly<string>>(yarnlock: IYarnLockfileParseObject<T>, filter?: (key: keyof IYarnLockfileParseObject<T>, index: number, array_keys: (keyof IYarnLockfileParseObject<T>)[], yarnlock: IYarnLockfileParseObject<T>) => boolean): IFilterResolutions<T>
+{
+	let ks = Object.keys(yarnlock);
+
+	if (filter)
+	{
+		ks = ks
+			.filter((value, index, array) => {
+				return filter(value, index, array, yarnlock)
+		})
+	}
+
+	return ks
+		.reduce(function (a, k)
+		{
+			let n = stripDepsName<ITSValueOfArray<T>>(k);
+
+			let name = n[0];
+			let key = n[1];
+
+			let data = yarnlock[k];
+
+			// @ts-ignore
+			(a.deps[name] = a.deps[name] || {})[key] = data;
+
+			a.installed[name] = a.installed[n[0]] || [];
+
+			if (!a.installed[name].includes(data.version))
+			{
+				a.installed[name].push(data.version);
+
+				if (a.max[name] != null)
+				{
+					if (semver.lt(a.max[name].value.version, data.version))
+					{
+						a.max[name] = {
+							key: k,
+							value: data,
+						};
+					}
+				}
+				else
+				{
+					a.max[name] = {
+						key: k,
+						value: data,
+					};
+				}
+			}
+
+			return a;
+		}, {
+			names: ks,
+			deps: {},
+			installed: {},
+			max: {},
+		} as IFilterResolutions<T>)
+		;
+}

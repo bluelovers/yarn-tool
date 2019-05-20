@@ -101,3 +101,5 @@ export declare function removeResolutions<T extends ITSArrayListMaybeReadonly<st
 export declare function removeResolutionsCore<T extends ITSArrayListMaybeReadonly<string>>(result: IFilterResolutions<T>, yarnlock_old: IYarnLockfileParseObject<T>): IRemoveResolutions<T>;
 export declare function yarnLockDiff(yarnlock_old: string, yarnlock_new: string): string;
 export declare function _diffArray(array: deepDiff.DiffArray<{}, {}>, chalk: Chalk): string[];
+export declare function filterDuplicateYarnLock<T extends ITSArrayListMaybeReadonly<string>>(yarnlock: IYarnLockfileParseObject<T>): IFilterResolutions<T>;
+export declare function exportYarnLock<T extends ITSArrayListMaybeReadonly<string>>(yarnlock: IYarnLockfileParseObject<T>, filter?: (key: keyof IYarnLockfileParseObject<T>, index: number, array_keys: (keyof IYarnLockfileParseObject<T>)[], yarnlock: IYarnLockfileParseObject<T>) => boolean): IFilterResolutions<T>;

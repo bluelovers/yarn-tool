@@ -15,7 +15,7 @@ const cmdModule = createCommandModuleExports({
 
 	command: basenameStrip(__filename) + ' [cwd]',
 	//aliases: [],
-	describe: `Data deduplication for yarn.lock`,
+	describe: `package deduplication for yarn.lock`,
 	aliases: ['d'],
 
 	builder(yargs)
@@ -33,12 +33,12 @@ const cmdModule = createCommandModuleExports({
 			},
 			end(yarg, argv, cache)
 			{
+				console.dir(infoFromDedupeCache(cache));
+
 				if (cache.yarnlock_msg)
 				{
 					console.log(`\n${cache.yarnlock_msg}\n`);
 				}
-
-				console.dir(infoFromDedupeCache(cache));
 			},
 		});
 	},

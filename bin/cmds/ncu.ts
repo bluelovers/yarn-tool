@@ -38,7 +38,7 @@ const cmdModule = createCommandModuleExports({
 
 	command: basenameStrip(__filename) + ' [-u]',
 	aliases: ['update'],
-	describe: `Find newer versions of dependencies than what your package.json or bower.json allows`,
+	describe: `Find newer versions of dependencies than what your package.json allows`,
 
 	builder(yargs)
 	{
@@ -51,6 +51,9 @@ const cmdModule = createCommandModuleExports({
 			.option('no-safe', {
 				boolean: true,
 			})
+			.example(`$0 ncu -u`, `check new version and update package.json`)
+			.example(`$0 ncu -R`, `check new version of resolutions in package.json`)
+			.example(`$0 ncu -u -R`, `check new version of resolutions in package.json and update package.json`)
 	},
 
 	async handler(argv)

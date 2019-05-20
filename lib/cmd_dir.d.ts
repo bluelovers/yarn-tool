@@ -7,6 +7,7 @@
 /// <reference types="node" />
 import yargs = require('yargs');
 import { CommandModule, Arguments, Argv, Options } from 'yargs';
+import { SpawnSyncOptions } from 'cross-spawn-extra/type';
 export interface IUnpackMyYargsArgv {
     cwd: string;
     skipCheckWorkspace: boolean;
@@ -40,5 +41,8 @@ export declare function lazySpawnArgvSlice<T = IUnpackMyYargsArgv>(options: {
     bin: string;
     command: string | string[];
     cmd?: string | string[];
-    argv: Arguments<T>;
+    argv: Partial<Arguments<T>> & {
+        cwd: string;
+    };
+    crossSpawnOptions?: SpawnSyncOptions;
 }): import("cross-spawn-extra").SpawnSyncReturns<Buffer>;

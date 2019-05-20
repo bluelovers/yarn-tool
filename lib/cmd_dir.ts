@@ -10,6 +10,7 @@ import { CommandModule, Arguments, Argv, CommandBuilder, Options } from 'yargs';
 import { ITSOverwrite } from 'ts-type/lib/helper';
 import path = require('upath2');
 import { checkModileExists, crossSpawnOther, processArgvSlice } from './spawn';
+import { SpawnSyncOptions } from 'cross-spawn-extra/type';
 
 export interface IUnpackMyYargsArgv
 {
@@ -93,7 +94,10 @@ export function lazySpawnArgvSlice<T = IUnpackMyYargsArgv>(options: {
 	bin: string,
 	command: string | string[],
 	cmd?: string | string[],
-	argv: Arguments<T>,
+	argv: Partial<Arguments<T>> & {
+		cwd: string
+	},
+	crossSpawnOptions?: SpawnSyncOptions
 })
 {
 	let cmd_list = processArgvSlice(options.command).argv;
@@ -103,5 +107,5 @@ export function lazySpawnArgvSlice<T = IUnpackMyYargsArgv>(options: {
 		...(Array.isArray(options.cmd) ? options.cmd : [options.cmd]),
 
 		...cmd_list,
-	], options.argv);
+	], options.argv, options.crossSpawnOptions);
 }

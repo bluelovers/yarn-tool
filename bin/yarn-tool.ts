@@ -54,31 +54,9 @@ let cli = yargs
 	.option('yt-debug-mode', {
 		boolean: true,
 	})
-	.command({
-		command: 'help',
-		describe: 'Show help',
-		aliases: ['h'],
-		builder(yarg)
-		{
-			require('yargs').showHelp('log');
-			return yarg;
-		},
-		handler: dummy_handler,
-	})
-	.command({
-		command: 'version',
-		describe: 'Show version',
-		builder(yarg)
-		{
-			return yarg;
-		},
-		async handler()
-		{
-			return import('../package.json')
-				.then(v => console.log(v.version))
-				;
-		},
-	})
+	.alias('v', 'version')
+	.alias('h', 'help')
+	.help('help')
 	.recommendCommands()
 	.locale(osLocale.sync())
 	.commandDir(path.join(__dirname, 'cmds'))

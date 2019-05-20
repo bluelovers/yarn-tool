@@ -13,17 +13,12 @@ const cmdModule = createCommandModuleExports({
 
 	command: basenameStrip(__filename),
 	//aliases: [],
-	describe: `Creates a compressed gzip archive of package dependencies.`,
+	describe: `To remove a symlinked package created with yarn link, yarn unlink can be used.`,
 
 	builder(yargs)
 	{
 		return yargs
-			.option('dry-run', {
-				boolean: true,
-			})
-			.option('filename', {
-				string: true,
-			})
+			.example(`$0 unlink [package]`, ``)
 	},
 
 	handler(argv)
@@ -32,7 +27,7 @@ const cmdModule = createCommandModuleExports({
 
 		lazySpawnArgvSlice({
 			command: key,
-			bin: 'npm',
+			bin: 'yarn',
 			cmd: key,
 			argv,
 		})

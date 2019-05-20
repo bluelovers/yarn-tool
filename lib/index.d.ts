@@ -24,6 +24,7 @@ export declare function fsYarnLock(root: string): {
     yarnlock_exists: boolean;
     yarnlock_old: string;
 };
+export declare function filterYargsArguments<T extends Arguments>(argv: T, list: string[] | ((key: keyof T, value: T[keyof T]) => boolean)): Partial<T>;
 export declare function lazyFlags(keys: string[], argv: {
     [k: string]: boolean;
 }): string[];

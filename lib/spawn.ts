@@ -7,6 +7,8 @@ import * as yargs from 'yargs';
 import { IUnpackMyYargsArgv } from './cli';
 import { consoleDebug, console } from './index';
 import Bluebird = require('bluebird');
+import { Arguments } from 'yargs';
+import { SpawnSyncOptions } from 'cross-spawn-extra/type';
 
 export function requireResolve(name: string)
 {
@@ -79,13 +81,20 @@ export function _crossSpawnOther<T>(cp: T)
 	return cp;
 }
 
-export function crossSpawnOther(bin: string, cmd_list: string[], argv)
+export function crossSpawnOther(bin: string,
+	cmd_list: string[],
+	argv: Partial<Arguments> & {
+		cwd: string
+	},
+	crossSpawnOptions?: SpawnSyncOptions
+)
 {
 	//consoleDebug.debug(bin, cmd_list);
 
 	let cp = crossSpawn.sync(bin, cmd_list.filter(v => v != null), {
 		stdio: 'inherit',
 		cwd: argv.cwd,
+		...crossSpawnOptions,
 	});
 
 	return _crossSpawnOther(cp);

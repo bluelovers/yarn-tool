@@ -83,6 +83,36 @@ export function fsYarnLock(root: string)
 	}
 }
 
+export function filterYargsArguments<T extends Arguments>(argv: T, list: string[] | ((key: keyof T, value: T[keyof T]) => boolean)): Partial<T>
+{
+	let ls = Object.entries(argv);
+
+	if (Array.isArray(list))
+	{
+		ls = ls
+			.filter(([key, value]) => {
+				return list.includes(key)
+			})
+		;
+	}
+	else
+	{
+		ls = ls
+			.filter(([key, value]) => {
+				return list(key, value as any)
+			})
+		;
+	}
+
+	return ls.reduce((a, [key, value]) => {
+
+		// @ts-ignore
+		a[key] = value;
+
+		return a
+	}, {} as Partial<T>)
+}
+
 export function lazyFlags(keys: string[], argv: {
 	[k: string]: boolean,
 })

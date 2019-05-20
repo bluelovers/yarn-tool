@@ -29,6 +29,8 @@ const cmdModule = createCommandModuleExports({
 				builder(yargs)
 				{
 					return yargs
+						.strict(false)
+
 				},
 				handler(argv)
 				{
@@ -41,6 +43,7 @@ const cmdModule = createCommandModuleExports({
 				builder(yargs)
 				{
 					return yargs
+						.strict(false)
 				},
 				handler(argv)
 				{
@@ -61,7 +64,7 @@ const cmdModule = createCommandModuleExports({
 
 export = cmdModule
 
-function lazyLerna(command: string, cmd: string, argv: Arguments)
+function lazyLerna(command: string, cmd: string, argv: Arguments<any>)
 {
 	let ret = checkModileExists({
 		name: 'lerna',
