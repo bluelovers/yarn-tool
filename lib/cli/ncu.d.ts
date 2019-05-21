@@ -7,6 +7,7 @@ import { Argv } from 'yargs';
 import { IUnpackYargsArgv } from '../cli';
 import Bluebird = require('bluebird');
 import { IYarnLockfileParseObject } from '../yarnlock';
+import packageJson = require('package-json');
 export declare type IVersionValue = 'latest' | '*' | string | EnumVersionValue | EnumVersionValue2;
 export interface IVersionCacheMapKey {
     name: string;
@@ -38,6 +39,7 @@ export interface IVersionCacheMapValue extends IVersionCacheMapKey {
     version_new: IVersionValue;
 }
 export declare const versionCacheMap: Map<string, IVersionCacheMapValue>;
+export declare const remoteCacheMap: Map<string, packageJson.AbbreviatedMetadata>;
 export declare type IOptions = IUnpackYargsArgv<ReturnType<typeof setupNcuToYargs>> & {
     json_old: IPackageJson;
     cwd?: string;
@@ -90,19 +92,19 @@ export declare function setupNcuToYargs<T extends any>(yargs: Argv<T>): Argv<imp
 }>;
 export declare function checkResolutionsUpdate(resolutions: IPackageMap, yarnlock_old_obj: IYarnLockfileParseObject | string, options: Partial<IOptions>): Bluebird<{
     yarnlock_old_obj: Record<string, import("../yarnlock").IYarnLockfileParseObjectRow<string[]>>;
-    yarnlock_new_obj: {
-        [x: string]: import("../yarnlock").IYarnLockfileParseObjectRow<string[]>;
-    };
+    yarnlock_new_obj: Record<string, import("../yarnlock").IYarnLockfileParseObjectRow<string[]>>;
     update_list: string[];
     yarnlock_changed: boolean;
     deps: IVersionCacheMapValue[];
     deps2: IPackageMap;
-    deps3: {};
+    deps3: Record<string, IVersionCacheMapValue>;
 }>;
 export declare function isUpgradeable(current: IVersionValue, latest: IVersionValue): boolean;
 export declare function updateSemver(current: IVersionValue, latest: IVersionValue, options?: Partial<IOptions>): IVersionValue;
-export declare function fetchVersion(packageName: string, options: {
+export declare function requestVersion(packageName: string): Bluebird<packageJson.AbbreviatedMetadata>;
+export declare function fetchVersion(packageName: string, options?: {
     field?: string | 'time' | 'versions' | 'dist-tags.latest';
     filter?(version: IVersionValue): boolean;
-}, ncuOptions: Partial<IOptions>): Bluebird<string[]>;
+    currentVersion?: IVersionValue;
+}, ncuOptions?: Partial<IOptions>): Bluebird<string[]>;
 export default setupNcuToYargs;

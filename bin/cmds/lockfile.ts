@@ -3,7 +3,8 @@
  */
 import { basenameStrip, createCommandModuleExports, lazySpawnArgvSlice } from '../../lib/cmd_dir';
 import path = require('upath2');
-import { chalkByConsole, console, consoleDebug, findRoot, fsYarnLock } from '../../lib/index';
+import fs = require('fs-extra');
+import { chalkByConsole, console, consoleDebug, findRoot, fsYarnLock, yargsProcessExit } from '../../lib/index';
 import { readPackageJson } from '@ts-type/package-dts';
 import { writePackageJson } from '../../lib/pkg';
 import { sortPackageJson } from 'sort-package-json';
@@ -11,6 +12,7 @@ import { IUnpackMyYargsArgv } from '../../lib/cmd_dir';
 import { exportYarnLock, parse as parseYarnLock } from '../../lib/yarnlock';
 import { SemVer, rcompare } from 'semver';
 import { Arguments, CommandModule } from 'yargs';
+import Dedupe from '../../lib/cli/dedupe';
 
 const COMMAND_KEY = basenameStrip(__filename);
 
@@ -29,6 +31,19 @@ const cmdModule = createCommandModuleExports({
 				boolean: true,
 				//default: true,
 			})
+			.option('npm', {
+				desc: `Convert yarn.lock to package-lock.json`,
+				boolean: true,
+			})
+			.option('yarn', {
+				desc: `Convert package-lock.json to yarn.lock if yarn.lock not exists`,
+				boolean: true,
+			})
+			.option('overwrite', {
+				desc: `overwrite file if exists`,
+				boolean: true,
+			})
+			.conflicts('npm', ['yarn', 'duplicate'])
 			.example(`$0 ${COMMAND_KEY} --duplicate`, `show duplicate list by yarn.lock`)
 			.example(`$0 ${COMMAND_KEY} --duplicate false`, `show packages list by yarn.lock`)
 	},
@@ -41,7 +56,100 @@ const cmdModule = createCommandModuleExports({
 
 		//let yl = fsYarnLock(rootData.root);
 
-		if (argv.duplicate || !argv.duplicate)
+		if (argv.yarn || argv.npm)
+		{
+			const { npmToYarnCore, yarnToNpmCore } = require('synp/lib');
+
+			let rootData = findRoot(argv, true);
+			let yl = fsYarnLock(rootData.root);
+
+			let file_package_lock_json = path.join(rootData.pkg, 'package-lock.json');
+
+			let file_package_lock_json_exists = fs.existsSync(file_package_lock_json);
+
+			if (argv.npm)
+			{
+				if (!yl.yarnlock_exists)
+				{
+					yargsProcessExit(new Error(`yarn.lock not exists`))
+				}
+
+				if (!argv.overwrite && file_package_lock_json_exists)
+				{
+					yargsProcessExit(new Error(`package-lock.json is exists, use --overwrite for overwrite file`))
+				}
+				else if (file_package_lock_json_exists)
+				{
+					consoleDebug.warn(`package-lock.json is exists, will got overwrite`);
+				}
+
+				if (!argv.overwrite)
+				{
+					//yargsProcessExit(new Error(`yarn.lock is exists`))
+				}
+
+				let { name, version } = readPackageJson(path.join(rootData.pkg, 'package.json'));
+
+				let s = yarnToNpm(yl.yarnlock_old, name, version, rootData.pkg);
+
+				if (rootData.hasWorkspace && !rootData.isWorkspace)
+				{
+					let s2 = yarnToNpm(yl.yarnlock_old, name, version, rootData.ws);
+
+					s.dependencies = {
+						...s2.dependencies,
+						...s.dependencies
+					}
+				}
+
+				fs.writeJSONSync(file_package_lock_json, s, {
+					spaces: '\t',
+				});
+
+				consoleDebug.info(`package-lock.json updated`);
+			}
+			else if (argv.yarn)
+			{
+				let yarnlock_file_pkg = path.join(rootData.pkg, 'yarn.lock');
+
+				if (fs.existsSync(yarnlock_file_pkg))
+				{
+					if (!argv.overwrite)
+					{
+						yargsProcessExit(new Error(`yarn.lock is exists, use --overwrite for overwrite file`))
+					}
+
+					consoleDebug.warn(`yarn.lock is exists, will got overwrite`);
+				}
+
+				if (!file_package_lock_json_exists)
+				{
+					if (yl.yarnlock_exists && rootData.hasWorkspace && !rootData.isWorkspace)
+					{
+						consoleDebug.warn(`package-lock.json not exists, but yarn.lock exists in workspaces`);
+
+						let s = Dedupe(yl.yarnlock_old).yarnlock_new;
+
+						fs.writeFileSync(yarnlock_file_pkg, s);
+
+						consoleDebug.info(`yarn.lock copied`);
+
+						return;
+					}
+
+					yargsProcessExit(new Error(`package-lock.json not exists`))
+				}
+
+				let s = npmToYarn(fs.readFileSync(file_package_lock_json).toString(), rootData.root);
+
+				s = Dedupe(s).yarnlock_new;
+
+				fs.writeFileSync(yarnlock_file_pkg, s)
+
+				consoleDebug.info(`yarn.lock updated`);
+			}
+		}
+		else if (argv.duplicate || !argv.duplicate)
 		{
 			_showYarnLockList(argv)
 		}
@@ -147,4 +255,43 @@ function _showYarnLockList(argv: Arguments<IUnpackCmdMod<typeof cmdModule>>): ar
 	}
 
 	return true
+}
+
+function npmToYarn(packageLockFileString, packageDir): string
+{
+	const { npmToYarnCore, yarnToNpmCore } = require('synp/lib');
+
+	return npmToYarnCore(packageLockFileString, packageDir);
+}
+
+function yarnToNpm(yarnlock,  name, version, packageDir): {
+	name: string;
+	version: string;
+	lockfileVersion: number;
+	requires: boolean;
+	dependencies: {
+		[name: string]: {
+			version: string;
+			resolved: string;
+			integrity: string;
+			requires: {
+				[name: string]: string;
+			};
+			dependencies?: {
+				[name: string]: {
+					version: string;
+					resolved: string;
+					integrity: string;
+					requires: {
+						[name: string]: string;
+					};
+				};
+			};
+		};
+	};
+}
+{
+	const { npmToYarnCore, yarnToNpmCore } = require('synp/lib');
+
+	return JSON.parse(yarnToNpmCore(yarnlock,  name, version, packageDir))
 }

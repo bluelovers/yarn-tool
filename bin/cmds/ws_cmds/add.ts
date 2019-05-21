@@ -4,7 +4,7 @@
 import { basenameStrip, createCommandModuleExports, lazySpawnArgvSlice } from '../../../lib/cmd_dir';
 import { setupYarnAddToYargs } from '../../../lib/cli/add';
 import { YT_BIN } from '../../../index';
-import { findRoot, yarnProcessExit } from '../../../lib/index';
+import { findRoot, yargsProcessExit } from '../../../lib/index';
 
 const cmdModule = createCommandModuleExports({
 
@@ -32,7 +32,7 @@ const cmdModule = createCommandModuleExports({
 
 		if (!rootData.hasWorkspace)
 		{
-			return yarnProcessExit(`workspace not exists`)
+			return yargsProcessExit(`workspace not exists`)
 		}
 
 		lazySpawnArgvSlice({

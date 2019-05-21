@@ -132,9 +132,18 @@ export function printRootData(rootData: ReturnType<typeof findRoot>, argv: Argum
 	consoleDebug.info(`${pkg_data.name}@${pkg_data.version}`, path.relative(doWorkspace ? rootData.ws : argv.cwd, rootData.pkg));
 }
 
-export function yarnProcessExit(msg: string, code: number = 1)
+export function yargsProcessExit(msg: string | Error, code: number = 1)
 {
-	console.error(msg);
+	if (!(msg instanceof Error))
+	{
+		msg = new Error(msg);
+
+		// @ts-ignore
+		msg.code = code
+	}
+
+	console.error(msg.message);
+	require('yargs').exit(code, msg);
 	process.exit(code)
 }
 

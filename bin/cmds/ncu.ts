@@ -10,7 +10,7 @@ import {
 	findRoot,
 	fsYarnLock,
 	printRootData,
-	yarnProcessExit,
+	yargsProcessExit,
 } from '../../lib/index';
 import IPackageJson, { readPackageJson } from '@ts-type/package-dts';
 import { writeJSONSync, writePackageJson } from '../../lib/pkg';
@@ -91,7 +91,7 @@ const cmdModule = createCommandModuleExports({
 		{
 			if (!resolutions || !Object.keys(resolutions).length)
 			{
-				return yarnProcessExit(`resolutions is not exists in package.json`)
+				return yargsProcessExit(`resolutions is not exists in package.json`)
 			}
 
 			let yl = fsYarnLock(rootData.root);

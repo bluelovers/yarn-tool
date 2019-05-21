@@ -18,6 +18,9 @@ import {
 	isUpgradeable as _isUpgradeable,
 	upgradeDependencyDeclaration,
 } from 'npm-check-updates/lib/versionmanager';
+import {
+	ITSUnpackedPromiseLike
+} from 'ts-type';
 
 const versionUtil = require('npm-check-updates/lib/version-util');
 import Bluebird = require('bluebird');
@@ -80,6 +83,8 @@ export interface IVersionCacheMapValue extends IVersionCacheMapKey
 }
 
 export const versionCacheMap = new Map<string, IVersionCacheMapValue>();
+
+export const remoteCacheMap = new Map<string, ITSUnpackedPromiseLike<ReturnType<typeof packageJson>>>();
 
 export type IOptions = IUnpackYargsArgv<ReturnType<typeof setupNcuToYargs>> & {
 	json_old: IPackageJson;
@@ -218,7 +223,22 @@ export function queryPackageManagersNpm(name: string,
 		}
 	}
 
-	return Bluebird.resolve<IVersionValue>(PackageManagersNpm[method](name, version))
+	return Bluebird
+		.resolve<IVersionValue>(PackageManagersNpm[method](name, version))
+		.then(async (value) => {
+			if (value == null)
+			{
+				let r = await requestVersion(name);
+
+				if (version in r['dist-tags'])
+				{
+					return r['dist-tags'][version]
+				}
+			}
+
+			return value
+		})
+
 }
 
 export function setVersionCacheMap(data: IVersionCacheMapValue)
@@ -305,6 +325,11 @@ export function queryRemoteVersions(packageMap: IPackageMap | string[], options:
 							if (version_new == null && isBadVersion(version_old))
 							{
 								version_new = await queryPackageManagersNpm(name, null, versionTarget);
+							}
+
+							if (version_new == null)
+							{
+								version_new = await queryPackageManagersNpm(name, version_old, versionTarget);
 							}
 
 							setVersionCacheMap({
@@ -521,7 +546,7 @@ export function checkResolutionsUpdate(resolutions: IPackageMap,
 
 			let deps = await queryRemoteVersions(resolutions, options);
 
-			//console.log(deps);
+			//console.dir(deps);
 
 			let deps2 = keyObjectToPackageMap(deps, true);
 
@@ -531,10 +556,10 @@ export function checkResolutionsUpdate(resolutions: IPackageMap,
 					a[b.name] = b;
 
 					return a;
-				}, {})
+				}, {} as Record<string, IVersionCacheMapValue>)
 			;
 
-			let yarnlock_new_obj = {
+			let yarnlock_new_obj: IYarnLockfileParseObject = {
 				...yarnlock_old_obj,
 			};
 
@@ -544,12 +569,14 @@ export function checkResolutionsUpdate(resolutions: IPackageMap,
 			Object.entries(result.max)
 				.forEach(function ([name, data])
 				{
-					if (semver.lt(data.value.version, deps2[name]))
+					/**
+					 * 檢查 版本範圍是否符合 與 版本是否不相同
+					 */
+					if (semver.lt(data.value.version, deps2[name]) && yarnlock_new_obj[name + '@' + deps3[name].version_old].version != data.value.version)
 					{
 						Object.keys(result.deps[name])
 							.forEach(version =>
 							{
-
 								let key = name + '@' + version;
 
 								delete yarnlock_new_obj[key]
@@ -627,15 +654,35 @@ export function updateSemver(current: IVersionValue,
 	return upgradeDependencyDeclaration(current, latest, options);
 }
 
+export function requestVersion(packageName: string)
+{
+	return Bluebird
+		.resolve(remoteCacheMap.get(packageName))
+		.then(function (result)
+		{
+			if (result == null)
+			{
+				return packageJson(packageName, { allVersions: true })
+			}
+
+			return result
+		})
+		.tap(function (result)
+		{
+			return remoteCacheMap.set(packageName, result);
+		})
+}
+
 export function fetchVersion(packageName: string, options: {
 	field?: string | 'time' | 'versions' | 'dist-tags.latest',
 	filter?(version: IVersionValue): boolean,
-}, ncuOptions: Partial<IOptions>)
+	currentVersion?: IVersionValue,
+} = {}, ncuOptions?: Partial<IOptions>)
 {
 	let { field = 'versions' } = options;
 
-	return Bluebird
-		.resolve(packageJson(packageName, { allVersions: true }))
+	return requestVersion(packageName)
+		//.resolve(packageJson(packageName, { allVersions: true }))
 		.then<IVersionValue[]>(function (result)
 		{
 			if (field.startsWith('dist-tags.'))
@@ -650,7 +697,7 @@ export function fetchVersion(packageName: string, options: {
 			{
 				return Object.keys(result[field]);
 			}
-			else
+			else if (field)
 			{
 				return result[field];
 			}
@@ -670,3 +717,4 @@ export function fetchVersion(packageName: string, options: {
 }
 
 export default setupNcuToYargs
+

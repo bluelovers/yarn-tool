@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-import 'source-map-support/register';
+
 import yargs = require('yargs');
 import updateNotifier = require('update-notifier');
 import pkg = require('../package.json');
@@ -38,6 +38,18 @@ import { setupWorkspacesInitToYargs } from 'create-yarn-workspaces/yargs-setting
 import { checkModileExists, crossSpawnOther, processArgvSlice } from '../lib/spawn';
 import osLocale = require('os-locale');
 import isNpx = require('is-npx');
+
+if (path.extname(__filename) === '.js' && !process.argv.filter(v => {
+	if (typeof v === 'string')
+	{
+		return v.includes('ts-node') || v.includes('source-map-support')
+	}
+}).length)
+{
+	require('source-map-support').install({
+		hookRequire: true
+	});
+}
 
 !isNpx() && updateNotifier({ pkg }).notify();
 
