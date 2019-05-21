@@ -137,14 +137,27 @@ const cmdModule = createCommandModuleExports({
 				}
 			},
 
+			after(yarg, argv, cache)
+			{
+
+				if (!cache.rootData.isWorkspace && cache.rootData.hasWorkspace)
+				{
+					crossSpawn.sync('yarn', [], {
+						cwd: cache.rootData.ws,
+						stdio: 'inherit',
+					});
+				}
+
+			},
+
 			end(yarg, argv, cache)
 			{
+				//console.dir(infoFromDedupeCache(cache));
+
 				if (cache.yarnlock_msg)
 				{
 					console.log(`\n${cache.yarnlock_msg}\n`);
 				}
-
-				console.dir(infoFromDedupeCache(cache));
 			},
 		});
 	},

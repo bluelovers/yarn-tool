@@ -10,8 +10,8 @@ import { CommandModule, Arguments, Argv, Options } from 'yargs';
 import { SpawnSyncOptions } from 'cross-spawn-extra/type';
 export interface IUnpackMyYargsArgv {
     cwd: string;
-    skipCheckWorkspace: boolean;
-    ytDebugMode: boolean;
+    skipCheckWorkspace?: boolean;
+    ytDebugMode?: boolean;
 }
 export declare type IUnpackMyYargsArgvPartial = Partial<IUnpackMyYargsArgv>;
 export declare type IUnpackYargsArgv<T extends Argv, D = any> = T extends Argv<infer U> ? U : D;
@@ -37,11 +37,11 @@ export declare function _dummyHandler<T extends {}>(args: Arguments<T>): any;
 export declare function basenameStrip(name: string): string;
 export declare function commandDirStrip(name: string, suffix?: string): string;
 export declare function commandDirJoin(root: string, name: string, suffix?: string): string;
-export declare function lazySpawnArgvSlice<T = IUnpackMyYargsArgv>(options: {
+export declare function lazySpawnArgvSlice(options: {
     bin: string;
     command: string | string[];
     cmd?: string | string[];
-    argv: Partial<Arguments<T>> & {
+    argv: {
         cwd: string;
     };
     crossSpawnOptions?: SpawnSyncOptions;

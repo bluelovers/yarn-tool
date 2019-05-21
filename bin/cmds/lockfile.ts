@@ -10,6 +10,7 @@ import { sortPackageJson } from 'sort-package-json';
 import { IUnpackMyYargsArgv } from '../../lib/cmd_dir';
 import { exportYarnLock, parse as parseYarnLock } from '../../lib/yarnlock';
 import { SemVer, rcompare } from 'semver';
+import { Arguments, CommandModule } from 'yargs';
 
 const COMMAND_KEY = basenameStrip(__filename);
 
@@ -36,84 +37,114 @@ const cmdModule = createCommandModuleExports({
 	{
 		const key = COMMAND_KEY;
 
-		let rootData = findRoot(argv, true);
+		//let rootData = findRoot(argv, true);
 
-		let yl = fsYarnLock(rootData.root);
+		//let yl = fsYarnLock(rootData.root);
 
-		let yarnlock_old_obj = parseYarnLock(yl.yarnlock_old);
-
-		let fy = exportYarnLock(yarnlock_old_obj);
-
-		let ks = Object.keys(fy.installed);
-
-		let max = 0;
-		let len = 0;
-
-		let ks2 = ks
-			.reduce((a, name) => {
-
-				let arr = fy.installed[name];
-
-				if (!argv.duplicate || arr.length > 1)
-				{
-					console.log(name);
-
-					try
-					{
-						arr = arr.sort(rcompare).reverse();
-					}
-					catch (e)
-					{
-
-					}
-
-					let arr2 = arr.slice(0, -1);
-
-					if (arr2.length)
-					{
-						console.log('├─', arr2.join('\n├─ '));
-
-						len += arr2.length;
-					}
-
-					console.log('└─', arr[arr.length - 1]);
-
-					max = Math.max(max, arr.length);
-
-					a.push(name)
-				}
-
-				return a;
-			}, [] as string[])
-		;
-
-		let chalk = console.chalk;
-
-		if (argv.duplicate)
+		if (argv.duplicate || !argv.duplicate)
 		{
-			// @ts-ignore
-			console.cyan.info(`\nFound duplicate in ${chalk.yellow(ks2.length)} packages, ${chalk.yellow(len)}/${chalk.yellow(len+ks2.length)} installed version, highest is ${max}, in total ${ks.length} packages`);
-		}
-		else
-		{
-			// @ts-ignore
-			console.cyan.info(`\nTotal ${chalk.yellow(ks.length)} packages, with ${chalk.yellow(len)}/${chalk.yellow(len+ks2.length)} installed version`);
+			_showYarnLockList(argv)
 		}
 
-		if (len > 0)
-		{
-			const terminalLink = require('terminal-link');
-			const link = terminalLink('see here', 'https://yarnpkg.com/docs/selective-version-resolutions/', {
-				fallback(text, url)
-				{
-					return text + ' ' + url;
-				}
-			});
-
-			console.cyan.info(`You can try add they to ${console.chalk.yellow('resolutions')} in package.json, for force package dedupe, ${link}`);
-		}
 	},
 
 });
 
 export = cmdModule
+
+type IUnpackCmdMod<T extends CommandModule, D = IUnpackMyYargsArgv> = T extends CommandModule<any, infer U> ? U
+	: T extends CommandModule<infer U, any> ? U
+		: D
+	;
+
+function _is(argv: Arguments<IUnpackCmdMod<typeof cmdModule>>): argv is Arguments<IUnpackCmdMod<typeof cmdModule>>
+{
+	return true;
+}
+
+function _fix(argv: Arguments<IUnpackCmdMod<typeof cmdModule>>)
+{
+	return argv;
+}
+
+function _showYarnLockList(argv: Arguments<IUnpackCmdMod<typeof cmdModule>>): argv is Arguments<IUnpackCmdMod<typeof cmdModule>>
+{
+	let rootData = findRoot(argv, true);
+
+	let yl = fsYarnLock(rootData.root);
+
+	let yarnlock_old_obj = parseYarnLock(yl.yarnlock_old);
+
+	let fy = exportYarnLock(yarnlock_old_obj);
+
+	let ks = Object.keys(fy.installed);
+
+	let max = 0;
+	let len = 0;
+
+	let ks2 = ks
+		.reduce((a, name) => {
+
+			let arr = fy.installed[name];
+
+			if (!argv.duplicate || arr.length > 1)
+			{
+				console.log(name);
+
+				try
+				{
+					arr = arr.sort(rcompare).reverse();
+				}
+				catch (e)
+				{
+
+				}
+
+				let arr2 = arr.slice(0, -1);
+
+				if (arr2.length)
+				{
+					console.log('├─', arr2.join('\n├─ '));
+
+					len += arr2.length;
+				}
+
+				console.log('└─', arr[arr.length - 1]);
+
+				max = Math.max(max, arr.length);
+
+				a.push(name)
+			}
+
+			return a;
+		}, [] as string[])
+	;
+
+	let chalk = console.chalk;
+
+	if (argv.duplicate)
+	{
+		// @ts-ignore
+		console.cyan.info(`\nFound duplicate in ${chalk.yellow(ks2.length)} packages, ${chalk.yellow(len)}/${chalk.yellow(len+ks2.length)} installed version, highest is ${max}, in total ${ks.length} packages`);
+	}
+	else
+	{
+		// @ts-ignore
+		console.cyan.info(`\nTotal ${chalk.yellow(ks.length)} packages, with ${chalk.yellow(len)}/${chalk.yellow(len+ks2.length)} installed version`);
+	}
+
+	if (len > 0)
+	{
+		const terminalLink = require('terminal-link');
+		const link = terminalLink('see here', 'https://yarnpkg.com/docs/selective-version-resolutions/', {
+			fallback(text, url)
+			{
+				return text + ' ' + url;
+			}
+		});
+
+		console.cyan.info(`You can try add they to ${console.chalk.yellow('resolutions')} in package.json, for force package dedupe, ${link}`);
+	}
+
+	return true
+}

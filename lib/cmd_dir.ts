@@ -15,8 +15,8 @@ import { SpawnSyncOptions } from 'cross-spawn-extra/type';
 export interface IUnpackMyYargsArgv
 {
 	cwd: string;
-	skipCheckWorkspace: boolean;
-	ytDebugMode: boolean;
+	skipCheckWorkspace?: boolean;
+	ytDebugMode?: boolean;
 }
 
 export type IUnpackMyYargsArgvPartial = Partial<IUnpackMyYargsArgv>;
@@ -90,11 +90,11 @@ export function commandDirJoin(root: string, name: string, suffix = '_cmds')
 	return path.join(root, commandDirStrip(name))
 }
 
-export function lazySpawnArgvSlice<T = IUnpackMyYargsArgv>(options: {
+export function lazySpawnArgvSlice(options: {
 	bin: string,
 	command: string | string[],
 	cmd?: string | string[],
-	argv: Partial<Arguments<T>> & {
+	argv: {
 		cwd: string
 	},
 	crossSpawnOptions?: SpawnSyncOptions

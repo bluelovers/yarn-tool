@@ -3,11 +3,12 @@
  */
 import { basenameStrip, createCommandModuleExports, lazySpawnArgvSlice } from '../../lib/cmd_dir';
 import path = require('upath2');
-import { chalkByConsole, consoleDebug, findRoot } from '../../lib/index';
+import { chalkByConsole, console, consoleDebug, findRoot } from '../../lib/index';
 import { readPackageJson } from '@ts-type/package-dts';
 import { writePackageJson } from '../../lib/pkg';
 import { sortPackageJson } from 'sort-package-json';
 import { IUnpackMyYargsArgv } from '../../lib/cmd_dir';
+import { infoFromDedupeCache, wrapDedupe } from '../../lib/cli/dedupe';
 
 const cmdModule = createCommandModuleExports({
 
@@ -24,12 +25,30 @@ const cmdModule = createCommandModuleExports({
 	{
 		const key = basenameStrip(__filename);
 
-		lazySpawnArgvSlice({
-			command: key,
-			bin: 'yarn',
-			cmd: key,
-			argv,
-		})
+		wrapDedupe(require('yargs'), argv, {
+
+			main(yarg, argv, cache): boolean | void
+			{
+				lazySpawnArgvSlice({
+					command: key,
+					bin: 'yarn',
+					cmd: key,
+					argv,
+				})
+			},
+
+			end(yarg, argv, cache)
+			{
+				//console.dir(infoFromDedupeCache(cache));
+
+				if (cache.yarnlock_msg)
+				{
+					console.log(`\n${cache.yarnlock_msg}\n`);
+				}
+			},
+
+		});
+
 	},
 
 });
