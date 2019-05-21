@@ -207,7 +207,7 @@ const cmdModule = createCommandModuleExports({
 			consoleDebug.info(`package.json updated`);
 		}
 
-		if (argv.dedupe && Object.keys(resolutions).length)
+		if (argv.dedupe && resolutions && Object.keys(resolutions).length)
 		{
 
 			let ls = Object.entries(pkgNcu.json_new.dependencies || {})
