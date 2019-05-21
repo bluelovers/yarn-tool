@@ -2,8 +2,8 @@
 
 
 import yargs = require('yargs');
-import updateNotifier = require('update-notifier');
-import pkg = require('../package.json');
+//import updateNotifier = require('update-notifier');
+//import pkg = require('../package.json');
 import path = require('upath2');
 import fs = require('fs-extra');
 import crossSpawn = require('cross-spawn-extra');
@@ -37,7 +37,8 @@ import { ITSIteratorLazy, ITSValueOfArray } from 'ts-type';
 import { setupWorkspacesInitToYargs } from 'create-yarn-workspaces/yargs-setting';
 import { checkModileExists, crossSpawnOther, processArgvSlice } from '../lib/spawn';
 import osLocale = require('os-locale');
-import isNpx = require('is-npx');
+import { updateNotifier } from '../lib/update-notifier';
+//import isNpx = require('is-npx');
 
 if (path.extname(__filename) === '.js' && !process.argv.filter(v => {
 	if (typeof v === 'string')
@@ -51,7 +52,7 @@ if (path.extname(__filename) === '.js' && !process.argv.filter(v => {
 	});
 }
 
-!isNpx() && updateNotifier({ pkg }).notify();
+updateNotifier();
 
 let cli = yargs
 	.option('cwd', {
