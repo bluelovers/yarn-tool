@@ -4,6 +4,7 @@ export function setupYarnInstallToYargs<T extends any>(yargs: Argv<T>)
 {
 	return yargs
 		.option('check-files', {
+			alias: ['C'],
 			desc: `Verifies that already installed files in node_modules did not get removed.`,
 			boolean: true,
 		})
@@ -12,6 +13,7 @@ export function setupYarnInstallToYargs<T extends any>(yargs: Argv<T>)
 			boolean: true,
 		})
 		.option('force', {
+			alias: ['F'],
 			desc: `This refetches all packages, even ones that were previously installed.`,
 			boolean: true,
 		})
