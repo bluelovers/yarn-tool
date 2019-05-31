@@ -4,21 +4,12 @@
 import { Console2 } from 'debug-color2';
 import { Arguments } from 'yargs';
 import { IUnpackMyYargsArgv } from './cmd_dir';
+import { findRoot } from '@yarn-tool/find-root';
 export declare const console: Console2;
 export declare const consoleDebug: Console2;
+export { findRoot };
 export declare function pathNormalize(input: string): string;
 export declare function pathEqual(a: string, b: string): boolean;
-export declare function findRoot(options: {
-    cwd: string;
-    skipCheckWorkspace?: boolean | string;
-    throwError?: boolean;
-}, throwError?: boolean): {
-    pkg: string;
-    ws: string;
-    hasWorkspace: boolean;
-    isWorkspace: boolean;
-    root: string;
-};
 export declare function fsYarnLock(root: string): {
     yarnlock_file: string;
     yarnlock_exists: boolean;

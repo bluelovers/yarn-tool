@@ -19,7 +19,7 @@ import {
 	upgradeDependencyDeclaration,
 } from 'npm-check-updates/lib/versionmanager';
 import {
-	ITSUnpackedPromiseLike
+	ITSUnpackedPromiseLike,
 } from 'ts-type';
 
 const versionUtil = require('npm-check-updates/lib/version-util');
@@ -225,7 +225,8 @@ export function queryPackageManagersNpm(name: string,
 
 	return Bluebird
 		.resolve<IVersionValue>(PackageManagersNpm[method](name, version))
-		.then(async (value) => {
+		.then(async (value) =>
+		{
 			if (value == null)
 			{
 				let r = await requestVersion(name);
@@ -316,7 +317,7 @@ export function queryRemoteVersions(packageMap: IPackageMap | string[], options:
 										filter(version)
 										{
 											return semver.satisfies(version, version_old)
-										}
+										},
 									}, options)
 										.then(ret => ret.pop())
 								}
@@ -569,10 +570,12 @@ export function checkResolutionsUpdate(resolutions: IPackageMap,
 			Object.entries(result.max)
 				.forEach(function ([name, data])
 				{
+					let _key2 = name + '@' + deps3[name].version_old;
+
 					/**
 					 * 檢查 版本範圍是否符合 與 版本是否不相同
 					 */
-					if (semver.lt(data.value.version, deps2[name]) && yarnlock_new_obj[name + '@' + deps3[name].version_old].version != data.value.version)
+					if (semver.lt(data.value.version, deps2[name]) && yarnlock_new_obj[_key2] && yarnlock_new_obj[_key2].version != data.value.version)
 					{
 						Object.keys(result.deps[name])
 							.forEach(version =>
@@ -682,7 +685,7 @@ export function fetchVersion(packageName: string, options: {
 	let { field = 'versions' } = options;
 
 	return requestVersion(packageName)
-		//.resolve(packageJson(packageName, { allVersions: true }))
+	//.resolve(packageJson(packageName, { allVersions: true }))
 		.then<IVersionValue[]>(function (result)
 		{
 			if (field.startsWith('dist-tags.'))
@@ -702,7 +705,8 @@ export function fetchVersion(packageName: string, options: {
 				return result[field];
 			}
 		})
-		.then(result => {
+		.then(result =>
+		{
 
 			if (options.filter)
 			{

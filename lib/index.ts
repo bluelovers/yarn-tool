@@ -11,6 +11,7 @@ import { createFnChalkByConsole } from 'debug-color2/lib/util';
 import { readPackageJson } from '@ts-type/package-dts';
 import { Arguments } from 'yargs';
 import { IUnpackMyYargsArgv } from './cmd_dir';
+import { findRoot } from '@yarn-tool/find-root';
 
 export const console = new Console2();
 
@@ -18,6 +19,8 @@ export const consoleDebug = new Console2(null, {
 	label: true,
 	time: true,
 });
+
+export { findRoot }
 
 export function pathNormalize(input: string)
 {
@@ -27,45 +30,6 @@ export function pathNormalize(input: string)
 export function pathEqual(a: string, b: string)
 {
 	return path.normalize(a) === path.normalize(b)
-}
-
-export function findRoot(options: {
-	cwd: string,
-	skipCheckWorkspace?: boolean | string,
-	throwError?: boolean,
-}, throwError?: boolean)
-{
-	if (!options.cwd)
-	{
-		throw new TypeError(`options.cwd is '${options.cwd}'`)
-	}
-
-	let ws: string;
-
-	if (!options.skipCheckWorkspace)
-	{
-		ws = findYarnWorkspaceRoot(options.cwd);
-	}
-
-	let pkg = pkgDir.sync(options.cwd);
-
-	if (pkg == null && (options.throwError || (options.throwError == null && throwError)))
-	{
-		let err = new TypeError(`can't found package root from target directory '${options.cwd}'`);
-		throw err;
-	}
-
-	let hasWorkspace = ws && ws != null;
-	let isWorkspace = hasWorkspace && pathEqual(ws, pkg);
-	let root = hasWorkspace ? ws : pkg;
-
-	return {
-		pkg,
-		ws,
-		hasWorkspace,
-		isWorkspace,
-		root,
-	}
 }
 
 export function fsYarnLock(root: string)

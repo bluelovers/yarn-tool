@@ -63,6 +63,7 @@ const cmdModule = createCommandModuleExports({
 			let cp = crossSpawnOther('yarn', [
 				key,
 				...fca,
+				...argv._,
 			], argv, {
 				stdio: null,
 				stripAnsi: true,
