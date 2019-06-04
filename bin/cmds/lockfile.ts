@@ -13,6 +13,7 @@ import { exportYarnLock, parse as parseYarnLock } from '../../lib/yarnlock';
 import { SemVer, rcompare } from 'semver';
 import { Arguments, CommandModule } from 'yargs';
 import Dedupe from '../../lib/cli/dedupe';
+import { npmToYarnCore, yarnToNpmCore } from 'synp2/lib';
 
 const COMMAND_KEY = basenameStrip(__filename);
 
@@ -58,8 +59,6 @@ const cmdModule = createCommandModuleExports({
 
 		if (argv.yarn || argv.npm)
 		{
-			const { npmToYarnCore, yarnToNpmCore } = require('synp/lib');
-
 			let rootData = findRoot(argv, true);
 			let yl = fsYarnLock(rootData.root);
 
@@ -259,8 +258,6 @@ function _showYarnLockList(argv: Arguments<IUnpackCmdMod<typeof cmdModule>>): ar
 
 function npmToYarn(packageLockFileString, packageDir): string
 {
-	const { npmToYarnCore, yarnToNpmCore } = require('synp/lib');
-
 	return npmToYarnCore(packageLockFileString, packageDir);
 }
 
@@ -291,7 +288,5 @@ function yarnToNpm(yarnlock,  name, version, packageDir): {
 	};
 }
 {
-	const { npmToYarnCore, yarnToNpmCore } = require('synp/lib');
-
 	return JSON.parse(yarnToNpmCore(yarnlock,  name, version, packageDir))
 }

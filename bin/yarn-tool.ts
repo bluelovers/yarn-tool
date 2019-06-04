@@ -37,8 +37,9 @@ import { ITSIteratorLazy, ITSValueOfArray } from 'ts-type';
 import { setupWorkspacesInitToYargs } from 'create-yarn-workspaces/yargs-setting';
 import { checkModileExists, crossSpawnOther, processArgvSlice } from '../lib/spawn';
 import osLocale = require('os-locale');
-import { updateNotifier } from '../lib/update-notifier';
+import { updateNotifier } from '@yarn-tool/update-notifier';
 //import isNpx = require('is-npx');
+
 
 if (path.extname(__filename) === '.js' && !process.argv.filter(v => {
 	if (typeof v === 'string')
@@ -52,7 +53,7 @@ if (path.extname(__filename) === '.js' && !process.argv.filter(v => {
 	});
 }
 
-updateNotifier();
+updateNotifier(path.join(__dirname, '..'));
 
 let cli = yargs
 	.option('cwd', {
