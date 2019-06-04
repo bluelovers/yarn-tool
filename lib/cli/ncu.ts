@@ -37,6 +37,7 @@ import semver = require('semver');
 import _ = require('lodash');
 import semverutils = require('semver-utils');
 import packageJson = require('package-json');
+import * as util from 'util';
 
 export type IVersionValue = 'latest' | '*' | string | EnumVersionValue | EnumVersionValue2;
 
@@ -171,7 +172,9 @@ export function keyObjectToPackageMap(obj: IVersionCacheMapKey[] | IVersionCache
 		{
 			if (typeof data.version_new !== 'string')
 			{
-				throw new TypeError(`not a IVersionCacheMapValue object`)
+				return a;
+
+				throw new TypeError(`not a IVersionCacheMapValue object, ${util.inspect(data)}`)
 			}
 
 			a[data.name] = data.version_new;
@@ -575,7 +578,11 @@ export function checkResolutionsUpdate(resolutions: IPackageMap,
 					/**
 					 * 檢查 版本範圍是否符合 與 版本是否不相同
 					 */
-					if (semver.lt(data.value.version, deps2[name]) && yarnlock_new_obj[_key2] && yarnlock_new_obj[_key2].version != data.value.version)
+//					console.dir({
+//						data,
+//						deps: deps2[name],
+//					});
+					if (data.value.version != null && deps2[name] != null && semver.lt(data.value.version, deps2[name]) && yarnlock_new_obj[_key2] && yarnlock_new_obj[_key2].version != data.value.version)
 					{
 						Object.keys(result.deps[name])
 							.forEach(version =>
