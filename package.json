@@ -1,6 +1,6 @@
 {
   "name": "yarn-tool",
-  "version": "1.0.28",
+  "version": "1.0.29",
   "description": "yarn cli tool helper",
   "keywords": [
     "cli",
@@ -56,7 +56,7 @@
   "dependencies": {
     "@ts-type/package-dts": "^1.0.3",
     "@yarn-tool/find-root": "^1.0.2",
-    "@yarn-tool/update-notifier": "^1.0.0",
+    "@yarn-tool/update-notifier": "^1.0.1",
     "array-hyper-unique": "^1.0.7",
     "bluebird": "^3.5.5",
     "cli-table3": "^0.5.1",
