@@ -7,7 +7,7 @@
 
 import yargs = require('yargs');
 import { CommandModule, Arguments, Argv, CommandBuilder, Options } from 'yargs';
-import { ITSOverwrite } from 'ts-type/lib/helper';
+import { ITSOverwrite } from 'ts-type';
 import path = require('upath2');
 import { checkModileExists, crossSpawnOther, processArgvSlice } from './spawn';
 import { SpawnSyncOptions } from 'cross-spawn-extra/type';

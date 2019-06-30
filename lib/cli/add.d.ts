@@ -28,6 +28,6 @@ export declare function parseArgvPkgName(input: string): {
     name: string;
     version: string;
 };
-export declare function listToTypes(input: string[]): string[];
+export declare function listToTypes(input: string[], includeVersion?: boolean): string[];
 export declare function existsDependencies(name: string, pkg: IPackageJson | Partial<Record<'dependencies' | 'devDependencies' | 'optionalDependencies', Record<string, string>>>): string;
 export default flagsYarnAdd;

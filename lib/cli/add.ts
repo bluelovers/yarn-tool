@@ -85,7 +85,7 @@ export function parseArgvPkgName(input: string)
 	}
 }
 
-export function listToTypes(input: string[])
+export function listToTypes(input: string[], includeVersion?: boolean)
 {
 	return array_unique_overwrite(input.reduce(function (a, b)
 	{
@@ -93,7 +93,14 @@ export function listToTypes(input: string[])
 
 		if (m && !m.namespace && m.name)
 		{
-			a.push(`@types/${m.name}`)
+			if (includeVersion && m.version != null && m.version !== '')
+			{
+				a.push(`@types/${m.name}@${m.version}`)
+			}
+			else
+			{
+				a.push(`@types/${m.name}`)
+			}
 		}
 
 		return a;

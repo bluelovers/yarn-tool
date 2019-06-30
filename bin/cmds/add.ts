@@ -12,6 +12,7 @@ import { infoFromDedupeCache, wrapDedupe } from '../../lib/cli/dedupe';
 import yargs = require('yargs');
 import { existsDependencies, flagsYarnAdd, listToTypes, setupYarnAddToYargs } from '../../lib/cli/add';
 import crossSpawn = require('cross-spawn-extra');
+import { YT_BIN } from '../../index';
 
 const cmdModule = createCommandModuleExports({
 
@@ -90,50 +91,18 @@ const cmdModule = createCommandModuleExports({
 
 				if (argv.types)
 				{
-					let { rootData } = cache;
+					let cp = crossSpawn.sync('node', [
+						require.resolve(YT_BIN),
 
-					let pkg_file = path.join(rootData.pkg, 'package.json');
+						'types',
 
-					let pkg = readPackageJson(pkg_file);
+						...args,
 
-					let args_types = listToTypes(args);
-
-					if (args_types.length)
-					{
-						let flags2 = flags.slice();
-
-						if (!argv.optional && !argv.peer && !argv.dev)
-						{
-							flags2.push('-D');
-						}
-
-						args_types
-							.forEach(name =>
-							{
-
-								if (existsDependencies(name, pkg))
-								{
-									return;
-								}
-
-								let cmd_argv = [
-									'add',
-
-									name,
-
-									...flags2,
-
-								].filter(v => v != null);
-
-								consoleDebug.debug(cmd_argv);
-
-								let cp = crossSpawn.sync('yarn', cmd_argv, {
-									cwd: argv.cwd,
-									//stdio: 'inherit',
-								});
-							})
-						;
-					}
+						...flags,
+					], {
+						cwd: argv.cwd,
+						stdio: 'inherit',
+					})
 				}
 			},
 

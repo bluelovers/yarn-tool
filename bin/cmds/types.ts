@@ -1,0 +1,160 @@
+/**
+ * Created by user on 2019/5/19.
+ */
+import { basenameStrip, createCommandModuleExports } from '../../lib/cmd_dir';
+import path = require('upath2');
+import { console, consoleDebug, findRoot, printRootData } from '../../lib/index';
+import { readPackageJson } from '@ts-type/package-dts';
+import { writePackageJson } from '../../lib/pkg';
+import { sortPackageJson } from 'sort-package-json';
+import { IUnpackMyYargsArgv } from '../../lib/cmd_dir';
+import { infoFromDedupeCache, wrapDedupe } from '../../lib/cli/dedupe';
+import yargs = require('yargs');
+import {
+	existsDependencies,
+	flagsYarnAdd,
+	listToTypes,
+	parseArgvPkgName,
+	setupYarnAddToYargs,
+} from '../../lib/cli/add';
+import crossSpawn = require('cross-spawn-extra');
+import { fetchPackageJsonInfo } from '../../lib/cli/types';
+
+const cmdModule = createCommandModuleExports({
+
+	command: basenameStrip(__filename) + ' [name]',
+	//aliases: [],
+	describe: `Installs @types/* of packages if not exists in package.json`,
+
+	builder(yargs)
+	{
+		return setupYarnAddToYargs(yargs)
+			.strict(false)
+	},
+
+	async handler(argv)
+	{
+		let args = argv._.slice();
+
+		if (args[0] === 'types')
+		{
+			args.shift();
+		}
+
+		if (argv.name)
+		{
+			// @ts-ignore
+			args.unshift(argv.name);
+		}
+
+		if (!args.length)
+		{
+			consoleDebug.error(`Missing list of packages to add to your project.`);
+
+			return process.exit(1);
+		}
+
+		let flags = flagsYarnAdd(argv).filter(v => v != null);
+
+		let rootData = findRoot({
+			...argv,
+		});
+
+		let pkg_file = path.join(rootData.pkg, 'package.json');
+
+		let pkg = readPackageJson(pkg_file);
+
+		let flags2 = flags.slice();
+
+		if (!argv.optional && !argv.peer && !argv.dev)
+		{
+			flags2.push('-D');
+		}
+
+		let list: string[] = [];
+		let warns: any[] = [];
+
+		for (let packageName of args)
+		{
+			packageName = `@types/${packageName}`;
+			let m = parseArgvPkgName(packageName);
+
+			if (!m)
+			{
+				console.warn(`[error]`, packageName);
+				continue;
+			}
+
+			let { version, name, namespace } = m;
+			if (namespace)
+			{
+				name = namespace + '/' + name;
+			}
+
+			if (existsDependencies(name, pkg))
+			{
+				//console.warn(`[skip]`, `${name} already exists in package.json`);
+
+				warns.push([`[skip]`, `${name} already exists in package.json`]);
+
+				continue;
+			}
+
+			const target = await fetchPackageJsonInfo(packageName);
+
+			if (target == null)
+			{
+				warns.push([`[warn]`, `${name} not exists`]);
+
+				continue;
+			}
+
+			if (target.deprecated)
+			{
+				//console.warn(`[skip]`, target.deprecated);
+
+				warns.push([`[ignore]`, target.name, '：', target.deprecated]);
+
+				continue;
+			}
+
+			list.push(target.name + `@^${target.version}`);
+		}
+
+		if (list.length)
+		{
+			let cmd_argv = [
+				'add',
+				...list,
+				...flags2,
+			].filter(v => v != null);
+
+			let cp = crossSpawn.sync('yarn', cmd_argv, {
+				cwd: argv.cwd,
+				stdio: 'inherit',
+			});
+
+			if (cp.error)
+			{
+				throw cp.error
+			}
+		}
+		else
+		{
+			printWarns();
+
+			console.warn(`[warn]`, `no any new types install`);
+		}
+
+		printWarns();
+
+		function printWarns()
+		{
+			warns.forEach(([label, ...arr]) => console.info(console.red.chalk(label), ...arr));
+			warns = [];
+		}
+	},
+
+});
+
+export = cmdModule
