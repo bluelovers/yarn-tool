@@ -1,6 +1,6 @@
 {
   "name": "yarn-tool",
-  "version": "1.0.31",
+  "version": "1.0.32",
   "description": "yarn cli tool helper",
   "keywords": [
     "cli",
@@ -56,9 +56,9 @@
   "dependencies": {
     "@ts-type/package-dts": "^1.0.4",
     "@yarn-tool/find-root": "^1.0.2",
-    "@yarn-tool/update-notifier": "^1.0.1",
-    "array-hyper-unique": "^1.0.7",
-    "bluebird": "^3.5.5",
+    "@yarn-tool/update-notifier": "^1.0.4",
+    "array-hyper-unique": "^1.1.0",
+    "bluebird": "^3.7.2",
     "cli-table3": "^0.5.1",
     "create-yarn-workspaces": "^1.0.21",
     "crlf-normalize": "^1.0.3",
@@ -67,20 +67,20 @@
     "find-yarn-workspace-root2": "^1.2.6",
     "fs-extra": "^8.1.0",
     "is-npx": "^1.0.0",
-    "npm-check-updates": "^3.1.12",
-    "npm-init2": "^1.0.36",
+    "npm-check-updates": "^3.2.2",
+    "npm-init2": "^1.0.37",
     "os-locale": "^4.0.0",
-    "package-json": "^6.4.0",
+    "package-json": "^6.5.0",
     "pkg-dir": "^4.2.0",
-    "semver": "^6.1.2",
+    "semver": "^6.3.0",
     "semver-utils": "^1.1.4",
-    "source-map-support": "^0.5.12",
+    "source-map-support": "^0.5.16",
     "synp2": "^1.4.0",
-    "terminal-link": "^1.3.0",
+    "terminal-link": "^2.0.0",
     "upath2": "^2.1.3",
-    "update-notifier": "^3.0.0",
-    "yargs": "^13.2.4",
-    "yargs-parser": "^13.1.1",
+    "update-notifier": "^3.0.1",
+    "yargs": "^15.0.2",
+    "yargs-parser": "^16.1.0",
     "yargs-unparser": "^1.5.0",
     "yarn-deduplicate": "^1.1.1",
     "yarn-lock-diff": "^0.0.0"
@@ -88,15 +88,15 @@
   "devDependencies": {
     "@types/deep-diff": "^1.0.0",
     "@types/fs-extra": "*",
-    "@types/lodash": "^4.14.135",
+    "@types/lodash": "^4.14.149",
     "@types/package-json": "^5.0.1",
-    "@types/semver": "^6.0.1",
-    "@types/yargs": "^13.0.0",
-    "@types/yargs-parser": "^13.0.0",
+    "@types/semver": "^6.2.0",
+    "@types/yargs": "^13.0.3",
+    "@types/yargs-parser": "^13.1.0",
     "ts-type": "^1.2.9"
   },
   "peerDependencies": {
-    "lerna": "^3.15.0"
+    "lerna": "^3.19.0"
   },
   "resolutions": {
     "@types/fs-extra": "*",
