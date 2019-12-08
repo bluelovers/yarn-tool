@@ -19,7 +19,9 @@ const cmdModule = createCommandModuleExports({
 			processExit: true,
 		});
 
-		return (require(ret) as typeof import('npm-init2/lib/yargs-setting')).setupToYargs(yargs)
+		return (require(ret) as typeof import('npm-init2/lib/yargs-setting'))
+			.setupToYargs(yargs)
+			.strict(false)
 	},
 
 	handler(argv)
