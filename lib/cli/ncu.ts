@@ -227,7 +227,7 @@ export function queryPackageManagersNpm(name: string,
 	}
 
 	return Bluebird
-		.resolve<IVersionValue>(PackageManagersNpm[method](name, version))
+		.resolve<IVersionValue>(PackageManagersNpm[method](name, version, {}))
 		.then(async (value) =>
 		{
 			if (value == null)
