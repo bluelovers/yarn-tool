@@ -1,6 +1,6 @@
 {
   "name": "yarn-tool",
-  "version": "1.0.36",
+  "version": "1.0.37",
   "description": "yarn cli tool helper",
   "keywords": [
     "cli",
@@ -65,7 +65,7 @@
     "array-hyper-unique": "^1.1.0",
     "bluebird": "^3.7.2",
     "cli-table3": "^0.5.1",
-    "create-yarn-workspaces": "^1.0.22",
+    "create-yarn-workspaces": "^1.0.23",
     "crlf-normalize": "^1.0.3",
     "cross-spawn-extra": "^2.0.0",
     "debug-color2": "^1.1.6",
