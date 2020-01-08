@@ -56,8 +56,6 @@ const cmdModule = createCommandModuleExports({
 			args.unshift(argv.name);
 		}
 
-		let flags = flagsYarnAdd(argv).filter(v => v != null);
-
 		let rootData = findRoot({
 			...argv,
 		});
@@ -101,6 +99,8 @@ const cmdModule = createCommandModuleExports({
 			{
 				args.push(...names);
 			}
+
+			argv.optional = argv.peer = argv.dev = false;
 		}
 
 		args = array_unique(args);
@@ -112,6 +112,7 @@ const cmdModule = createCommandModuleExports({
 			return process.exit(1);
 		}
 
+		let flags = flagsYarnAdd(argv).filter(v => v != null);
 		let flags2 = flags.slice();
 
 		if (!argv.optional && !argv.peer && !argv.dev)
