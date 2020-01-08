@@ -77,3 +77,4 @@ yarn-error.log*
 /.browserslistrc
 /.nvmrc
 /temp.txt
+/tsconfig.esm.json.tpl

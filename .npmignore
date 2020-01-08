@@ -51,3 +51,4 @@ yarn-error.log*
 *.vue.d.ts
 *.vue.js.map
 /temp.txt
+/tsconfig.esm.json.tpl

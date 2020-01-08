@@ -19,6 +19,7 @@ import {
 } from '../../lib/cli/add';
 import crossSpawn = require('cross-spawn-extra');
 import { fetchPackageJsonInfo } from '../../lib/cli/types';
+import { array_unique } from 'array-hyper-unique';
 
 const cmdModule = createCommandModuleExports({
 
@@ -29,6 +30,14 @@ const cmdModule = createCommandModuleExports({
 	builder(yargs)
 	{
 		return setupYarnAddToYargs(yargs)
+			.option('auto', {
+				desc: `auto install from package.json`,
+				boolean: true,
+			})
+			.option('all', {
+				desc: `dependencies, devDependencies from package.json`,
+				boolean: true,
+			})
 			.strict(false)
 	},
 
@@ -47,13 +56,6 @@ const cmdModule = createCommandModuleExports({
 			args.unshift(argv.name);
 		}
 
-		if (!args.length)
-		{
-			consoleDebug.error(`Missing list of packages to add to your project.`);
-
-			return process.exit(1);
-		}
-
 		let flags = flagsYarnAdd(argv).filter(v => v != null);
 
 		let rootData = findRoot({
@@ -63,6 +65,52 @@ const cmdModule = createCommandModuleExports({
 		let pkg_file = path.join(rootData.pkg, 'package.json');
 
 		let pkg = readPackageJson(pkg_file);
+
+		if (argv.auto)
+		{
+			let names: string[] = [];
+
+			if (argv.dev || argv.all)
+			{
+				names.push(...Object.keys(pkg.devDependencies || []));
+			}
+
+			if (argv.peer || argv.optional)
+			{
+				if (argv.peer)
+				{
+					names.push(...Object.keys(pkg.peerDependencies || []));
+				}
+
+				if (argv.optional)
+				{
+					names.push(...Object.keys(pkg.optionalDependencies || []));
+				}
+			}
+			else if (!argv.dev)
+			{
+				names.push(...Object.keys(pkg.dependencies || []));
+			}
+
+			if (argv.all)
+			{
+				names.push(...Object.keys(pkg.dependencies || []));
+			}
+
+			if (names.length)
+			{
+				args.push(...names);
+			}
+		}
+
+		args = array_unique(args);
+
+		if (!args.length)
+		{
+			consoleDebug.error(`Missing list of packages to add to your project.`);
+
+			return process.exit(1);
+		}
 
 		let flags2 = flags.slice();
 
