@@ -20,6 +20,7 @@ const cmdModule = createCommandModuleExports({
 	builder(yargs)
 	{
 		return setupWorkspacesInitToYargs(yargs)
+			.strict(false)
 	},
 
 	handler(argv)

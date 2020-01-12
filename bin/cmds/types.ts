@@ -38,6 +38,10 @@ const cmdModule = createCommandModuleExports({
 				desc: `dependencies, devDependencies from package.json`,
 				boolean: true,
 			})
+			.option(`name`, {
+				type: 'string',
+				demandOption: false,
+			})
 			.strict(false)
 	},
 
