@@ -29,7 +29,9 @@ const cmdModule = createCommandModuleExports({
 
 	builder(yargs)
 	{
-		return setupYarnAddToYargs(yargs)
+		return setupYarnAddToYargs(yargs, {
+			allowEmptyName: true,
+		})
 			.option('auto', {
 				desc: `auto install from package.json`,
 				boolean: true,
@@ -37,10 +39,6 @@ const cmdModule = createCommandModuleExports({
 			.option('all', {
 				desc: `dependencies, devDependencies from package.json`,
 				boolean: true,
-			})
-			.option(`name`, {
-				type: 'string',
-				demandOption: false,
 			})
 			.strict(false)
 	},

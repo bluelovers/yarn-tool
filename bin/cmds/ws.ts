@@ -29,12 +29,29 @@ const cmdModule = createCommandModuleExports({
 				builder(yargs)
 				{
 					return yargs
+						.option('stream', {
+							desc: `Stream output with lines prefixed by package.`,
+						})
+						.option('parallel', {
+							desc: `Run script with unlimited concurrency, streaming prefixed output.`,
+						})
+						.option('no-prefix', {
+							desc: `Do not prefix streaming output.`,
+						})
 						.strict(false)
-
 				},
 				handler(argv)
 				{
-					lazyLerna('run', 'run', argv)
+					lazyLerna('run', 'run', argv, {
+						beforeSpawn(data) {
+
+							if (data.argv.stream == null && data.argv.parallel == null)
+							{
+								data.cmd_list.unshift(`--stream`);
+							}
+
+						}
+					})
 				},
 			})
 			.command({
@@ -64,7 +81,15 @@ const cmdModule = createCommandModuleExports({
 
 export = cmdModule
 
-function lazyLerna(command: string, cmd: string, argv: Arguments<any>)
+function lazyLerna<A extends Arguments<any>>(command: string, cmd: string, argv: A, opts: {
+	beforeSpawn?(data: {
+		cmd: string,
+		cmd_list: string[],
+		argv: A & {
+			cwd: string
+		},
+	}),
+} = {})
 {
 	let ret = checkModileExists({
 		name: 'lerna',
@@ -77,10 +102,27 @@ function lazyLerna(command: string, cmd: string, argv: Arguments<any>)
 
 	let cmd_list = processArgvSlice(command).argv;
 
+	if (opts && opts.beforeSpawn)
+	{
+		let data = {
+			cmd,
+			cmd_list,
+			argv: argv as any,
+		};
+
+		opts.beforeSpawn(data);
+
+		({
+			cmd,
+			cmd_list,
+			argv,
+		} = data);
+	}
+
 	return crossSpawnOther('lerna', [
 
 		cmd,
 
 		...cmd_list,
-	], argv);
+	], argv as Arguments<any>);
 }

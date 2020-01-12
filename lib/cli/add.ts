@@ -21,7 +21,9 @@ export function flagsYarnAdd(argv: {
 	], argv)
 }
 
-export function setupYarnAddToYargs<T extends any>(yargs: Argv<T>)
+export function setupYarnAddToYargs<T extends any>(yargs: Argv<T>, opts: {
+	allowEmptyName?: boolean,
+} = {})
 {
 	return yargs
 		.option('dev', {
@@ -55,7 +57,7 @@ export function setupYarnAddToYargs<T extends any>(yargs: Argv<T>)
 		})
 		.option(`name`, {
 			type: 'string',
-			demandOption: true,
+			demandOption: !opts.allowEmptyName,
 		})
 		.option('dedupe', {
 			alias: ['d'],
