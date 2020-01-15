@@ -70,29 +70,29 @@ const cmdModule = createCommandModuleExports({
 		{
 			let names: string[] = [];
 
-			if (argv.dev || argv.all)
+			if ((argv.dev || argv.all) && pkg.devDependencies)
 			{
 				names.push(...Object.keys(pkg.devDependencies || []));
 			}
 
 			if (argv.peer || argv.optional)
 			{
-				if (argv.peer)
+				if (argv.peer && pkg.peerDependencies)
 				{
 					names.push(...Object.keys(pkg.peerDependencies || []));
 				}
 
-				if (argv.optional)
+				if (argv.optional && pkg.optionalDependencies)
 				{
 					names.push(...Object.keys(pkg.optionalDependencies || []));
 				}
 			}
-			else if (!argv.dev)
+			else if (!argv.dev && pkg.dependencies)
 			{
 				names.push(...Object.keys(pkg.dependencies || []));
 			}
 
-			if (argv.all)
+			if (argv.all && pkg.dependencies)
 			{
 				names.push(...Object.keys(pkg.dependencies || []));
 			}
@@ -105,13 +105,34 @@ const cmdModule = createCommandModuleExports({
 			argv.optional = argv.peer = argv.dev = false;
 		}
 
-		args = array_unique(args);
-
 		if (!args.length)
 		{
 			consoleDebug.error(`Missing list of packages to add to your project.`);
 
 			return process.exit(1);
+		}
+		else
+		{
+			args = args.reduce((a, b) => {
+
+				b = b.replace(/^@types\//, '');
+
+				if (!b.includes('/'))
+				{
+					a.push(b);
+				}
+
+				return a;
+			}, [] as string[]);
+
+			args = array_unique(args);
+
+			if (!args.length)
+			{
+				consoleDebug.warn(`no package list for install types`);
+
+				return process.exit();
+			}
 		}
 
 		let flags = flagsYarnAdd(argv).filter(v => v != null);

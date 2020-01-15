@@ -79,9 +79,15 @@ export function filterYargsArguments<T extends Arguments>(argv: T, list: string[
 
 export function lazyFlags(keys: string[], argv: {
 	[k: string]: boolean,
-})
+}): string[]
 {
-	return keys.map(key => argv[key] && '--' + key)
+	return keys.reduce((a, key) => {
+		if (argv[key])
+		{
+			a.push('--' + key);
+		}
+		return a;
+	}, [] as string[])
 }
 
 export const chalkByConsole = createFnChalkByConsole(console);
