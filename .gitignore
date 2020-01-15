@@ -78,3 +78,4 @@ yarn-error.log*
 /.nvmrc
 /temp.txt
 /tsconfig.esm.json.tpl
+!/yarn.lock

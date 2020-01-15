@@ -52,3 +52,5 @@ yarn-error.log*
 *.vue.js.map
 /temp.txt
 /tsconfig.esm.json.tpl
+!/yarn.lock
+!/package-lock.json
