@@ -1,6 +1,6 @@
 {
   "name": "yarn-tool",
-  "version": "1.0.44",
+  "version": "1.0.45",
   "description": "yarn cli tool helper",
   "keywords": [
     "cli",
@@ -76,7 +76,7 @@
     "fs-extra": "^8.1.0",
     "is-npx": "^1.0.0",
     "npm-check-updates": "^4.0.1",
-    "npm-init2": "^1.0.39",
+    "npm-init2": "^1.0.40",
     "os-locale": "^4.0.0",
     "package-json": "^6.5.0",
     "pkg-dir": "^4.2.0",
