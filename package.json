@@ -1,6 +1,6 @@
 {
   "name": "yarn-tool",
-  "version": "1.0.46",
+  "version": "1.0.47",
   "description": "yarn cli tool helper",
   "keywords": [
     "cli",
@@ -52,7 +52,7 @@
     "postpublish_": "git commit -m \"publish new version\" .",
     "prepublish:lockfile": "npx sync-lockfile . && yarn run prepublish:lockfile:to:npm",
     "prepublish:lockfile:to:npm": "npx yarn-tool lockfile --npm --overwrite",
-    "prepublish:yarn:install": "yarn",
+    "prepublish:yarn:install": "yarn-tool install",
     "prepublishOnly": "npx npm-check-updates -u && yarn run prepublish:yarn:install && yarn run prepublish:lockfile && npm run sort-package-json",
     "prepublishOnly_": "yarn run ncu && yarn run sort-package-json && yarn run test",
     "postpublish": "git commit -a -m postpublish",
