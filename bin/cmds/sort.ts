@@ -19,6 +19,7 @@ const cmdModule = createCommandModuleExports({
 	{
 		return yargs
 			.option('silent', {
+				alias: ['S'],
 				boolean: true,
 			})
 

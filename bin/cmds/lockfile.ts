@@ -41,6 +41,7 @@ const cmdModule = createCommandModuleExports({
 				boolean: true,
 			})
 			.option('overwrite', {
+				alias: ['O'],
 				desc: `overwrite file if exists`,
 				boolean: true,
 			})
