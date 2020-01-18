@@ -9,7 +9,7 @@
 > recommend use `npx` way
 
 ```
-npm install -g yarn-tool
+npm install -g yarn yarn-tool
 ```
 
 > u can use alias name `yt` instead of `yarn-tool`, when installed
