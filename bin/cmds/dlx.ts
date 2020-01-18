@@ -27,6 +27,8 @@ const cmdModule = createCommandModuleExports({
 				alias: ['q'],
 				boolean: true,
 			})
+			.help(false)
+			.version(false)
 			.strict(false)
 	},
 

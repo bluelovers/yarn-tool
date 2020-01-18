@@ -79,3 +79,4 @@ yarn-error.log*
 /temp.txt
 /tsconfig.esm.json.tpl
 !/yarn.lock
+/.pnp.js

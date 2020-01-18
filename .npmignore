@@ -54,3 +54,4 @@ yarn-error.log*
 /tsconfig.esm.json.tpl
 !/yarn.lock
 !/package-lock.json
+.pnp.js

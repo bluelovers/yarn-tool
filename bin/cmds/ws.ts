@@ -38,6 +38,8 @@ const cmdModule = createCommandModuleExports({
 						.option('no-prefix', {
 							desc: `Do not prefix streaming output.`,
 						})
+						.help(false)
+						.version(false)
 						.strict(false)
 				},
 				handler(argv)

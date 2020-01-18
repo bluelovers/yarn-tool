@@ -12,6 +12,8 @@ const cmdModule = createCommandModuleExports({
 	builder(yargs)
 	{
 		return yargs
+			.help(false)
+			.version(false)
 			.strict(false)
 		;
 	},
