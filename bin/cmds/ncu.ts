@@ -14,7 +14,7 @@ import {
 } from '../../lib/index';
 import IPackageJson, { readPackageJson } from '@ts-type/package-dts';
 import { writeJSONSync, writePackageJson } from '../../lib/pkg';
-import { sortPackageJson } from 'sort-package-json';
+
 import { IUnpackMyYargsArgv } from '../../lib/cmd_dir';
 import setupNcuToYargs, {
 	checkResolutionsUpdate,

@@ -6,34 +6,28 @@ import path = require('upath2');
 import { chalkByConsole, consoleDebug, findRoot } from '../../lib/index';
 import { readPackageJson } from '@ts-type/package-dts';
 import { writePackageJson } from '../../lib/pkg';
-
 import { IUnpackMyYargsArgv } from '../../lib/cmd_dir';
+
+const command = basenameStrip(__filename);
 
 const cmdModule = createCommandModuleExports({
 
-	command: basenameStrip(__filename),
-	//aliases: [],
-	describe: `Creates a compressed gzip archive of package dependencies.`,
+	command,
+	aliases: ['upnp'],
+	describe: `Temporarily copies a package (with an optional @range suffix) outside of the global cache for debugging purposes`,
 
 	builder(yargs)
 	{
 		return yargs
-			.option('dry-run', {
-				boolean: true,
-			})
-			.option('filename', {
-				string: true,
-			})
+			.strict(false)
 	},
 
 	handler(argv)
 	{
-		const key = basenameStrip(__filename);
-
 		lazySpawnArgvSlice({
-			command: key,
-			bin: 'npm',
-			cmd: key,
+			command,
+			bin: 'yarn',
+			cmd: command,
 			argv,
 		})
 	},

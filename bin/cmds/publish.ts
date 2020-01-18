@@ -6,7 +6,7 @@ import path = require('upath2');
 import { consoleDebug, findRoot } from '../../lib/index';
 import { readPackageJson } from '@ts-type/package-dts';
 import { writePackageJson } from '../../lib/pkg';
-import { sortPackageJson } from 'sort-package-json';
+
 import { IUnpackMyYargsArgv } from '../../lib/cmd_dir';
 import { crossSpawnOther, processArgvSlice } from '../../lib/spawn';
 import { Argv } from 'yargs';

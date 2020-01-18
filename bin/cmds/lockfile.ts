@@ -7,7 +7,7 @@ import fs = require('fs-extra');
 import { chalkByConsole, console, consoleDebug, findRoot, fsYarnLock, yargsProcessExit } from '../../lib/index';
 import { readPackageJson } from '@ts-type/package-dts';
 import { writePackageJson } from '../../lib/pkg';
-import { sortPackageJson } from 'sort-package-json';
+
 import { IUnpackMyYargsArgv } from '../../lib/cmd_dir';
 import { exportYarnLock, parse as parseYarnLock } from '../../lib/yarnlock';
 import { SemVer, rcompare } from 'semver';

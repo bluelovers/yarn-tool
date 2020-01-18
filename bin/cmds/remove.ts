@@ -6,7 +6,7 @@ import path = require('upath2');
 import { chalkByConsole, console, consoleDebug, findRoot } from '../../lib/index';
 import { readPackageJson } from '@ts-type/package-dts';
 import { writePackageJson } from '../../lib/pkg';
-import { sortPackageJson } from 'sort-package-json';
+
 import { IUnpackMyYargsArgv } from '../../lib/cmd_dir';
 import { infoFromDedupeCache, wrapDedupe } from '../../lib/cli/dedupe';
 

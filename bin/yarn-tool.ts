@@ -13,7 +13,7 @@ import { existsDependencies, flagsYarnAdd, listToTypes, setupYarnAddToYargs } fr
 import setupYarnInstallToYargs from '../lib/cli/install';
 import semver = require('semver');
 import setupInitToYargs from 'npm-init2/lib/yargs-setting';
-import { sortPackageJson } from 'sort-package-json';
+
 
 import {
 	create_command,
