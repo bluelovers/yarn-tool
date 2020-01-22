@@ -1,6 +1,6 @@
 {
   "name": "yarn-tool",
-  "version": "1.0.51",
+  "version": "1.0.52",
   "description": "yarn cli tool helper",
   "keywords": [
     "cli",
@@ -50,13 +50,13 @@
     "ncu": "npx yarn-tool ncu -u",
     "npm:publish": "npm publish",
     "postpublish_": "git commit -m \"publish new version\" .",
-    "prepublish:lockfile": "npx sync-lockfile . && yarn run prepublish:lockfile:to:npm",
+    "prepublish:lockfile": "npx sync-lockfile . & yarn run prepublish:lockfile:to:npm",
     "prepublish:lockfile:to:npm": "npx yarn-tool lockfile --npm --overwrite",
     "prepublish:yarn:install": "yarn-tool install",
-    "prepublishOnly": "npx npm-check-updates -u && yarn run prepublish:yarn:install && yarn run prepublish:lockfile && npm run sort-package-json",
+    "prepublishOnly": "yarn run ncu && yarn run prepublish:yarn:install && yarn run prepublish:lockfile && npm run sort-package-json",
     "prepublishOnly_": "yarn run ncu && yarn run sort-package-json && yarn run test",
     "postpublish": "git commit -a -m postpublish",
-    "sort-package-json": "npx sort-package-json ./package.json",
+    "sort-package-json": "npx yarn-tool sort",
     "test": "echo \"Error: no test specified\" && exit 1",
     "tsc:default": "tsc -p tsconfig.json",
     "tsc:esm": "tsc -p tsconfig.esm.json"
@@ -116,7 +116,7 @@
     "fs-extra": "^8.1.0",
     "is-npx": "^1.0.0",
     "npm-check-updates": "^4.0.1",
-    "npm-init2": "^1.0.44",
+    "npm-init2": "^1.0.45",
     "os-locale": "^4.0.0",
     "package-json": "^6.5.0",
     "pkg-dir": "^4.2.0",
