@@ -10,29 +10,31 @@ import { writePackageJson } from '../../lib/pkg';
 import { IUnpackMyYargsArgv } from '../../lib/cmd_dir';
 import { infoFromDedupeCache, wrapDedupe } from '../../lib/cli/dedupe';
 
+const command = basenameStrip(__filename);
+
 const cmdModule = createCommandModuleExports({
 
-	command: basenameStrip(__filename),
-	//aliases: [],
+	command,
+	aliases: ['rm'],
 	describe: `Running yarn remove foo will remove the package named foo from your direct dependencies updating your package.json and yarn.lock files in the process.`,
 
 	builder(yargs)
 	{
 		return yargs
+			.strict(false)
+		;
 	},
 
 	handler(argv)
 	{
-		const key = basenameStrip(__filename);
-
 		wrapDedupe(require('yargs'), argv, {
 
-			main(yarg, argv, cache): boolean | void
+			main(yarg, argv, cache)
 			{
 				lazySpawnArgvSlice({
-					command: key,
+					command,
 					bin: 'yarn',
-					cmd: key,
+					cmd: command,
 					argv,
 				})
 			},

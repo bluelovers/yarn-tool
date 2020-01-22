@@ -32,43 +32,55 @@ npx yarn-tool <command>
 > yt \<cmd\> --help
 
 ```
+$ yarn-tool --help
 yt <command>
 
-命令：
-  yt help           Show help                                          [別名: h]
-  yt version        Show version
+Commands:
   yt add [name]     Installs a package
-  yt dedupe [cwd]   Data deduplication for yarn.lock                   [別名: d]
+  yt bin            Get the path to a binary script.
+  yt create         create a npm package or update package.json file
+  yt dedupe [cwd]   package deduplication for yarn.lock             [aliases: d]
+  yt dlx            Run a package in a temporary environment. require yarn
+                    version >= 2
   yt init           create a npm package or update package.json file
-  yt install [cwd]  do dedupe with yarn install                        [別名: i]
+  yt install [cwd]  do dedupe with yarn install                     [aliases: i]
   yt link           Symlink a package folder during development.
   yt list           List installed packages.
-  yt ncu            Find newer versions of dependencies than what your
-                    package.json or bower.json allows             [別名: update]
+  yt lockfile       show yarn.lock info
+  yt ncu [-u]       Find newer versions of dependencies than what your
+                    package.json allows                        [aliases: update]
+  yt node           Run node with the hook already setup.
   yt pack           Creates a compressed gzip archive of package dependencies.
-  yt publish        publish a npm package                           [別名: push]
+  yt publish        publish a npm package                        [aliases: push]
   yt remove         Running yarn remove foo will remove the package named foo
                     from your direct dependencies updating your package.json and
-                    yarn.lock files in the process.
+                    yarn.lock files in the process.                [aliases: rm]
+  yt run            Runs a defined package script.
   yt sort           sort package.json file
   yt test           Runs the test script defined by the package.
+  yt types [name]   Installs @types/* of packages if not exists in package.json
+  yt unlink         To remove a symlinked package created with yarn link, yarn
+                    unlink can be used.
+  yt unplug         Temporarily copies a package (with an optional @range
+                    suffix) outside of the global cache for debugging purposes
+                                                                 [aliases: upnp]
   yt upgrade        Symlink a package folder during development.
-                                                             [別名: upgrade, up]
+                                                          [aliases: upgrade, up]
   yt versions       Displays version information of the currently installed
                     Yarn, Node.js, and its dependencies.
   yt why            Show information about why a package is installed.
-  yt ws <cmd>       yarn workspaces            [別名: ws, workspaces, workspace]
+  yt ws <cmd>       yarn workspaces         [aliases: ws, workspaces, workspace]
 
-選項：
-  --version             顯示版本                                          [布林]
+Options:
   --cwd                 current working directory or package directory
-                                                   [字串] [預設值: "G:\Users\The
+                                                [string] [default: "G:\Users\The
               Project\nodejs-yarn\ws-create-yarn-workspaces\packages\yarn-tool"]
   --skipCheckWorkspace  this options is for search yarn.lock, pkg root,
                         workspace root, not same as
-                        --ignore-workspace-root-check                     [布林]
-  --yt-debug-mode                                                         [布林]
-  --help                顯示說明                                          [布林]
+                        --ignore-workspace-root-check                  [boolean]
+  --yt-debug-mode                                                      [boolean]
+  -v, --version         Show version number                            [boolean]
+  -h, --help            Show help                                      [boolean]
 ```
 
 #### yt ws

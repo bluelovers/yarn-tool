@@ -1,6 +1,6 @@
 {
   "name": "yarn-tool",
-  "version": "1.0.52",
+  "version": "1.0.53",
   "description": "yarn cli tool helper",
   "keywords": [
     "cli",
@@ -45,6 +45,7 @@
     "lib": "lib"
   },
   "scripts": {
+    "help": "yarn-tool --help",
     "coverage": "npx nyc npm run test",
     "lint": "eslint .",
     "ncu": "npx yarn-tool ncu -u",

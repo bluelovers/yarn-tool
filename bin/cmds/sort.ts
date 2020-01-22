@@ -36,6 +36,7 @@ const cmdModule = createCommandModuleExports({
 
 		let json = readPackageJson(json_file);
 
+		// @ts-ignore
 		(require('sort-package-json') as typeof import('sort-package-json')).sortPackageJson(json);
 
 		writePackageJson(json_file, json);
