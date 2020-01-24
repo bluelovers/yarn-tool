@@ -1,6 +1,6 @@
 {
   "name": "yarn-tool",
-  "version": "1.0.53",
+  "version": "1.0.54",
   "description": "yarn cli tool helper",
   "keywords": [
     "cli",
@@ -50,7 +50,7 @@
     "lint": "eslint .",
     "ncu": "npx yarn-tool ncu -u",
     "npm:publish": "npm publish",
-    "postpublish_": "git commit -m \"publish new version\" .",
+    "postpublish_": "git commit -m \"chore(release): publish\" .",
     "prepublish:lockfile": "npx sync-lockfile . & yarn run prepublish:lockfile:to:npm",
     "prepublish:lockfile:to:npm": "npx yarn-tool lockfile --npm --overwrite",
     "prepublish:yarn:install": "yarn-tool install",
@@ -109,7 +109,7 @@
     "array-hyper-unique": "^1.1.0",
     "bluebird": "^3.7.2",
     "cli-table3": "^0.5.1",
-    "create-yarn-workspaces": "^1.0.26",
+    "create-yarn-workspaces": "^1.0.27",
     "crlf-normalize": "^1.0.3",
     "cross-spawn-extra": "^2.0.0",
     "debug-color2": "^1.1.7",
@@ -117,7 +117,7 @@
     "fs-extra": "^8.1.0",
     "is-npx": "^1.0.0",
     "npm-check-updates": "^4.0.1",
-    "npm-init2": "^1.0.45",
+    "npm-init2": "^1.0.46",
     "os-locale": "^4.0.0",
     "package-json": "^6.5.0",
     "pkg-dir": "^4.2.0",
@@ -142,7 +142,7 @@
     "@types/semver": "^6.2.0",
     "@types/yargs": "^15.0.1",
     "@types/yargs-parser": "^15.0.0",
-    "ts-type": "^1.2.12"
+    "ts-type": "^1.2.13"
   },
   "peerDependencies": {
     "lerna": "^3.20.2"
