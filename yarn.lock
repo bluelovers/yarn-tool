@@ -602,10 +602,10 @@
     "@types/hosted-git-info" "^2.7.0"
     hosted-git-info "^3.0.2"
 
-"@yarn-tool/static-file@^1.0.2":
-  version "1.0.2"
-  resolved "https://registry.npmjs.org/@yarn-tool/static-file/-/static-file-1.0.2.tgz#b0626a57ffd2adf02d2d434fc3aaaab6e3948beb"
-  integrity sha512-PETrfneiM4+Lw0jk8vsZvkCexDMDD/O5L0lH4/97XEjjJ8qSQt1vAAnziHYONpDP/GSFLREMW5k+6KZkLkKjxg==
+"@yarn-tool/static-file@^1.0.2", "@yarn-tool/static-file@^1.0.3":
+  version "1.0.3"
+  resolved "https://registry.npmjs.org/@yarn-tool/static-file/-/static-file-1.0.3.tgz#ad60f5f800b72503e7c2e839f8ef19dfc0efddcb"
+  integrity sha512-pBkbCIcs/EwXPLxgLewNwspT/OCzQE02a+m95ErEx+RUFauyyhp6pdx+vdq+EItMELik8zJVSMJ7ybl4cZPpBw==
   dependencies:
     fs-extra "^8.1.0"
 
