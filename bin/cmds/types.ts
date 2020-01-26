@@ -113,14 +113,12 @@ const cmdModule = createCommandModuleExports({
 		}
 		else
 		{
-			args = args.reduce((a, b) => {
+			args = args.reduce((a, b) =>
+			{
 
 				b = b.replace(/^@types\//, '');
 
-				if (!b.includes('/'))
-				{
-					a.push(b);
-				}
+				a.push(b);
 
 				return a;
 			}, [] as string[]);
@@ -148,7 +146,6 @@ const cmdModule = createCommandModuleExports({
 
 		for (let packageName of args)
 		{
-			packageName = `@types/${packageName}`;
 			let m = parseArgvPkgName(packageName);
 
 			if (!m)
@@ -160,8 +157,10 @@ const cmdModule = createCommandModuleExports({
 			let { version, name, namespace } = m;
 			if (namespace)
 			{
-				name = namespace + '/' + name;
+				name = namespace.replace('@', '') + '__' + name;
 			}
+
+			packageName = name = `@types/${name}`;
 
 			if (existsDependencies(name, pkg))
 			{
