@@ -18,7 +18,8 @@ const cmdModule = createCommandModuleExports({
 	builder(yargs)
 	{
 		return yargs
-			.example(`$0 unlink [package]`, ``)
+			.example(`$0 unlink [...package]`, ``)
+			.strict(false)
 	},
 
 	handler(argv)
