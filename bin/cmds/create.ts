@@ -3,28 +3,29 @@
  */
 import { basenameStrip, createCommandModuleExports, lazySpawnArgvSlice } from '../../lib/cmd_dir';
 
+const command = basenameStrip(__filename);
+
 const cmdModule = createCommandModuleExports({
 
-	command: basenameStrip(__filename),
+	command,
 	//aliases: [],
-	describe: `create a npm package or update package.json file`,
+	describe: `Creates new projects from any create-* starter kits.`,
 
 	builder(yargs)
 	{
 		return yargs
+			.example(`$0 create <starter-kit-package> [<args>]`, ``)
 			.strict(false)
 		;
 	},
 
 	handler(argv)
 	{
-		const key = basenameStrip(__filename);
-
 		lazySpawnArgvSlice({
-			command: key,
+			command,
 			bin: 'yarn',
 			cmd: [
-				'init',
+				command,
 			],
 			argv,
 		})
