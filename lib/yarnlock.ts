@@ -192,6 +192,7 @@ export function removeResolutionsCore<T extends ITSArrayListMaybeReadonly<string
 	yarnlock_old: IYarnLockfileParseObject<T>,
 ): IRemoveResolutions<T>
 {
+	// @ts-ignore
 	let yarnlock_new: IYarnLockfileParseObject<T> = result.names
 		// @ts-ignore
 		.reduce(function (a: IYarnLockfileParseObject<T>, b)

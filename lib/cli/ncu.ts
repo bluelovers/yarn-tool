@@ -31,13 +31,14 @@ import {
 	parse,
 	readYarnLockfile,
 	stripDepsName,
+	IYarnLockfileParseObjectRow,
 } from '../yarnlock';
 import path = require('upath2');
 import semver = require('semver');
 import _ = require('lodash');
 import semverutils = require('semver-utils');
 import packageJson = require('package-json');
-import * as util from 'util';
+import { inspect } from 'util';
 
 export type IVersionValue = 'latest' | '*' | string | EnumVersionValue | EnumVersionValue2;
 
@@ -166,6 +167,7 @@ export function keyObjectToPackageMap(obj: IVersionCacheMapKey[] | IVersionCache
 	useVarsionNew?: boolean,
 ): IPackageMap
 {
+	// @ts-ignore
 	return obj.reduce(function (a: any, data)
 	{
 		if (useVarsionNew)
@@ -174,7 +176,7 @@ export function keyObjectToPackageMap(obj: IVersionCacheMapKey[] | IVersionCache
 			{
 				return a;
 
-				throw new TypeError(`not a IVersionCacheMapValue object, ${util.inspect(data)}`)
+				throw new TypeError(`not a IVersionCacheMapValue object, ${inspect(data)}`)
 			}
 
 			a[data.name] = data.version_new;
@@ -388,6 +390,7 @@ export function npmCheckUpdatesOptions(ncuOptions: Partial<IOptions> | IOptions)
 	};
 
 	delete ncuOptions.upgrade;
+	// @ts-ignore
 	delete ncuOptions.global;
 
 	ncuOptions.packageManager = 'npm';
@@ -397,6 +400,7 @@ export function npmCheckUpdatesOptions(ncuOptions: Partial<IOptions> | IOptions)
 		ncuOptions.packageData = JSON.stringify(ncuOptions.json_old);
 	}
 
+	// @ts-ignore
 	ncuOptions.jsonUpgraded = true;
 
 	return ncuOptions as IOptions

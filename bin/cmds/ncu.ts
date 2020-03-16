@@ -96,7 +96,14 @@ const cmdModule = createCommandModuleExports({
 
 			let yl = fsYarnLock(rootData.root);
 
-			let ret = await checkResolutionsUpdate(resolutions, yl.yarnlock_old, argv);
+			if (!yl.yarnlock_old)
+			{
+				// 防止 yarn.lock 不存在
+				return;
+			}
+
+			let ret = await checkResolutionsUpdate(resolutions, yl.yarnlock_old, argv)
+			;
 
 			//console.log(ret);
 
@@ -233,6 +240,12 @@ const cmdModule = createCommandModuleExports({
 			;
 
 			let yl = fsYarnLock(rootData.root);
+
+			if (!yl.yarnlock_old)
+			{
+				// 防止 yarn.lock 不存在
+				return;
+			}
 
 			let ret = await checkResolutionsUpdate(resolutions, yl.yarnlock_old, argv);
 
