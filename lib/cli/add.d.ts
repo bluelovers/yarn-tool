@@ -1,11 +1,11 @@
-import { Argv, Omit } from 'yargs';
+import { Argv } from 'yargs';
 import IPackageJson from '@ts-type/package-dts/package-json';
 export declare function flagsYarnAdd(argv: {
     [k: string]: boolean;
 }): string[];
 export declare function setupYarnAddToYargs<T extends any>(yargs: Argv<T>, opts?: {
     allowEmptyName?: boolean;
-}): Argv<Omit<T, "dev"> & {
+}): Argv<T & {
     dev: boolean;
 } & {
     peer: boolean;

@@ -6,7 +6,7 @@ import IPackageJson from '@ts-type/package-dts/package-json';
 import { Argv } from 'yargs';
 import { IUnpackYargsArgv } from '../cli';
 import Bluebird = require('bluebird');
-import { IYarnLockfileParseObject } from '../yarnlock';
+import { IYarnLockfileParseObject, IYarnLockfileParseObjectRow } from '../yarnlock';
 import packageJson = require('package-json');
 export declare type IVersionValue = 'latest' | '*' | string | EnumVersionValue | EnumVersionValue2;
 export interface IVersionCacheMapKey {
@@ -67,7 +67,7 @@ export declare function queryRemoteVersions(packageMap: IPackageMap | string[], 
 export declare function isBadVersion(version: IVersionValue): boolean;
 export declare function npmCheckUpdatesOptions(ncuOptions: Partial<IOptions> | IOptions): IOptions;
 export declare function npmCheckUpdates<C extends IWrapDedupeCache>(cache: Partial<C>, ncuOptions: IOptions): Promise<IOptions>;
-export declare function setupNcuToYargs<T extends any>(yargs: Argv<T>): Argv<import("yargs").Omit<T, "dep"> & {
+export declare function setupNcuToYargs<T extends any>(yargs: Argv<T>): Argv<T & {
     dep: string;
 } & {
     minimal: boolean;
@@ -91,8 +91,8 @@ export declare function setupNcuToYargs<T extends any>(yargs: Argv<T>): Argv<imp
     dedupe: boolean;
 }>;
 export declare function checkResolutionsUpdate(resolutions: IPackageMap, yarnlock_old_obj: IYarnLockfileParseObject | string, options: Partial<IOptions>): Bluebird<{
-    yarnlock_old_obj: Record<string, import("../yarnlock").IYarnLockfileParseObjectRow<string[]>>;
-    yarnlock_new_obj: Record<string, import("../yarnlock").IYarnLockfileParseObjectRow<string[]>>;
+    yarnlock_old_obj: Record<string, IYarnLockfileParseObjectRow<string[]>>;
+    yarnlock_new_obj: Record<string, IYarnLockfileParseObjectRow<string[]>>;
     update_list: string[];
     yarnlock_changed: boolean;
     deps: IVersionCacheMapValue[];

@@ -1,5 +1,5 @@
-import { Argv, Omit } from 'yargs';
-export declare function setupYarnInstallToYargs<T extends any>(yargs: Argv<T>): Argv<Omit<T, "check-files"> & {
+import { Argv } from 'yargs';
+export declare function setupYarnInstallToYargs<T extends any>(yargs: Argv<T>): Argv<T & {
     "check-files": boolean;
 } & {
     flat: boolean;
