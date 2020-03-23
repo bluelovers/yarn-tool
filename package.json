@@ -1,6 +1,6 @@
 {
   "name": "yarn-tool",
-  "version": "1.0.66",
+  "version": "1.0.67",
   "description": "yarn cli tool helper",
   "keywords": [
     "cli",
@@ -108,7 +108,7 @@
     "array-hyper-unique": "^1.1.0",
     "bluebird": "^3.7.2",
     "cli-table3": "^0.5.1",
-    "create-yarn-workspaces": "^1.0.27",
+    "create-yarn-workspaces": "^1.0.28",
     "crlf-normalize": "^1.0.3",
     "cross-spawn-extra": "^2.0.0",
     "debug-color2": "^1.1.7",
@@ -117,7 +117,7 @@
     "is-npx": "^1.0.0",
     "npm-check-updates": "^4.0.4",
     "npm-init2": "^1.0.52",
-    "os-locale": "^4.0.0",
+    "os-locale": "^5.0.0",
     "package-json": "^6.5.0",
     "pkg-dir": "^4.2.0",
     "semver": "^7.1.3",
