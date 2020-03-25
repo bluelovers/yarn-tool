@@ -20,6 +20,7 @@ const cmdModule = createCommandModuleExports({
 				desc: `try auto install @types/* too`,
 				boolean: true,
 			})
+			.strict(false)
 	},
 
 	handler(argv)

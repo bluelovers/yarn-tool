@@ -15,6 +15,7 @@ const cmdModule = createCommandModuleExports({
 	builder(yargs)
 	{
 		return yargs
+			.strict(false)
 	},
 
 	handler(argv)
