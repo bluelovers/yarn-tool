@@ -14,9 +14,11 @@ import { array_unique_overwrite } from 'array-hyper-unique';
 import semver = require('semver');
 import { console } from '../../lib/index';
 
+const command = basenameStrip(__filename);
+
 const cmdModule = createCommandModuleExports({
 
-	command: basenameStrip(__filename),
+	command,
 	aliases: [],
 	describe: `List installed packages.`,
 
@@ -41,7 +43,7 @@ const cmdModule = createCommandModuleExports({
 
 	handler(argv)
 	{
-		const key = basenameStrip(__filename);
+		const key = command;
 
 		if ('duplicate' in argv && argv.duplicate == null)
 		{
@@ -60,10 +62,13 @@ const cmdModule = createCommandModuleExports({
 
 		if (argv.duplicate)
 		{
+			delete argv.duplicate;
+			delete argv.D;
+
 			let cp = crossSpawnOther('yarn', [
 				key,
-				...fca,
-				...argv._,
+				//...fca,
+				//...argv._,
 			], argv, {
 				stdio: null,
 				stripAnsi: true,
@@ -144,10 +149,20 @@ const cmdModule = createCommandModuleExports({
 		}
 		else
 		{
+			/*
 			crossSpawnOther('yarn', [
 				key,
 				...fca,
 			], argv)
+			 */
+			lazySpawnArgvSlice({
+				command,
+				bin: 'yarn',
+				cmd: [
+					command,
+				],
+				argv,
+			})
 		}
 	},
 
