@@ -63,7 +63,7 @@ const cmdModule = createCommandModuleExports({
 
 		//let yl = fsYarnLock(rootData.root);
 
-		if (argv.yarn || argv.shrinkwrap)
+		if (argv.yarn || argv.npm || argv.shrinkwrap)
 		{
 			let rootData = findRoot(argv, true);
 			let yl = fsYarnLock(rootData.root);
