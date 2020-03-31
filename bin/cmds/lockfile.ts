@@ -128,6 +128,7 @@ const cmdModule = createCommandModuleExports({
 					fs.writeJSONSync(file_package_lock_json, lock, {
 						spaces: 2,
 					});
+					consoleDebug.info(`package-lock.json updated`);
 				}
 
 				if (argv.shrinkwrap)
@@ -135,9 +136,9 @@ const cmdModule = createCommandModuleExports({
 					fs.writeJSONSync(file_shrinkwrap_json, lock, {
 						spaces: 2,
 					});
+					consoleDebug.info(`npm-shrinkwrap.json updated`);
 				}
 
-				consoleDebug.info(`package-lock.json updated`);
 			}
 			else if (argv.yarn)
 			{
