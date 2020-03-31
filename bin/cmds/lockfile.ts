@@ -37,6 +37,10 @@ const cmdModule = createCommandModuleExports({
 				desc: `Convert yarn.lock to package-lock.json`,
 				boolean: true,
 			})
+			.option('shrinkwrap', {
+				desc: `Convert yarn.lock to npm-shrinkwrap.json`,
+				boolean: true,
+			})
 			.option('yarn', {
 				desc: `Convert package-lock.json to yarn.lock if yarn.lock not exists`,
 				boolean: true,
@@ -59,7 +63,7 @@ const cmdModule = createCommandModuleExports({
 
 		//let yl = fsYarnLock(rootData.root);
 
-		if (argv.yarn || argv.npm)
+		if (argv.yarn || argv.shrinkwrap)
 		{
 			let rootData = findRoot(argv, true);
 			let yl = fsYarnLock(rootData.root);
@@ -68,25 +72,38 @@ const cmdModule = createCommandModuleExports({
 
 			let file_package_lock_json_exists = fs.existsSync(file_package_lock_json);
 
-			if (argv.npm)
+			if (argv.npm || argv.shrinkwrap)
 			{
 				if (!yl.yarnlock_exists)
 				{
 					yargsProcessExit(new Error(`yarn.lock not exists`))
 				}
 
-				if (!argv.overwrite && file_package_lock_json_exists)
+				if (argv.npm)
 				{
-					yargsProcessExit(new Error(`package-lock.json is exists, use --overwrite for overwrite file`))
-				}
-				else if (file_package_lock_json_exists)
-				{
-					consoleDebug.warn(`package-lock.json is exists, will got overwrite`);
+					if (!argv.overwrite && file_package_lock_json_exists)
+					{
+						yargsProcessExit(new Error(`package-lock.json is exists, use --overwrite for overwrite file`))
+					}
+					else if (file_package_lock_json_exists)
+					{
+						consoleDebug.warn(`package-lock.json is exists, will got overwrite`);
+					}
 				}
 
-				if (!argv.overwrite)
+				let file_shrinkwrap_json = path.join(rootData.pkg, 'npm-shrinkwrap.json');
+				let file_shrinkwrap_json_exists = fs.existsSync(file_shrinkwrap_json);
+
+				if (argv.shrinkwrap)
 				{
-					//yargsProcessExit(new Error(`yarn.lock is exists`))
+					if (!argv.overwrite && file_shrinkwrap_json_exists)
+					{
+						yargsProcessExit(new Error(`npm-shrinkwrap.json is exists, use --overwrite for overwrite file`))
+					}
+					else if (file_shrinkwrap_json_exists)
+					{
+						consoleDebug.warn(`npm-shrinkwrap.json is exists, will got overwrite`);
+					}
 				}
 
 				let { name, version } = readPackageJson(path.join(rootData.pkg, 'package.json'));
@@ -100,13 +117,25 @@ const cmdModule = createCommandModuleExports({
 					s.dependencies = {
 						...s.dependencies,
 						...s2.dependencies,
-						...s.dependencies
+						...s.dependencies,
 					}
 				}
 
-				fs.writeJSONSync(file_package_lock_json, fixNpmLock(s), {
-					spaces: 2,
-				});
+				const lock = fixNpmLock(s);
+
+				if (argv.npm)
+				{
+					fs.writeJSONSync(file_package_lock_json, lock, {
+						spaces: 2,
+					});
+				}
+
+				if (argv.shrinkwrap)
+				{
+					fs.writeJSONSync(file_shrinkwrap_json, lock, {
+						spaces: 2,
+					});
+				}
 
 				consoleDebug.info(`package-lock.json updated`);
 			}
@@ -196,7 +225,8 @@ function _showYarnLockList(argv: Arguments<IUnpackCmdMod<typeof cmdModule>>): ar
 	let len = 0;
 
 	let ks2 = ks
-		.reduce((a, name) => {
+		.reduce((a, name) =>
+		{
 
 			let arr = fy.installed[name];
 
@@ -238,12 +268,12 @@ function _showYarnLockList(argv: Arguments<IUnpackCmdMod<typeof cmdModule>>): ar
 	if (argv.duplicate)
 	{
 		// @ts-ignore
-		console.cyan.info(`\nFound duplicate in ${chalk.yellow(ks2.length)} packages, ${chalk.yellow(len)}/${chalk.yellow(len+ks2.length)} installed version, highest is ${max}, in total ${ks.length} packages`);
+		console.cyan.info(`\nFound duplicate in ${chalk.yellow(ks2.length)} packages, ${chalk.yellow(len)}/${chalk.yellow(len + ks2.length)} installed version, highest is ${max}, in total ${ks.length} packages`);
 	}
 	else
 	{
 		// @ts-ignore
-		console.cyan.info(`\nTotal ${chalk.yellow(ks.length)} packages, with ${chalk.yellow(len)}/${chalk.yellow(len+ks2.length)} installed version`);
+		console.cyan.info(`\nTotal ${chalk.yellow(ks.length)} packages, with ${chalk.yellow(len)}/${chalk.yellow(len + ks2.length)} installed version`);
 	}
 
 	if (len > 0)
@@ -253,7 +283,7 @@ function _showYarnLockList(argv: Arguments<IUnpackCmdMod<typeof cmdModule>>): ar
 			fallback(text, url)
 			{
 				return text + ' ' + url;
-			}
+			},
 		});
 
 		console.cyan.info(`You can try add they to ${console.chalk.yellow('resolutions')} in package.json, for force package dedupe, ${link}`);
@@ -267,7 +297,7 @@ function npmToYarn(packageLockFileString, packageDir): string
 	return npmToYarnCore(packageLockFileString, packageDir);
 }
 
-function yarnToNpm(yarnlock,  name, version, packageDir): {
+function yarnToNpm(yarnlock, name, version, packageDir): {
 	name: string;
 	version: string;
 	lockfileVersion: number;
@@ -294,5 +324,5 @@ function yarnToNpm(yarnlock,  name, version, packageDir): {
 	};
 }
 {
-	return JSON.parse(yarnToNpmCore(yarnlock,  name, version, packageDir))
+	return JSON.parse(yarnToNpmCore(yarnlock, name, version, packageDir))
 }
