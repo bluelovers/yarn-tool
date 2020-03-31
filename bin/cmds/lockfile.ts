@@ -14,6 +14,7 @@ import { SemVer, rcompare } from 'semver';
 import { Arguments, CommandModule } from 'yargs';
 import Dedupe from '../../lib/cli/dedupe';
 import { npmToYarnCore, yarnToNpmCore } from 'synp2/lib';
+import fixNpmLock from '../../lib/cli/lockfile/fixNpmLock';
 
 const COMMAND_KEY = basenameStrip(__filename);
 
@@ -97,13 +98,14 @@ const cmdModule = createCommandModuleExports({
 					let s2 = yarnToNpm(yl.yarnlock_old, name, version, rootData.ws);
 
 					s.dependencies = {
+						...s.dependencies,
 						...s2.dependencies,
 						...s.dependencies
 					}
 				}
 
-				fs.writeJSONSync(file_package_lock_json, s, {
-					spaces: '\t',
+				fs.writeJSONSync(file_package_lock_json, fixNpmLock(s), {
+					spaces: 2,
 				});
 
 				consoleDebug.info(`package-lock.json updated`);
@@ -165,16 +167,19 @@ type IUnpackCmdMod<T extends CommandModule, D = IUnpackMyYargsArgv> = T extends 
 		: D
 	;
 
+// @ts-ignore
 function _is(argv: Arguments<IUnpackCmdMod<typeof cmdModule>>): argv is Arguments<IUnpackCmdMod<typeof cmdModule>>
 {
 	return true;
 }
 
+// @ts-ignore
 function _fix(argv: Arguments<IUnpackCmdMod<typeof cmdModule>>)
 {
 	return argv;
 }
 
+// @ts-ignore
 function _showYarnLockList(argv: Arguments<IUnpackCmdMod<typeof cmdModule>>): argv is Arguments<IUnpackCmdMod<typeof cmdModule>>
 {
 	let rootData = findRoot(argv, true);
