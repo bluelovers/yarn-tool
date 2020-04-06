@@ -1,6 +1,6 @@
 {
   "name": "yarn-tool",
-  "version": "1.0.74",
+  "version": "1.0.75",
   "description": "yarn cli tool helper",
   "keywords": [
     "cli",
@@ -136,10 +136,10 @@
   },
   "devDependencies": {
     "@bluelovers/tsconfig": "^1.0.19",
-    "@types/node": "^13.11.0",
     "@types/deep-diff": "^1.0.0",
     "@types/fs-extra": "*",
     "@types/lodash": "^4.14.149",
+    "@types/node": "^13.11.0",
     "@types/package-json": "^5.0.1",
     "@types/semver": "^7.1.0",
     "@types/yargs": "^15.0.4",
