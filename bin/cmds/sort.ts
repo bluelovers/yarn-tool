@@ -6,6 +6,7 @@ import { join, relative } from 'upath2';
 import { chalkByConsole, consoleDebug, findRoot } from '../../lib/index';
 import { readPackageJson } from '@ts-type/package-dts';
 import { writePackageJson } from '../../lib/pkg';
+import sortPackageJson from 'sort-package-json3';
 
 import { IUnpackMyYargsArgv } from '../../lib/cmd_dir';
 
@@ -37,7 +38,7 @@ const cmdModule = createCommandModuleExports({
 		let json = readPackageJson(json_file);
 
 		// @ts-ignore
-		json = (require('sort-package-json') as typeof import('sort-package-json')).sortPackageJson(json);
+		json = sortPackageJson(json);
 
 		writePackageJson(json_file, json);
 

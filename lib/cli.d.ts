@@ -2,6 +2,7 @@
  * Created by user on 2019/5/17.
  */
 import yargs = require('yargs');
+import { Arguments, Argv } from 'yargs';
 import { IUnpackMyYargsArgv } from './cmd_dir';
 export { IUnpackMyYargsArgv };
 export declare type IUnpackYargsArgv<T extends yargs.Argv> = T extends yargs.Argv<infer U> ? U : never;
