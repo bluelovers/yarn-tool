@@ -135,6 +135,8 @@
     "yarn-lock-diff": "^0.0.0"
   },
   "devDependencies": {
+    "@bluelovers/tsconfig": "^1.0.19",
+    "@types/node": "^13.11.0",
     "@types/deep-diff": "^1.0.0",
     "@types/fs-extra": "*",
     "@types/lodash": "^4.14.149",
