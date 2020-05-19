@@ -40,6 +40,10 @@ const cmdModule = createCommandModuleExports({
 				desc: `dependencies, devDependencies from package.json`,
 				boolean: true,
 			})
+			.option('AA', {
+				desc: `--auto --all`,
+				boolean: true,
+			})
 			.strict(false)
 	},
 
@@ -65,6 +69,12 @@ const cmdModule = createCommandModuleExports({
 		let pkg_file = path.join(rootData.pkg, 'package.json');
 
 		let pkg = readPackageJson(pkg_file);
+
+		if (argv.AA)
+		{
+			argv.auto = true;
+			argv.all = true;
+		}
 
 		if (argv.auto)
 		{

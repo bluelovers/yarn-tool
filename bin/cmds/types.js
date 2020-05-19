@@ -26,6 +26,10 @@ const cmdModule = cmd_dir_1.createCommandModuleExports({
             desc: `dependencies, devDependencies from package.json`,
             boolean: true,
         })
+            .option('AA', {
+            desc: `--auto --all`,
+            boolean: true,
+        })
             .strict(false);
     },
     async handler(argv) {
@@ -42,6 +46,10 @@ const cmdModule = cmd_dir_1.createCommandModuleExports({
         });
         let pkg_file = path.join(rootData.pkg, 'package.json');
         let pkg = package_dts_1.readPackageJson(pkg_file);
+        if (argv.AA) {
+            argv.auto = true;
+            argv.all = true;
+        }
         if (argv.auto) {
             let names = [];
             if ((argv.dev || argv.all) && pkg.devDependencies) {
