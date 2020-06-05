@@ -9,4 +9,8 @@ export declare function toDependencyTable(args: {
     from: IDependency;
     to: IDependency;
 }): Table.Table;
-export declare function colorizeDiff(from: string, to: string, _colors?: [IStylesColorNames, IStylesColorNames, IStylesColorNames], con?: import("debug-color2").Console2): string;
+export declare function colorizeDiff(from: string, to: string, _colors?: [
+    IStylesColorNames,
+    IStylesColorNames,
+    IStylesColorNames
+], con?: import("debug-color2").Console2): string;
