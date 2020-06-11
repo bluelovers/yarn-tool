@@ -73,9 +73,11 @@ export function create_command2<U extends {}>(conf: ICommandModule<IUnpackMyYarg
 	let { describe = desc } = conf;
 
 	let opts: yargs.CommandModule<IUnpackMyYargsArgv, U> = {
+		// @ts-ignore
 		...(conf as yargs.CommandModule<IUnpackMyYargsArgv, U>),
 		// @ts-ignore
 		builder,
+		// @ts-ignore
 		handler,
 		describe,
 	};
@@ -86,12 +88,14 @@ export function create_command2<U extends {}>(conf: ICommandModule<IUnpackMyYarg
 	{
 		let cmd = command[0];
 
+		// @ts-ignore
 		cached_command[cmd] = opts;
 
 		command.slice(1).forEach(c => cached_command[c] = cached_command[cmd])
 	}
 	else
 	{
+		// @ts-ignore
 		cached_command[command as string] = opts;
 	}
 
