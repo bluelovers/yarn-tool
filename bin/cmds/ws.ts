@@ -128,6 +128,7 @@ function lazyLerna<A extends Arguments<any>>(command: string, cmd: string, argv:
 		...cmd_list,
 	], argv as Arguments<any>, {
 		env: {
+			...process.env,
 			NO_UPDATE_NOTIFIER: 1,
 		}
 	});

@@ -82,6 +82,7 @@ function lazyLerna(command, cmd, argv, opts = {}) {
         ...cmd_list,
     ], argv, {
         env: {
+            ...process.env,
             NO_UPDATE_NOTIFIER: 1,
         }
     });
