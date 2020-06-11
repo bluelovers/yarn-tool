@@ -21,6 +21,7 @@ const cmdModule = cmd_dir_1.createCommandModuleExports({
         const { cwd } = argv;
         let _once = true;
         dedupe_1.wrapDedupe(require('yargs'), argv, {
+            consoleDebug: index_1.consoleDebug,
             before(yarg, argv, cache) {
                 let info = dedupe_1.infoFromDedupeCache(cache);
                 if (!info.yarnlock_old_exists) {

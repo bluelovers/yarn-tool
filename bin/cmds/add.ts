@@ -59,6 +59,8 @@ const cmdModule = createCommandModuleExports({
 
 		wrapDedupe(require('yargs'), argv, {
 
+			consoleDebug,
+
 			before(yarg, argv, cache)
 			{
 				printRootData(cache.rootData, argv);

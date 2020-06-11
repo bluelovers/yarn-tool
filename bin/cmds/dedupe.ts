@@ -27,6 +27,8 @@ const cmdModule = createCommandModuleExports({
 	{
 		wrapDedupe(require('yargs'), argv, {
 
+			consoleDebug,
+
 			main(yarg, argv, cache)
 			{
 

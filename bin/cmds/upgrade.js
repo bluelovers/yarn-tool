@@ -31,6 +31,7 @@ const cmdModule = cmd_dir_1.createCommandModuleExports({
     },
     handler(argv) {
         dedupe_1.wrapDedupe(require('yargs'), argv, {
+            consoleDebug: index_1.consoleDebug,
             before() {
                 const key = cmd_dir_1.basenameStrip(__filename);
                 spawn_1.crossSpawnOther('yarn', [], argv);

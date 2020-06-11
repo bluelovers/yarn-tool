@@ -31,6 +31,8 @@ const cmdModule = createCommandModuleExports({
 
 		wrapDedupe(require('yargs'), argv, {
 
+			consoleDebug,
+
 			before(yarg, argv, cache)
 			{
 				let info = infoFromDedupeCache(cache);

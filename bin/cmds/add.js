@@ -37,6 +37,7 @@ const cmdModule = cmd_dir_1.createCommandModuleExports({
             return process.exit(1);
         }
         dedupe_1.wrapDedupe(require('yargs'), argv, {
+            consoleDebug: index_1.consoleDebug,
             before(yarg, argv, cache) {
                 index_1.printRootData(cache.rootData, argv);
             },

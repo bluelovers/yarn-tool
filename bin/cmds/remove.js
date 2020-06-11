@@ -16,6 +16,7 @@ const cmdModule = cmd_dir_1.createCommandModuleExports({
     },
     handler(argv) {
         dedupe_1.wrapDedupe(require('yargs'), argv, {
+            consoleDebug: index_1.consoleDebug,
             main(yarg, argv, cache) {
                 cmd_dir_1.lazySpawnArgvSlice({
                     command,

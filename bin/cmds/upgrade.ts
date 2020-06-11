@@ -44,6 +44,8 @@ const cmdModule = createCommandModuleExports({
 
 		wrapDedupe(require('yargs'), argv, {
 
+			consoleDebug,
+
 			before()
 			{
 				const key = basenameStrip(__filename);
