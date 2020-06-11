@@ -126,5 +126,9 @@ function lazyLerna<A extends Arguments<any>>(command: string, cmd: string, argv:
 		cmd,
 
 		...cmd_list,
-	], argv as Arguments<any>);
+	], argv as Arguments<any>, {
+		env: {
+			NO_UPDATE_NOTIFIER: 1,
+		}
+	});
 }

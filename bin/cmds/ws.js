@@ -80,7 +80,11 @@ function lazyLerna(command, cmd, argv, opts = {}) {
     return spawn_1.crossSpawnOther('lerna', [
         cmd,
         ...cmd_list,
-    ], argv);
+    ], argv, {
+        env: {
+            NO_UPDATE_NOTIFIER: 1,
+        }
+    });
 }
 module.exports = cmdModule;
 //# sourceMappingURL=ws.js.map
