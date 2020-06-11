@@ -1,6 +1,6 @@
 {
   "name": "yarn-tool",
-  "version": "1.0.88",
+  "version": "1.0.89",
   "description": "yarn cli tool helper",
   "keywords": [
     "cli",
@@ -99,13 +99,13 @@
     "wrap-ansi": "*"
   },
   "dependencies": {
-    "@ts-type/package-dts": "^1.0.19",
-    "@yarn-tool/find-root": "^1.0.17",
-    "@yarn-tool/ncu": "^1.0.3",
+    "@ts-type/package-dts": "^1.0.20",
+    "@yarn-tool/find-root": "^1.0.18",
+    "@yarn-tool/ncu": "^1.0.4",
     "@yarn-tool/static-file": "^1.0.31",
-    "@yarn-tool/table": "^1.0.3",
+    "@yarn-tool/table": "^1.0.4",
     "@yarn-tool/update-notifier": "^1.0.12",
-    "@yarn-tool/yarnlock": "^1.0.4",
+    "@yarn-tool/yarnlock": "^1.0.5",
     "array-hyper-unique": "^1.1.2",
     "bluebird": "^3.7.2",
     "cli-table3": "^0.6.0",
@@ -117,7 +117,7 @@
     "fs-extra": "^9.0.1",
     "is-npx": "^1.0.0",
     "npm-check-updates": "^7.0.1",
-    "npm-init2": "^1.0.89",
+    "npm-init2": "^1.0.90",
     "os-locale": "^5.0.0",
     "package-json": "^6.5.0",
     "pkg-dir": "^4.2.0",
