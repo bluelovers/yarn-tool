@@ -634,15 +634,15 @@
   dependencies:
     is-npx "^1.0.0"
 
-"@yarn-tool/ncu@^1.0.8":
-  version "1.0.8"
-  resolved "https://registry.npmjs.org/@yarn-tool/ncu/-/ncu-1.0.8.tgz#466244e167f296a81ce7401f90d49038a5ae4930"
-  integrity sha512-Y118K4L3Eb9A/F9DVhkecrDW1liOW2nOeqfCFCCssuvbXl0ngbUoaQ4T2oFIlPLPyT8yNdVNo+AiTM6YamfCWg==
+"@yarn-tool/ncu@^1.0.9":
+  version "1.0.9"
+  resolved "https://registry.npmjs.org/@yarn-tool/ncu/-/ncu-1.0.9.tgz#055f2a7a983138172393bb07ca1c3610f4b06279"
+  integrity sha512-EntfCnGVXOYTcOsTvSEU+N+KJYGm89XIGJ148ImHj3kYpmvs1ee3B/xW7GiO0bZ0dxA/dIurUTYgCfO487gG2Q==
   dependencies:
     "@ts-type/package-dts" "^1.0.21"
-    "@yarn-tool/semver-diff" "^1.0.3"
-    "@yarn-tool/table" "^1.0.7"
-    "@yarn-tool/yarnlock" "^1.0.9"
+    "@yarn-tool/semver-diff" "^1.0.4"
+    "@yarn-tool/table" "^1.0.8"
+    "@yarn-tool/yarnlock" "^1.0.10"
     bluebird "^3.7.2"
     npm-check-updates "^7.0.1"
     package-json "^6.5.0"
@@ -657,7 +657,7 @@
     "@types/hosted-git-info" "^3.0.0"
     hosted-git-info "^3.0.4"
 
-"@yarn-tool/semver-diff@^1.0.3", "@yarn-tool/semver-diff@^1.0.4":
+"@yarn-tool/semver-diff@^1.0.4":
   version "1.0.4"
   resolved "https://registry.npmjs.org/@yarn-tool/semver-diff/-/semver-diff-1.0.4.tgz#2f5e6c1b2f598fa8cc5d8c969ffcec5571f4a731"
   integrity sha512-y/fqArZKUB/MiCRoxe0FKE3uSUCDzDuKKQ+giVcu/YNSre6KHx3G9SPEiEFAxfINJwf/kQr6avySk9GqiI48OA==
@@ -673,7 +673,7 @@
   dependencies:
     fs-extra "^9.0.1"
 
-"@yarn-tool/table@^1.0.7", "@yarn-tool/table@^1.0.8":
+"@yarn-tool/table@^1.0.8":
   version "1.0.8"
   resolved "https://registry.npmjs.org/@yarn-tool/table/-/table-1.0.8.tgz#fe05dc63fc1078e9de9d4a16d4692bacc97e2298"
   integrity sha512-r6cpqk+qvNLDP9meKjH7y3DiUs8uaKgcIp9Gdg6dKP5PIOswLdSRO7qkDiUiyUOWqFURAWwiVgRhVSN1in3mXQ==
@@ -691,7 +691,7 @@
     "@yarn-tool/is-npx" "^1.0.4"
     update-notifier "^4.1.0"
 
-"@yarn-tool/yarnlock@^1.0.10", "@yarn-tool/yarnlock@^1.0.9":
+"@yarn-tool/yarnlock@^1.0.10":
   version "1.0.10"
   resolved "https://registry.npmjs.org/@yarn-tool/yarnlock/-/yarnlock-1.0.10.tgz#bb0944eb520a78154ab3dcfa60e3c86a219005a8"
   integrity sha512-kU5jkcRtl2n8bHld28vFAbcMGA0TS2Qqbt5ezPRl0FgpT9IcAtQHKyMDmVZbRFYPScMwNFMPB1tdbFpMt8UdrA==
