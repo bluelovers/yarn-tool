@@ -657,12 +657,13 @@
     "@types/hosted-git-info" "^3.0.0"
     hosted-git-info "^3.0.4"
 
-"@yarn-tool/semver-diff@^1.0.3":
-  version "1.0.3"
-  resolved "https://registry.npmjs.org/@yarn-tool/semver-diff/-/semver-diff-1.0.3.tgz#bb54d557c255454598af623ba4da736a6265fb3a"
-  integrity sha512-FwuQvecVzjSMV9DSK1Olfvmy+o0MpZzBPReJyMFLAN1FYHDk3H7tODKOQ3Fv2T9d3kwnoq3kVa6QGDsmvtY8pw==
+"@yarn-tool/semver-diff@^1.0.3", "@yarn-tool/semver-diff@^1.0.4":
+  version "1.0.4"
+  resolved "https://registry.npmjs.org/@yarn-tool/semver-diff/-/semver-diff-1.0.4.tgz#2f5e6c1b2f598fa8cc5d8c969ffcec5571f4a731"
+  integrity sha512-y/fqArZKUB/MiCRoxe0FKE3uSUCDzDuKKQ+giVcu/YNSre6KHx3G9SPEiEFAxfINJwf/kQr6avySk9GqiI48OA==
   dependencies:
     "@lazy-node/semver-part" "^1.0.2"
+    debug-color2 "^1.2.3"
     ts-type "^1.2.23"
 
 "@yarn-tool/static-file@^1.0.34":
@@ -672,13 +673,13 @@
   dependencies:
     fs-extra "^9.0.1"
 
-"@yarn-tool/table@^1.0.7":
-  version "1.0.7"
-  resolved "https://registry.npmjs.org/@yarn-tool/table/-/table-1.0.7.tgz#23decd62ba0a1ee4d457f536cefacbeac1c3ecca"
-  integrity sha512-QEfbVpl/GX0gAeCH/NKHkXomZPfq3wTDa1C9aJrHSKDGOtMB0RpWXRyFZu/Kp4CvanWJp8tUHqHJ2J61fPNzsQ==
+"@yarn-tool/table@^1.0.7", "@yarn-tool/table@^1.0.8":
+  version "1.0.8"
+  resolved "https://registry.npmjs.org/@yarn-tool/table/-/table-1.0.8.tgz#fe05dc63fc1078e9de9d4a16d4692bacc97e2298"
+  integrity sha512-r6cpqk+qvNLDP9meKjH7y3DiUs8uaKgcIp9Gdg6dKP5PIOswLdSRO7qkDiUiyUOWqFURAWwiVgRhVSN1in3mXQ==
   dependencies:
     "@ts-type/package-dts" "^1.0.21"
-    "@yarn-tool/semver-diff" "^1.0.3"
+    "@yarn-tool/semver-diff" "^1.0.4"
     cli-table3 "^0.6.0"
 
 "@yarn-tool/update-notifier@^1.0.12":
@@ -690,14 +691,14 @@
     "@yarn-tool/is-npx" "^1.0.4"
     update-notifier "^4.1.0"
 
-"@yarn-tool/yarnlock@^1.0.9":
-  version "1.0.9"
-  resolved "https://registry.npmjs.org/@yarn-tool/yarnlock/-/yarnlock-1.0.9.tgz#9fa1d43e9b36578742c869b84fd17ce7f6f657ed"
-  integrity sha512-VTsovG3UC/JsDF4VKEhwkqICJC79/+PAUS2unN1/mkHJ75xFkYMOcy8bq5MAr9TFjkGOPP0qheCFVqrQnUErBQ==
+"@yarn-tool/yarnlock@^1.0.10", "@yarn-tool/yarnlock@^1.0.9":
+  version "1.0.10"
+  resolved "https://registry.npmjs.org/@yarn-tool/yarnlock/-/yarnlock-1.0.10.tgz#bb0944eb520a78154ab3dcfa60e3c86a219005a8"
+  integrity sha512-kU5jkcRtl2n8bHld28vFAbcMGA0TS2Qqbt5ezPRl0FgpT9IcAtQHKyMDmVZbRFYPScMwNFMPB1tdbFpMt8UdrA==
   dependencies:
     "@ts-type/package-dts" "^1.0.21"
     "@yarn-tool/find-root" "^1.0.20"
-    "@yarn-tool/table" "^1.0.7"
+    "@yarn-tool/table" "^1.0.8"
     "@yarnpkg/lockfile" "^1.1.0"
     debug-color2 "^1.2.3"
     deep-diff "^1.0.2"
