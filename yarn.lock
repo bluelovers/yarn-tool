@@ -3016,10 +3016,10 @@ npm-check-updates@^7.0.1:
     spawn-please "^0.3.0"
     update-notifier "^4.1.0"
 
-npm-init2@^1.0.96:
-  version "1.0.96"
-  resolved "https://registry.npmjs.org/npm-init2/-/npm-init2-1.0.96.tgz#7767baa74b5b6a827e0ac812f53aa8df0076b164"
-  integrity sha512-6delLkZhVU4ee12AJ6SOPO2lGaD5RHD3SKH0bCBm7//EV5evFP105HKyUG0pT+OoBAhSlqlagT37D7sILBNe7Q==
+npm-init2@^1.0.98:
+  version "1.0.98"
+  resolved "https://registry.npmjs.org/npm-init2/-/npm-init2-1.0.98.tgz#dae9a5f648b76780de94fc6154c8876af2cf1579"
+  integrity sha512-xIrGzqLd7/n4J9hSz1OgLaINnOGBsY7t9QPUWCD4mF6CieRUqeBYioffaESg7uGk0Qd4GP87X+11OcALw7UbMA==
   dependencies:
     "@yarn-tool/find-root" "^1.0.20"
     "@yarn-tool/pkg-git-info" "^1.0.7"
