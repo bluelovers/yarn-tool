@@ -77,5 +77,5 @@ __tests__
 __snapshots__
 *.snap
 !/yarn.lock
-!/package-lock.json
+package-lock.json
 .pnp.js

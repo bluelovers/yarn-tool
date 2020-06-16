@@ -2,8 +2,6 @@
  * Created by user on 2019/4/30.
  */
 
-import findYarnWorkspaceRoot = require('find-yarn-workspace-root2');
-import pkgDir = require('pkg-dir');
 import path = require('upath2');
 import fs = require('fs-extra');
 import { Console2 } from 'debug-color2';

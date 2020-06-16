@@ -38,7 +38,6 @@ import { setupWorkspacesInitToYargs } from 'create-yarn-workspaces/yargs-setting
 import { checkModileExists, crossSpawnOther, processArgvSlice } from '../lib/spawn';
 import osLocale = require('os-locale');
 import { updateNotifier } from '@yarn-tool/update-notifier';
-//import isNpx = require('is-npx');
 
 
 if (path.extname(__filename) === '.js' && !process.argv.filter(v => {
