@@ -30,10 +30,10 @@
     debug "^4.1.1"
     debug-color2 "^1.1.7"
 
-"@git-lazy/info@^1.0.19":
-  version "1.0.19"
-  resolved "https://registry.npmjs.org/@git-lazy/info/-/info-1.0.19.tgz#e63acc8bf86a650e130edfeda706eb6ac77157b0"
-  integrity sha512-7Sk2v41aeePXUBt9Cukt9Sa+yVo4MCTV4Jp1Spl8mIkL46JO1GpVYtK/kqwOkqH6STxAEvveObZwUuV4AtUGRA==
+"@git-lazy/info@^1.0.20":
+  version "1.0.20"
+  resolved "https://registry.npmjs.org/@git-lazy/info/-/info-1.0.20.tgz#83a06dc7571df864f44c4ede2629e75d42f0a433"
+  integrity sha512-GkIE0lx8sCos4dJfObkTUDt+PVJex/CYEn9sL53RemIaWrlC4c0KlsLZn60o1NF7fhV5T5YOO/PTktc5MH3S6A==
   dependencies:
     git-root2 "^1.0.18"
     glob-search "^2.0.7"
@@ -508,15 +508,15 @@
   dependencies:
     "@types/yargs-parser" "*"
 
-"@yarn-tool/find-root@^1.0.15", "@yarn-tool/find-root@^1.0.20":
-  version "1.0.20"
-  resolved "https://registry.npmjs.org/@yarn-tool/find-root/-/find-root-1.0.20.tgz#55f6993c820ee7a40ab961e393c664029ca20d67"
-  integrity sha512-nysFl98+rgplYe/eRBw1By+50j3r9SoXorhjIvUZl1vEYt0gHBM7vu8ZXPgqs3ZC8dWn13dXHlz9oqM+pvBj9g==
+"@yarn-tool/find-root@^1.0.15", "@yarn-tool/find-root@^1.0.21":
+  version "1.0.21"
+  resolved "https://registry.npmjs.org/@yarn-tool/find-root/-/find-root-1.0.21.tgz#82ad9b872e4a1bde1c3ba31ac1ee5b7c9d5153ab"
+  integrity sha512-3iRKsqsiGMOS84iB3GmeM1vznBkPFHRvEwhddIB1xfb/BCxlKB/pMbzGXyw11poviGVcg65SIky6eDjg/fWfWg==
   dependencies:
     "@ts-type/package-dts" "^1.0.21"
     find-yarn-workspace-root2 "^1.2.16"
     pkg-dir "^4.2.0"
-    upath2 "^3.0.5"
+    upath2 "^3.0.6"
 
 "@yarn-tool/is-npx@^1.0.4":
   version "1.0.4"
@@ -525,33 +525,33 @@
   dependencies:
     is-npx "^1.0.0"
 
-"@yarn-tool/ncu@^1.0.9":
-  version "1.0.9"
-  resolved "https://registry.npmjs.org/@yarn-tool/ncu/-/ncu-1.0.9.tgz#055f2a7a983138172393bb07ca1c3610f4b06279"
-  integrity sha512-EntfCnGVXOYTcOsTvSEU+N+KJYGm89XIGJ148ImHj3kYpmvs1ee3B/xW7GiO0bZ0dxA/dIurUTYgCfO487gG2Q==
+"@yarn-tool/ncu@^1.0.10":
+  version "1.0.10"
+  resolved "https://registry.npmjs.org/@yarn-tool/ncu/-/ncu-1.0.10.tgz#7bbec504e0deb1aef91ae095ff36a4fd9515d9c8"
+  integrity sha512-8QReTpdTUUraHVecF1+TtJ5GNx34Sq8uFPu39gbZz3MDWvSK5rMazSBfHHlW1rds2B/CtMb3DGIK6+vrrkVmHA==
   dependencies:
     "@ts-type/package-dts" "^1.0.21"
-    "@yarn-tool/semver-diff" "^1.0.4"
-    "@yarn-tool/table" "^1.0.8"
-    "@yarn-tool/yarnlock" "^1.0.10"
+    "@yarn-tool/semver-diff" "^1.0.5"
+    "@yarn-tool/table" "^1.0.9"
+    "@yarn-tool/yarnlock" "^1.0.11"
     bluebird "^3.7.2"
     npm-check-updates "^7.0.1"
     package-json "^6.5.0"
     semver "^7.3.2"
 
-"@yarn-tool/pkg-git-info@^1.0.7":
-  version "1.0.7"
-  resolved "https://registry.npmjs.org/@yarn-tool/pkg-git-info/-/pkg-git-info-1.0.7.tgz#825942fc921d62d44e3c7fb47c08325cc0d43a4b"
-  integrity sha512-XQobvCrG7XnA3Rv7Z8ddjSL3eBALCq5dKOaCyoC6ku8o9jaP308CB+5Xfs87qx3mehYdfKDltvX2eM9GWMdrnw==
+"@yarn-tool/pkg-git-info@^1.0.8":
+  version "1.0.8"
+  resolved "https://registry.npmjs.org/@yarn-tool/pkg-git-info/-/pkg-git-info-1.0.8.tgz#ba00af4e4aac46e7edf65b95c9c234acc718d6f0"
+  integrity sha512-sSJBKZCwz8fbgGJF/bN4fRvpwt8px9ohdz3QaLpFNCSOx9mPRZGXzDQzZTjEd0XeiAVrS9WzmYwn+AKhvqQ3cA==
   dependencies:
-    "@git-lazy/info" "^1.0.19"
+    "@git-lazy/info" "^1.0.20"
     "@types/hosted-git-info" "^3.0.0"
     hosted-git-info "^3.0.4"
 
-"@yarn-tool/semver-diff@^1.0.4":
-  version "1.0.4"
-  resolved "https://registry.npmjs.org/@yarn-tool/semver-diff/-/semver-diff-1.0.4.tgz#2f5e6c1b2f598fa8cc5d8c969ffcec5571f4a731"
-  integrity sha512-y/fqArZKUB/MiCRoxe0FKE3uSUCDzDuKKQ+giVcu/YNSre6KHx3G9SPEiEFAxfINJwf/kQr6avySk9GqiI48OA==
+"@yarn-tool/semver-diff@^1.0.5":
+  version "1.0.5"
+  resolved "https://registry.npmjs.org/@yarn-tool/semver-diff/-/semver-diff-1.0.5.tgz#296a30c212fe221a1e4bd1c8c51bd1f2d213a553"
+  integrity sha512-509z9LBux4KAbhw9TX7GUel89C/m6f7SfPbdTe4pY/RDE//N9pHwFh/KLnZRWUVM8DNBUIagFWdseOrW9loydA==
   dependencies:
     "@lazy-node/semver-part" "^1.0.2"
     debug-color2 "^1.2.3"
@@ -564,39 +564,39 @@
   dependencies:
     fs-extra "^9.0.1"
 
-"@yarn-tool/table@^1.0.8":
-  version "1.0.8"
-  resolved "https://registry.npmjs.org/@yarn-tool/table/-/table-1.0.8.tgz#fe05dc63fc1078e9de9d4a16d4692bacc97e2298"
-  integrity sha512-r6cpqk+qvNLDP9meKjH7y3DiUs8uaKgcIp9Gdg6dKP5PIOswLdSRO7qkDiUiyUOWqFURAWwiVgRhVSN1in3mXQ==
+"@yarn-tool/table@^1.0.9":
+  version "1.0.9"
+  resolved "https://registry.npmjs.org/@yarn-tool/table/-/table-1.0.9.tgz#b27d3d3418e9a361b9a0c027fa113cf9cf81b541"
+  integrity sha512-Hc01XdGQDlJQSzX0s8i9z5D5XB6XJNW8yv8/Y1i4DDYrq7x7qHg55H7elY1jratF79LDHi3QKJK/tfHtsRP3QA==
   dependencies:
     "@ts-type/package-dts" "^1.0.21"
-    "@yarn-tool/semver-diff" "^1.0.4"
+    "@yarn-tool/semver-diff" "^1.0.5"
     cli-table3 "^0.6.0"
 
-"@yarn-tool/update-notifier@^1.0.12":
-  version "1.0.12"
-  resolved "https://registry.npmjs.org/@yarn-tool/update-notifier/-/update-notifier-1.0.12.tgz#ff0816d3e4f5ad1767e23eca1e85f4c7a9349705"
-  integrity sha512-15icDXjuOl4a95UXs2MzdA/ch6EZuzMx4K5eDgG8Jh4NV3zYgH+fB3Vgt8v+dZPEUmE5a5ap4rdYXi5g/PIvSQ==
+"@yarn-tool/update-notifier@^1.0.13":
+  version "1.0.13"
+  resolved "https://registry.npmjs.org/@yarn-tool/update-notifier/-/update-notifier-1.0.13.tgz#90bf2d96d16cdf297667a4540d003488b3ac07c3"
+  integrity sha512-u4Y5AUIGVmj1QoYj55ryZH/QfRXt2V2xHFDTFTF07RlIGLcIlM7JO7Mqjva2hMu3gxTljpzgvO+6zb1mcVaqJw==
   dependencies:
     "@npmcli/ci-detect" "^1.2.0"
     "@yarn-tool/is-npx" "^1.0.4"
     update-notifier "^4.1.0"
 
-"@yarn-tool/yarnlock@^1.0.10":
-  version "1.0.10"
-  resolved "https://registry.npmjs.org/@yarn-tool/yarnlock/-/yarnlock-1.0.10.tgz#bb0944eb520a78154ab3dcfa60e3c86a219005a8"
-  integrity sha512-kU5jkcRtl2n8bHld28vFAbcMGA0TS2Qqbt5ezPRl0FgpT9IcAtQHKyMDmVZbRFYPScMwNFMPB1tdbFpMt8UdrA==
+"@yarn-tool/yarnlock@^1.0.11":
+  version "1.0.11"
+  resolved "https://registry.npmjs.org/@yarn-tool/yarnlock/-/yarnlock-1.0.11.tgz#86abdfcf1f3a1b0e086306f0ae35c0dc5853f33b"
+  integrity sha512-veTBgLry/F3OeEjnIvUL0x2TEma89a8jbKBF9y/Di2AosZjNTcZtbAdItN6CUsAi9ABmDkW4RwIyF8G1Z70BxQ==
   dependencies:
     "@ts-type/package-dts" "^1.0.21"
-    "@yarn-tool/find-root" "^1.0.20"
-    "@yarn-tool/table" "^1.0.8"
+    "@yarn-tool/find-root" "^1.0.21"
+    "@yarn-tool/table" "^1.0.9"
     "@yarnpkg/lockfile" "^1.1.0"
     debug-color2 "^1.2.3"
     deep-diff "^1.0.2"
     fs-extra "^9.0.1"
     semver "^7.3.2"
     ts-type "^1.2.23"
-    upath2 "^3.0.5"
+    upath2 "^3.0.6"
     yarn-deduplicate "^2.0.0"
     yarn-lock-diff "^0.0.0"
 
@@ -718,10 +718,10 @@ argparse@^1.0.7:
   dependencies:
     sprintf-js "~1.0.2"
 
-array-hyper-unique@^1.1.2:
-  version "1.1.2"
-  resolved "https://registry.npmjs.org/array-hyper-unique/-/array-hyper-unique-1.1.2.tgz#2bf8e5aa01c07ebe875c94962f04b7fa26a1ee56"
-  integrity sha512-fjJkP/Stte49ot5OvazHMIf3OgProDZSXSpIXm1ZMNiYU8fz0TPfAfGO1D1EVuJAxCF91WcQeQfvEBlbfdtSzA==
+array-hyper-unique@^1.1.2, array-hyper-unique@^1.1.6:
+  version "1.1.6"
+  resolved "https://registry.npmjs.org/array-hyper-unique/-/array-hyper-unique-1.1.6.tgz#2232e5dd9ea9c63c3481c09b7437e3a3b4361d51"
+  integrity sha512-aWd1rmhPZyW9faMmNmuRonVFh9dUkcN0EWMDqWumXwwu9ENNDgP0SekuDjuFBMjJzfIMzgxmN+MLzB2GpNOfXg==
   dependencies:
     deep-eql "^4.0.0"
 
@@ -2464,15 +2464,15 @@ npm-check-updates@^7.0.1:
     spawn-please "^0.3.0"
     update-notifier "^4.1.0"
 
-npm-init2@^1.0.103:
-  version "1.0.103"
-  resolved "https://registry.npmjs.org/npm-init2/-/npm-init2-1.0.103.tgz#ab1cfc153eee00a5916f5665909dc6dc1a6ee055"
-  integrity sha512-yYQEZ6YO+5P2+1VbPIHQ1NpL5EmolA6d8EvBEexSpayTVxwhta/mnOnvK+gORP48VNqKJhjLTktRU89ta4Ueug==
+npm-init2@^1.0.104:
+  version "1.0.104"
+  resolved "https://registry.npmjs.org/npm-init2/-/npm-init2-1.0.104.tgz#adadacec1fcf168de1d1a5a03a38cc6beb1671d8"
+  integrity sha512-L1K+XNzyT/JlI9QGJWcS9WyR1rh0OpC8nreE3xIUDhtkw2vOElf5ImNzeQZK80p5hEHJPK+rjx52Yuch6Kp6hQ==
   dependencies:
-    "@yarn-tool/find-root" "^1.0.20"
-    "@yarn-tool/pkg-git-info" "^1.0.7"
+    "@yarn-tool/find-root" "^1.0.21"
+    "@yarn-tool/pkg-git-info" "^1.0.8"
     "@yarn-tool/static-file" "^1.0.34"
-    "@yarn-tool/update-notifier" "^1.0.12"
+    "@yarn-tool/update-notifier" "^1.0.13"
     cross-spawn-extra "^2.1.0"
     find-yarn-workspace-root2 "^1.2.16"
     fs-extra "^9.0.1"
@@ -2480,6 +2480,7 @@ npm-init2@^1.0.103:
     lodash "^4.17.15"
     micromatch "^4.0.2"
     npm-package-json-loader "^1.0.25"
+    sort-package-json-scripts "^1.0.10"
     validate-npm-package-name "^3.0.0"
     workspaces-config "^1.0.12"
     yargs "^15.3.1"
@@ -3502,10 +3503,10 @@ universalify@^1.0.0:
   resolved "https://registry.npmjs.org/universalify/-/universalify-1.0.0.tgz#b61a1da173e8435b2fe3c67d29b9adf8594bd16d"
   integrity sha512-rb6X1W158d7pRQBg5gkR8uPaSfiids68LTJQYOtEUhoJUWBdaQHsuT/EUduxXYxcrt4r5PJ4fuHW1MHT6p0qug==
 
-upath2@^3, upath2@^3.0.5:
-  version "3.0.5"
-  resolved "https://registry.npmjs.org/upath2/-/upath2-3.0.5.tgz#28ea56175258008690716ec445681fa6aca83080"
-  integrity sha512-XhK9QtGu6YCqw7/RsY9x/B43RQzcmoi2vtjFT4Iv4PiGGKTKuwp/P1GUrHcBSVUyyQgNL4RfJ9YrNFonVoTchg==
+upath2@^3, upath2@^3.0.5, upath2@^3.0.6:
+  version "3.0.6"
+  resolved "https://registry.npmjs.org/upath2/-/upath2-3.0.6.tgz#57d523bba8321bd25bed6473d9b657639bbbd6d4"
+  integrity sha512-Rm7lLxiDkGAQe45eRyswM2boA1Qdo3o9nVUqPN18H+qMNS3+l3Vyu4vVsK5w4k7WFRfBmRjfyapouMRm8j9GZw==
 
 update-notifier@^4.1.0:
   version "4.1.0"
