@@ -1,6 +1,6 @@
 {
   "name": "yarn-tool",
-  "version": "1.0.97",
+  "version": "1.0.98",
   "description": "yarn cli tool helper",
   "keywords": [
     "cli",
@@ -55,10 +55,11 @@
     "prepublishOnly:lockfile": "ynpx --quiet sync-lockfile",
     "prepublishOnly:update": "yarn run ncu && yarn run sort-package-json",
     "prepublishOnly_": "yarn run prepublishOnly:update && yarn run prepublishOnly:check-bin && yarn run test",
-    "postpublish": "yarn run postpublish:changelog && yarn run postpublish:git && yarn run postpublish:tag",
+    "postpublish": "yarn run postpublish:changelog && yarn run postpublish:git:commit && yarn run postpublish:git:tag && yarn run postpublish:git:push",
     "postpublish:changelog": "ynpx --quiet @yarn-tool/changelog && git add ./CHANGELOG.md",
-    "postpublish:git": "git commit -m \"chore(release): publish\" . & git push & echo postpublish:git",
-    "postpublish:tag": "ynpx --quiet @yarn-tool/tag",
+    "postpublish:git:commit": "git commit -m \"chore(release): publish\" . & echo postpublish:git:commit",
+    "postpublish:git:push": "git push --follow-tags",
+    "postpublish:git:tag": "ynpx --quiet @yarn-tool/tag",
     "help": "yarn-tool --help",
     "ncu": "ynpx yarn-tool -- ncu -u",
     "sort-package-json": "ynpx yarn-tool -- sort"
@@ -79,7 +80,7 @@
     "debug-color2": "^1.2.3",
     "find-yarn-workspace-root2": "^1.2.16",
     "fs-extra": "^9.0.1",
-    "npm-init2": "^1.0.99",
+    "npm-init2": "^1.0.101",
     "os-locale": "^5.0.0",
     "package-json": "^6.5.0",
     "semver": "^7.3.2",
