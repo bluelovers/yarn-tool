@@ -2464,10 +2464,10 @@ npm-check-updates@^7.0.1:
     spawn-please "^0.3.0"
     update-notifier "^4.1.0"
 
-npm-init2@^1.0.104:
-  version "1.0.104"
-  resolved "https://registry.npmjs.org/npm-init2/-/npm-init2-1.0.104.tgz#adadacec1fcf168de1d1a5a03a38cc6beb1671d8"
-  integrity sha512-L1K+XNzyT/JlI9QGJWcS9WyR1rh0OpC8nreE3xIUDhtkw2vOElf5ImNzeQZK80p5hEHJPK+rjx52Yuch6Kp6hQ==
+npm-init2@^1.0.105:
+  version "1.0.105"
+  resolved "https://registry.npmjs.org/npm-init2/-/npm-init2-1.0.105.tgz#eed26b03094e57ec7031a4c71c54835eeb3c6819"
+  integrity sha512-w6UHF1Iw9IKzklJn55cDES0Hral4RDo9i09PhjSFPT24IqqofIAtxnm5DtaiZgyZsTSLec5osphojQfibhRpVg==
   dependencies:
     "@yarn-tool/find-root" "^1.0.21"
     "@yarn-tool/pkg-git-info" "^1.0.8"
