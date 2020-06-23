@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.107](https://github.com/bluelovers/yarn-tool/compare/yarn-tool@1.0.106...yarn-tool@1.0.107) (2020-06-23)
+
+
+### ✨　Features
+
+* support empty yarn.lock ([32a793b](https://github.com/bluelovers/yarn-tool/commit/32a793b9ddc698ae882021b9e1e32f3bd7bb38e1))
+
+
+### 🛠　Build System
+
+* update .js ([6b2052a](https://github.com/bluelovers/yarn-tool/commit/6b2052ad5ee68db51996d9746c1edf9c5c773dfc))
+
+
+
+
+
 ## [1.0.106](https://github.com/bluelovers/yarn-tool/compare/yarn-tool@1.0.105...yarn-tool@1.0.106) (2020-06-23)
 
 **Note:** Version bump only for package yarn-tool
