@@ -23,8 +23,9 @@ const cmdModule = cmd_dir_1.createCommandModuleExports({
         dedupe_1.wrapDedupe(require('yargs'), argv, {
             consoleDebug: index_1.consoleDebug,
             before(yarg, argv, cache) {
+                var _a;
                 let info = dedupe_1.infoFromDedupeCache(cache);
-                if (!info.yarnlock_old_exists) {
+                if (!info.yarnlock_old_exists || !((_a = cache.yarnlock_old) === null || _a === void 0 ? void 0 : _a.length)) {
                     crossSpawn.sync('yarn', [], {
                         cwd,
                         stdio: 'inherit',

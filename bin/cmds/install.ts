@@ -37,7 +37,7 @@ const cmdModule = createCommandModuleExports({
 			{
 				let info = infoFromDedupeCache(cache);
 
-				if (!info.yarnlock_old_exists)
+				if (!info.yarnlock_old_exists || !cache.yarnlock_old?.length)
 				{
 					crossSpawn.sync('yarn', [], {
 						cwd,
