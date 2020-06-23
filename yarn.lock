@@ -558,10 +558,10 @@
     debug-color2 "^1.2.3"
     ts-type "^1.2.23"
 
-"@yarn-tool/static-file@^1.0.36":
-  version "1.0.36"
-  resolved "https://registry.npmjs.org/@yarn-tool/static-file/-/static-file-1.0.36.tgz#8f464ba89f3f63f4b761984c84a41a3630a415da"
-  integrity sha512-3auxxijQ/XY5z0UDkHGBmirAgT9A0I/3F5ULiABR3RpDUn53nUvRsJySIs1wyZMnPIaNEGhHY1x+ljjyb2rjQg==
+"@yarn-tool/static-file@^1.0.37":
+  version "1.0.37"
+  resolved "https://registry.npmjs.org/@yarn-tool/static-file/-/static-file-1.0.37.tgz#900ab1fbe13618fa40a8fb5425b8dc601a2b867a"
+  integrity sha512-sKe6jwVRExSHb6povOzGr7uxsGeTnnrDi/hxI0ei1g4ZI4AOx2rXPAdnmryDfPPQIlsOfHbtG8puSOHvjgNIXA==
   dependencies:
     fs-extra "^9.0.1"
 
@@ -1127,12 +1127,12 @@ core-util-is@1.0.2, core-util-is@~1.0.0:
   resolved "https://registry.npmjs.org/core-util-is/-/core-util-is-1.0.2.tgz#b5fd54220aa2bc5ab57aab7140c940754503c1a7"
   integrity sha1-tf1UIgqivFq1eqtxQMlAdUUDwac=
 
-create-yarn-workspaces@^1.0.65:
-  version "1.0.65"
-  resolved "https://registry.npmjs.org/create-yarn-workspaces/-/create-yarn-workspaces-1.0.65.tgz#96f7e15992a8fba82bc55fafc653b9e891f59ed5"
-  integrity sha512-0iFNvCnxgktyM7xLrQGeLXhjUApvT1QJMZQIglSIcY0wh4hNnTb5kOqfvd5lfuZ/rfEqRamALpLWjBXzWunvyA==
+create-yarn-workspaces@^1.0.66:
+  version "1.0.66"
+  resolved "https://registry.npmjs.org/create-yarn-workspaces/-/create-yarn-workspaces-1.0.66.tgz#e8975ace3a1bdc038635bdb98ffc717678312007"
+  integrity sha512-PecceOFvROtL52zPPorU3qqzAWcvRnz558FW80vrxlFq5E4pDEcswkE+iOgLWjn6K1KQ6MnYNHOmN+HHYgzfUQ==
   dependencies:
-    "@yarn-tool/static-file" "^1.0.36"
+    "@yarn-tool/static-file" "^1.0.37"
     debug-color2 "^1.2.3"
     find-yarn-workspace-root2 "^1.2.20"
     fs-extra "^9.0.1"
@@ -2474,14 +2474,14 @@ npm-check-updates@^7.0.1:
     spawn-please "^0.3.0"
     update-notifier "^4.1.0"
 
-npm-init2@^1.0.112:
-  version "1.0.112"
-  resolved "https://registry.npmjs.org/npm-init2/-/npm-init2-1.0.112.tgz#ccf24ae96c64efbc66e4eb1cedf00750d0ef5733"
-  integrity sha512-TbcQV3RVBeXnB9wrjo3E/ompAqG/+aAxve8KIG3tyxxeGZxu2uP1btbQHVyK+QAHiJFMpTqmD0o3WUj44B566A==
+npm-init2@^1.0.113:
+  version "1.0.113"
+  resolved "https://registry.npmjs.org/npm-init2/-/npm-init2-1.0.113.tgz#15ecdd162ed3d9696414b19cd0045cffc6edea3a"
+  integrity sha512-ZWIZMIQhcfInFGDOXiNB38tE53pfdsSHinFq9aKFoUBtsxpPXhD8bxBTut04+ZYBVEf01kNQPghb/2bWpliEDg==
   dependencies:
     "@yarn-tool/find-root" "^1.0.25"
     "@yarn-tool/pkg-git-info" "^1.0.8"
-    "@yarn-tool/static-file" "^1.0.36"
+    "@yarn-tool/static-file" "^1.0.37"
     "@yarn-tool/update-notifier" "^1.0.13"
     cross-spawn-extra "^2.1.0"
     find-yarn-workspace-root2 "^1.2.20"
