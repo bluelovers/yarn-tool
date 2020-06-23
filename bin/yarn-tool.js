@@ -7,7 +7,6 @@ const yargs = require("yargs");
 const path = require("upath2");
 const osLocale = require("os-locale");
 const update_notifier_1 = require("@yarn-tool/update-notifier");
-//import isNpx = require('is-npx');
 if (path.extname(__filename) === '.js' && !process.argv.filter(v => {
     if (typeof v === 'string') {
         return v.includes('ts-node') || v.includes('source-map-support');
