@@ -617,10 +617,10 @@
   dependencies:
     "@types/yargs-parser" "*"
 
-"@yarn-tool/changelog@^1.0.15":
-  version "1.0.15"
-  resolved "https://registry.npmjs.org/@yarn-tool/changelog/-/changelog-1.0.15.tgz#24e06181b6338ec382cbabbffb6605ab553ec098"
-  integrity sha512-yEEoCcyl50903OBkPZF+zUk+gTyKPLjSbr+DnMJdWSVzHGAVwZV9pa7UrnrTWXEMKhZSzQ5wlf61f8mv7j3Z5g==
+"@yarn-tool/changelog@^1.0.16":
+  version "1.0.16"
+  resolved "https://registry.npmjs.org/@yarn-tool/changelog/-/changelog-1.0.16.tgz#2bc99e97a48911833a9634b068425911f557d156"
+  integrity sha512-KsudtRYTqspAQnh9PYrSxT3Ao23HC0ZPo9PHAbeL3uz4BYMrSc9/ijvNcMdywOHz7Bikj6cQM36IfU+GXph+0w==
   dependencies:
     "@lerna/conventional-commits" "^3.22.0"
     "@yarn-tool/find-root" "^1.0.26"
@@ -687,10 +687,10 @@
     debug-color2 "^1.2.3"
     ts-type "^1.2.23"
 
-"@yarn-tool/static-file@^1.0.39":
-  version "1.0.39"
-  resolved "https://registry.npmjs.org/@yarn-tool/static-file/-/static-file-1.0.39.tgz#c6874d1ffdfca111ca7d02d992e6e0b9bc0e691a"
-  integrity sha512-tMOIATtvHd+jJOjucfMgNHNPQpH1AC0VSXtHYI8f8JMjKa6D8IMNHvlsBCv1JA/0O2uXesctOi8GmQmBuPhk2A==
+"@yarn-tool/static-file@^1.0.40":
+  version "1.0.40"
+  resolved "https://registry.npmjs.org/@yarn-tool/static-file/-/static-file-1.0.40.tgz#7495e4d99dd0423217af6436e318e97dca074738"
+  integrity sha512-V3NCdG6s7ey7+j5u2Ia3knuo+XclJxAtH5GN59q82B83GMpjG12Ul1pb1IRHNJ4F10XBhicanCtVO95wOS2Kvg==
   dependencies:
     fs-extra "^9.0.1"
 
@@ -712,15 +712,15 @@
     "@yarn-tool/is-npx" "^1.0.4"
     update-notifier "^4.1.0"
 
-"@yarn-tool/workspaces-project@^1.0.8":
-  version "1.0.8"
-  resolved "https://registry.npmjs.org/@yarn-tool/workspaces-project/-/workspaces-project-1.0.8.tgz#709c6ed29b4e31a873a6042c225fb02eeddfbf87"
-  integrity sha512-5smOL61EoeuMsmqoesO9pOw1ot1j4vwlXEugJpcJLN01+iw8VMFVti1npLWxJoqJiSn/tIaJGMgV8AL3//ZgDg==
+"@yarn-tool/workspaces-project@^1.0.9":
+  version "1.0.9"
+  resolved "https://registry.npmjs.org/@yarn-tool/workspaces-project/-/workspaces-project-1.0.9.tgz#6b4467d9dbeac3f0b803035b2952ad7dc7bffa9d"
+  integrity sha512-ORiDfLXz7pXHdjcFMn/l1ei+KK3KBIJ15djig0/DExmC+4Unkq3r+CxWAzrOCFn5NMS8UIJUNFKeUuCiGvz/Dg==
   dependencies:
     "@lerna/project" "^3.21.0"
     "@ts-type/package-dts" "^1.0.26"
     "@types/npm-package-arg" "*"
-    "@yarn-tool/changelog" "^1.0.15"
+    "@yarn-tool/changelog" "^1.0.16"
     find-yarn-workspace-root2 "^1.2.21"
     fs-extra "^9.0.1"
     lodash "^4.17.15"
@@ -1607,12 +1607,12 @@ cosmiconfig@^5.1.0:
     js-yaml "^3.13.1"
     parse-json "^4.0.0"
 
-create-yarn-workspaces@^1.0.69:
-  version "1.0.69"
-  resolved "https://registry.npmjs.org/create-yarn-workspaces/-/create-yarn-workspaces-1.0.69.tgz#0e5dca4b9d86f292c3b1fc28872f7884769a5853"
-  integrity sha512-/WvkJuVDdOamTcSRjHyPgby9mF2ThdoKb2YLmqoXbNxUAO/bVO9aPafPzXGpkwLeuRrnj4B2PATs01qgjxO7Jw==
+create-yarn-workspaces@^1.0.70:
+  version "1.0.70"
+  resolved "https://registry.npmjs.org/create-yarn-workspaces/-/create-yarn-workspaces-1.0.70.tgz#abd18ae7ccade521e59d69bc3c4636d234c35b57"
+  integrity sha512-UswdmuIFDx5yec1p/I7TBYNtQbg035wzLPrZCHMv3eTu9f7Mx+SPzevGdQv5Ipb9Hj3Elcd1o98Oevy+k/5xEA==
   dependencies:
-    "@yarn-tool/static-file" "^1.0.39"
+    "@yarn-tool/static-file" "^1.0.40"
     debug-color2 "^1.2.3"
     find-yarn-workspace-root2 "^1.2.21"
     fs-extra "^9.0.1"
@@ -3723,16 +3723,16 @@ npm-check-updates@^7.0.1:
     spawn-please "^0.3.0"
     update-notifier "^4.1.0"
 
-npm-init2@^1.0.118:
-  version "1.0.118"
-  resolved "https://registry.npmjs.org/npm-init2/-/npm-init2-1.0.118.tgz#e5ebe5d81e19447286e9609811aea65e50abd742"
-  integrity sha512-/BbM23jQyT64xi72Vh9AmbwENDCwjlXpL0QYwUNxSQ3sIWz0Lqo79hjBcNKXpTbcsj5yBKprdgKwyzs2OI8n4A==
+npm-init2@^1.0.119:
+  version "1.0.119"
+  resolved "https://registry.npmjs.org/npm-init2/-/npm-init2-1.0.119.tgz#a1d59bc0ca8703a1e9b10cdf070a03c8e561a229"
+  integrity sha512-9IkDbG/TwTTrDab/4XPDq7/kKY0lGCXMDNGBWeNNzljmyIK2KuhcGQw3L1GzZiojiTFh9sVZoCmPcERIU/LC2A==
   dependencies:
     "@yarn-tool/find-root" "^1.0.26"
     "@yarn-tool/pkg-git-info" "^1.0.9"
-    "@yarn-tool/static-file" "^1.0.39"
+    "@yarn-tool/static-file" "^1.0.40"
     "@yarn-tool/update-notifier" "^1.0.13"
-    "@yarn-tool/workspaces-project" "^1.0.8"
+    "@yarn-tool/workspaces-project" "^1.0.9"
     cross-spawn-extra "^2.1.0"
     find-yarn-workspace-root2 "^1.2.21"
     fs-extra "^9.0.1"
