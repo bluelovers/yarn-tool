@@ -3762,10 +3762,10 @@ npm-check-updates@^7.0.2:
     spawn-please "^0.3.0"
     update-notifier "^4.1.0"
 
-npm-init2@^1.0.129:
-  version "1.0.129"
-  resolved "https://registry.npmjs.org/npm-init2/-/npm-init2-1.0.129.tgz#4d2421adcff0d30a3f0357a2c55a4198bb5ec810"
-  integrity sha512-ouEZ3ykBeBJqaSHyShG92M7K2fF7Fp6Kys0JExtGlxzl6+Q0NQCVGwmUJaEvblugNjrZgswDf0peyBJzJwtDig==
+npm-init2@^1.0.130:
+  version "1.0.130"
+  resolved "https://registry.npmjs.org/npm-init2/-/npm-init2-1.0.130.tgz#317ff1067a3c494b821c6dca481e8b3626a465d1"
+  integrity sha512-cZxQSa+oopHDnnRTx+SirY5Lvv/yjf+t51iAUEJZXkJw/wh+7OtBwv9M9Zf+QX/fq0xF53Tv85bXVQ/vLtg+Yw==
   dependencies:
     "@ts-type/package-dts" "^1.0.33"
     "@yarn-tool/find-root" "^1.0.29"
