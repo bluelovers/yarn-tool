@@ -51,19 +51,19 @@
     debug "^4.1.1"
     debug-color2 "^1.2.3"
 
-"@git-lazy/info@^1.0.21":
-  version "1.0.21"
-  resolved "https://registry.npmjs.org/@git-lazy/info/-/info-1.0.21.tgz#fd1013f3dd3a992b274e8b11dd792eb53efb815c"
-  integrity sha512-SXU5+/WDeqPWKun81IJXvRWKCq+L+o6K7LvFH7L7SYEhyK9upAIhmhUgNT8Mn70p5ZZZVvAjnxuaxHmWoImj0w==
+"@git-lazy/info@^1.0.22":
+  version "1.0.22"
+  resolved "https://registry.npmjs.org/@git-lazy/info/-/info-1.0.22.tgz#699674d7817be69bb9359fb2158232f8df854205"
+  integrity sha512-jTZwsbe3K8PycNqkxIdGuOvPLVDo9B8BmsH5Cdm6OqL7bLaWPU7GeDM7vYQGT5KdtrBHZyjjSVW4pTLK+zi9+w==
   dependencies:
-    git-root2 "^1.0.19"
+    git-root2 "^1.0.20"
     glob-search "^2.0.7"
     parse-git-config "^3.0.0"
 
-"@git-lazy/spawn@^1.0.21":
-  version "1.0.21"
-  resolved "https://registry.npmjs.org/@git-lazy/spawn/-/spawn-1.0.21.tgz#dc72d92aa9317ef7cf103df673fd8666b98319af"
-  integrity sha512-tPp/jOrxabytAj4jH6XhGfqSd7t3Xw33jvxqeTF9ZvqjqKFcGfcfhT4E1KdnFP7PHume30md10Gl6R52nAHFeg==
+"@git-lazy/spawn@^1.0.22":
+  version "1.0.22"
+  resolved "https://registry.npmjs.org/@git-lazy/spawn/-/spawn-1.0.22.tgz#7490d5a5324c4ef89274d4c8b4b53d06b97b1fde"
+  integrity sha512-BGnladU4LXHDtZKgn8oSVO2j9jsfPacBNnblHbNElKMtwOiDS1wKpFxs0Y0ENINWma4cAfAl2nff56bK7EOzGA==
   dependencies:
     "@git-lazy/debug" "^1.0.5"
     array-hyper-unique "^1.1.9"
@@ -610,10 +610,10 @@
   dependencies:
     "@types/yargs-parser" "*"
 
-"@yarn-tool/changelog@^1.0.21":
-  version "1.0.21"
-  resolved "https://registry.npmjs.org/@yarn-tool/changelog/-/changelog-1.0.21.tgz#d118381d7cd18e04490278a793bb5f91da0f17db"
-  integrity sha512-cooxZq873CF0KNT6Zt6v1BiQAnpBYwkiLh0JcAYHOVwAQ0lXUfRbRRGgZ9N2LGKn0BOBzQKD+BRW1cFlvVIyeg==
+"@yarn-tool/changelog@^1.0.22":
+  version "1.0.22"
+  resolved "https://registry.npmjs.org/@yarn-tool/changelog/-/changelog-1.0.22.tgz#d3cbbff05fac4e3f66689258a6169066716181e2"
+  integrity sha512-RmO5gflCJJZ4UtAkrXAZBsTUPVbeRtt1jofJN+ItXYej2ZlY9A7xf8h0W/SBd1mEvJaugSde48hW1QqAKerwrQ==
   dependencies:
     "@lerna/conventional-commits" "^3.22.0"
     "@yarn-tool/find-root" "^1.0.29"
@@ -675,12 +675,12 @@
     upath2 "^3.1.5"
     yargs "^15.4.1"
 
-"@yarn-tool/pkg-git-info@^1.0.10":
-  version "1.0.10"
-  resolved "https://registry.npmjs.org/@yarn-tool/pkg-git-info/-/pkg-git-info-1.0.10.tgz#c76034b1b3dae18d3048125a7522f241258730ee"
-  integrity sha512-MsJSR0ZJNeM0N1mLNgOABJEfNZTYL3cKfsserGzrG9YIMP5Aav1GnfYSnwenZcDw7kiEUscaq6Qk5Pwhd2rv0Q==
+"@yarn-tool/pkg-git-info@^1.0.11":
+  version "1.0.11"
+  resolved "https://registry.npmjs.org/@yarn-tool/pkg-git-info/-/pkg-git-info-1.0.11.tgz#8206133d2977abf493c7f5cf0f0caa277dbf6d8e"
+  integrity sha512-0YEZaTIPHcFA93gv0Dz6dgg3frEd8afWtzXYyRC56CbOgBHrHoPAiUbar9jAIkcsYyl0TE+YrdCBIflLVDhEUw==
   dependencies:
-    "@git-lazy/info" "^1.0.21"
+    "@git-lazy/info" "^1.0.22"
     "@types/hosted-git-info" "^3.0.0"
     hosted-git-info "^3.0.5"
 
@@ -693,10 +693,10 @@
     debug-color2 "^1.2.3"
     ts-type "^1.2.25"
 
-"@yarn-tool/static-file@^1.0.44":
-  version "1.0.44"
-  resolved "https://registry.npmjs.org/@yarn-tool/static-file/-/static-file-1.0.44.tgz#e5eb9b16a5b0cbf65b5fd758727f3160f8634e56"
-  integrity sha512-sobAJJdyOZ7B9b9Jdy/o1VVKKXbFuf+Ezkih9qLguoO2ZcBDCuhX/3wtP0Ncbap/nUg87K4bhYTMewZVQs9bhw==
+"@yarn-tool/static-file@^1.0.45":
+  version "1.0.45"
+  resolved "https://registry.npmjs.org/@yarn-tool/static-file/-/static-file-1.0.45.tgz#ccd10da3dd792f11bf7cf3f660dd69ec23326b84"
+  integrity sha512-QWRSbX5rg+R53wAXnFmmsN9jR84/Uiz9/ewefmCSUCj8eT3CDBNaHD0WWeLx1rYoLcR/MMN5BZUcKQmV2uplpw==
   dependencies:
     fs-extra "^9.0.1"
 
@@ -718,15 +718,15 @@
     "@yarn-tool/is-npx" "^1.0.4"
     update-notifier "^4.1.0"
 
-"@yarn-tool/workspaces-project@^1.0.14":
-  version "1.0.14"
-  resolved "https://registry.npmjs.org/@yarn-tool/workspaces-project/-/workspaces-project-1.0.14.tgz#e70a502ae7d4b1f9b00386cd922dbcd98c9711cf"
-  integrity sha512-njrH5EjNIGAEEDsV4e1HxtcQCxR21FYNSggRbk/pUyyv82x0NIqF2A8Nf92NRexnDGyOHrI9Z3A6az4nscYMGw==
+"@yarn-tool/workspaces-project@^1.0.15":
+  version "1.0.15"
+  resolved "https://registry.npmjs.org/@yarn-tool/workspaces-project/-/workspaces-project-1.0.15.tgz#088dae9f4a420f88a2971754d1465771d0395adb"
+  integrity sha512-wR3YSLzS7uyuK5Hv6CQN4eHuTCNoBIdlW+dl/wALsTjcuY3ZkhyqiTBK7fZR5oS7TwTcXbPWtLchzcFhxL4W+g==
   dependencies:
     "@lerna/project" "^3.21.0"
     "@ts-type/package-dts" "^1.0.33"
     "@types/npm-package-arg" "*"
-    "@yarn-tool/changelog" "^1.0.21"
+    "@yarn-tool/changelog" "^1.0.22"
     find-yarn-workspace-root2 "^1.2.22"
     fs-extra "^9.0.1"
     lodash "^4.17.19"
@@ -1608,12 +1608,12 @@ cosmiconfig@^5.1.0:
     js-yaml "^3.13.1"
     parse-json "^4.0.0"
 
-create-yarn-workspaces@^1.0.76:
-  version "1.0.76"
-  resolved "https://registry.npmjs.org/create-yarn-workspaces/-/create-yarn-workspaces-1.0.76.tgz#e3a1a016f30120414c4016c6bae86d8757809dd4"
-  integrity sha512-HtJkMeZ0ECIp8GdT3vbJurYv7JxW0kAvA4ILboaFgUvhLyxxkGX3OjVxXd+rSM3nIF6YV+EAzP/hwF/nNVUl5A==
+create-yarn-workspaces@^1.0.77:
+  version "1.0.77"
+  resolved "https://registry.npmjs.org/create-yarn-workspaces/-/create-yarn-workspaces-1.0.77.tgz#33126d1a3b991b9060015414f5b2207b4de0f971"
+  integrity sha512-Kwl/WiWpskzmYcOl9Ahz9Vw1871E/UMirgR2XpLvNBftk3lC2cN5HCcKWtdKMWw5hyaTYVb5uplvIKUPTxtr1Q==
   dependencies:
-    "@yarn-tool/static-file" "^1.0.44"
+    "@yarn-tool/static-file" "^1.0.45"
     debug-color2 "^1.2.3"
     find-yarn-workspace-root2 "^1.2.22"
     fs-extra "^9.0.1"
@@ -2333,13 +2333,13 @@ git-remote-origin-url@^2.0.0:
     gitconfiglocal "^1.0.0"
     pify "^2.3.0"
 
-git-root2@^1.0.19:
-  version "1.0.19"
-  resolved "https://registry.npmjs.org/git-root2/-/git-root2-1.0.19.tgz#4d22b16d1b06b14a59e543b638759f3d2a9ab1e6"
-  integrity sha512-82RMJhkSuooqtlj9HcRGHCBw7gjqGLzmH9o4aXvQKb2Vj5UGtAdEJp72BmiARlSIa/bPvrPmAoXrngN6HikwDw==
+git-root2@^1.0.20:
+  version "1.0.20"
+  resolved "https://registry.npmjs.org/git-root2/-/git-root2-1.0.20.tgz#86baac25743f1d93cb091d19f2395b94aa8cb4e5"
+  integrity sha512-m/X67yNNMIkMwseEL8kCDMjwOyPtQtk/80BUGhzpKuk4CX4uhJ54FeTeW1OKIKACIQwy04w1xOP6mUC7RwOBHw==
   dependencies:
-    "@git-lazy/spawn" "^1.0.21"
-    upath2 "^3.1.4"
+    "@git-lazy/spawn" "^1.0.22"
+    upath2 "^3.1.5"
 
 git-semver-tags@^2.0.3:
   version "2.0.3"
@@ -3724,18 +3724,18 @@ npm-check-updates@^7.0.2:
     spawn-please "^0.3.0"
     update-notifier "^4.1.0"
 
-npm-init2@^1.0.126:
-  version "1.0.126"
-  resolved "https://registry.npmjs.org/npm-init2/-/npm-init2-1.0.126.tgz#5cb91061e8116002c86f561bcb91e7460b9b4e21"
-  integrity sha512-viEyPDxfE3RgkQvozHnvjYZbSJw1rxWWItJtozXC8KMS+xC02eD6t42MPgINg7YdFcdzuv4UPEWqA8D3DQoD8g==
+npm-init2@^1.0.127:
+  version "1.0.127"
+  resolved "https://registry.npmjs.org/npm-init2/-/npm-init2-1.0.127.tgz#92eaffafd277e3911a322a697bc98dca11b920d0"
+  integrity sha512-eXXVc+yYbV6wSd5J9ueiRtd3e3+E1JBKj+3UM5XyB92bWnEMtfp+B3pUeD8ka1hsstDKGVxza+B8CdSY/gyQKA==
   dependencies:
     "@ts-type/package-dts" "^1.0.33"
     "@yarn-tool/find-root" "^1.0.29"
     "@yarn-tool/node-modules-link" "^1.0.1"
-    "@yarn-tool/pkg-git-info" "^1.0.10"
-    "@yarn-tool/static-file" "^1.0.44"
+    "@yarn-tool/pkg-git-info" "^1.0.11"
+    "@yarn-tool/static-file" "^1.0.45"
     "@yarn-tool/update-notifier" "^1.0.14"
-    "@yarn-tool/workspaces-project" "^1.0.14"
+    "@yarn-tool/workspaces-project" "^1.0.15"
     cross-spawn-extra "^2.1.0"
     find-yarn-workspace-root2 "^1.2.22"
     fs-extra "^9.0.1"
@@ -5381,7 +5381,7 @@ unset-value@^1.0.0:
     has-value "^0.3.1"
     isobject "^3.0.0"
 
-upath2@^3, upath2@^3.0.5, upath2@^3.1.4, upath2@^3.1.5:
+upath2@^3, upath2@^3.0.5, upath2@^3.1.5:
   version "3.1.5"
   resolved "https://registry.npmjs.org/upath2/-/upath2-3.1.5.tgz#5e964f2b6794d735601a0b868790ae9a0b8448b6"
   integrity sha512-vNcjhJHKdmcX8SgGQ/Ey3iZE8MQKc+OwhSCbsw/qAtW0wO99Arl02xKFE+ipnVaG0Zakt1ZCLaQGSWUTqSNQ+Q==
