@@ -1,6 +1,6 @@
 {
   "name": "yarn-tool",
-  "version": "1.0.126",
+  "version": "1.0.128",
   "description": "yarn cli tool helper",
   "keywords": [
     "cli",
@@ -49,8 +49,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "npm:publish": "npm publish",
     "npm:publish:lerna": "npx lerna publish --yes --bump patch",
-    "prepublish:yarn:install": "yarn-tool install",
-    "prepublishOnly_": "yarn run ncu && yarn run prepublish:yarn:install && yarn run sort-package-json",
+    "prepublish:yarn:install": "ts-node ./bin/yarn-tool install",
+    "prepublishOnly": "yarn run ncu && yarn run prepublish:yarn:install && yarn run sort-package-json",
     "prepublishOnly_": "yarn run prepublishOnly:update && yarn run prepublishOnly:check-bin && yarn run test",
     "prepublishOnly:check-bin": "ynpx --quiet @yarn-tool/check-pkg-bin",
     "prepublishOnly:lockfile": "ynpx --quiet sync-lockfile",
@@ -60,18 +60,18 @@
     "postpublish:git:commit": "git commit -m \"chore(release): publish\" . & echo postpublish:git:commit",
     "postpublish:git:push": "git push --follow-tags",
     "postpublish:git:tag": "ynpx --quiet @yarn-tool/tag",
-    "help": "yarn-tool --help",
-    "ncu": "yarn-tool ncu -u",
-    "sort-package-json": "yarn-tool sort"
+    "help": "ts-node ./bin/yarn-tool --help",
+    "ncu": "ts-node ./bin/yarn-tool ncu -u",
+    "sort-package-json": "ts-node ./bin/yarn-tool sort"
   },
   "dependencies": {
     "@ts-type/package-dts": "^1.0.43",
     "@yarn-tool/find-root": "^1.0.34",
-    "@yarn-tool/ncu": "^1.0.34",
+    "@yarn-tool/ncu": "^1.0.36",
     "@yarn-tool/static-file": "^1.0.50",
     "@yarn-tool/table": "^1.0.19",
     "@yarn-tool/update-notifier": "^1.0.14",
-    "@yarn-tool/yarnlock": "^1.0.27",
+    "@yarn-tool/yarnlock": "^1.0.29",
     "array-hyper-unique": "^1.1.9",
     "bluebird": "^3.7.2",
     "create-yarn-workspaces": "^1.0.84",
