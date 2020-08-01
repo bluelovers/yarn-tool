@@ -578,15 +578,15 @@
   dependencies:
     is-npx "^1.0.0"
 
-"@yarn-tool/ncu@^1.0.33":
-  version "1.0.33"
-  resolved "https://registry.npmjs.org/@yarn-tool/ncu/-/ncu-1.0.33.tgz#c5f787b2fc30fdd05061f339f84e7dca9cd10230"
-  integrity sha512-1RjoAdGk1AGDOpzv1YzPokkFdDB3hZmZJh76A/tuXbNE99Ibm6jAIsaV/UVQszA/0PfLJgR0Vy0sdYESeYTQCA==
+"@yarn-tool/ncu@^1.0.34":
+  version "1.0.34"
+  resolved "https://registry.npmjs.org/@yarn-tool/ncu/-/ncu-1.0.34.tgz#767e28346290265c835c66bec3d4757bf186daaf"
+  integrity sha512-lRSQC6CkSZTmWOG9mGZJAdilMWE2HU83d8RoikkVtmvzK97NAfaVV8cRFZ2W8EUkgvbulh4ZpBMCcZB08oMRCQ==
   dependencies:
     "@ts-type/package-dts" "^1.0.43"
     "@yarn-tool/semver-diff" "^1.0.11"
     "@yarn-tool/table" "^1.0.19"
-    "@yarn-tool/yarnlock" "^1.0.26"
+    "@yarn-tool/yarnlock" "^1.0.27"
     bluebird "^3.7.2"
     npm-check-updates "^7.0.2"
     package-json "^6.5.0"
@@ -679,6 +679,24 @@
     ts-type "^1.2.32"
     upath2 "^3.1.5"
 
+"@yarn-tool/yarnlock-banner@^1.0.1":
+  version "1.0.1"
+  resolved "https://registry.npmjs.org/@yarn-tool/yarnlock-banner/-/yarnlock-banner-1.0.1.tgz#0f6fb81b06751deef3e925fa17f66173d6f721a3"
+  integrity sha512-J3BqNijnMtajfeO7RYdwuZlwlZuReYeC2dskX7v83nGOgX0z19BSmDBK7TJ246lGujqVVofVmM0cUJoQ65Q/JQ==
+  dependencies:
+    crlf-normalize "^1.0.5"
+
+"@yarn-tool/yarnlock-dedupe@^1.0.1":
+  version "1.0.1"
+  resolved "https://registry.npmjs.org/@yarn-tool/yarnlock-dedupe/-/yarnlock-dedupe-1.0.1.tgz#471af873cf06bd064fe3df81329d3ea58a2667e8"
+  integrity sha512-ZEBUEsCdcSQmglAvm9BJAtlhEoEEc3n1orbSgbVpotH9Khxp2wghVkDchzevqIq7c5fdO/g/hU87mMVZe6QawA==
+  dependencies:
+    "@yarn-tool/detect-yarnlock-version" "^1.0.3"
+    "@yarn-tool/yarnlock-banner" "^1.0.1"
+    "@yarn-tool/yarnlock-stringify" "^1.0.1"
+    yarn-berry-deduplicate "^2.0.0"
+    yarn-deduplicate "^2.1.1"
+
 "@yarn-tool/yarnlock-diff@^1.0.1":
   version "1.0.1"
   resolved "https://registry.npmjs.org/@yarn-tool/yarnlock-diff/-/yarnlock-diff-1.0.1.tgz#127bf3fee73801cc4ecd75f05f9a81a34091c4c3"
@@ -712,15 +730,16 @@
     "@yarnpkg/lockfile" "^1.1.0"
     "@yarnpkg/parsers" "^2.1.0"
 
-"@yarn-tool/yarnlock@^1.0.26":
-  version "1.0.26"
-  resolved "https://registry.npmjs.org/@yarn-tool/yarnlock/-/yarnlock-1.0.26.tgz#69f52a60829eaec4b6b149be49f583d31c3d5fdd"
-  integrity sha512-mfGf9OaSuLlbSe+kDWBPL6hWmeQr+9slpl++ocDqE0t2mzYy0At1AThwjHRzBiJfjSCGd6Z24s0J+6hbojDmnQ==
+"@yarn-tool/yarnlock@^1.0.27":
+  version "1.0.27"
+  resolved "https://registry.npmjs.org/@yarn-tool/yarnlock/-/yarnlock-1.0.27.tgz#adc12a19fad688f041d28005baa2198b9287d0f8"
+  integrity sha512-lX8DroCo4wOe/Uomo8bqVRIevflhyZSTQvGnKm/ZP2zZc5LHDZ49787aPtPgSH3vSqny06md6cqDfAJBFv0QnA==
   dependencies:
     "@ts-type/package-dts" "^1.0.43"
     "@yarn-tool/detect-yarnlock-version" "^1.0.3"
     "@yarn-tool/find-root" "^1.0.34"
     "@yarn-tool/table" "^1.0.19"
+    "@yarn-tool/yarnlock-dedupe" "^1.0.1"
     "@yarn-tool/yarnlock-diff" "^1.0.1"
     "@yarn-tool/yarnlock-stringify" "^1.0.1"
     "@yarnpkg/lockfile" "^1.1.0"
@@ -737,7 +756,7 @@
   resolved "https://registry.npmjs.org/@yarnpkg/lockfile/-/lockfile-1.1.0.tgz#e77a97fbd345b76d83245edcd17d393b1b41fb31"
   integrity sha512-GpSwvyXOcOOlV70vbnzjj4fW5xW/FdUF6nQEt1ENy7m4ZCczi1+/buVUPAqmGfqznsORNFzUMjctTIp8a9tuCQ==
 
-"@yarnpkg/parsers@^2.1.0":
+"@yarnpkg/parsers@^2.0.0-rc.10", "@yarnpkg/parsers@^2.1.0":
   version "2.1.0"
   resolved "https://registry.npmjs.org/@yarnpkg/parsers/-/parsers-2.1.0.tgz#52615acdb54803d6404d6fb8f15fa124936bff1f"
   integrity sha512-75OYQ6PMs1C3zm+W+T1xhLyVDX78zXQGEVHpWd4o/QwpAbhneB3/5FXVGRzI3gjPPWWSb/pKOPB1S6p0xmQD2Q==
@@ -1427,6 +1446,11 @@ commander@^2.11.0, commander@^2.20.0:
   version "2.20.3"
   resolved "https://registry.npmjs.org/commander/-/commander-2.20.3.tgz#fd485e84c03eb4881c20722ba48035e8531aeb33"
   integrity sha512-GpVkmM8vF2vQUkj2LvZmD35JxeJOLCwJ9cUkugyk2nuhbv3+mJvpLYYt+0+USMxE+oj+ey/lJEnhZw75x/OMcQ==
+
+commander@^4.1.1:
+  version "4.1.1"
+  resolved "https://registry.npmjs.org/commander/-/commander-4.1.1.tgz#9fd602bd936294e9e9ef46a3f4d6964044b18068"
+  integrity sha512-NOKm8xhkzAjzFx8B2v5OAHT+u5pRQc2UCa2Vq9jYL/31o2wi9mxBA7LIFs3sV5VSC49z6pEhfbMULvShKj26WA==
 
 commander@^5.1.0:
   version "5.1.0"
@@ -4622,6 +4646,11 @@ semver-utils@^1.1.4:
   resolved "https://registry.npmjs.org/semver/-/semver-5.7.1.tgz#a954f931aeba508d307bbf069eff0c01c96116f7"
   integrity sha512-sauaDf/PZdVgrLTNYHRtpXa1iRiKcaebiKQ1BJdpQlWH2lCvexQdX55snPFyK7QzpudqbCI0qXFfOasHdyNDGQ==
 
+semver@7.1.3:
+  version "7.1.3"
+  resolved "https://registry.npmjs.org/semver/-/semver-7.1.3.tgz#e4345ce73071c53f336445cfc19efb1c311df2a6"
+  integrity sha512-ekM0zfiA9SCBlsKa2X1hxyxiI4L3B6EbVJkkdgQXnSEEaHlGdvyodMruTiulSRWMMB4NeIuYNMC9rTKTz97GxA==
+
 "semver@>= 7", semver@^7.0.0, semver@^7.1.1, semver@^7.3.2:
   version "7.3.2"
   resolved "https://registry.npmjs.org/semver/-/semver-7.3.2.tgz#604962b052b81ed0786aae84389ffba70ffd3938"
@@ -5653,3 +5682,21 @@ yargs@^14.2.3:
     which-module "^2.0.0"
     y18n "^4.0.0"
     yargs-parser "^15.0.1"
+
+yarn-berry-deduplicate@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.npmjs.org/yarn-berry-deduplicate/-/yarn-berry-deduplicate-2.0.0.tgz#d9557ec738075de31cf666d02f533bc38ed56cf2"
+  integrity sha512-/gtLePixo/vSoEeAmVEFna0vAufLRa+I6dpJvae8WhQYhXA/l0bcG6unahrA5RjERGbkoi/2PNIozpkbc70jdg==
+  dependencies:
+    "@yarnpkg/parsers" "^2.0.0-rc.10"
+    commander "^4.1.1"
+    semver "7.1.3"
+
+yarn-deduplicate@^2.1.1:
+  version "2.1.1"
+  resolved "https://registry.npmjs.org/yarn-deduplicate/-/yarn-deduplicate-2.1.1.tgz#500a3010e4bdee3c3250936e210910c7cae3d75d"
+  integrity sha512-lbFJGOMnqG/ncGjNBUt+JG4qfAGqeh8o9i4i5LXqNBdQ8ov8av6T1jizWQqr+zLPLCOqp/BYBZz8FymPQSR4RA==
+  dependencies:
+    "@yarnpkg/lockfile" "^1.1.0"
+    commander "^5.1.0"
+    semver "^7.3.2"

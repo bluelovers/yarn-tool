@@ -1,6 +1,6 @@
 {
   "name": "yarn-tool",
-  "version": "1.0.125",
+  "version": "1.0.126",
   "description": "yarn cli tool helper",
   "keywords": [
     "cli",
@@ -50,7 +50,7 @@
     "npm:publish": "npm publish",
     "npm:publish:lerna": "npx lerna publish --yes --bump patch",
     "prepublish:yarn:install": "yarn-tool install",
-    "prepublishOnly": "yarn run ncu && yarn run prepublish:yarn:install && yarn run sort-package-json",
+    "prepublishOnly_": "yarn run ncu && yarn run prepublish:yarn:install && yarn run sort-package-json",
     "prepublishOnly_": "yarn run prepublishOnly:update && yarn run prepublishOnly:check-bin && yarn run test",
     "prepublishOnly:check-bin": "ynpx --quiet @yarn-tool/check-pkg-bin",
     "prepublishOnly:lockfile": "ynpx --quiet sync-lockfile",
@@ -67,11 +67,11 @@
   "dependencies": {
     "@ts-type/package-dts": "^1.0.43",
     "@yarn-tool/find-root": "^1.0.34",
-    "@yarn-tool/ncu": "^1.0.33",
+    "@yarn-tool/ncu": "^1.0.34",
     "@yarn-tool/static-file": "^1.0.50",
     "@yarn-tool/table": "^1.0.19",
     "@yarn-tool/update-notifier": "^1.0.14",
-    "@yarn-tool/yarnlock": "^1.0.26",
+    "@yarn-tool/yarnlock": "^1.0.27",
     "array-hyper-unique": "^1.1.9",
     "bluebird": "^3.7.2",
     "create-yarn-workspaces": "^1.0.84",
