@@ -662,6 +662,16 @@
   dependencies:
     "@yarn-tool/is-builtin-module" "^1.0.4"
 
+"@yarn-tool/version-recommended@^1.0.5":
+  version "1.0.5"
+  resolved "https://registry.npmjs.org/@yarn-tool/version-recommended/-/version-recommended-1.0.5.tgz#38dc4648dc3869f07611ce8ac3017a34079e5d9c"
+  integrity sha512-DZ0Zbod4usm9pqeD0FAIsHJul9n93FEfgB3OEwLNR92IovjKCbrQsj/s9tXiHNo899HWy5LOyCJgSrtcedRyPw==
+  dependencies:
+    "@ts-type/package-dts" "^1.0.43"
+    "@yarn-tool/find-root" "^1.0.34"
+    "@yarn-tool/workspaces-project" "^1.0.27"
+    semver "^7.3.2"
+
 "@yarn-tool/workspaces-project@^1.0.27":
   version "1.0.27"
   resolved "https://registry.npmjs.org/@yarn-tool/workspaces-project/-/workspaces-project-1.0.27.tgz#3681eb25fcbe55ad4322c236f8445f8d7cf33fe4"
