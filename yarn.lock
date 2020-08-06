@@ -455,10 +455,10 @@
     "@types/through" "*"
     rxjs "^6.4.0"
 
-"@types/lodash@^4.14.158":
-  version "4.14.158"
-  resolved "https://registry.npmjs.org/@types/lodash/-/lodash-4.14.158.tgz#b38ea8b6fe799acd076d7a8d7ab71c26ef77f785"
-  integrity sha512-InCEXJNTv/59yO4VSfuvNrZHt7eeNtWQEgnieIA+mIC+MOWM9arOWG2eQ8Vhk6NbOre6/BidiXhkZYeDY9U35w==
+"@types/lodash@^4.14.159":
+  version "4.14.159"
+  resolved "https://registry.npmjs.org/@types/lodash/-/lodash-4.14.159.tgz#61089719dc6fdd9c5cb46efc827f2571d1517065"
+  integrity sha512-gF7A72f7WQN33DpqOWw9geApQPh4M3PxluMtaHxWHXEGSN12/WbcEk/eNSqWNQcQhF66VSZ06vCF94CrHwXJDg==
 
 "@types/luxon@*":
   version "1.24.0"
@@ -502,7 +502,7 @@
   resolved "https://registry.npmjs.org/@types/semver-utils/-/semver-utils-1.1.0.tgz#d35645238680d2297a8c9b67395d8b37f0500895"
   integrity sha512-p3ZoozEL036SPVLpMh1LuDebYQkes1rhBfXSFCbact9/FF6dkvR1UV/UqNO5wN5tvdlq+4jK+xTwgWwqRlFUJA==
 
-"@types/semver@^7.3.1":
+"@types/semver@*", "@types/semver@^7.3.1":
   version "7.3.1"
   resolved "https://registry.npmjs.org/@types/semver/-/semver-7.3.1.tgz#7a9a5d595b6d873f338c867dcef64df289468cfa"
   integrity sha512-ooD/FJ8EuwlDKOI6D9HWxgIgJjMg2cuziXm/42npDC8y4NjxplBUn9loewZiBNCt44450lHAU0OSb51/UqXeag==
@@ -677,20 +677,22 @@
   dependencies:
     "@yarn-tool/is-builtin-module" "^1.0.4"
 
-"@yarn-tool/version-recommended@^1.0.5":
-  version "1.0.5"
-  resolved "https://registry.npmjs.org/@yarn-tool/version-recommended/-/version-recommended-1.0.5.tgz#38dc4648dc3869f07611ce8ac3017a34079e5d9c"
-  integrity sha512-DZ0Zbod4usm9pqeD0FAIsHJul9n93FEfgB3OEwLNR92IovjKCbrQsj/s9tXiHNo899HWy5LOyCJgSrtcedRyPw==
+"@yarn-tool/version-recommended@^1.0.6":
+  version "1.0.6"
+  resolved "https://registry.npmjs.org/@yarn-tool/version-recommended/-/version-recommended-1.0.6.tgz#0d1f9a8a65af3b346543113fbd65c20657eecc93"
+  integrity sha512-e+++rmsNc6R8gPifDaD57955E/vOGq9Kdjvr8MD4MXVWddSVj8pM4eL9KeqXezfP93e9BXMbMtvf6xR9yhHz6w==
   dependencies:
     "@ts-type/package-dts" "^1.0.43"
+    "@types/semver" "*"
     "@yarn-tool/find-root" "^1.0.34"
-    "@yarn-tool/workspaces-project" "^1.0.27"
+    "@yarn-tool/workspaces-project" "^1.0.28"
     semver "^7.3.2"
+    ts-type "^1.2.32"
 
-"@yarn-tool/workspaces-project@^1.0.27":
-  version "1.0.27"
-  resolved "https://registry.npmjs.org/@yarn-tool/workspaces-project/-/workspaces-project-1.0.27.tgz#3681eb25fcbe55ad4322c236f8445f8d7cf33fe4"
-  integrity sha512-OGXu9cErLypEF743qe1H5Xer+ae8GQ/SzN57gx8CIkCOyWuBI8+zy/UR7vcxpyGDdJtRACF0nwsL0f35bBbM2A==
+"@yarn-tool/workspaces-project@^1.0.28":
+  version "1.0.28"
+  resolved "https://registry.npmjs.org/@yarn-tool/workspaces-project/-/workspaces-project-1.0.28.tgz#100b11cb12359eb35ff7fc6d81c282a97b3b0598"
+  integrity sha512-jIA/tVPpPEE+dVvmLRE6marSwFRHPPJcItlxr310rJCZdToCoJnXbA4dZTjXxFe+Lne3BQzKyALgiylJbLOaQQ==
   dependencies:
     "@lerna/project" "^3.21.0"
     "@ts-type/package-dts" "^1.0.43"
@@ -3790,10 +3792,10 @@ npm-check-updates@^7.0.2:
     spawn-please "^0.3.0"
     update-notifier "^4.1.0"
 
-npm-init2@^1.0.138:
-  version "1.0.138"
-  resolved "https://registry.npmjs.org/npm-init2/-/npm-init2-1.0.138.tgz#08179d583245c2cf1c4924c1956bbae318576e1b"
-  integrity sha512-f/oQ79AWMO2oDFSh66q/CXdP6JMv6hm+zLwqehczTnmAlcnXaywP/21fg+sD8c1TiJg0VMA5rEadcN0KjcLRjg==
+npm-init2@^1.0.139:
+  version "1.0.139"
+  resolved "https://registry.npmjs.org/npm-init2/-/npm-init2-1.0.139.tgz#94cec950b44723a0903885daea48ce5a5557f92c"
+  integrity sha512-4QgSH2W1DuRO1wAfxnSvHxVomOUOed9WCKriJyUhkI8Vz2X5rmTQQ0ZfAjb0dUv+4NcMRJ8nwL96W7GGKCroaA==
   dependencies:
     "@ts-type/package-dts" "^1.0.43"
     "@yarn-tool/find-root" "^1.0.34"
@@ -3803,7 +3805,7 @@ npm-init2@^1.0.138:
     "@yarn-tool/pkg-git-info" "^1.0.11"
     "@yarn-tool/static-file" "^1.0.50"
     "@yarn-tool/update-notifier" "^1.0.14"
-    "@yarn-tool/workspaces-project" "^1.0.27"
+    "@yarn-tool/workspaces-project" "^1.0.28"
     cross-spawn-extra "^2.1.0"
     find-yarn-workspace-root2 "^1.2.22"
     fs-extra "^9.0.1"

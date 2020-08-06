@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.130](https://github.com/bluelovers/yarn-tool/compare/yarn-tool@1.0.129...yarn-tool@1.0.130) (2020-08-06)
+
+
+### ✨　Features
+
+* bump version support interactive mode ([19c9f03](https://github.com/bluelovers/yarn-tool/commit/19c9f031aab2b08db26fba0c609d49ab8f50dd81))
+
+
+
+
+
 ## [1.0.129](https://github.com/bluelovers/yarn-tool/compare/yarn-tool@1.0.128...yarn-tool@1.0.129) (2020-08-02)
 
 
