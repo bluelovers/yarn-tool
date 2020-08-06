@@ -3,15 +3,18 @@
  */
 import { basenameStrip, createCommandModuleExports, lazySpawnArgvSlice } from '../../lib/cmd_dir';
 import path = require('upath2');
-import { console, chalkByConsole, consoleDebug, findRoot, yargsProcessExit } from '../../lib/index';
-import { readPackageJson } from '@ts-type/package-dts';
+import { console, chalkByConsole, consoleDebug, yargsProcessExit } from '../../lib/index';
 import { writePackageJson } from '../../lib/pkg';
 
 import { IUnpackMyYargsArgv } from '../../lib/cmd_dir';
 import { setupToYargs } from '@yarn-tool/version-recommended/lib/argv';
+import { releaseTypes } from '@yarn-tool/version-recommended/lib/types';
 import { nextVersionRecommendedByPackageFindUp } from '@yarn-tool/version-recommended/index';
 import { join } from 'upath2';
 import { colorizeDiff } from '@yarn-tool/semver-diff/lib/colorize';
+import inquirer from 'inquirer';
+import { findRoot } from '@yarn-tool/find-root/index';
+import { readPackageJson } from '@ts-type/package-dts/index';
 
 const cmdModule = createCommandModuleExports({
 
@@ -38,14 +41,39 @@ const cmdModule = createCommandModuleExports({
 			.strict(false)
 	},
 
-	handler(argv)
+	async handler(argv)
 	{
 		let rootData = findRoot(argv)
 
 		if (rootData.isWorkspace && argv.skipCheckWorkspace)
 		{
-			yargsProcessExit(`not allow bump version of workspace`);
+			yargsProcessExit(`not allow bump version on root of workspace`);
 			process.exit(1);
+		}
+
+		if (argv.interactive)
+		{
+			let rootData = findRoot(argv);
+			let pkg = readPackageJson(join(rootData.pkg, 'package.json'));
+
+			console.info(`Current version`, pkg.version)
+
+			let ret = await inquirer
+				.prompt([
+					{
+						type: 'list',
+						loop: true,
+						name: 'bump',
+						message: "What's type of bump version?",
+						choices: releaseTypes,
+					},
+				])
+			;
+
+			if (ret?.bump?.length > 0)
+			{
+				argv.bump = ret.bump;
+			}
 		}
 
 		let { pkg, bump, oldVersion, newVersion } = nextVersionRecommendedByPackageFindUp(argv)
