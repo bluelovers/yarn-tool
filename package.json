@@ -1,6 +1,6 @@
 {
   "name": "yarn-tool",
-  "version": "1.0.135",
+  "version": "1.0.136",
   "description": "yarn cli tool helper",
   "keywords": [
     "cli",
@@ -68,7 +68,7 @@
   "dependencies": {
     "@ts-type/package-dts": "^1.0.43",
     "@yarn-tool/find-root": "^1.0.35",
-    "@yarn-tool/ncu": "^1.0.39",
+    "@yarn-tool/ncu": "^1.0.41",
     "@yarn-tool/semver-diff": "^1.0.11",
     "@yarn-tool/static-file": "^1.0.52",
     "@yarn-tool/table": "^1.0.19",
@@ -77,7 +77,7 @@
     "@yarn-tool/yarnlock": "^1.0.31",
     "array-hyper-unique": "^1.1.9",
     "bluebird": "^3.7.2",
-    "create-yarn-workspaces": "^1.0.87",
+    "create-yarn-workspaces": "^1.0.90",
     "crlf-normalize": "^1.0.5",
     "cross-spawn-extra": "^2.1.0",
     "debug-color2": "^1.2.3",

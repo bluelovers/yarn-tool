@@ -215,10 +215,10 @@
   resolved "https://registry.npmjs.org/@lazy-node/is-writeable-path/-/is-writeable-path-1.0.1.tgz#d8bc43a3089a42b80310d6573407247c83ba86dd"
   integrity sha512-Q3OyHA9SOOUZsnNmKUfnX2eeWmqZKa6aFxsB81xZHJg/Um0FnhGrBGGWjRWEJoodGWW/4pJOQjuUYmQMAaqEVw==
 
-"@lazy-node/semver-ampersand@^1.0.2":
-  version "1.0.2"
-  resolved "https://registry.npmjs.org/@lazy-node/semver-ampersand/-/semver-ampersand-1.0.2.tgz#2a85054aba074d505ec2929e6bf03b412c76b1c3"
-  integrity sha512-BtZURi3ItVE0wm7sIemlrr3m4VFYcry4q2yNjJlkOTfgtMWOV2EgO2bwNZshQbmEk9rIsaxrxsqy+jYDgOGBSw==
+"@lazy-node/semver-ampersand@^1.0.5":
+  version "1.0.5"
+  resolved "https://registry.npmjs.org/@lazy-node/semver-ampersand/-/semver-ampersand-1.0.5.tgz#1e6eaedfd3dae3f93ae97d807388f0f47d5bedde"
+  integrity sha512-tsPaetr9T1lSMgMWtoBtK7OQIr1+RLloObdv/4arp3q0JpRgw+9FFIXogz8RDFFFbP0qQFPUqXv6nI7mk2G+lQ==
 
 "@lazy-node/semver-part@^1.0.3":
   version "1.0.3"
@@ -226,6 +226,13 @@
   integrity sha512-owItP3dGirWEJ0x6cCWFNKwSCL8DSmlM4lQMqPPvcLLJeGZE+fM/RHoN4rSabUErcXnQXVniXRhr2Yw7TyP38Q==
   dependencies:
     semver ">= 7"
+
+"@lazy-node/semver-simple-parse@^1.1.6":
+  version "1.1.6"
+  resolved "https://registry.npmjs.org/@lazy-node/semver-simple-parse/-/semver-simple-parse-1.1.6.tgz#cef35423c31902bfda6af8da06d8ff991b0b675a"
+  integrity sha512-rwWwdXHfKrB0yrqBuAtnKOT+YYjfLjW8V7afuuzSi4hCsg3yLm8oWHg/67u+wuvZf5+UMvy3WamyM5I5WrXyYA==
+  dependencies:
+    ts-type "^1.2.32"
 
 "@lerna/conventional-commits@^3.22.0":
   version "3.22.0"
@@ -608,18 +615,19 @@
   dependencies:
     is-npx "^1.0.0"
 
-"@yarn-tool/ncu@^1.0.39":
-  version "1.0.39"
-  resolved "https://registry.npmjs.org/@yarn-tool/ncu/-/ncu-1.0.39.tgz#875ddc9e948ebd47245986e72c496744b4d6b3b8"
-  integrity sha512-cvig3cvzi4DyeqUa0okpupr/gfttcO0X5Px3SCEQePM/tKmPX1v2gJrkSUqNz4fTVgS7bRurrvuqcwqhwWeHsg==
+"@yarn-tool/ncu@^1.0.41":
+  version "1.0.41"
+  resolved "https://registry.npmjs.org/@yarn-tool/ncu/-/ncu-1.0.41.tgz#48a00034e19a47e0163db41294833d081c08105e"
+  integrity sha512-ZY5EiaC9UWKgR9QybVwaxDC2C/0OfbbFKtLExzMuG8+SrUrZWe3npnoi+8Su4NrTEymVRWJk9IKeZ6RScCoP0w==
   dependencies:
+    "@lazy-node/semver-simple-parse" "^1.1.6"
     "@ts-type/package-dts" "^1.0.43"
-    "@yarn-tool/pkg-version-query" "^1.0.4"
+    "@yarn-tool/pkg-version-query" "^1.0.7"
     "@yarn-tool/semver-diff" "^1.0.11"
     "@yarn-tool/table" "^1.0.19"
     "@yarn-tool/yarnlock" "^1.0.31"
     bluebird "^3.7.2"
-    npm-check-updates "^7.0.3"
+    npm-check-updates "^7.1.0"
     npm-package-arg "^8.0.1"
     package-json "^6.5.0"
     semver "^7.3.2"
@@ -646,14 +654,14 @@
     "@types/hosted-git-info" "^3.0.0"
     hosted-git-info "^3.0.5"
 
-"@yarn-tool/pkg-version-query@^1.0.4":
-  version "1.0.4"
-  resolved "https://registry.npmjs.org/@yarn-tool/pkg-version-query/-/pkg-version-query-1.0.4.tgz#1c09f8661998a60d4ea03d70ddaa8e6bfce24137"
-  integrity sha512-Ic7zbWs/X2zpebE2xjmWkvl9A65JXL9XqwtpIeVgf4pvcKnD0zJUKYtvJNJLR0VlaDltwigv/pZfw5JXs4Yrng==
+"@yarn-tool/pkg-version-query@^1.0.7":
+  version "1.0.7"
+  resolved "https://registry.npmjs.org/@yarn-tool/pkg-version-query/-/pkg-version-query-1.0.7.tgz#66284c8f07bbd39583a23898132e394bffa8b1d3"
+  integrity sha512-Osxyc1yAwAYgTon6z4hQf19DADLqwfGCaU+Z2umlh2k3AuugVmX6Va9rBzaZzTtjpxWyy3dGjbGlFCENSzBfZA==
   dependencies:
-    "@lazy-node/semver-ampersand" "^1.0.2"
+    "@lazy-node/semver-ampersand" "^1.0.5"
     cache-path "^2.0.4"
-    lru-cache-fs2 "^2.0.4"
+    lru-cache-fs2 "^2.0.5"
     npm-package-arg "^8.0.1"
     package-json "^6.5.0"
     semver "^7.3.2"
@@ -1701,10 +1709,10 @@ cosmiconfig@^5.1.0:
     js-yaml "^3.13.1"
     parse-json "^4.0.0"
 
-create-yarn-workspaces@^1.0.87:
-  version "1.0.87"
-  resolved "https://registry.npmjs.org/create-yarn-workspaces/-/create-yarn-workspaces-1.0.87.tgz#efe73a9f00b452e32533a5f1a235c03f459a9d37"
-  integrity sha512-2YnNxkuuNQWphVyyzDXCHHOdbCAm2f1cQa5eO+3Q4YqZ00S1c+jx8C1WFqSNIJ/ee7H8eKIPgRj814ImS4qsXg==
+create-yarn-workspaces@^1.0.90:
+  version "1.0.90"
+  resolved "https://registry.npmjs.org/create-yarn-workspaces/-/create-yarn-workspaces-1.0.90.tgz#5ef9b0d06c8dcb301d5109f159126145a49b3ba1"
+  integrity sha512-O/HYKE7a1lIgyQ4c04GjidMdQfoEPLcTJOF8cFk6xujS3VR5ywYA00/Het34aCOTWaduqlKVdS49A83HI871lA==
   dependencies:
     "@ts-type/package-dts" "^1.0.43"
     "@yarn-tool/static-file" "^1.0.52"
@@ -3175,6 +3183,11 @@ jsonfile@^6.0.1:
   optionalDependencies:
     graceful-fs "^4.1.6"
 
+jsonlines@^0.1.1:
+  version "0.1.1"
+  resolved "https://registry.npmjs.org/jsonlines/-/jsonlines-0.1.1.tgz#4fcd246dc5d0e38691907c44ab002f782d1d94cc"
+  integrity sha1-T80kbcXQ44aRkHxEqwAveC0dlMw=
+
 jsonparse@^1.2.0, jsonparse@^1.3.1:
   version "1.3.1"
   resolved "https://registry.npmjs.org/jsonparse/-/jsonparse-1.3.1.tgz#3f4dae4a91fac315f71062f8521cc239f1366280"
@@ -3357,20 +3370,20 @@ lowercase-keys@^2.0.0:
   resolved "https://registry.npmjs.org/lowercase-keys/-/lowercase-keys-2.0.0.tgz#2603e78b7b4b0006cbca2fbcc8a3202558ac9479"
   integrity sha512-tqNXrS78oMOE73NMxK4EMLQsQowWf8jKooH9g7xPavRT706R6bkQJ6DY2Te7QukaZsulxa30wQ7bk0pm4XiHmA==
 
-lru-cache-fs2@^2.0.4:
-  version "2.0.4"
-  resolved "https://registry.npmjs.org/lru-cache-fs2/-/lru-cache-fs2-2.0.4.tgz#79fdd78834563b13050d0eedfa948c86ce74b727"
-  integrity sha512-9WwVaMsHhtk2XI8YuVwlqcluzGygK+lKfJLhDX/oRe2/L5SM5fd0I2tP0fAcCpfYJdW2/EgArwdlaC9eGNZ07Q==
+lru-cache-fs2@^2.0.5:
+  version "2.0.5"
+  resolved "https://registry.npmjs.org/lru-cache-fs2/-/lru-cache-fs2-2.0.5.tgz#e4c37e5c23b720f855379dc07d546c6c7c0689ec"
+  integrity sha512-QTJLGbj4eeuweT+d1O5S3pCHnnvoFoloV2nHr2RLjf8XNTMEhNeobdR2Sx4kSd1O8o5euSP5YBDUGNKmeJWiaA==
   dependencies:
     env-paths "^2"
     err-code "^2"
     fs-extra "^9"
-    lru-cache2 "^6.0.4"
+    lru-cache2 "^6.0.5"
 
-lru-cache2@^6.0.4:
-  version "6.0.4"
-  resolved "https://registry.npmjs.org/lru-cache2/-/lru-cache2-6.0.4.tgz#bb167bdc3e29c04852f7f3d2b46046be59ab085d"
-  integrity sha512-gCFW4oZ7mn0fznMFMBuWiQrS4SXKevgsVk15cCkn6zkiZoLT4ntgLn9/tCtr1sSOL3D16PbliVodT+YD7O+EYA==
+lru-cache2@^6.0.5:
+  version "6.0.5"
+  resolved "https://registry.npmjs.org/lru-cache2/-/lru-cache2-6.0.5.tgz#b15e379f5f8bd9d260e2ac9bd8c97b9a2d1c6254"
+  integrity sha512-CBWz/YbLqe1ZZNfmFlvWMIpPm1LjlYK9Caslb30Z6xq8jHRRGRLabH7YxQu2gQtSe3POcZ8INnRjTluXAvDYsw==
   dependencies:
     "@types/yallist" "*"
     yallist "^4"
@@ -3841,10 +3854,10 @@ npm-bundled@^1.1.1:
   dependencies:
     npm-normalize-package-bin "^1.0.1"
 
-npm-check-updates@^7.0.3:
-  version "7.0.3"
-  resolved "https://registry.npmjs.org/npm-check-updates/-/npm-check-updates-7.0.3.tgz#26fbe8f7079fb06a5ff665838d08735479c8298b"
-  integrity sha512-20R5Zp5H/3Uw3VAeYAwuEECtA4ML5QxaMVCsKviFZtN5p2ONDeXQT18+31vughQEDexDyNWRDU7JwwPeao2apA==
+npm-check-updates@^7.1.0:
+  version "7.1.0"
+  resolved "https://registry.npmjs.org/npm-check-updates/-/npm-check-updates-7.1.0.tgz#7cc4bb85e3712902fe6097168bae6518e69eabae"
+  integrity sha512-xxEObkGnT361LY57GY/+FQUgCARoAeRfIU5M2GxnESoZFMeDv1W7Ck01MBswyTEQgjD4A3HBolcBTYaJsSl03A==
   dependencies:
     chalk "^4.1.0"
     cint "^8.2.1"
@@ -3853,6 +3866,7 @@ npm-check-updates@^7.0.3:
     find-up "4.1.0"
     get-stdin "^8.0.0"
     json-parse-helpfulerror "^1.0.3"
+    jsonlines "^0.1.1"
     libnpmconfig "^1.2.1"
     lodash "^4.17.19"
     p-map "^4.0.0"
