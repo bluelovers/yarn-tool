@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.138](https://github.com/bluelovers/yarn-tool/compare/yarn-tool@1.0.137...yarn-tool@1.0.138) (2020-08-12)
+
+
+### 🐛　Bug Fixes
+
+* 修正 yarn.lock 沒有正確轉換的問題 ([92ba4e3](https://github.com/bluelovers/yarn-tool/commit/92ba4e38447a1570381eb8efac67fbed70457af9))
+
+
+
+
+
 ## [1.0.137](https://github.com/bluelovers/yarn-tool/compare/yarn-tool@1.0.136...yarn-tool@1.0.137) (2020-08-12)
 
 
