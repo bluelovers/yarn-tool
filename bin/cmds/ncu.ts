@@ -280,7 +280,7 @@ const cmdModule = createCommandModuleExports({
 
 		let yl = fsYarnLock(rootData.root);
 
-		if (!yl.yarnlock_exists)
+		if (yl.yarnlock_exists)
 		{
 			let ret = await updateYarnLockTag(yl.yarnlock_old);
 

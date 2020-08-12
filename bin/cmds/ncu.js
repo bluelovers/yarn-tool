@@ -180,7 +180,7 @@ const cmdModule = cmd_dir_1.createCommandModuleExports({
             }
         }
         let yl = fsYarnLock_1.fsYarnLock(rootData.root);
-        if (!yl.yarnlock_exists) {
+        if (yl.yarnlock_exists) {
             let ret = await index_2.updateYarnLockTag(yl.yarnlock_old);
             if (ret.yarnlock_changed) {
                 index_1.consoleDebug.magenta.info(`higher versions exists on registry`);
