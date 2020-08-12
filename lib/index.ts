@@ -3,7 +3,6 @@
  */
 
 import path = require('upath2');
-import fs = require('fs-extra');
 import { Console2 } from 'debug-color2';
 import { createFnChalkByConsole } from 'debug-color2/lib/util';
 import { readPackageJson } from '@ts-type/package-dts';
@@ -28,21 +27,6 @@ export function pathNormalize(input: string)
 export function pathEqual(a: string, b: string)
 {
 	return path.normalize(a) === path.normalize(b)
-}
-
-export function fsYarnLock(root: string)
-{
-	let yarnlock_file = path.join(root, 'yarn.lock');
-
-	let yarnlock_exists = fs.existsSync(yarnlock_file);
-
-	let yarnlock_old = yarnlock_exists && fs.readFileSync(yarnlock_file, 'utf8') || null;
-
-	return {
-		yarnlock_file,
-		yarnlock_exists,
-		yarnlock_old,
-	}
 }
 
 export function filterYargsArguments<T extends Arguments>(argv: T, list: string[] | ((key: keyof T, value: T[keyof T]) => boolean)): Partial<T>

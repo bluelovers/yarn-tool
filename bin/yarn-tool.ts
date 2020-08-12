@@ -7,7 +7,7 @@ import yargs = require('yargs');
 import path = require('upath2');
 import fs = require('fs-extra');
 import crossSpawn = require('cross-spawn-extra');
-import { console, consoleDebug, findRoot, fsYarnLock} from '../lib/index';
+import { console, consoleDebug, findRoot} from '../lib/index';
 import { Dedupe, infoFromDedupeCache, wrapDedupe } from '../lib/cli/dedupe';
 import { existsDependencies, flagsYarnAdd, listToTypes, setupYarnAddToYargs } from '../lib/cli/add';
 import setupYarnInstallToYargs from '../lib/cli/install';
@@ -38,6 +38,7 @@ import { setupWorkspacesInitToYargs } from 'create-yarn-workspaces/yargs-setting
 import { checkModileExists, crossSpawnOther, processArgvSlice } from '../lib/spawn';
 import osLocale = require('os-locale');
 import { updateNotifier } from '@yarn-tool/update-notifier';
+import { fsYarnLock } from '../lib/fsYarnLock';
 
 
 if (path.extname(__filename) === '.js' && !process.argv.filter(v => {

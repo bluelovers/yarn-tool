@@ -29,6 +29,9 @@ const pkg_1 = require("../../lib/pkg");
 const ncu_1 = __importStar(require("../../lib/cli/ncu"));
 const yarnlock_1 = require("../../lib/yarnlock");
 const table_1 = require("../../lib/table");
+const fsYarnLock_1 = require("../../lib/fsYarnLock");
+const index_2 = require("@yarn-tool/yarnlock-ncu/index");
+const fs_1 = require("fs");
 const cmdModule = cmd_dir_1.createCommandModuleExports({
     command: cmd_dir_1.basenameStrip(__filename) + ' [-u]',
     aliases: ['update'],
@@ -70,7 +73,7 @@ const cmdModule = cmd_dir_1.createCommandModuleExports({
             if (!resolutions || !Object.keys(resolutions).length) {
                 return index_1.yargsProcessExit(`resolutions is not exists in package.json`);
             }
-            let yl = index_1.fsYarnLock(rootData.root);
+            let yl = fsYarnLock_1.fsYarnLock(rootData.root);
             if (!yl.yarnlock_old) {
                 // 防止 yarn.lock 不存在
                 return;
@@ -78,7 +81,7 @@ const cmdModule = cmd_dir_1.createCommandModuleExports({
             let ret = await ncu_1.checkResolutionsUpdate(resolutions, yl.yarnlock_old, argv);
             //console.log(ret);
             if (ret.yarnlock_changed) {
-                yarnlock_1.writeYarnLockfile(yl.yarnlock_file, ret.yarnlock_new_obj);
+                yarnlock_1.writeYarnLockFile(yl.yarnlock_file, ret.yarnlock_new_obj);
                 index_1.chalkByConsole((chalk, console) => {
                     let p = chalk.cyan(path.relative(argv.cwd, yl.yarnlock_file));
                     console.log(`${p} is updated!`);
@@ -154,7 +157,7 @@ const cmdModule = cmd_dir_1.createCommandModuleExports({
                 }
                 return a;
             }, {});
-            let yl = index_1.fsYarnLock(rootData.root);
+            let yl = fsYarnLock_1.fsYarnLock(rootData.root);
             if (!yl.yarnlock_old) {
                 // 防止 yarn.lock 不存在
                 return;
@@ -171,9 +174,26 @@ const cmdModule = cmd_dir_1.createCommandModuleExports({
                 index_1.consoleDebug.log(`you can do `, index_1.console.bold.cyan.chalk(`yt ncu -u`), ` , for update package.json`);
             }
             if (ret.yarnlock_changed && argv.upgrade) {
-                yarnlock_1.writeYarnLockfile(yl.yarnlock_file, ret.yarnlock_new_obj);
+                yarnlock_1.writeYarnLockFile(yl.yarnlock_file, ret.yarnlock_new_obj);
                 index_1.consoleDebug.magenta.info(`Deduplication yarn.lock`);
                 index_1.consoleDebug.log(`you can do `, index_1.console.bold.cyan.chalk(`yt install`), ` , for upgrade dependencies now`);
+            }
+        }
+        let yl = fsYarnLock_1.fsYarnLock(rootData.root);
+        if (!yl.yarnlock_exists) {
+            let ret = await index_2.updateYarnLockTag(yl.yarnlock_old);
+            if (ret.yarnlock_changed) {
+                index_1.consoleDebug.magenta.info(`higher versions exists on registry`);
+                let s = index_2.printReport(ret.report);
+                (s === null || s === void 0 ? void 0 : s.length) > 0 && index_1.console.log(s);
+                if (argv.upgrade) {
+                    fs_1.writeFileSync(yl.yarnlock_file, ret.yarnlock_new);
+                    index_1.consoleDebug.magenta.info(`yarn.lock updated`);
+                    index_1.consoleDebug.log(`you can do `, index_1.console.bold.cyan.chalk(`yt install`), ` , for upgrade dependencies now`);
+                }
+                else {
+                    index_1.consoleDebug.log(`you can do `, index_1.console.bold.cyan.chalk(`yt ncu -u`), ` , for update yarn.lock`);
+                }
             }
         }
     },

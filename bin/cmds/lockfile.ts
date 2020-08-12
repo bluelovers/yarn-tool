@@ -4,7 +4,7 @@
 import { basenameStrip, createCommandModuleExports, lazySpawnArgvSlice } from '../../lib/cmd_dir';
 import path = require('upath2');
 import fs = require('fs-extra');
-import { chalkByConsole, console, consoleDebug, findRoot, fsYarnLock, yargsProcessExit } from '../../lib/index';
+import { chalkByConsole, console, consoleDebug, findRoot, yargsProcessExit } from '../../lib/index';
 import { readPackageJson } from '@ts-type/package-dts';
 import { writePackageJson } from '../../lib/pkg';
 
@@ -15,6 +15,7 @@ import { Arguments, CommandModule } from 'yargs';
 import Dedupe from '../../lib/cli/dedupe';
 import { npmToYarnCore, yarnToNpmCore } from 'synp2/lib';
 import fixNpmLock from '../../lib/cli/lockfile/fixNpmLock';
+import { fsYarnLock } from '../../lib/fsYarnLock';
 
 const COMMAND_KEY = basenameStrip(__filename);
 

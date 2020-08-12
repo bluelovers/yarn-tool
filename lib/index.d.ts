@@ -10,11 +10,6 @@ export declare const consoleDebug: Console2;
 export { findRoot };
 export declare function pathNormalize(input: string): string;
 export declare function pathEqual(a: string, b: string): boolean;
-export declare function fsYarnLock(root: string): {
-    yarnlock_file: string;
-    yarnlock_exists: boolean;
-    yarnlock_old: string;
-};
 export declare function filterYargsArguments<T extends Arguments>(argv: T, list: string[] | ((key: keyof T, value: T[keyof T]) => boolean)): Partial<T>;
 export declare function lazyFlags(keys: string[], argv: {
     [k: string]: boolean;

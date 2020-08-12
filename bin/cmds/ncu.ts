@@ -8,7 +8,6 @@ import {
 	console,
 	consoleDebug,
 	findRoot,
-	fsYarnLock,
 	printRootData,
 	yargsProcessExit,
 } from '../../lib/index';
@@ -27,12 +26,15 @@ import {
 	IDependencies,
 	IYarnLockfileParseObjectRow,
 	parse as parseYarnLock, removeResolutionsCore, stringify as stringifyYarnLock,
-	stripDepsName, writeYarnLockfile, yarnLockDiff,
+	stripDepsName, writeYarnLockFile, yarnLockDiff,
 } from '../../lib/yarnlock';
 import fs = require('fs-extra');
 import semver = require('semver');
 import Bluebird = require('bluebird');
 import { toDependencyTable } from '../../lib/table';
+import { fsYarnLock } from '../../lib/fsYarnLock';
+import { updateYarnLockTag, printReport } from '@yarn-tool/yarnlock-ncu/index';
+import { writeFileSync } from 'fs';
 
 const cmdModule = createCommandModuleExports({
 
@@ -102,14 +104,13 @@ const cmdModule = createCommandModuleExports({
 				return;
 			}
 
-			let ret = await checkResolutionsUpdate(resolutions, yl.yarnlock_old, argv)
-			;
+			let ret = await checkResolutionsUpdate(resolutions, yl.yarnlock_old, argv);
 
 			//console.log(ret);
 
 			if (ret.yarnlock_changed)
 			{
-				writeYarnLockfile(yl.yarnlock_file, ret.yarnlock_new_obj);
+				writeYarnLockFile(yl.yarnlock_file, ret.yarnlock_new_obj);
 
 				chalkByConsole((chalk, console) =>
 				{
@@ -192,6 +193,8 @@ const cmdModule = createCommandModuleExports({
 
 					}, console);
 				}
+
+
 			}
 
 			return;
@@ -267,12 +270,38 @@ const cmdModule = createCommandModuleExports({
 
 			if (ret.yarnlock_changed && argv.upgrade)
 			{
-				writeYarnLockfile(yl.yarnlock_file, ret.yarnlock_new_obj);
+				writeYarnLockFile(yl.yarnlock_file, ret.yarnlock_new_obj);
 
 				consoleDebug.magenta.info(`Deduplication yarn.lock`);
 				consoleDebug.log(`you can do `, console.bold.cyan.chalk(`yt install`), ` , for upgrade dependencies now`);
 			}
 
+		}
+
+		let yl = fsYarnLock(rootData.root);
+
+		if (!yl.yarnlock_exists)
+		{
+			let ret = await updateYarnLockTag(yl.yarnlock_old);
+
+			if (ret.yarnlock_changed)
+			{
+				consoleDebug.magenta.info(`higher versions exists on registry`);
+
+				let s = printReport(ret.report);
+				s?.length > 0 && console.log(s);
+
+				if (argv.upgrade)
+				{
+					writeFileSync(yl.yarnlock_file, ret.yarnlock_new);
+					consoleDebug.magenta.info(`yarn.lock updated`);
+					consoleDebug.log(`you can do `, console.bold.cyan.chalk(`yt install`), ` , for upgrade dependencies now`);
+				}
+				else
+				{
+					consoleDebug.log(`you can do `, console.bold.cyan.chalk(`yt ncu -u`), ` , for update yarn.lock`);
+				}
+			}
 		}
 
 	},

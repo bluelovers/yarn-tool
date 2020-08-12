@@ -215,10 +215,10 @@
   resolved "https://registry.npmjs.org/@lazy-node/is-writeable-path/-/is-writeable-path-1.0.1.tgz#d8bc43a3089a42b80310d6573407247c83ba86dd"
   integrity sha512-Q3OyHA9SOOUZsnNmKUfnX2eeWmqZKa6aFxsB81xZHJg/Um0FnhGrBGGWjRWEJoodGWW/4pJOQjuUYmQMAaqEVw==
 
-"@lazy-node/semver-ampersand@^1.0.5":
-  version "1.0.5"
-  resolved "https://registry.npmjs.org/@lazy-node/semver-ampersand/-/semver-ampersand-1.0.5.tgz#1e6eaedfd3dae3f93ae97d807388f0f47d5bedde"
-  integrity sha512-tsPaetr9T1lSMgMWtoBtK7OQIr1+RLloObdv/4arp3q0JpRgw+9FFIXogz8RDFFFbP0qQFPUqXv6nI7mk2G+lQ==
+"@lazy-node/semver-ampersand@^1.0.7":
+  version "1.0.7"
+  resolved "https://registry.npmjs.org/@lazy-node/semver-ampersand/-/semver-ampersand-1.0.7.tgz#8eb8fb789c413be82b5ef80d7b0d31747b91b426"
+  integrity sha512-Mkivb7nTA9jeN9OxeAfohgmxSBpbjO9TACHfx5LhE8ZlNQRYPUEyN86CA/wnW5vncznXXFTbUmMda2HylzV54g==
 
 "@lazy-node/semver-part@^1.0.3":
   version "1.0.3"
@@ -654,12 +654,12 @@
     "@types/hosted-git-info" "^3.0.0"
     hosted-git-info "^3.0.5"
 
-"@yarn-tool/pkg-version-query@^1.0.7":
-  version "1.0.7"
-  resolved "https://registry.npmjs.org/@yarn-tool/pkg-version-query/-/pkg-version-query-1.0.7.tgz#66284c8f07bbd39583a23898132e394bffa8b1d3"
-  integrity sha512-Osxyc1yAwAYgTon6z4hQf19DADLqwfGCaU+Z2umlh2k3AuugVmX6Va9rBzaZzTtjpxWyy3dGjbGlFCENSzBfZA==
+"@yarn-tool/pkg-version-query@^1.0.11", "@yarn-tool/pkg-version-query@^1.0.7":
+  version "1.0.11"
+  resolved "https://registry.npmjs.org/@yarn-tool/pkg-version-query/-/pkg-version-query-1.0.11.tgz#60f322b17e536a15f38be65669515220babe08c9"
+  integrity sha512-DPy89SMQn6ydTpQiM8WIQwE/PoXt5Lo+c3KEhSSXoW5J4SC0/0EkTDv43qpomY059yuQXrShuMXw6Gi4YPb92A==
   dependencies:
-    "@lazy-node/semver-ampersand" "^1.0.5"
+    "@lazy-node/semver-ampersand" "^1.0.7"
     cache-path "^2.0.4"
     lru-cache-fs2 "^2.0.5"
     npm-package-arg "^8.0.1"
@@ -762,14 +762,15 @@
     yarn-berry-deduplicate "^2.0.0"
     yarn-deduplicate "^2.1.1"
 
-"@yarn-tool/yarnlock-diff@^1.0.4":
-  version "1.0.4"
-  resolved "https://registry.npmjs.org/@yarn-tool/yarnlock-diff/-/yarnlock-diff-1.0.4.tgz#fda3d82dbb4ca4f429ea19f099b8207df4db5560"
-  integrity sha512-sPWnUjNhfwbYKxysrrnOu+XGJE92rYAscJMceXAXmSTiQ3MS2Umm1kf+UqDVGAcWQSzwHM1C3pD+GXkCaT8DMw==
+"@yarn-tool/yarnlock-diff@^1.0.4", "@yarn-tool/yarnlock-diff@^1.0.6":
+  version "1.0.6"
+  resolved "https://registry.npmjs.org/@yarn-tool/yarnlock-diff/-/yarnlock-diff-1.0.6.tgz#7646803c7228a4ef7d3344a364e78c9b831e261c"
+  integrity sha512-bFOBgbNCnHWqmeXnUsvu0817j3+DIttDbcWcGUPVv30LS5EjhshZ7Xkac59ZuedR5gVE1yFRcq21Y5gbXRpZcg==
   dependencies:
     "@yarn-tool/semver-diff" "^1.0.11"
     "@yarn-tool/table" "^1.0.19"
-    "@yarn-tool/yarnlock-parse" "^1.0.2"
+    "@yarn-tool/yarnlock-parse" "^1.0.6"
+    "@yarn-tool/yarnlock-util" "^1.0.4"
     "@yarnpkg/parsers" "^2.1.0"
     array-hyper-unique "^1.1.9"
     debug-color2 "^1.2.3"
@@ -778,11 +779,37 @@
     semver "^7.3.2"
     ts-type "^1.2.32"
 
-"@yarn-tool/yarnlock-parse@^1.0.2":
+"@yarn-tool/yarnlock-entries@^1.0.2":
   version "1.0.2"
-  resolved "https://registry.npmjs.org/@yarn-tool/yarnlock-parse/-/yarnlock-parse-1.0.2.tgz#7a898e4dd3b342e3ddd79d9d087eca4102ef1cdc"
-  integrity sha512-XtBX7NNFdTW+kBzG3wwK57j2v16wDIZN14OyxXmPi9tvvBwgnnDfLzVom8wGyCLWDI9Ph91rT7ixfYjnaWKf3Q==
+  resolved "https://registry.npmjs.org/@yarn-tool/yarnlock-entries/-/yarnlock-entries-1.0.2.tgz#0628c2f2eb222bc73836fcd057d25678ab13dc80"
+  integrity sha512-wkvMEWBO0Z8MIrfsJuwX+TgxV2gpI/j6wMDrGFhrC3dB2Et2HkyTKLvltn0SOPEMmxlLwXfJowwMAEvOpAbvwA==
   dependencies:
+    "@yarn-tool/detect-yarnlock-version" "^1.0.4"
+    "@yarn-tool/yarnlock-parse" "^1.0.6"
+    "@yarn-tool/yarnlock-stringify" "^1.0.2"
+    "@yarn-tool/yarnlock-util" "^1.0.4"
+    lodash "^4.17.19"
+    ts-type "^1.2.32"
+
+"@yarn-tool/yarnlock-ncu@^1.0.1":
+  version "1.0.1"
+  resolved "https://registry.npmjs.org/@yarn-tool/yarnlock-ncu/-/yarnlock-ncu-1.0.1.tgz#e6fc1053e8f9f7f2be1b2b71f527b8770453464e"
+  integrity sha512-mSa4yfgpqi6SGjrc75QOQ26IlnZO73WHHTeNLpv7NwsOQCVFKsZkFyYRlGpukNsIMTiMzA5Tl0SCE/wZjv/n1g==
+  dependencies:
+    "@yarn-tool/pkg-version-query" "^1.0.11"
+    "@yarn-tool/semver-diff" "^1.0.11"
+    "@yarn-tool/table" "^1.0.19"
+    "@yarn-tool/yarnlock-diff" "^1.0.6"
+    "@yarn-tool/yarnlock-entries" "^1.0.2"
+    debug-color2 "^1.2.3"
+    semver "^7.3.2"
+
+"@yarn-tool/yarnlock-parse@^1.0.6":
+  version "1.0.6"
+  resolved "https://registry.npmjs.org/@yarn-tool/yarnlock-parse/-/yarnlock-parse-1.0.6.tgz#0d9411fbf6485d20dc361f182767f098cc86cdd6"
+  integrity sha512-0mtDCdQ1iPwRZdfKk5sJN0HWEBYMd7wd6UPHPNZfVftNAnhemFUv+Q3z+i6uzOVZ5bYSTeve2VKBcFlGj0MjjQ==
+  dependencies:
+    "@ts-type/package-dts" "^1.0.43"
     "@yarn-tool/detect-yarnlock-version" "^1.0.4"
     "@yarnpkg/lockfile" "^1.1.0"
     "@yarnpkg/parsers" "^2.1.0"
@@ -796,17 +823,26 @@
     "@yarnpkg/lockfile" "^1.1.0"
     "@yarnpkg/parsers" "^2.1.0"
 
-"@yarn-tool/yarnlock@^1.0.31":
-  version "1.0.31"
-  resolved "https://registry.npmjs.org/@yarn-tool/yarnlock/-/yarnlock-1.0.31.tgz#b9fc4b909276c81c294ddb660abf0526fad9eced"
-  integrity sha512-6vjiHVgMngqaCrqzVV3tOr7IKqju/uT7YJxfzR/dilw1dhh4N0UuEQV3JTfrgsKzD2oA3KUjTammWOlzKA9Shw==
+"@yarn-tool/yarnlock-util@^1.0.4":
+  version "1.0.4"
+  resolved "https://registry.npmjs.org/@yarn-tool/yarnlock-util/-/yarnlock-util-1.0.4.tgz#f8b9525a68d9de37e7a6a55b46d0d92a78cf63bc"
+  integrity sha512-mTDbvUnczYP4thKnrQMjAwSxLXJ3yJ888GJNH2YjHOYHFwMpcXWZi6hK+R+EPbKgK9UfJMsJozCdK2FXFkh7Dw==
+  dependencies:
+    "@yarn-tool/yarnlock-parse" "^1.0.6"
+    "@yarnpkg/parsers" "^2.1.0"
+    npm-package-arg "^8.0.1"
+
+"@yarn-tool/yarnlock@^1.0.31", "@yarn-tool/yarnlock@^1.0.34":
+  version "1.0.34"
+  resolved "https://registry.npmjs.org/@yarn-tool/yarnlock/-/yarnlock-1.0.34.tgz#04950399dfb2e08959b504cc249314be28b37c79"
+  integrity sha512-f8mY0jit66cUS8RKSoSqxExko7wJYgU1vT5dLNOEiTa0T0aLCSCjh5N+adVcRkrGagj11JBW334ydjx7B+9KQA==
   dependencies:
     "@ts-type/package-dts" "^1.0.43"
     "@yarn-tool/detect-yarnlock-version" "^1.0.4"
     "@yarn-tool/find-root" "^1.0.35"
     "@yarn-tool/table" "^1.0.19"
     "@yarn-tool/yarnlock-dedupe" "^1.0.2"
-    "@yarn-tool/yarnlock-diff" "^1.0.4"
+    "@yarn-tool/yarnlock-diff" "^1.0.6"
     "@yarn-tool/yarnlock-stringify" "^1.0.2"
     "@yarnpkg/lockfile" "^1.1.0"
     "@yarnpkg/parsers" "^2.1.0"
