@@ -615,17 +615,17 @@
   dependencies:
     is-npx "^1.0.0"
 
-"@yarn-tool/ncu@^1.0.46":
-  version "1.0.46"
-  resolved "https://registry.npmjs.org/@yarn-tool/ncu/-/ncu-1.0.46.tgz#3ff6883161ddc4f8130a540153f704fa842d4a16"
-  integrity sha512-pGTeV3FL60rb1iQySGbzixWb4tgFROvTyMRwIzOgI1Fg0NkluKT3i54ePMNp+LOQ/TiL7XRlyL9VIoh04MMA/A==
+"@yarn-tool/ncu@^1.0.47":
+  version "1.0.47"
+  resolved "https://registry.npmjs.org/@yarn-tool/ncu/-/ncu-1.0.47.tgz#4698fee7671668278e0a3f5d5346d67abe905380"
+  integrity sha512-UKCsLDzzimralDRCcK4ij3QAW9DhCtW+S9iQjwxau2lq4BvrjqGpgApbDms95cJU2Y1yBY1IA3F4xsgXjd5Tog==
   dependencies:
     "@lazy-node/semver-simple-parse" "^1.1.6"
     "@ts-type/package-dts" "^1.0.43"
     "@yarn-tool/pkg-version-query" "^1.0.11"
     "@yarn-tool/semver-diff" "^1.0.11"
     "@yarn-tool/table" "^1.0.19"
-    "@yarn-tool/yarnlock" "^1.0.36"
+    "@yarn-tool/yarnlock" "^1.0.37"
     bluebird "^3.7.2"
     npm-check-updates "^7.1.0"
     npm-package-arg "^8.0.1"
@@ -799,6 +799,15 @@
     lodash "^4.17.19"
     ts-type "^1.2.32"
 
+"@yarn-tool/yarnlock-fs@^1.0.1":
+  version "1.0.1"
+  resolved "https://registry.npmjs.org/@yarn-tool/yarnlock-fs/-/yarnlock-fs-1.0.1.tgz#703476764e304fe49a45dbbd9005e19e681fc834"
+  integrity sha512-hgt+80o05YWRCfUxv2vdJ2QNVuMh8CiQ5Eef0vuA11gGUn2vYZ3k1M0w0GQOfBZZ5F+SHkTMdtFV3hA6ioCK5g==
+  dependencies:
+    "@yarn-tool/yarnlock-parse" "^1.0.6"
+    "@yarn-tool/yarnlock-stringify" "^1.0.3"
+    fs-extra "^9.0.1"
+
 "@yarn-tool/yarnlock-ncu@^1.0.3":
   version "1.0.3"
   resolved "https://registry.npmjs.org/@yarn-tool/yarnlock-ncu/-/yarnlock-ncu-1.0.3.tgz#7312010e3cc29cde17673b5aaaf60a75102db56a"
@@ -841,10 +850,10 @@
     "@yarnpkg/parsers" "^2.1.0"
     npm-package-arg "^8.0.1"
 
-"@yarn-tool/yarnlock@^1.0.36":
-  version "1.0.36"
-  resolved "https://registry.npmjs.org/@yarn-tool/yarnlock/-/yarnlock-1.0.36.tgz#96f9b48f4621c6883ed788060c65a70dacb14c87"
-  integrity sha512-aU0a5x7O+DUhZxndUXJhrrxIDq41ZBV9mTSRRMG8Dj6H9X7jSj0i3BSC+6Nw1a0Bss/RahGU3r4JHEN0EV+Oow==
+"@yarn-tool/yarnlock@^1.0.37":
+  version "1.0.37"
+  resolved "https://registry.npmjs.org/@yarn-tool/yarnlock/-/yarnlock-1.0.37.tgz#5608b312b53f83e1495bc0d0a3cd36598216f342"
+  integrity sha512-mBk1SDC0J+pQ1DaFH2YFqO1DHhB+jVhYX/lo46YsuMJld/w3ifOd311I0atikzGauyPowpNL+un6TgKoh1hmxg==
   dependencies:
     "@ts-type/package-dts" "^1.0.43"
     "@yarn-tool/detect-yarnlock-version" "^1.0.4"
@@ -852,6 +861,7 @@
     "@yarn-tool/table" "^1.0.19"
     "@yarn-tool/yarnlock-dedupe" "^1.0.3"
     "@yarn-tool/yarnlock-diff" "^1.0.7"
+    "@yarn-tool/yarnlock-fs" "^1.0.1"
     "@yarn-tool/yarnlock-stringify" "^1.0.3"
     "@yarnpkg/lockfile" "^1.1.0"
     "@yarnpkg/parsers" "^2.1.0"
