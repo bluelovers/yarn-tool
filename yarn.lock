@@ -645,13 +645,26 @@
     upath2 "^3.1.6"
     yargs "^15.4.1"
 
-"@yarn-tool/npm-package-arg-util@^1.0.4":
-  version "1.0.4"
-  resolved "https://registry.npmjs.org/@yarn-tool/npm-package-arg-util/-/npm-package-arg-util-1.0.4.tgz#7505b2388b8a0d5ba1866603cf7d0e4b0aa1f290"
-  integrity sha512-sYh9xCRuzHjn6rbJCTRjCNEBiGeOa0xXEj1hBquiEkjdNl9fmCulJVtz/zMQEYL3zEczifEmAvcNUxNY+Nkbyg==
+"@yarn-tool/npm-package-arg-util@^1.0.4", "@yarn-tool/npm-package-arg-util@^1.0.5":
+  version "1.0.5"
+  resolved "https://registry.npmjs.org/@yarn-tool/npm-package-arg-util/-/npm-package-arg-util-1.0.5.tgz#91aacd63d56930f547b8febaf9a44951cea5e390"
+  integrity sha512-anow6i9aTwSrunTbqlqsDTDqBjY7YzBGD5SrSmfAX7AtooeXrGmFXx6tp4UY8rPHuBB0wz62uGyZCSYgf2w/DQ==
   dependencies:
     "@types/npm-package-arg" "*"
     npm-package-arg "^8.0.1"
+
+"@yarn-tool/pkg-deps-util@^1.0.1":
+  version "1.0.1"
+  resolved "https://registry.npmjs.org/@yarn-tool/pkg-deps-util/-/pkg-deps-util-1.0.1.tgz#a21af13d63dcadc0f78227cb43ba9fe5939cb785"
+  integrity sha512-LWaRuAi3LIlvpCDFg6660AkCHaNSxZvM6iP0gxX+g7sqE+v8QHNXIHnFofik9J/dxTUNIUJTn/jjWrbKvNHyRw==
+  dependencies:
+    "@ts-type/package-dts" "^1.0.43"
+    "@yarn-tool/npm-package-arg-util" "^1.0.5"
+    "@yarn-tool/pkg-version-query" "^1.0.11"
+    array-hyper-unique "^1.1.9"
+    cross-spawn-extra "^2.1.0"
+    debug-color2 "^1.2.3"
+    err-code "^2.0.3"
 
 "@yarn-tool/pkg-git-info@^1.0.11":
   version "1.0.11"
@@ -2095,7 +2108,7 @@ err-code@^1.0.0:
   resolved "https://registry.npmjs.org/err-code/-/err-code-1.1.2.tgz#06e0116d3028f6aef4806849eb0ea6a748ae6960"
   integrity sha1-BuARbTAo9q70gGhJ6w6mp0iuaWA=
 
-err-code@^2:
+err-code@^2, err-code@^2.0.3:
   version "2.0.3"
   resolved "https://registry.npmjs.org/err-code/-/err-code-2.0.3.tgz#23c2f3b756ffdfc608d30e27c9a941024807e7f9"
   integrity sha512-2bmlRpNKBxT/CRmPOlyISQpNj+qSeYvcym/uT0Jx2bMOlKLtSy1ZmLuVxSEKKyor/N5yhvp/ZiG1oE3DEYMSFA==

@@ -2,24 +2,15 @@
  * Created by user on 2019/5/19.
  */
 import { basenameStrip, createCommandModuleExports } from '../../lib/cmd_dir';
-import path = require('upath2');
-import { console, consoleDebug, findRoot, printRootData } from '../../lib/index';
+import { console, consoleDebug, findRoot } from '../../lib/index';
 import { readPackageJson } from '@ts-type/package-dts';
-import { writePackageJson } from '../../lib/pkg';
-
-import { IUnpackMyYargsArgv } from '../../lib/cmd_dir';
-import { infoFromDedupeCache, wrapDedupe } from '../../lib/cli/dedupe';
-import yargs = require('yargs');
-import {
-	existsDependencies,
-	flagsYarnAdd,
-	listToTypes,
-	parseArgvPkgName,
-	setupYarnAddToYargs,
-} from '../../lib/cli/add';
-import crossSpawn = require('cross-spawn-extra');
+import { existsDependencies, parseArgvPkgName, setupYarnAddToYargs } from '../../lib/cli/add';
 import { fetchPackageJsonInfo } from '../../lib/cli/types';
 import { array_unique } from 'array-hyper-unique';
+import { flagsYarnAdd } from '@yarn-tool/pkg-deps-util/lib/cli/flagsYarnAdd';
+import { checkInstallTargetTypes, EnumInstallTypesErrorCode } from '@yarn-tool/pkg-deps-util/lib/installTypes';
+import path from 'upath2';
+import crossSpawn from 'cross-spawn-extra';
 
 const cmdModule = createCommandModuleExports({
 
@@ -156,6 +147,32 @@ const cmdModule = createCommandModuleExports({
 
 		for (let packageName of args)
 		{
+			let check = await checkInstallTargetTypes(packageName, {
+				checkExists: true,
+				pkg,
+			});
+
+			if (check.error)
+			{
+				switch (check.error)
+				{
+					case EnumInstallTypesErrorCode.DEPRECATED:
+						warns.push([`[ignore]`, check.name, '：', check.msg]);
+						break;
+					case EnumInstallTypesErrorCode.NOT_EXISTS:
+						warns.push([`[warn]`, console.red.chalk(check.msg)]);
+						break;
+					case EnumInstallTypesErrorCode.SKIP:
+						warns.push([`[skip]`, check.msg]);
+						break;
+				}
+			}
+			else
+			{
+				list.push(check.target);
+			}
+
+			/*
 			let m = parseArgvPkgName(packageName);
 
 			if (!m)
@@ -200,6 +217,7 @@ const cmdModule = createCommandModuleExports({
 			}
 
 			list.push(target.name + `@^${target.version}`);
+			 */
 		}
 
 		if (list.length)
@@ -222,9 +240,11 @@ const cmdModule = createCommandModuleExports({
 		}
 		else
 		{
-			printWarns();
+			//printWarns();
 
-			console.warn(`[warn]`, `no any new types install`);
+			//console.warn(`[warn]`, `no any new types install`);
+
+			warns.push([`[warn]`, console.red.chalk(`no any new types install`)]);
 		}
 
 		printWarns();

@@ -1,15 +1,19 @@
 "use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 /**
  * Created by user on 2019/5/19.
  */
 const cmd_dir_1 = require("../../lib/cmd_dir");
-const path = require("upath2");
 const index_1 = require("../../lib/index");
 const package_dts_1 = require("@ts-type/package-dts");
 const add_1 = require("../../lib/cli/add");
-const crossSpawn = require("cross-spawn-extra");
-const types_1 = require("../../lib/cli/types");
 const array_hyper_unique_1 = require("array-hyper-unique");
+const flagsYarnAdd_1 = require("@yarn-tool/pkg-deps-util/lib/cli/flagsYarnAdd");
+const installTypes_1 = require("@yarn-tool/pkg-deps-util/lib/installTypes");
+const upath2_1 = __importDefault(require("upath2"));
+const cross_spawn_extra_1 = __importDefault(require("cross-spawn-extra"));
 const cmdModule = cmd_dir_1.createCommandModuleExports({
     command: cmd_dir_1.basenameStrip(__filename) + ' [name]',
     //aliases: [],
@@ -44,7 +48,7 @@ const cmdModule = cmd_dir_1.createCommandModuleExports({
         let rootData = index_1.findRoot({
             ...argv,
         });
-        let pkg_file = path.join(rootData.pkg, 'package.json');
+        let pkg_file = upath2_1.default.join(rootData.pkg, 'package.json');
         let pkg = package_dts_1.readPackageJson(pkg_file);
         if (argv.AA) {
             argv.auto = true;
@@ -90,7 +94,7 @@ const cmdModule = cmd_dir_1.createCommandModuleExports({
                 return process.exit();
             }
         }
-        let flags = add_1.flagsYarnAdd(argv).filter(v => v != null);
+        let flags = flagsYarnAdd_1.flagsYarnAdd(argv).filter(v => v != null);
         let flags2 = flags.slice();
         if (!argv.optional && !argv.peer && !argv.dev) {
             flags2.push('-D');
@@ -98,32 +102,72 @@ const cmdModule = cmd_dir_1.createCommandModuleExports({
         let list = [];
         let warns = [];
         for (let packageName of args) {
-            let m = add_1.parseArgvPkgName(packageName);
-            if (!m) {
-                index_1.console.warn(`[error]`, packageName);
+            let check = await installTypes_1.checkInstallTargetTypes(packageName, {
+                checkExists: true,
+                pkg,
+            });
+            if (check.error) {
+                switch (check.error) {
+                    case 2 /* DEPRECATED */:
+                        warns.push([`[ignore]`, check.name, '：', check.msg]);
+                        break;
+                    case 1 /* NOT_EXISTS */:
+                        warns.push([`[warn]`, index_1.console.red.chalk(check.msg)]);
+                        break;
+                    case 3 /* SKIP */:
+                        warns.push([`[skip]`, check.msg]);
+                        break;
+                }
+            }
+            else {
+                list.push(check.target);
+            }
+            /*
+            let m = parseArgvPkgName(packageName);
+
+            if (!m)
+            {
+                console.warn(`[error]`, packageName);
                 continue;
             }
+
             let { version, name, namespace } = m;
-            if (namespace) {
+            if (namespace)
+            {
                 name = namespace.replace('@', '') + '__' + name;
             }
+
             packageName = name = `@types/${name}`;
-            if (add_1.existsDependencies(name, pkg)) {
+
+            if (existsDependencies(name, pkg))
+            {
                 //console.warn(`[skip]`, `${name} already exists in package.json`);
+
                 warns.push([`[skip]`, `${name} already exists in package.json`]);
+
                 continue;
             }
-            const target = await types_1.fetchPackageJsonInfo(packageName);
-            if (target == null) {
+
+            const target = await fetchPackageJsonInfo(packageName);
+
+            if (target == null)
+            {
                 warns.push([`[warn]`, `${name} not exists`]);
+
                 continue;
             }
-            if (target.deprecated) {
+
+            if (target.deprecated)
+            {
                 //console.warn(`[skip]`, target.deprecated);
+
                 warns.push([`[ignore]`, target.name, '：', target.deprecated]);
+
                 continue;
             }
+
             list.push(target.name + `@^${target.version}`);
+             */
         }
         if (list.length) {
             let cmd_argv = [
@@ -131,7 +175,7 @@ const cmdModule = cmd_dir_1.createCommandModuleExports({
                 ...list,
                 ...flags2,
             ].filter(v => v != null);
-            let cp = crossSpawn.sync('yarn', cmd_argv, {
+            let cp = cross_spawn_extra_1.default.sync('yarn', cmd_argv, {
                 cwd: argv.cwd,
                 stdio: 'inherit',
             });
@@ -140,8 +184,9 @@ const cmdModule = cmd_dir_1.createCommandModuleExports({
             }
         }
         else {
-            printWarns();
-            index_1.console.warn(`[warn]`, `no any new types install`);
+            //printWarns();
+            //console.warn(`[warn]`, `no any new types install`);
+            warns.push([`[warn]`, index_1.console.red.chalk(`no any new types install`)]);
         }
         printWarns();
         function printWarns() {
