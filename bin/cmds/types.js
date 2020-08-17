@@ -14,6 +14,7 @@ const installTypes_1 = require("@yarn-tool/pkg-deps-util/lib/installTypes");
 const upath2_1 = __importDefault(require("upath2"));
 const cross_spawn_extra_1 = __importDefault(require("cross-spawn-extra"));
 const setupYarnAddTypesToYargs_1 = require("@yarn-tool/pkg-deps-util/lib/cli/setupYarnAddTypesToYargs");
+const assertExecInstall_1 = require("@yarn-tool/pkg-deps-util/lib/cli/assertExecInstall");
 const cmdModule = cmd_dir_1.createCommandModuleExports({
     command: cmd_dir_1.basenameStrip(__filename) + ' [name]',
     //aliases: [],
@@ -124,6 +125,9 @@ const cmdModule = cmd_dir_1.createCommandModuleExports({
             });
             if (cp.error) {
                 throw cp.error;
+            }
+            else {
+                assertExecInstall_1.assertExecInstall(cp);
             }
         }
         else {

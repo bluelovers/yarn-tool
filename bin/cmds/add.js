@@ -12,6 +12,7 @@ const cross_spawn_extra_1 = __importDefault(require("cross-spawn-extra"));
 const index_2 = require("../../index");
 const setupYarnAddToYargs_1 = require("@yarn-tool/pkg-deps-util/lib/cli/setupYarnAddToYargs");
 const flagsYarnAdd_1 = require("@yarn-tool/pkg-deps-util/lib/cli/flagsYarnAdd");
+const assertExecInstall_1 = require("@yarn-tool/pkg-deps-util/lib/cli/assertExecInstall");
 const cmdModule = cmd_dir_1.createCommandModuleExports({
     command: cmd_dir_1.basenameStrip(__filename) + ' [name]',
     //aliases: [],
@@ -61,6 +62,9 @@ const cmdModule = cmd_dir_1.createCommandModuleExports({
                 if (cp.error) {
                     throw cp.error;
                 }
+                else {
+                    assertExecInstall_1.assertExecInstall(cp);
+                }
                 if (argv.types) {
                     let cp = cross_spawn_extra_1.default.sync('node', [
                         require.resolve(index_2.YT_BIN),
@@ -71,14 +75,26 @@ const cmdModule = cmd_dir_1.createCommandModuleExports({
                         cwd: argv.cwd,
                         stdio: 'inherit',
                     });
+                    if (cp.error) {
+                        throw cp.error;
+                    }
+                    else {
+                        assertExecInstall_1.assertExecInstall(cp);
+                    }
                 }
             },
             after(yarg, argv, cache) {
                 if (!cache.rootData.isWorkspace && cache.rootData.hasWorkspace) {
-                    cross_spawn_extra_1.default.sync('yarn', [], {
+                    let cp = cross_spawn_extra_1.default.sync('yarn', [], {
                         cwd: cache.rootData.ws,
                         stdio: 'inherit',
                     });
+                    if (cp.error) {
+                        throw cp.error;
+                    }
+                    else {
+                        assertExecInstall_1.assertExecInstall(cp);
+                    }
                 }
             },
             end(yarg, argv, cache) {

@@ -14,6 +14,7 @@ import crossSpawn from 'cross-spawn-extra';
 import { YT_BIN } from '../../index';
 import { setupYarnAddToYargs } from '@yarn-tool/pkg-deps-util/lib/cli/setupYarnAddToYargs';
 import { flagsYarnAdd } from '@yarn-tool/pkg-deps-util/lib/cli/flagsYarnAdd';
+import { assertExecInstall } from '@yarn-tool/pkg-deps-util/lib/cli/assertExecInstall';
 
 const cmdModule = createCommandModuleExports({
 
@@ -92,6 +93,10 @@ const cmdModule = createCommandModuleExports({
 				{
 					throw cp.error
 				}
+				else
+				{
+					assertExecInstall(cp);
+				}
 
 				if (argv.types)
 				{
@@ -107,6 +112,15 @@ const cmdModule = createCommandModuleExports({
 						cwd: argv.cwd,
 						stdio: 'inherit',
 					})
+
+					if (cp.error)
+					{
+						throw cp.error
+					}
+					else
+					{
+						assertExecInstall(cp);
+					}
 				}
 			},
 
@@ -115,10 +129,19 @@ const cmdModule = createCommandModuleExports({
 
 				if (!cache.rootData.isWorkspace && cache.rootData.hasWorkspace)
 				{
-					crossSpawn.sync('yarn', [], {
+					let cp = crossSpawn.sync('yarn', [], {
 						cwd: cache.rootData.ws,
 						stdio: 'inherit',
 					});
+
+					if (cp.error)
+					{
+						throw cp.error
+					}
+					else
+					{
+						assertExecInstall(cp);
+					}
 				}
 
 			},
