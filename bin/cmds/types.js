@@ -8,32 +8,18 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 const cmd_dir_1 = require("../../lib/cmd_dir");
 const index_1 = require("../../lib/index");
 const package_dts_1 = require("@ts-type/package-dts");
-const add_1 = require("../../lib/cli/add");
 const array_hyper_unique_1 = require("array-hyper-unique");
 const flagsYarnAdd_1 = require("@yarn-tool/pkg-deps-util/lib/cli/flagsYarnAdd");
 const installTypes_1 = require("@yarn-tool/pkg-deps-util/lib/installTypes");
 const upath2_1 = __importDefault(require("upath2"));
 const cross_spawn_extra_1 = __importDefault(require("cross-spawn-extra"));
+const setupYarnAddTypesToYargs_1 = require("@yarn-tool/pkg-deps-util/lib/cli/setupYarnAddTypesToYargs");
 const cmdModule = cmd_dir_1.createCommandModuleExports({
     command: cmd_dir_1.basenameStrip(__filename) + ' [name]',
     //aliases: [],
     describe: `Installs @types/* of packages if not exists in package.json`,
     builder(yargs) {
-        return add_1.setupYarnAddToYargs(yargs, {
-            allowEmptyName: true,
-        })
-            .option('auto', {
-            desc: `auto install from package.json`,
-            boolean: true,
-        })
-            .option('all', {
-            desc: `dependencies, devDependencies from package.json`,
-            boolean: true,
-        })
-            .option('AA', {
-            desc: `--auto --all`,
-            boolean: true,
-        })
+        return setupYarnAddTypesToYargs_1.setupYarnAddTypesToYargs(yargs)
             .strict(false);
     },
     async handler(argv) {
@@ -101,73 +87,30 @@ const cmdModule = cmd_dir_1.createCommandModuleExports({
         }
         let list = [];
         let warns = [];
+        let success = [];
         for (let packageName of args) {
             let check = await installTypes_1.checkInstallTargetTypes(packageName, {
                 checkExists: true,
                 pkg,
             });
-            if (check.error) {
-                switch (check.error) {
-                    case 2 /* DEPRECATED */:
-                        warns.push([`[ignore]`, check.name, '：', check.msg]);
-                        break;
-                    case 1 /* NOT_EXISTS */:
-                        warns.push([`[warn]`, index_1.console.red.chalk(check.msg)]);
-                        break;
-                    case 3 /* SKIP */:
-                        warns.push([`[skip]`, check.msg]);
-                        break;
-                }
+            switch (check.error) {
+                case 2 /* DEPRECATED */:
+                    warns.push([`[ignore]`, check.target, '：', check.msg]);
+                    break;
+                case 1 /* NOT_EXISTS */:
+                    warns.push([`[warn]`, index_1.console.red.chalk(check.msg)]);
+                    break;
+                case 3 /* SKIP */:
+                    warns.push([`[skip]`, check.msg]);
+                    break;
+                case 0 /* SUCCESS */:
+                    success.push([`[success]`, `add ${index_1.console.green.chalk(check.target)} to dependency`]);
+                    list.push(check.target);
+                    break;
+                default:
+                    warns.push([`[error]`, check]);
+                    break;
             }
-            else {
-                list.push(check.target);
-            }
-            /*
-            let m = parseArgvPkgName(packageName);
-
-            if (!m)
-            {
-                console.warn(`[error]`, packageName);
-                continue;
-            }
-
-            let { version, name, namespace } = m;
-            if (namespace)
-            {
-                name = namespace.replace('@', '') + '__' + name;
-            }
-
-            packageName = name = `@types/${name}`;
-
-            if (existsDependencies(name, pkg))
-            {
-                //console.warn(`[skip]`, `${name} already exists in package.json`);
-
-                warns.push([`[skip]`, `${name} already exists in package.json`]);
-
-                continue;
-            }
-
-            const target = await fetchPackageJsonInfo(packageName);
-
-            if (target == null)
-            {
-                warns.push([`[warn]`, `${name} not exists`]);
-
-                continue;
-            }
-
-            if (target.deprecated)
-            {
-                //console.warn(`[skip]`, target.deprecated);
-
-                warns.push([`[ignore]`, target.name, '：', target.deprecated]);
-
-                continue;
-            }
-
-            list.push(target.name + `@^${target.version}`);
-             */
         }
         if (list.length) {
             let cmd_argv = [
@@ -189,6 +132,7 @@ const cmdModule = cmd_dir_1.createCommandModuleExports({
             warns.push([`[warn]`, index_1.console.red.chalk(`no any new types install`)]);
         }
         printWarns();
+        success.forEach(([label, ...arr]) => index_1.console.info(index_1.console.green.chalk(label), ...arr));
         function printWarns() {
             warns.forEach(([label, ...arr]) => index_1.console.info(index_1.console.red.chalk(label), ...arr));
             warns = [];

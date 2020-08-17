@@ -1,42 +1,9 @@
 #!/usr/bin/env node
 
 
-import yargs = require('yargs');
-//import updateNotifier = require('update-notifier');
-//import pkg = require('../package.json');
-import path = require('upath2');
-import fs = require('fs-extra');
-import crossSpawn = require('cross-spawn-extra');
-import { console, consoleDebug, findRoot} from '../lib/index';
-import { Dedupe, infoFromDedupeCache, wrapDedupe } from '../lib/cli/dedupe';
-import { existsDependencies, flagsYarnAdd, listToTypes, setupYarnAddToYargs } from '../lib/cli/add';
-import setupYarnInstallToYargs from '../lib/cli/install';
-import semver = require('semver');
-import setupInitToYargs from 'npm-init2/lib/yargs-setting';
-
-
-import {
-	create_command,
-	create_command2,
-	dummy_builder, dummy_handler,
-	IUnpackMyYargsArgv,
-	IUnpackYargsArgv,
-} from '../lib/cli';
-import { readPackageJson, writeJSONSync, writePackageJson } from '../lib/pkg';
-import IPackageJson from '@ts-type/package-dts/package-json';
-import setupNcuToYargs, { npmCheckUpdates } from '../lib/cli/ncu';
-import {
-	filterResolutions,
-	IDependencies,
-	IYarnLockfileParseObjectRow,
-	parse as parseYarnLock,
-	stringify as stringifyYarnLock,
-	removeResolutionsCore, stripDepsName, yarnLockDiff,
-} from '../lib/yarnlock';
-import { ITSIteratorLazy, ITSValueOfArray } from 'ts-type';
-import { setupWorkspacesInitToYargs } from 'create-yarn-workspaces/yargs-setting';
-import { checkModileExists, crossSpawnOther, processArgvSlice } from '../lib/spawn';
-import osLocale = require('os-locale');
+import yargs from 'yargs';
+import path from 'upath2';
+import osLocale from 'os-locale';
 import { updateNotifier } from '@yarn-tool/update-notifier';
 import { fsYarnLock } from '../lib/fsYarnLock';
 

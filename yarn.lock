@@ -492,10 +492,10 @@
   resolved "https://registry.npmjs.org/@types/minimist/-/minimist-1.2.0.tgz#69a23a3ad29caf0097f06eda59b361ee2f0639f6"
   integrity sha1-aaI6OtKcrwCX8G7aWbNh7i8GOfY=
 
-"@types/node@*", "@types/node@^14.0.27":
-  version "14.0.27"
-  resolved "https://registry.npmjs.org/@types/node/-/node-14.0.27.tgz#a151873af5a5e851b51b3b065c9e63390a9e0eb1"
-  integrity sha512-kVrqXhbclHNHGu9ztnAwSncIgJv/FaxmzXJvGXNdcCpV1b8u1/Mi6z6m0vwy0LzKeXFTPLH0NzwmoJ3fNCIq0g==
+"@types/node@*", "@types/node@^14.6.0":
+  version "14.6.0"
+  resolved "https://registry.npmjs.org/@types/node/-/node-14.6.0.tgz#7d4411bf5157339337d7cff864d9ff45f177b499"
+  integrity sha512-mikldZQitV94akrc4sCcSjtJfsTKt4p+e/s0AGscVA6XArQ9kFclP+ZiYUMnq987rc6QlYxXv/EivqlfSLxpKA==
 
 "@types/normalize-package-data@^2.4.0":
   version "2.4.0"
@@ -645,22 +645,22 @@
     upath2 "^3.1.6"
     yargs "^15.4.1"
 
-"@yarn-tool/npm-package-arg-util@^1.0.4", "@yarn-tool/npm-package-arg-util@^1.0.5":
-  version "1.0.5"
-  resolved "https://registry.npmjs.org/@yarn-tool/npm-package-arg-util/-/npm-package-arg-util-1.0.5.tgz#91aacd63d56930f547b8febaf9a44951cea5e390"
-  integrity sha512-anow6i9aTwSrunTbqlqsDTDqBjY7YzBGD5SrSmfAX7AtooeXrGmFXx6tp4UY8rPHuBB0wz62uGyZCSYgf2w/DQ==
+"@yarn-tool/npm-package-arg-util@^1.0.4", "@yarn-tool/npm-package-arg-util@^1.0.6":
+  version "1.0.6"
+  resolved "https://registry.npmjs.org/@yarn-tool/npm-package-arg-util/-/npm-package-arg-util-1.0.6.tgz#cb0f5587377ea08eab061525d2a1e8d4d7fadcee"
+  integrity sha512-MxWKO8rq8Dhq+nAyOZEYhuPa9ItTr0xW9MhIi0kq6T6AaA/VV7i78PJqiwB0mT6+TBnL0KuTEEk0ASFlzRKlGQ==
   dependencies:
     "@types/npm-package-arg" "*"
     npm-package-arg "^8.0.1"
 
-"@yarn-tool/pkg-deps-util@^1.0.1":
-  version "1.0.1"
-  resolved "https://registry.npmjs.org/@yarn-tool/pkg-deps-util/-/pkg-deps-util-1.0.1.tgz#a21af13d63dcadc0f78227cb43ba9fe5939cb785"
-  integrity sha512-LWaRuAi3LIlvpCDFg6660AkCHaNSxZvM6iP0gxX+g7sqE+v8QHNXIHnFofik9J/dxTUNIUJTn/jjWrbKvNHyRw==
+"@yarn-tool/pkg-deps-util@^1.0.3":
+  version "1.0.3"
+  resolved "https://registry.npmjs.org/@yarn-tool/pkg-deps-util/-/pkg-deps-util-1.0.3.tgz#185ad670382771e0351f05917c384cf0628a9581"
+  integrity sha512-EoHftXY9Tvzp/PFV5UmMqV4eoagbOH0Gc1rB/rK7NVDYLgjX2ocpqA6R6qfeqhUvFA+y2FXMQIMPVbxrkvNN/A==
   dependencies:
     "@ts-type/package-dts" "^1.0.43"
-    "@yarn-tool/npm-package-arg-util" "^1.0.5"
-    "@yarn-tool/pkg-version-query" "^1.0.11"
+    "@yarn-tool/npm-package-arg-util" "^1.0.6"
+    "@yarn-tool/pkg-version-query" "^1.0.12"
     array-hyper-unique "^1.1.9"
     cross-spawn-extra "^2.1.0"
     debug-color2 "^1.2.3"
@@ -675,10 +675,10 @@
     "@types/hosted-git-info" "^3.0.0"
     hosted-git-info "^3.0.5"
 
-"@yarn-tool/pkg-version-query@^1.0.11":
-  version "1.0.11"
-  resolved "https://registry.npmjs.org/@yarn-tool/pkg-version-query/-/pkg-version-query-1.0.11.tgz#60f322b17e536a15f38be65669515220babe08c9"
-  integrity sha512-DPy89SMQn6ydTpQiM8WIQwE/PoXt5Lo+c3KEhSSXoW5J4SC0/0EkTDv43qpomY059yuQXrShuMXw6Gi4YPb92A==
+"@yarn-tool/pkg-version-query@^1.0.11", "@yarn-tool/pkg-version-query@^1.0.12":
+  version "1.0.12"
+  resolved "https://registry.npmjs.org/@yarn-tool/pkg-version-query/-/pkg-version-query-1.0.12.tgz#0cb077976f58e787e32c752a30839f21fa315be0"
+  integrity sha512-ISSL8qnZadU6uocHgGEAU83eR1fse7CvS1YmMnNMgRIhKkIcwyr5uefKtgO7TyK4GMTdzuDEPQkLcZcBccLGOw==
   dependencies:
     "@lazy-node/semver-ampersand" "^1.0.7"
     cache-path "^2.0.4"

@@ -2,17 +2,18 @@
  * Created by user on 2019/5/19.
  */
 import { basenameStrip, createCommandModuleExports } from '../../lib/cmd_dir';
-import path = require('upath2');
+import path from 'upath2';
 import { console, consoleDebug, findRoot, printRootData } from '../../lib/index';
 import { readPackageJson } from '@ts-type/package-dts';
 import { writePackageJson } from '../../lib/pkg';
 
 import { IUnpackMyYargsArgv } from '../../lib/cmd_dir';
 import { infoFromDedupeCache, wrapDedupe } from '../../lib/cli/dedupe';
-import yargs = require('yargs');
-import { existsDependencies, flagsYarnAdd, listToTypes, setupYarnAddToYargs } from '../../lib/cli/add';
-import crossSpawn = require('cross-spawn-extra');
+import yargs from 'yargs';
+import crossSpawn from 'cross-spawn-extra';
 import { YT_BIN } from '../../index';
+import { setupYarnAddToYargs } from '@yarn-tool/pkg-deps-util/lib/cli/setupYarnAddToYargs';
+import { flagsYarnAdd } from '@yarn-tool/pkg-deps-util/lib/cli/flagsYarnAdd';
 
 const cmdModule = createCommandModuleExports({
 

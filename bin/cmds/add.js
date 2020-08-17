@@ -1,19 +1,23 @@
 "use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 /**
  * Created by user on 2019/5/19.
  */
 const cmd_dir_1 = require("../../lib/cmd_dir");
 const index_1 = require("../../lib/index");
 const dedupe_1 = require("../../lib/cli/dedupe");
-const add_1 = require("../../lib/cli/add");
-const crossSpawn = require("cross-spawn-extra");
+const cross_spawn_extra_1 = __importDefault(require("cross-spawn-extra"));
 const index_2 = require("../../index");
+const setupYarnAddToYargs_1 = require("@yarn-tool/pkg-deps-util/lib/cli/setupYarnAddToYargs");
+const flagsYarnAdd_1 = require("@yarn-tool/pkg-deps-util/lib/cli/flagsYarnAdd");
 const cmdModule = cmd_dir_1.createCommandModuleExports({
     command: cmd_dir_1.basenameStrip(__filename) + ' [name]',
     //aliases: [],
     describe: `Installs a package`,
     builder(yargs) {
-        return add_1.setupYarnAddToYargs(yargs)
+        return setupYarnAddToYargs_1.setupYarnAddToYargs(yargs)
             .option('types', {
             alias: ['type'],
             desc: `try auto install @types/* too`,
@@ -43,14 +47,14 @@ const cmdModule = cmd_dir_1.createCommandModuleExports({
             },
             main(yarg, argv, cache) {
                 // @ts-ignore
-                let flags = add_1.flagsYarnAdd(argv).filter(v => v != null);
+                let flags = flagsYarnAdd_1.flagsYarnAdd(argv).filter(v => v != null);
                 let cmd_argv = [
                     'add',
                     ...args,
                     ...flags,
                 ].filter(v => v != null);
                 index_1.consoleDebug.debug(cmd_argv);
-                let cp = crossSpawn.sync('yarn', cmd_argv, {
+                let cp = cross_spawn_extra_1.default.sync('yarn', cmd_argv, {
                     cwd: argv.cwd,
                     stdio: 'inherit',
                 });
@@ -58,7 +62,7 @@ const cmdModule = cmd_dir_1.createCommandModuleExports({
                     throw cp.error;
                 }
                 if (argv.types) {
-                    let cp = crossSpawn.sync('node', [
+                    let cp = cross_spawn_extra_1.default.sync('node', [
                         require.resolve(index_2.YT_BIN),
                         'types',
                         ...args,
@@ -71,7 +75,7 @@ const cmdModule = cmd_dir_1.createCommandModuleExports({
             },
             after(yarg, argv, cache) {
                 if (!cache.rootData.isWorkspace && cache.rootData.hasWorkspace) {
-                    crossSpawn.sync('yarn', [], {
+                    cross_spawn_extra_1.default.sync('yarn', [], {
                         cwd: cache.rootData.ws,
                         stdio: 'inherit',
                     });
