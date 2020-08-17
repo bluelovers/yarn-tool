@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.140](https://github.com/bluelovers/yarn-tool/compare/yarn-tool@1.0.139...yarn-tool@1.0.140) (2020-08-17)
+
+
+### ✨　Features
+
+* assertExecInstall(cp); ([b81a34e](https://github.com/bluelovers/yarn-tool/commit/b81a34e65e0d087bccfd99987b53ac5fe79fd21b))
+* 優化 install types ([24c682c](https://github.com/bluelovers/yarn-tool/commit/24c682cd4e46994ee7dc8a48dfb64a69c617f424))
+
+
+### 📦　Code Refactoring
+
+* use `@yarn-tool/pkg-deps-util` ([9241d95](https://github.com/bluelovers/yarn-tool/commit/9241d95728d1720978c453a612b332034a009ce6))
+
+
+
+
+
 ## [1.0.139](https://github.com/bluelovers/yarn-tool/compare/yarn-tool@1.0.138...yarn-tool@1.0.139) (2020-08-13)
 
 **Note:** Version bump only for package yarn-tool
