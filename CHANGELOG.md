@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.141](https://github.com/bluelovers/yarn-tool/compare/yarn-tool@1.0.140...yarn-tool@1.0.141) (2020-08-19)
+
+
+### ✨　Features
+
+* support direct add deps from workspaces ([ff4bcfe](https://github.com/bluelovers/yarn-tool/commit/ff4bcfed70af14c90b9a24cfbf63f6206ddc29d9))
+
+
+
+
+
 ## [1.0.140](https://github.com/bluelovers/yarn-tool/compare/yarn-tool@1.0.139...yarn-tool@1.0.140) (2020-08-17)
 
 
