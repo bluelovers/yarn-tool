@@ -15,6 +15,9 @@ import { YT_BIN } from '../../index';
 import { setupYarnAddToYargs } from '@yarn-tool/pkg-deps-util/lib/cli/setupYarnAddToYargs';
 import { flagsYarnAdd } from '@yarn-tool/pkg-deps-util/lib/cli/flagsYarnAdd';
 import { assertExecInstall } from '@yarn-tool/pkg-deps-util/lib/cli/assertExecInstall';
+import { filterInstallDeps } from '@yarn-tool/pkg-deps-util/lib/installDeps';
+import { writeJSONSync } from 'fs-extra';
+import { join } from 'path';
 
 const cmdModule = createCommandModuleExports({
 
@@ -72,6 +75,22 @@ const cmdModule = createCommandModuleExports({
 			{
 				// @ts-ignore
 				let flags = flagsYarnAdd(argv).filter(v => v != null);
+
+				if (args.length)
+				{
+					let data = filterInstallDeps(args, argv);
+
+					if (data.pkg)
+					{
+						consoleDebug.debug(`direct add deps from workspaces`);
+
+						writeJSONSync(join(data.rootData.pkg, 'package.json'), data.pkg, {
+							spaces: 2
+						})
+
+						args = data.packageNames;
+					}
+				}
 
 				let cmd_argv = [
 					'add',

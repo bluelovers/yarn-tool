@@ -643,26 +643,29 @@
     upath2 "^3.1.6"
     yargs "^15.4.1"
 
-"@yarn-tool/npm-package-arg-util@^1.0.6":
-  version "1.0.6"
-  resolved "https://registry.npmjs.org/@yarn-tool/npm-package-arg-util/-/npm-package-arg-util-1.0.6.tgz#cb0f5587377ea08eab061525d2a1e8d4d7fadcee"
-  integrity sha512-MxWKO8rq8Dhq+nAyOZEYhuPa9ItTr0xW9MhIi0kq6T6AaA/VV7i78PJqiwB0mT6+TBnL0KuTEEk0ASFlzRKlGQ==
+"@yarn-tool/npm-package-arg-util@^1.0.6", "@yarn-tool/npm-package-arg-util@^1.0.7":
+  version "1.0.7"
+  resolved "https://registry.npmjs.org/@yarn-tool/npm-package-arg-util/-/npm-package-arg-util-1.0.7.tgz#1b97762278a5d6103aae5ff1304e81013302e05e"
+  integrity sha512-cmiiYXeZElqZdJm44tx+U0Iv0/IMEuMaHf//7fb/VeZbnULJ8OUSJJDhsyiVUnbOQRIbhcQmn4cApjeLws2BxQ==
   dependencies:
     "@types/npm-package-arg" "*"
     npm-package-arg "^8.0.1"
 
-"@yarn-tool/pkg-deps-util@^1.0.4":
-  version "1.0.4"
-  resolved "https://registry.npmjs.org/@yarn-tool/pkg-deps-util/-/pkg-deps-util-1.0.4.tgz#f3f5e58da57fcf1366fabf1844be34e761b33052"
-  integrity sha512-5Gep85O/QxsWtN3P3w9bQwWTXQPo+0Rtk8wyFktlrSqi0bZK07mjTCpQpV63t1w6hSgI/O/qTpJAkHlKrNdaRw==
+"@yarn-tool/pkg-deps-util@^1.0.7":
+  version "1.0.7"
+  resolved "https://registry.npmjs.org/@yarn-tool/pkg-deps-util/-/pkg-deps-util-1.0.7.tgz#3525db99e78dc7c34bb5b4b4c2fbd35b261e43e8"
+  integrity sha512-DFyP0bgn2o7NnSqzKaH6I/B0XN8XzK/u5kW1BHhnwf97AeT3RYGpNAoKwjrvdrQ50WEA2vZi12YZTTDDfMyfLw==
   dependencies:
     "@ts-type/package-dts" "^1.0.43"
-    "@yarn-tool/npm-package-arg-util" "^1.0.6"
-    "@yarn-tool/pkg-version-query" "^1.0.12"
+    "@yarn-tool/find-root" "^1.0.35"
+    "@yarn-tool/npm-package-arg-util" "^1.0.7"
+    "@yarn-tool/pkg-version-query" "^1.0.13"
     array-hyper-unique "^1.1.9"
     cross-spawn-extra "^2.1.0"
     debug-color2 "^1.2.3"
     err-code "^2.0.3"
+    sort-object-keys2 "^2.0.3"
+    ws-pkg-list "^1.0.47"
 
 "@yarn-tool/pkg-git-info@^1.0.11":
   version "1.0.11"
@@ -673,10 +676,10 @@
     "@types/hosted-git-info" "^3.0.0"
     hosted-git-info "^3.0.5"
 
-"@yarn-tool/pkg-version-query@^1.0.12":
-  version "1.0.12"
-  resolved "https://registry.npmjs.org/@yarn-tool/pkg-version-query/-/pkg-version-query-1.0.12.tgz#0cb077976f58e787e32c752a30839f21fa315be0"
-  integrity sha512-ISSL8qnZadU6uocHgGEAU83eR1fse7CvS1YmMnNMgRIhKkIcwyr5uefKtgO7TyK4GMTdzuDEPQkLcZcBccLGOw==
+"@yarn-tool/pkg-version-query@^1.0.12", "@yarn-tool/pkg-version-query@^1.0.13":
+  version "1.0.13"
+  resolved "https://registry.npmjs.org/@yarn-tool/pkg-version-query/-/pkg-version-query-1.0.13.tgz#a7746a12adabaddef130ff11c7d9ad56338d2d64"
+  integrity sha512-Nil1McFw4liX/BHjPIVTx5XURXz/Z5uHWT96RD+W9Dcl8xSQsHQiKXXHUDD6nvbAPMEPEyfPdpDKJmgc/DvRRA==
   dependencies:
     "@lazy-node/semver-ampersand" "^1.0.7"
     cache-path "^2.0.4"

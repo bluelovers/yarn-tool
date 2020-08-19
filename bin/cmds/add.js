@@ -13,6 +13,9 @@ const index_2 = require("../../index");
 const setupYarnAddToYargs_1 = require("@yarn-tool/pkg-deps-util/lib/cli/setupYarnAddToYargs");
 const flagsYarnAdd_1 = require("@yarn-tool/pkg-deps-util/lib/cli/flagsYarnAdd");
 const assertExecInstall_1 = require("@yarn-tool/pkg-deps-util/lib/cli/assertExecInstall");
+const installDeps_1 = require("@yarn-tool/pkg-deps-util/lib/installDeps");
+const fs_extra_1 = require("fs-extra");
+const path_1 = require("path");
 const cmdModule = cmd_dir_1.createCommandModuleExports({
     command: cmd_dir_1.basenameStrip(__filename) + ' [name]',
     //aliases: [],
@@ -49,6 +52,16 @@ const cmdModule = cmd_dir_1.createCommandModuleExports({
             main(yarg, argv, cache) {
                 // @ts-ignore
                 let flags = flagsYarnAdd_1.flagsYarnAdd(argv).filter(v => v != null);
+                if (args.length) {
+                    let data = installDeps_1.filterInstallDeps(args, argv);
+                    if (data.pkg) {
+                        index_1.consoleDebug.debug(`direct add deps from workspaces`);
+                        fs_extra_1.writeJSONSync(path_1.join(data.rootData.pkg, 'package.json'), data.pkg, {
+                            spaces: 2
+                        });
+                        args = data.packageNames;
+                    }
+                }
                 let cmd_argv = [
                     'add',
                     ...args,
