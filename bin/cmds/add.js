@@ -63,6 +63,7 @@ const cmdModule = cmd_dir_1.createCommandModuleExports({
                         let table = table_1.createDependencyTable();
                         data.exists.forEach(name => table.push([name, '', chalk.gray('exists')]));
                         data.added.forEach(([name, semver]) => table.push([name, semver, chalk.green('added')]));
+                        index_1.console.log(table.toString());
                         fs_extra_1.writeJSONSync(path_1.join(data.rootData.pkg, 'package.json'), data.pkg, {
                             spaces: 2
                         });

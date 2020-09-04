@@ -95,6 +95,8 @@ const cmdModule = createCommandModuleExports({
 						data.exists.forEach(name => table.push([name, '', chalk.gray('exists')]));
 						data.added.forEach(([name, semver]) => table.push([name, semver, chalk.green('added')]));
 
+						console.log(table.toString())
+
 						writeJSONSync(join(data.rootData.pkg, 'package.json'), data.pkg, {
 							spaces: 2
 						})
