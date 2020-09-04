@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.142](https://github.com/bluelovers/yarn-tool/compare/yarn-tool@1.0.141...yarn-tool@1.0.142) (2020-09-04)
+
+
+### 🐛　Bug Fixes
+
+* 修正直接從 工作區內新增 deps 後 導致安裝列表為空 而導致出錯 ([0de2ee2](https://github.com/bluelovers/yarn-tool/commit/0de2ee202ea155ee3346e8c53c434e3071be8036))
+
+
+
+
+
 ## [1.0.141](https://github.com/bluelovers/yarn-tool/compare/yarn-tool@1.0.140...yarn-tool@1.0.141) (2020-08-19)
 
 
