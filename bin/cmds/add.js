@@ -16,6 +16,8 @@ const assertExecInstall_1 = require("@yarn-tool/pkg-deps-util/lib/cli/assertExec
 const installDeps_1 = require("@yarn-tool/pkg-deps-util/lib/installDeps");
 const fs_extra_1 = require("fs-extra");
 const path_1 = require("path");
+const table_1 = require("@yarn-tool/table");
+const debug_color2_1 = require("debug-color2");
 const cmdModule = cmd_dir_1.createCommandModuleExports({
     command: cmd_dir_1.basenameStrip(__filename) + ' [name]',
     //aliases: [],
@@ -52,37 +54,44 @@ const cmdModule = cmd_dir_1.createCommandModuleExports({
             main(yarg, argv, cache) {
                 // @ts-ignore
                 let flags = flagsYarnAdd_1.flagsYarnAdd(argv).filter(v => v != null);
+                const oldArgs = args.slice();
                 if (args.length) {
                     let data = installDeps_1.filterInstallDeps(args, argv);
                     if (data.pkg) {
+                        let chalk = debug_color2_1.chalkByConsoleMaybe(index_1.console);
                         index_1.consoleDebug.debug(`direct add deps from workspaces`);
+                        let table = table_1.createDependencyTable();
+                        data.exists.forEach(name => table.push([name, '', chalk.gray('exists')]));
+                        data.added.forEach(([name, semver]) => table.push([name, semver, chalk.green('added')]));
                         fs_extra_1.writeJSONSync(path_1.join(data.rootData.pkg, 'package.json'), data.pkg, {
                             spaces: 2
                         });
                         args = data.packageNames;
                     }
                 }
-                let cmd_argv = [
-                    'add',
-                    ...args,
-                    ...flags,
-                ].filter(v => v != null);
-                index_1.consoleDebug.debug(cmd_argv);
-                let cp = cross_spawn_extra_1.default.sync('yarn', cmd_argv, {
-                    cwd: argv.cwd,
-                    stdio: 'inherit',
-                });
-                if (cp.error) {
-                    throw cp.error;
-                }
-                else {
-                    assertExecInstall_1.assertExecInstall(cp);
+                if (!oldArgs.length || args.length) {
+                    let cmd_argv = [
+                        'add',
+                        ...args,
+                        ...flags,
+                    ].filter(v => v != null);
+                    index_1.consoleDebug.debug(cmd_argv);
+                    let cp = cross_spawn_extra_1.default.sync('yarn', cmd_argv, {
+                        cwd: argv.cwd,
+                        stdio: 'inherit',
+                    });
+                    if (cp.error) {
+                        throw cp.error;
+                    }
+                    else {
+                        assertExecInstall_1.assertExecInstall(cp);
+                    }
                 }
                 if (argv.types) {
                     let cp = cross_spawn_extra_1.default.sync('node', [
                         require.resolve(index_2.YT_BIN),
                         'types',
-                        ...args,
+                        ...oldArgs,
                         ...flags,
                     ], {
                         cwd: argv.cwd,

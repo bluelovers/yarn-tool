@@ -18,6 +18,8 @@ import { assertExecInstall } from '@yarn-tool/pkg-deps-util/lib/cli/assertExecIn
 import { filterInstallDeps } from '@yarn-tool/pkg-deps-util/lib/installDeps';
 import { writeJSONSync } from 'fs-extra';
 import { join } from 'path';
+import { createDependencyTable } from '@yarn-tool/table';
+import { chalkByConsoleMaybe } from 'debug-color2';
 
 const cmdModule = createCommandModuleExports({
 
@@ -76,13 +78,22 @@ const cmdModule = createCommandModuleExports({
 				// @ts-ignore
 				let flags = flagsYarnAdd(argv).filter(v => v != null);
 
+				const oldArgs = args.slice();
+
 				if (args.length)
 				{
 					let data = filterInstallDeps(args, argv);
 
 					if (data.pkg)
 					{
+						let chalk = chalkByConsoleMaybe(console);
+
 						consoleDebug.debug(`direct add deps from workspaces`);
+
+						let table = createDependencyTable();
+
+						data.exists.forEach(name => table.push([name, '', chalk.gray('exists')]));
+						data.added.forEach(([name, semver]) => table.push([name, semver, chalk.green('added')]));
 
 						writeJSONSync(join(data.rootData.pkg, 'package.json'), data.pkg, {
 							spaces: 2
@@ -92,29 +103,32 @@ const cmdModule = createCommandModuleExports({
 					}
 				}
 
-				let cmd_argv = [
-					'add',
-
-					...args,
-
-					...flags,
-
-				].filter(v => v != null);
-
-				consoleDebug.debug(cmd_argv);
-
-				let cp = crossSpawn.sync('yarn', cmd_argv, {
-					cwd: argv.cwd,
-					stdio: 'inherit',
-				});
-
-				if (cp.error)
+				if (!oldArgs.length || args.length)
 				{
-					throw cp.error
-				}
-				else
-				{
-					assertExecInstall(cp);
+					let cmd_argv = [
+						'add',
+
+						...args,
+
+						...flags,
+
+					].filter(v => v != null);
+
+					consoleDebug.debug(cmd_argv);
+
+					let cp = crossSpawn.sync('yarn', cmd_argv, {
+						cwd: argv.cwd,
+						stdio: 'inherit',
+					});
+
+					if (cp.error)
+					{
+						throw cp.error
+					}
+					else
+					{
+						assertExecInstall(cp);
+					}
 				}
 
 				if (argv.types)
@@ -124,7 +138,7 @@ const cmdModule = createCommandModuleExports({
 
 						'types',
 
-						...args,
+						...oldArgs,
 
 						...flags,
 					], {
