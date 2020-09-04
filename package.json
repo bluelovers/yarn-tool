@@ -1,6 +1,6 @@
 {
   "name": "yarn-tool",
-  "version": "1.0.143",
+  "version": "1.0.144",
   "description": "yarn cli tool helper",
   "keywords": [
     "cli",
@@ -70,7 +70,7 @@
     "@yarn-tool/find-root": "^1.0.36",
     "@yarn-tool/ncu": "^1.0.53",
     "@yarn-tool/npm-package-arg-util": "^1.0.8",
-    "@yarn-tool/pkg-deps-util": "^1.0.8",
+    "@yarn-tool/pkg-deps-util": "^1.0.9",
     "@yarn-tool/semver-diff": "^1.0.13",
     "@yarn-tool/static-file": "^1.0.52",
     "@yarn-tool/table": "^1.0.21",
