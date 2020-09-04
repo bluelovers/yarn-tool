@@ -612,10 +612,10 @@
   dependencies:
     is-npx "^1.0.0"
 
-"@yarn-tool/ncu@^1.0.53":
-  version "1.0.53"
-  resolved "https://registry.npmjs.org/@yarn-tool/ncu/-/ncu-1.0.53.tgz#f1ad3963cc42e863eb77d22621c8ad41a93d9b61"
-  integrity sha512-elE1hVs3aSR9zZp0UmVKx7l4vv9TbQJN9GBPAPawhkwzokrqAO3CgJCK/vPFvhT/qViK7lf2/djP1vjAQ4hZTQ==
+"@yarn-tool/ncu@^1.0.54":
+  version "1.0.54"
+  resolved "https://registry.npmjs.org/@yarn-tool/ncu/-/ncu-1.0.54.tgz#aa73e6c5223a9b3265ba0e6a15b4ff4838d9f7cc"
+  integrity sha512-SIwDhvRva70JiPsVNXpHZULVOpBedzcVS5FM4CxedaaSaIZ098Usj+ewH8HAOeTQSJkucrJtX3xNe0k5CqcpBA==
   dependencies:
     "@lazy-node/semver-simple-parse" "^1.1.7"
     "@ts-type/package-dts" "^1.0.45"
