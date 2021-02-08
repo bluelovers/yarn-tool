@@ -3,6 +3,31 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.150](https://github.com/bluelovers/yarn-tool/compare/yarn-tool@1.0.146...yarn-tool@1.0.150) (2021-02-08)
+
+
+### ✨　Features
+
+* **install:** add `--reset-lockfile` for ignore and reset yarn.lock lockfile ([5328722](https://github.com/bluelovers/yarn-tool/commit/5328722ff1d7e6581d4d41304a0c5f685ad42342))
+
+
+### ♻️　Chores
+
+* **deps:** update deps ([5cc8347](https://github.com/bluelovers/yarn-tool/commit/5cc83474632d5c00abc42083663bdd177a35c2c3))
+* **release:** publish ([f6cd44b](https://github.com/bluelovers/yarn-tool/commit/f6cd44b12a3363f11868045b2d9b62e104e7db23))
+* **release:** publish ([b139f18](https://github.com/bluelovers/yarn-tool/commit/b139f18a7a9bfba3211bce51f674eaf9118da259))
+* **release:** publish ([e518c84](https://github.com/bluelovers/yarn-tool/commit/e518c8483351812830ef1cb57fb9b1c322f0e4f3))
+* update deps ([2cd40cc](https://github.com/bluelovers/yarn-tool/commit/2cd40cc165d536738c6babf227a6db7dea1ea5de))
+
+
+### 🔖　Miscellaneous
+
+* . ([3aecaa2](https://github.com/bluelovers/yarn-tool/commit/3aecaa23c333b2bf62dc093f3d678aa829e9998e))
+
+
+
+
+
 ## [1.0.146](https://github.com/bluelovers/yarn-tool/compare/yarn-tool@1.0.145...yarn-tool@1.0.146) (2020-09-23)
 
 **Note:** Version bump only for package yarn-tool
