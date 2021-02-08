@@ -135,6 +135,7 @@ const cmdModule = cmd_dir_1.createCommandModuleExports({
         let pkgNcu = await ncu_1.npmCheckUpdates({
             cwd,
             rootData,
+            // @ts-ignore
         }, {
             ...argv,
             json_old: pkg_data,

@@ -27,6 +27,7 @@ const cmdModule = cmd_dir_1.createCommandModuleExports({
             alias: ['D'],
             desc: `show duplicate list by yarn.lock`,
             boolean: true,
+            //default: true,
         })
             .option('npm', {
             desc: `Convert yarn.lock to package-lock.json`,
