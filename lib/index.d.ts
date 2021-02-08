@@ -17,5 +17,5 @@ export declare function lazyFlags(keys: string[], argv: {
 export declare const chalkByConsole: <R, C extends Console2 = Console2>(cb: (chalk: C["chalk"], _console: C) => R, _console?: C) => R;
 export declare function printRootData(rootData: ReturnType<typeof findRoot>, argv: Arguments<IUnpackMyYargsArgv>): void;
 export declare function yargsProcessExit(msg: string | Error, code?: number): void;
-declare const _default: typeof import(".");
+declare const _default: typeof import("./index");
 export default _default;

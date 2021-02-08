@@ -9,13 +9,19 @@ const cmd_dir_1 = require("../../lib/cmd_dir");
 const index_1 = require("../../lib/index");
 const install_1 = __importDefault(require("../../lib/cli/install"));
 const dedupe_1 = require("../../lib/cli/dedupe");
-const crossSpawn = require("cross-spawn-extra");
+const cross_spawn_extra_1 = __importDefault(require("cross-spawn-extra"));
+const fs_extra_1 = require("fs-extra");
 const cmdModule = cmd_dir_1.createCommandModuleExports({
     command: cmd_dir_1.basenameStrip(__filename) + ' [cwd]',
     aliases: ['i'],
     describe: `do dedupe with yarn install`,
     builder(yargs) {
-        return install_1.default(yargs);
+        return install_1.default(yargs)
+            .option('reset-lockfile', {
+            alias: ['L'],
+            desc: `ignore and reset yarn.lock lockfile.`,
+            boolean: true,
+        });
     },
     handler(argv) {
         const { cwd } = argv;
@@ -23,10 +29,14 @@ const cmdModule = cmd_dir_1.createCommandModuleExports({
         dedupe_1.wrapDedupe(require('yargs'), argv, {
             consoleDebug: index_1.consoleDebug,
             before(yarg, argv, cache) {
-                var _a;
+                var _a, _b;
                 let info = dedupe_1.infoFromDedupeCache(cache);
-                if (!info.yarnlock_old_exists || !((_a = cache.yarnlock_old) === null || _a === void 0 ? void 0 : _a.length)) {
-                    crossSpawn.sync('yarn', [], {
+                if (!info.yarnlock_old_exists || !((_a = cache.yarnlock_old) === null || _a === void 0 ? void 0 : _a.length) || argv.resetLockfile) {
+                    if (argv.resetLockfile && (info.yarnlock_old_exists || ((_b = cache.yarnlock_old) === null || _b === void 0 ? void 0 : _b.length))) {
+                        index_1.consoleDebug.red.info(`'--reset-lockfile' mode is enabled, reset current lockfile.\n${info.yarnlock_file}`);
+                        fs_extra_1.truncateSync(info.yarnlock_file);
+                    }
+                    cross_spawn_extra_1.default.sync('yarn', [], {
                         cwd,
                         stdio: 'inherit',
                     });
@@ -40,7 +50,7 @@ const cmdModule = cmd_dir_1.createCommandModuleExports({
                     index_1.consoleDebug.debug(`yarn.lock changed, do install again`);
                 }
                 if (_once || info.yarnlock_changed) {
-                    crossSpawn.sync('yarn', [], {
+                    cross_spawn_extra_1.default.sync('yarn', [], {
                         cwd,
                         stdio: 'inherit',
                     });
@@ -52,7 +62,7 @@ const cmdModule = cmd_dir_1.createCommandModuleExports({
                 let info = dedupe_1.infoFromDedupeCache(cache);
                 if (_once && info.yarnlock_changed) {
                     index_1.consoleDebug.debug(`yarn.lock changed, do install again`);
-                    crossSpawn.sync('yarn', [], {
+                    cross_spawn_extra_1.default.sync('yarn', [], {
                         cwd,
                         stdio: 'inherit',
                     });
