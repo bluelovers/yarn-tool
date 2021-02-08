@@ -10,7 +10,8 @@ import { writePackageJson } from '../../lib/pkg';
 import { IUnpackMyYargsArgv } from '../../lib/cmd_dir';
 import setupYarnInstallToYargs from '../../lib/cli/install';
 import { infoFromDedupeCache, wrapDedupe } from '../../lib/cli/dedupe';
-import crossSpawn = require('cross-spawn-extra');
+import crossSpawn from 'cross-spawn-extra';
+import { truncateSync } from 'fs-extra';
 
 const cmdModule = createCommandModuleExports({
 
@@ -21,6 +22,12 @@ const cmdModule = createCommandModuleExports({
 	builder(yargs)
 	{
 		return setupYarnInstallToYargs(yargs)
+			.option('reset-lockfile', {
+				alias: ['L'],
+				desc: `ignore and reset yarn.lock lockfile.`,
+				boolean: true,
+			})
+		;
 	},
 
 	handler(argv)
@@ -37,8 +44,14 @@ const cmdModule = createCommandModuleExports({
 			{
 				let info = infoFromDedupeCache(cache);
 
-				if (!info.yarnlock_old_exists || !cache.yarnlock_old?.length)
+				if (!info.yarnlock_old_exists || !cache.yarnlock_old?.length || argv.resetLockfile)
 				{
+					if (argv.resetLockfile && (info.yarnlock_old_exists || cache.yarnlock_old?.length))
+					{
+						consoleDebug.red.info(`'--reset-lockfile' mode is enabled, reset current lockfile.\n${info.yarnlock_file}`);
+						truncateSync(info.yarnlock_file);
+					}
+
 					crossSpawn.sync('yarn', [], {
 						cwd,
 						stdio: 'inherit',
