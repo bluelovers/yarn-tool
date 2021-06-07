@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.6](https://github.com/bluelovers/yarn-tool/compare/yarn-tool@1.0.150...yarn-tool@1.1.6) (2021-06-07)
+
+
+### ♻️　Chores
+
+* **release:** publish ([7887236](https://github.com/bluelovers/yarn-tool/commit/7887236766d2a652190538d4a9dcf9208fe51117))
+* **release:** publish ([0299ec9](https://github.com/bluelovers/yarn-tool/commit/0299ec965628075912a82a32ae7e49de37dc9c4f))
+* **release:** publish ([cb5a2e0](https://github.com/bluelovers/yarn-tool/commit/cb5a2e0935c1b17c4a762a46fa0e8c5292cb0fd9))
+* **release:** publish ([3c9db56](https://github.com/bluelovers/yarn-tool/commit/3c9db5636ff71558ffc8ad0deb546537cb5af7ca))
+* **release:** publish ([91e3705](https://github.com/bluelovers/yarn-tool/commit/91e3705bb612332b4cff1b7d2b1366e72679694b))
+* update deps ([df19af1](https://github.com/bluelovers/yarn-tool/commit/df19af187dc9a160328d3850aff591cd5acb874e))
+
+
+
+
+
 ## [1.0.150](https://github.com/bluelovers/yarn-tool/compare/yarn-tool@1.0.146...yarn-tool@1.0.150) (2021-02-08)
 
 
