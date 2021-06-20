@@ -52,6 +52,7 @@ const cmdModule = cmd_dir_1.createCommandModuleExports({
                 index_1.printRootData(cache.rootData, argv);
             },
             main(yarg, argv, cache) {
+                let retBreak;
                 // @ts-ignore
                 let flags = flagsYarnAdd_1.flagsYarnAdd(argv).filter(v => v != null);
                 const oldArgs = args.slice();
@@ -68,6 +69,9 @@ const cmdModule = cmd_dir_1.createCommandModuleExports({
                             spaces: 2
                         });
                         args = data.packageNames;
+                        if (!args.length && !argv.types) {
+                            retBreak = true;
+                        }
                     }
                 }
                 if (!oldArgs.length || args.length) {
@@ -105,6 +109,7 @@ const cmdModule = cmd_dir_1.createCommandModuleExports({
                         assertExecInstall_1.assertExecInstall(cp);
                     }
                 }
+                return retBreak;
             },
             after(yarg, argv, cache) {
                 if (!cache.rootData.isWorkspace && cache.rootData.hasWorkspace) {

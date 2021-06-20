@@ -75,6 +75,8 @@ const cmdModule = createCommandModuleExports({
 
 			main(yarg, argv, cache)
 			{
+				let retBreak: boolean;
+
 				// @ts-ignore
 				let flags = flagsYarnAdd(argv).filter(v => v != null);
 
@@ -102,6 +104,11 @@ const cmdModule = createCommandModuleExports({
 						})
 
 						args = data.packageNames;
+
+						if (!args.length && !argv.types)
+						{
+							retBreak = true;
+						}
 					}
 				}
 
@@ -157,6 +164,8 @@ const cmdModule = createCommandModuleExports({
 						assertExecInstall(cp);
 					}
 				}
+
+				return retBreak;
 			},
 
 			after(yarg, argv, cache)
