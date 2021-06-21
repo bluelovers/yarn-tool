@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.7](https://github.com/bluelovers/yarn-tool/compare/yarn-tool@1.1.6...yarn-tool@1.1.7) (2021-06-21)
+
+
+### 🐛　Bug Fixes
+
+* 沒有執行 add 時忽略多餘的 dedupe 步驟 ([1606f87](https://github.com/bluelovers/yarn-tool/commit/1606f8745796399331259fcf76ec852c6cb95c6b))
+
+
+### ✨　Features
+
+* show exists ([770b919](https://github.com/bluelovers/yarn-tool/commit/770b9196047ba6ad9353985d66cf74c29cbb4607))
+* support wrapDedupeAsync ([7fa9f5d](https://github.com/bluelovers/yarn-tool/commit/7fa9f5d840cdd7b089a0fae5e2fb205903abdb31))
+
+
+
+
+
 ## [1.1.6](https://github.com/bluelovers/yarn-tool/compare/yarn-tool@1.0.150...yarn-tool@1.1.6) (2021-06-07)
 
 
