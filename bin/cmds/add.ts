@@ -9,6 +9,7 @@ import { writePackageJson } from '../../lib/pkg';
 
 import { IUnpackMyYargsArgv } from '../../lib/cmd_dir';
 import { infoFromDedupeCache, wrapDedupe } from '../../lib/cli/dedupe';
+import { wrapDedupeAsync } from '@yarn-tool/yarnlock/lib/wrapDedupe/wrapDedupeAsync';
 import yargs from 'yargs';
 import crossSpawn from 'cross-spawn-extra';
 import { YT_BIN } from '../../index';
@@ -20,6 +21,7 @@ import { writeJSONSync } from 'fs-extra';
 import { join } from 'path';
 import { createDependencyTable } from '@yarn-tool/table';
 import { chalkByConsoleMaybe } from 'debug-color2';
+import { installDepsFromYarnLock } from '@yarn-tool/pkg-deps-util/lib/installDepsFromYarnLock';
 
 const cmdModule = createCommandModuleExports({
 
@@ -38,7 +40,7 @@ const cmdModule = createCommandModuleExports({
 			.strict(false)
 	},
 
-	handler(argv)
+	async handler(argv)
 	{
 		let args = argv._.slice();
 
@@ -64,7 +66,7 @@ const cmdModule = createCommandModuleExports({
 			return process.exit(1);
 		}
 
-		wrapDedupe(require('yargs'), argv, {
+		await wrapDedupeAsync(require('yargs'), argv, {
 
 			consoleDebug,
 
@@ -73,7 +75,7 @@ const cmdModule = createCommandModuleExports({
 				printRootData(cache.rootData, argv);
 			},
 
-			main(yarg, argv, cache)
+			async main(yarg, argv, cache)
 			{
 				let retBreak: boolean;
 
@@ -110,6 +112,36 @@ const cmdModule = createCommandModuleExports({
 							retBreak = true;
 						}
 					}
+
+					if (cache.yarnlock_old?.length)
+					{
+						let data = await installDepsFromYarnLock(args, argv);
+
+						if (data.pkg)
+						{
+							let chalk = chalkByConsoleMaybe(console);
+
+							consoleDebug.debug(`direct add deps from yarn.lock`);
+
+							let table = createDependencyTable();
+
+							data.added.forEach(([name, semver]) => table.push([name, semver, chalk.green('added')]));
+
+							console.log(table.toString())
+
+							writeJSONSync(join(data.rootData.pkg, 'package.json'), data.pkg, {
+								spaces: 2
+							})
+
+							args = data.others;
+
+							if (!args.length && !argv.types)
+							{
+								retBreak = true;
+							}
+						}
+					}
+
 				}
 
 				if (!oldArgs.length || args.length)
