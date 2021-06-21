@@ -641,10 +641,10 @@
     "@types/npm-package-arg" "*"
     npm-package-arg "^8.1.5"
 
-"@yarn-tool/pkg-deps-util@^1.0.20":
-  version "1.0.20"
-  resolved "https://registry.npmjs.org/@yarn-tool/pkg-deps-util/-/pkg-deps-util-1.0.20.tgz#95a73ac466ea7b7c2a4cbfb74d45244bf5381fb2"
-  integrity sha512-i2LmgArEdJX+sqsH65NTLtOeo+PANZimGGK6wGDiEGJV80bLysibGv7g0nBSx8PHiUeyT+fZxMNa78iMRHyafg==
+"@yarn-tool/pkg-deps-util@^1.0.21":
+  version "1.0.21"
+  resolved "https://registry.npmjs.org/@yarn-tool/pkg-deps-util/-/pkg-deps-util-1.0.21.tgz#3058c9aa5dd60877e27127ce306b809dd49147d9"
+  integrity sha512-SqxIgCf/CVBueB+DHIv72QqMh5Du1xek3WJBr9ntJJjEhD72jq4W12toPk9oFLWIbGKQ06JhPsgGxGujKbIlsg==
   dependencies:
     "@ts-type/package-dts" "^1.0.46"
     "@yarn-tool/find-root" "^1.0.42"

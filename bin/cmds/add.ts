@@ -125,6 +125,7 @@ const cmdModule = createCommandModuleExports({
 
 							let table = createDependencyTable();
 
+							data.exists.forEach(name => table.push([name, '', chalk.gray('exists')]));
 							data.added.forEach(([name, semver]) => table.push([name, semver, chalk.green('added')]));
 
 							console.log(table.toString())
