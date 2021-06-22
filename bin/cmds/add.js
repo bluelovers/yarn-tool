@@ -60,7 +60,7 @@ const cmdModule = cmd_dir_1.createCommandModuleExports({
                 const oldArgs = args.slice();
                 if (args.length) {
                     let data = installDeps_1.filterInstallDeps(args, argv);
-                    if (data.pkg) {
+                    if (data.updated) {
                         let chalk = debug_color2_1.chalkByConsoleMaybe(index_1.console);
                         index_1.consoleDebug.debug(`direct add deps from workspaces`);
                         let table = table_1.createDependencyTable();
@@ -77,7 +77,7 @@ const cmdModule = cmd_dir_1.createCommandModuleExports({
                     }
                     if ((_a = cache.yarnlock_old) === null || _a === void 0 ? void 0 : _a.length) {
                         let data = await installDepsFromYarnLock_1.installDepsFromYarnLock(args, argv);
-                        if (data.pkg) {
+                        if (data.updated) {
                             let chalk = debug_color2_1.chalkByConsoleMaybe(index_1.console);
                             index_1.consoleDebug.debug(`direct add deps from yarn.lock`);
                             let table = table_1.createDependencyTable();

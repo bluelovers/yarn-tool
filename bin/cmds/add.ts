@@ -88,7 +88,7 @@ const cmdModule = createCommandModuleExports({
 				{
 					let data = filterInstallDeps(args, argv);
 
-					if (data.pkg)
+					if (data.updated)
 					{
 						let chalk = chalkByConsoleMaybe(console);
 
@@ -117,7 +117,7 @@ const cmdModule = createCommandModuleExports({
 					{
 						let data = await installDepsFromYarnLock(args, argv);
 
-						if (data.pkg)
+						if (data.updated)
 						{
 							let chalk = chalkByConsoleMaybe(console);
 

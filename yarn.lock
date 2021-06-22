@@ -603,17 +603,17 @@
   dependencies:
     is-npx "^1.0.0"
 
-"@yarn-tool/ncu@^1.0.65":
-  version "1.0.65"
-  resolved "https://registry.npmjs.org/@yarn-tool/ncu/-/ncu-1.0.65.tgz#663c526f33d9c12d01295e27a99d78b311166310"
-  integrity sha512-lGRT/nE9bzpDOAVpGpLG6QQhaEgn78CVRP6alaWqcYn27fhj5fCDVy7jx4hqAwyPS/DtzQXQ7c3Jadm9M6bqaA==
+"@yarn-tool/ncu@^1.0.66":
+  version "1.0.66"
+  resolved "https://registry.npmjs.org/@yarn-tool/ncu/-/ncu-1.0.66.tgz#652dd7787fd20ca6af4325962ee20f4006901489"
+  integrity sha512-RidVBsekTk3GoX9XK4PxKzTrdD05vgzZhIfZysavuXV48zZquJqSW13VvXjqY/8KUCYPtlWSlJwTYZQKvPzCrA==
   dependencies:
     "@lazy-node/semver-simple-parse" "^1.1.8"
     "@ts-type/package-dts" "^1.0.46"
     "@yarn-tool/pkg-version-query" "^1.0.23"
     "@yarn-tool/semver-diff" "^1.0.19"
     "@yarn-tool/table" "^1.0.27"
-    "@yarn-tool/yarnlock" "^1.0.52"
+    "@yarn-tool/yarnlock" "^1.0.53"
     bluebird "^3.7.2"
     npm-check-updates "^11.7.1"
     npm-package-arg "^8.1.5"
@@ -641,16 +641,16 @@
     "@types/npm-package-arg" "*"
     npm-package-arg "^8.1.5"
 
-"@yarn-tool/pkg-deps-util@^1.0.21":
-  version "1.0.21"
-  resolved "https://registry.npmjs.org/@yarn-tool/pkg-deps-util/-/pkg-deps-util-1.0.21.tgz#3058c9aa5dd60877e27127ce306b809dd49147d9"
-  integrity sha512-SqxIgCf/CVBueB+DHIv72QqMh5Du1xek3WJBr9ntJJjEhD72jq4W12toPk9oFLWIbGKQ06JhPsgGxGujKbIlsg==
+"@yarn-tool/pkg-deps-util@^1.0.22":
+  version "1.0.22"
+  resolved "https://registry.npmjs.org/@yarn-tool/pkg-deps-util/-/pkg-deps-util-1.0.22.tgz#85f113ddd47db11ccf7dce238a3bf93d2592b036"
+  integrity sha512-1nSiDfaV/iVAxKQU9XNBuqNOO3HAkv0Eb5tZeDbX6UjmmfFrX2y5+rO8yQwJViqTTLFd/JRu/9xloMOahMuiUw==
   dependencies:
     "@ts-type/package-dts" "^1.0.46"
     "@yarn-tool/find-root" "^1.0.42"
     "@yarn-tool/npm-package-arg-util" "^1.0.16"
     "@yarn-tool/pkg-version-query" "^1.0.23"
-    "@yarn-tool/yarnlock-fs" "^1.0.8"
+    "@yarn-tool/yarnlock-fs" "^1.0.9"
     "@yarn-tool/yarnlock-parse" "^1.0.10"
     "@yarn-tool/yarnlock-util" "^1.0.17"
     array-hyper-unique "^1.1.9"
@@ -819,10 +819,10 @@
   resolved "https://registry.npmjs.org/@yarn-tool/yarnlock-error/-/yarnlock-error-1.0.1.tgz#d094a84c5e63d9f2da3f1493acad0575f296b472"
   integrity sha512-iOu9dsOPU5Yuh7ChDbtCKpSZj862kxdQ2Efh61MPyCgZeqtPtcjxCnuJ6Af+JSeQE/GLY5OX0VOTsqGy4SCQGg==
 
-"@yarn-tool/yarnlock-fs@^1.0.8":
-  version "1.0.8"
-  resolved "https://registry.npmjs.org/@yarn-tool/yarnlock-fs/-/yarnlock-fs-1.0.8.tgz#0194252f8d24f413dd7dfa22cd4da6922cd4dca1"
-  integrity sha512-yjG4zm5iRwIqAx61OCKcoo7AvNWrKACLbNrSYJRLirDLVrE2UfCCmz3/bq3TNa80LSWo03gQI/v7/FPHXlhNVA==
+"@yarn-tool/yarnlock-fs@^1.0.9":
+  version "1.0.9"
+  resolved "https://registry.npmjs.org/@yarn-tool/yarnlock-fs/-/yarnlock-fs-1.0.9.tgz#e40d20dcf1239207570448f540678e9952fdbd8a"
+  integrity sha512-HcA4XFLEbH4mSrf74+xXd3j4q2E5uR5Fw6fpeV9l7Cg1R6aIfGfxuB9A6R56ndewY7nIZBVFdFdmEXk87efejA==
   dependencies:
     "@yarn-tool/yarnlock-parse" "^1.0.10"
     "@yarn-tool/yarnlock-stringify" "^1.0.6"
@@ -871,10 +871,10 @@
     "@yarnpkg/parsers" "^2.3.0"
     npm-package-arg "^8.1.5"
 
-"@yarn-tool/yarnlock@^1.0.52":
-  version "1.0.52"
-  resolved "https://registry.npmjs.org/@yarn-tool/yarnlock/-/yarnlock-1.0.52.tgz#15b53be0893f606748fe2736c7ea92a96c9fa76c"
-  integrity sha512-uwqoUWI9RfxlzcVBmhawYbOj5jQbNqtHTwjcfKNuF0ZxZXvGUKLs/jaoGZ0KUS44+yQu09ewywOg9P64/m04CA==
+"@yarn-tool/yarnlock@^1.0.53":
+  version "1.0.53"
+  resolved "https://registry.npmjs.org/@yarn-tool/yarnlock/-/yarnlock-1.0.53.tgz#42760b72547e5903dd00c41f84dac3b86d42682e"
+  integrity sha512-wq9+X/nRfuBEUW1jWY+w62PWgYmF+5cabiXFnQyhFM3INuJjwMgReqMOT+tsxW9HWICIs09SLgYUcCQJUG2JFA==
   dependencies:
     "@ts-type/package-dts" "^1.0.46"
     "@yarn-tool/detect-yarnlock-version" "^1.0.7"
@@ -882,7 +882,7 @@
     "@yarn-tool/table" "^1.0.27"
     "@yarn-tool/yarnlock-dedupe" "^1.0.6"
     "@yarn-tool/yarnlock-diff" "^1.0.20"
-    "@yarn-tool/yarnlock-fs" "^1.0.8"
+    "@yarn-tool/yarnlock-fs" "^1.0.9"
     "@yarn-tool/yarnlock-stringify" "^1.0.6"
     "@yarnpkg/lockfile" "^1.1.0"
     "@yarnpkg/parsers" "^2.3.0"
