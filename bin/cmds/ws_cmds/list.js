@@ -1,7 +1,7 @@
 "use strict";
 const cmd_dir_1 = require("../../../lib/cmd_dir");
-const command = cmd_dir_1.basenameStrip(__filename);
-const cmdModule = cmd_dir_1.createCommandModuleExports({
+const command = (0, cmd_dir_1.basenameStrip)(__filename);
+const cmdModule = (0, cmd_dir_1.createCommandModuleExports)({
     command,
     aliases: [
         'ls',
@@ -12,7 +12,7 @@ const cmdModule = cmd_dir_1.createCommandModuleExports({
             .strict(false);
     },
     handler(argv) {
-        cmd_dir_1.lazySpawnArgvSlice({
+        (0, cmd_dir_1.lazySpawnArgvSlice)({
             command: [command, ...cmdModule.aliases],
             bin: 'lerna',
             cmd: [

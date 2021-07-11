@@ -1,12 +1,10 @@
 #!/usr/bin/env node
 "use strict";
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
 Object.defineProperty(exports, "__esModule", { value: true });
-const yargs_1 = __importDefault(require("yargs"));
-const upath2_1 = __importDefault(require("upath2"));
-const os_locale_1 = __importDefault(require("os-locale"));
+const tslib_1 = require("tslib");
+const yargs_1 = (0, tslib_1.__importDefault)(require("yargs"));
+const upath2_1 = (0, tslib_1.__importDefault)(require("upath2"));
+const os_locale_1 = (0, tslib_1.__importDefault)(require("os-locale"));
 const update_notifier_1 = require("@yarn-tool/update-notifier");
 if (upath2_1.default.extname(__filename) === '.js' && !process.argv.filter(v => {
     if (typeof v === 'string') {
@@ -17,7 +15,7 @@ if (upath2_1.default.extname(__filename) === '.js' && !process.argv.filter(v => 
         hookRequire: true
     });
 }
-update_notifier_1.updateNotifier(upath2_1.default.join(__dirname, '..'));
+(0, update_notifier_1.updateNotifier)(upath2_1.default.join(__dirname, '..'));
 let cli = yargs_1.default
     .option('cwd', {
     desc: `current working directory or package directory`,

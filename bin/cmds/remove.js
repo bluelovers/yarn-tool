@@ -5,8 +5,8 @@
 const cmd_dir_1 = require("../../lib/cmd_dir");
 const index_1 = require("../../lib/index");
 const dedupe_1 = require("../../lib/cli/dedupe");
-const command = cmd_dir_1.basenameStrip(__filename);
-const cmdModule = cmd_dir_1.createCommandModuleExports({
+const command = (0, cmd_dir_1.basenameStrip)(__filename);
+const cmdModule = (0, cmd_dir_1.createCommandModuleExports)({
     command,
     aliases: ['rm'],
     describe: `Running yarn remove foo will remove the package named foo from your direct dependencies updating your package.json and yarn.lock files in the process.`,
@@ -15,10 +15,10 @@ const cmdModule = cmd_dir_1.createCommandModuleExports({
             .strict(false);
     },
     handler(argv) {
-        dedupe_1.wrapDedupe(require('yargs'), argv, {
+        (0, dedupe_1.wrapDedupe)(require('yargs'), argv, {
             consoleDebug: index_1.consoleDebug,
             main(yarg, argv, cache) {
-                cmd_dir_1.lazySpawnArgvSlice({
+                (0, cmd_dir_1.lazySpawnArgvSlice)({
                     command,
                     bin: 'yarn',
                     cmd: command,

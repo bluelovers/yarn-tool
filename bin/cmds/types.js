@@ -1,7 +1,5 @@
 "use strict";
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
+const tslib_1 = require("tslib");
 /**
  * Created by user on 2019/5/19.
  */
@@ -11,16 +9,16 @@ const package_dts_1 = require("@ts-type/package-dts");
 const array_hyper_unique_1 = require("array-hyper-unique");
 const flagsYarnAdd_1 = require("@yarn-tool/pkg-deps-util/lib/cli/flagsYarnAdd");
 const installTypes_1 = require("@yarn-tool/pkg-deps-util/lib/installTypes");
-const upath2_1 = __importDefault(require("upath2"));
-const cross_spawn_extra_1 = __importDefault(require("cross-spawn-extra"));
+const upath2_1 = (0, tslib_1.__importDefault)(require("upath2"));
+const cross_spawn_extra_1 = (0, tslib_1.__importDefault)(require("cross-spawn-extra"));
 const setupYarnAddTypesToYargs_1 = require("@yarn-tool/pkg-deps-util/lib/cli/setupYarnAddTypesToYargs");
 const assertExecInstall_1 = require("@yarn-tool/pkg-deps-util/lib/cli/assertExecInstall");
-const cmdModule = cmd_dir_1.createCommandModuleExports({
-    command: cmd_dir_1.basenameStrip(__filename) + ' [name]',
+const cmdModule = (0, cmd_dir_1.createCommandModuleExports)({
+    command: (0, cmd_dir_1.basenameStrip)(__filename) + ' [name]',
     //aliases: [],
     describe: `Installs @types/* of packages if not exists in package.json`,
     builder(yargs) {
-        return setupYarnAddTypesToYargs_1.setupYarnAddTypesToYargs(yargs)
+        return (0, setupYarnAddTypesToYargs_1.setupYarnAddTypesToYargs)(yargs)
             .strict(false);
     },
     async handler(argv) {
@@ -32,11 +30,11 @@ const cmdModule = cmd_dir_1.createCommandModuleExports({
             // @ts-ignore
             args.unshift(argv.name);
         }
-        let rootData = index_1.findRoot({
+        let rootData = (0, index_1.findRoot)({
             ...argv,
         });
         let pkg_file = upath2_1.default.join(rootData.pkg, 'package.json');
-        let pkg = package_dts_1.readPackageJson(pkg_file);
+        let pkg = (0, package_dts_1.readPackageJson)(pkg_file);
         if (argv.AA) {
             argv.auto = true;
             argv.all = true;
@@ -75,13 +73,13 @@ const cmdModule = cmd_dir_1.createCommandModuleExports({
                 a.push(b);
                 return a;
             }, []);
-            args = array_hyper_unique_1.array_unique(args);
+            args = (0, array_hyper_unique_1.array_unique)(args);
             if (!args.length) {
                 index_1.consoleDebug.warn(`no package list for install types`);
                 return process.exit();
             }
         }
-        let flags = flagsYarnAdd_1.flagsYarnAdd(argv).filter(v => v != null);
+        let flags = (0, flagsYarnAdd_1.flagsYarnAdd)(argv).filter(v => v != null);
         let flags2 = flags.slice();
         if (!argv.optional && !argv.peer && !argv.dev) {
             flags2.push('-D');
@@ -90,7 +88,7 @@ const cmdModule = cmd_dir_1.createCommandModuleExports({
         let warns = [];
         let success = [];
         for (let packageName of args) {
-            let check = await installTypes_1.checkInstallTargetTypes(packageName, {
+            let check = await (0, installTypes_1.checkInstallTargetTypes)(packageName, {
                 checkExists: true,
                 pkg,
             });
@@ -127,7 +125,7 @@ const cmdModule = cmd_dir_1.createCommandModuleExports({
                 throw cp.error;
             }
             else {
-                assertExecInstall_1.assertExecInstall(cp);
+                (0, assertExecInstall_1.assertExecInstall)(cp);
             }
         }
         else {

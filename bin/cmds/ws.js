@@ -4,13 +4,13 @@
  */
 const cmd_dir_1 = require("../../lib/cmd_dir");
 const spawn_1 = require("../../lib/spawn");
-const cmdModule = cmd_dir_1.createCommandModuleExports({
-    command: cmd_dir_1.basenameStrip(__filename) + ' <cmd>',
+const cmdModule = (0, cmd_dir_1.createCommandModuleExports)({
+    command: (0, cmd_dir_1.basenameStrip)(__filename) + ' <cmd>',
     aliases: ['ws', 'workspaces', 'workspace'],
     describe: `yarn workspaces`,
     builder(yargs) {
         return yargs
-            .commandDir(cmd_dir_1.commandDirJoin(__dirname, __filename))
+            .commandDir((0, cmd_dir_1.commandDirJoin)(__dirname, __filename))
             .command({
             command: 'run',
             describe: `run script by lerna`,
@@ -57,13 +57,13 @@ const cmdModule = cmd_dir_1.createCommandModuleExports({
     },
 });
 function lazyLerna(command, cmd, argv, opts = {}) {
-    let ret = spawn_1.checkModileExists({
+    let ret = (0, spawn_1.checkModileExists)({
         name: 'lerna',
     });
     if (!ret) {
         process.exit(1);
     }
-    let cmd_list = spawn_1.processArgvSlice(command).argv;
+    let cmd_list = (0, spawn_1.processArgvSlice)(command).argv;
     if (opts && opts.beforeSpawn) {
         let data = {
             cmd,
@@ -77,7 +77,7 @@ function lazyLerna(command, cmd, argv, opts = {}) {
             argv,
         } = data);
     }
-    return spawn_1.crossSpawnOther('lerna', [
+    return (0, spawn_1.crossSpawnOther)('lerna', [
         cmd,
         ...cmd_list,
     ], argv, {

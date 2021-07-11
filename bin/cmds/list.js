@@ -8,8 +8,8 @@ const spawn_1 = require("../../lib/spawn");
 const crlf_normalize_1 = require("crlf-normalize");
 const array_hyper_unique_1 = require("array-hyper-unique");
 const index_2 = require("../../lib/index");
-const command = cmd_dir_1.basenameStrip(__filename);
-const cmdModule = cmd_dir_1.createCommandModuleExports({
+const command = (0, cmd_dir_1.basenameStrip)(__filename);
+const cmdModule = (0, cmd_dir_1.createCommandModuleExports)({
     command,
     aliases: [],
     describe: `List installed packages.`,
@@ -35,7 +35,7 @@ const cmdModule = cmd_dir_1.createCommandModuleExports({
         if ('duplicate' in argv && argv.duplicate == null) {
             argv.duplicate = true;
         }
-        let fc = index_1.filterYargsArguments(argv, [
+        let fc = (0, index_1.filterYargsArguments)(argv, [
             'depth',
             'pattern',
         ]);
@@ -45,7 +45,7 @@ const cmdModule = cmd_dir_1.createCommandModuleExports({
         if (argv.duplicate) {
             delete argv.duplicate;
             delete argv.D;
-            let cp = spawn_1.crossSpawnOther('yarn', [
+            let cp = (0, spawn_1.crossSpawnOther)('yarn', [
                 key,
                 //...fca,
                 //...argv._,
@@ -61,7 +61,7 @@ const cmdModule = cmd_dir_1.createCommandModuleExports({
                 for (let name of list2) {
                     delete fc.pattern;
                     let fca2 = unparse(fc);
-                    let cp2 = spawn_1.crossSpawnOther('yarn', [
+                    let cp2 = (0, spawn_1.crossSpawnOther)('yarn', [
                         key,
                         name,
                         ...fca2,
@@ -94,7 +94,7 @@ const cmdModule = cmd_dir_1.createCommandModuleExports({
             else {
                 fc.pattern = list2.join('|');
                 let fca2 = unparse(fc);
-                let cp2 = spawn_1.crossSpawnOther('yarn', [
+                let cp2 = (0, spawn_1.crossSpawnOther)('yarn', [
                     key,
                     ...fca2,
                 ], argv);
@@ -107,7 +107,7 @@ const cmdModule = cmd_dir_1.createCommandModuleExports({
                 ...fca,
             ], argv)
              */
-            cmd_dir_1.lazySpawnArgvSlice({
+            (0, cmd_dir_1.lazySpawnArgvSlice)({
                 command,
                 bin: 'yarn',
                 cmd: [
@@ -119,7 +119,7 @@ const cmdModule = cmd_dir_1.createCommandModuleExports({
     },
 });
 function parseList(stdout) {
-    return crlf_normalize_1.crlf(stdout)
+    return (0, crlf_normalize_1.crlf)(stdout)
         .split(crlf_normalize_1.LF)
         .filter(line => {
         line = line.trim();
@@ -165,7 +165,7 @@ function findDuplicated(list) {
     })
         .map(d => d.name);
     //console.log(arr);
-    return array_hyper_unique_1.array_unique_overwrite(arr
+    return (0, array_hyper_unique_1.array_unique_overwrite)(arr
         .filter((value, index, array) => {
         if (value === '*' || value == null) {
             return false;

@@ -1,7 +1,5 @@
 "use strict";
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
+const tslib_1 = require("tslib");
 /**
  * Created by user on 2019/5/19.
  */
@@ -12,13 +10,13 @@ const index_1 = require("../../lib/index");
 const package_dts_1 = require("@ts-type/package-dts");
 const yarnlock_1 = require("../../lib/yarnlock");
 const semver_1 = require("semver");
-const dedupe_1 = __importDefault(require("../../lib/cli/dedupe"));
+const dedupe_1 = (0, tslib_1.__importDefault)(require("../../lib/cli/dedupe"));
 const lib_1 = require("synp2/lib");
-const fixNpmLock_1 = __importDefault(require("../../lib/cli/lockfile/fixNpmLock"));
+const fixNpmLock_1 = (0, tslib_1.__importDefault)(require("../../lib/cli/lockfile/fixNpmLock"));
 const fsYarnLock_1 = require("../../lib/fsYarnLock");
-const COMMAND_KEY = cmd_dir_1.basenameStrip(__filename);
-const cmdModule = cmd_dir_1.createCommandModuleExports({
-    command: cmd_dir_1.basenameStrip(__filename),
+const COMMAND_KEY = (0, cmd_dir_1.basenameStrip)(__filename);
+const cmdModule = (0, cmd_dir_1.createCommandModuleExports)({
+    command: (0, cmd_dir_1.basenameStrip)(__filename),
     //aliases: [],
     describe: `show yarn.lock info`,
     builder(yargs) {
@@ -55,17 +53,17 @@ const cmdModule = cmd_dir_1.createCommandModuleExports({
         //let rootData = findRoot(argv, true);
         //let yl = fsYarnLock(rootData.root);
         if (argv.yarn || argv.npm || argv.shrinkwrap) {
-            let rootData = index_1.findRoot(argv, true);
-            let yl = fsYarnLock_1.fsYarnLock(rootData.root);
+            let rootData = (0, index_1.findRoot)(argv, true);
+            let yl = (0, fsYarnLock_1.fsYarnLock)(rootData.root);
             let file_package_lock_json = path.join(rootData.pkg, 'package-lock.json');
             let file_package_lock_json_exists = fs.existsSync(file_package_lock_json);
             if (argv.npm || argv.shrinkwrap) {
                 if (!yl.yarnlock_exists) {
-                    index_1.yargsProcessExit(new Error(`yarn.lock not exists`));
+                    (0, index_1.yargsProcessExit)(new Error(`yarn.lock not exists`));
                 }
                 if (argv.npm) {
                     if (!argv.overwrite && file_package_lock_json_exists) {
-                        index_1.yargsProcessExit(new Error(`package-lock.json is exists, use --overwrite for overwrite file`));
+                        (0, index_1.yargsProcessExit)(new Error(`package-lock.json is exists, use --overwrite for overwrite file`));
                     }
                     else if (file_package_lock_json_exists) {
                         index_1.consoleDebug.warn(`package-lock.json is exists, will got overwrite`);
@@ -75,13 +73,13 @@ const cmdModule = cmd_dir_1.createCommandModuleExports({
                 let file_shrinkwrap_json_exists = fs.existsSync(file_shrinkwrap_json);
                 if (argv.shrinkwrap) {
                     if (!argv.overwrite && file_shrinkwrap_json_exists) {
-                        index_1.yargsProcessExit(new Error(`npm-shrinkwrap.json is exists, use --overwrite for overwrite file`));
+                        (0, index_1.yargsProcessExit)(new Error(`npm-shrinkwrap.json is exists, use --overwrite for overwrite file`));
                     }
                     else if (file_shrinkwrap_json_exists) {
                         index_1.consoleDebug.warn(`npm-shrinkwrap.json is exists, will got overwrite`);
                     }
                 }
-                let { name, version } = package_dts_1.readPackageJson(path.join(rootData.pkg, 'package.json'));
+                let { name, version } = (0, package_dts_1.readPackageJson)(path.join(rootData.pkg, 'package.json'));
                 let s = yarnToNpm(yl.yarnlock_old, name, version, rootData.pkg);
                 if (rootData.hasWorkspace && !rootData.isWorkspace) {
                     let s2 = yarnToNpm(yl.yarnlock_old, name, version, rootData.ws);
@@ -91,7 +89,7 @@ const cmdModule = cmd_dir_1.createCommandModuleExports({
                         ...s.dependencies,
                     };
                 }
-                const lock = fixNpmLock_1.default(s);
+                const lock = (0, fixNpmLock_1.default)(s);
                 if (argv.npm) {
                     fs.writeJSONSync(file_package_lock_json, lock, {
                         spaces: 2,
@@ -109,22 +107,22 @@ const cmdModule = cmd_dir_1.createCommandModuleExports({
                 let yarnlock_file_pkg = path.join(rootData.pkg, 'yarn.lock');
                 if (fs.existsSync(yarnlock_file_pkg)) {
                     if (!argv.overwrite) {
-                        index_1.yargsProcessExit(new Error(`yarn.lock is exists, use --overwrite for overwrite file`));
+                        (0, index_1.yargsProcessExit)(new Error(`yarn.lock is exists, use --overwrite for overwrite file`));
                     }
                     index_1.consoleDebug.warn(`yarn.lock is exists, will got overwrite`);
                 }
                 if (!file_package_lock_json_exists) {
                     if (yl.yarnlock_exists && rootData.hasWorkspace && !rootData.isWorkspace) {
                         index_1.consoleDebug.warn(`package-lock.json not exists, but yarn.lock exists in workspaces`);
-                        let s = dedupe_1.default(yl.yarnlock_old).yarnlock_new;
+                        let s = (0, dedupe_1.default)(yl.yarnlock_old).yarnlock_new;
                         fs.writeFileSync(yarnlock_file_pkg, s);
                         index_1.consoleDebug.info(`yarn.lock copied`);
                         return;
                     }
-                    index_1.yargsProcessExit(new Error(`package-lock.json not exists`));
+                    (0, index_1.yargsProcessExit)(new Error(`package-lock.json not exists`));
                 }
                 let s = npmToYarn(fs.readFileSync(file_package_lock_json).toString(), rootData.root);
-                s = dedupe_1.default(s).yarnlock_new;
+                s = (0, dedupe_1.default)(s).yarnlock_new;
                 fs.writeFileSync(yarnlock_file_pkg, s);
                 index_1.consoleDebug.info(`yarn.lock updated`);
             }
@@ -144,10 +142,10 @@ function _fix(argv) {
 }
 // @ts-ignore
 function _showYarnLockList(argv) {
-    let rootData = index_1.findRoot(argv, true);
-    let yl = fsYarnLock_1.fsYarnLock(rootData.root);
-    let yarnlock_old_obj = yarnlock_1.parse(yl.yarnlock_old);
-    let fy = yarnlock_1.exportYarnLock(yarnlock_old_obj);
+    let rootData = (0, index_1.findRoot)(argv, true);
+    let yl = (0, fsYarnLock_1.fsYarnLock)(rootData.root);
+    let yarnlock_old_obj = (0, yarnlock_1.parse)(yl.yarnlock_old);
+    let fy = (0, yarnlock_1.exportYarnLock)(yarnlock_old_obj);
     let ks = Object.keys(fy.installed);
     let max = 0;
     let len = 0;
@@ -193,10 +191,10 @@ function _showYarnLockList(argv) {
     return true;
 }
 function npmToYarn(packageLockFileString, packageDir) {
-    return lib_1.npmToYarnCore(packageLockFileString, packageDir);
+    return (0, lib_1.npmToYarnCore)(packageLockFileString, packageDir);
 }
 function yarnToNpm(yarnlock, name, version, packageDir) {
-    return JSON.parse(lib_1.yarnToNpmCore(yarnlock, name, version, packageDir));
+    return JSON.parse((0, lib_1.yarnToNpmCore)(yarnlock, name, version, packageDir));
 }
 module.exports = cmdModule;
 //# sourceMappingURL=lockfile.js.map

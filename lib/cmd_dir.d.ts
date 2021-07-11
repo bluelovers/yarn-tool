@@ -1,12 +1,5 @@
-/**
- * 因為 ./cli.ts 似乎寫出BUG 所以只好打掉重練一個
- *
- * 但是依然BUG...
- * 放棄修正
- */
 /// <reference types="node" />
-import yargs = require('yargs');
-import { CommandModule, Arguments, Argv, Options } from 'yargs';
+import { Arguments, Argv, CommandModule, Options } from 'yargs';
 import { SpawnSyncOptions } from 'cross-spawn-extra/type';
 export interface IUnpackMyYargsArgv {
     cwd: string;
@@ -32,7 +25,7 @@ export declare type ICommandModuleExports<T extends IUnpackMyYargsArgvPartial = 
     builder(args: Argv<T>): Argv<U>;
 });
 export declare function createCommandModuleExports<T extends IUnpackMyYargsArgvPartial = IUnpackMyYargsArgv, U extends IUnpackMyYargsArgvPartial = IUnpackMyYargsArgv>(module: ICommandModuleExports<T, U>): CommandModule<T, U>;
-export declare function _dummyBuilder<T extends {}>(yarg: Argv<T>): yargs.Argv<T>;
+export declare function _dummyBuilder<T extends {}>(yarg: Argv<T>): Argv<T>;
 export declare function _dummyHandler<T extends {}>(args: Arguments<T>): any;
 export declare function basenameStrip(name: string): string;
 export declare function commandDirStrip(name: string, suffix?: string): string;

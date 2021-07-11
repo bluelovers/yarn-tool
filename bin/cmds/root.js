@@ -1,7 +1,5 @@
 "use strict";
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
+const tslib_1 = require("tslib");
 /**
  * Created by user on 2019/5/19.
  */
@@ -9,9 +7,9 @@ const cmd_dir_1 = require("../../lib/cmd_dir");
 const index_1 = require("../../lib/index");
 const spawn_1 = require("../../lib/spawn");
 const ws_root_spawn_1 = require("ws-root-spawn");
-const core_1 = __importDefault(require("find-yarn-workspace-root2/core"));
-const command = cmd_dir_1.basenameStrip(__filename);
-const cmdModule = cmd_dir_1.createCommandModuleExports({
+const core_1 = (0, tslib_1.__importDefault)(require("find-yarn-workspace-root2/core"));
+const command = (0, cmd_dir_1.basenameStrip)(__filename);
+const cmdModule = (0, cmd_dir_1.createCommandModuleExports)({
     command,
     //aliases: [],
     describe: `run/exec in workspaces root`,
@@ -30,10 +28,10 @@ printed`,
             .strict(false);
     },
     handler(argv) {
-        let cmd_list = spawn_1.processArgvSlice(command).argv;
+        let cmd_list = (0, spawn_1.processArgvSlice)(command).argv;
         let cmd = cmd_list[0];
         let cwd = argv.cwd;
-        let root = core_1.default(cwd);
+        let root = (0, core_1.default)(cwd);
         if (!argv.silent) {
             if (cwd) {
                 index_1.consoleDebug.info(`cwd: ${cwd}`);
@@ -43,7 +41,7 @@ printed`,
             }
         }
         if (cmd === 'run') {
-            let cp = ws_root_spawn_1.spawnWsRootRunSync(cmd_list.slice(1), {
+            let cp = (0, ws_root_spawn_1.spawnWsRootRunSync)(cmd_list.slice(1), {
                 cwd: root,
             });
             if (cp.status) {
@@ -52,7 +50,7 @@ printed`,
             }
         }
         else if (cmd === 'exec') {
-            let cp = ws_root_spawn_1.spawnWsRootExecSync(cmd_list.slice(1), {
+            let cp = (0, ws_root_spawn_1.spawnWsRootExecSync)(cmd_list.slice(1), {
                 cwd: root,
             });
             if (cp.status) {

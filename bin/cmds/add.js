@@ -1,14 +1,12 @@
 "use strict";
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
+const tslib_1 = require("tslib");
 /**
  * Created by user on 2019/5/19.
  */
 const cmd_dir_1 = require("../../lib/cmd_dir");
 const index_1 = require("../../lib/index");
 const wrapDedupeAsync_1 = require("@yarn-tool/yarnlock/lib/wrapDedupe/wrapDedupeAsync");
-const cross_spawn_extra_1 = __importDefault(require("cross-spawn-extra"));
+const cross_spawn_extra_1 = (0, tslib_1.__importDefault)(require("cross-spawn-extra"));
 const index_2 = require("../../index");
 const setupYarnAddToYargs_1 = require("@yarn-tool/pkg-deps-util/lib/cli/setupYarnAddToYargs");
 const flagsYarnAdd_1 = require("@yarn-tool/pkg-deps-util/lib/cli/flagsYarnAdd");
@@ -19,12 +17,12 @@ const path_1 = require("path");
 const table_1 = require("@yarn-tool/table");
 const debug_color2_1 = require("debug-color2");
 const installDepsFromYarnLock_1 = require("@yarn-tool/pkg-deps-util/lib/installDepsFromYarnLock");
-const cmdModule = cmd_dir_1.createCommandModuleExports({
-    command: cmd_dir_1.basenameStrip(__filename) + ' [name]',
+const cmdModule = (0, cmd_dir_1.createCommandModuleExports)({
+    command: (0, cmd_dir_1.basenameStrip)(__filename) + ' [name]',
     //aliases: [],
     describe: `Installs a package`,
     builder(yargs) {
-        return setupYarnAddToYargs_1.setupYarnAddToYargs(yargs)
+        return (0, setupYarnAddToYargs_1.setupYarnAddToYargs)(yargs)
             .option('types', {
             alias: ['type'],
             desc: `try auto install @types/* too`,
@@ -47,27 +45,27 @@ const cmdModule = cmd_dir_1.createCommandModuleExports({
             index_1.consoleDebug.error(`Missing list of packages to add to your project.`);
             return process.exit(1);
         }
-        await wrapDedupeAsync_1.wrapDedupeAsync(require('yargs'), argv, {
+        await (0, wrapDedupeAsync_1.wrapDedupeAsync)(require('yargs'), argv, {
             consoleDebug: index_1.consoleDebug,
             before(yarg, argv, cache) {
-                index_1.printRootData(cache.rootData, argv);
+                (0, index_1.printRootData)(cache.rootData, argv);
             },
             async main(yarg, argv, cache) {
                 var _a;
                 let retBreak;
                 // @ts-ignore
-                let flags = flagsYarnAdd_1.flagsYarnAdd(argv).filter(v => v != null);
+                let flags = (0, flagsYarnAdd_1.flagsYarnAdd)(argv).filter(v => v != null);
                 const oldArgs = args.slice();
                 if (args.length) {
-                    let data = installDeps_1.filterInstallDeps(args, argv);
+                    let data = (0, installDeps_1.filterInstallDeps)(args, argv);
                     if (data.updated) {
-                        let chalk = debug_color2_1.chalkByConsoleMaybe(index_1.console);
+                        let chalk = (0, debug_color2_1.chalkByConsoleMaybe)(index_1.console);
                         index_1.consoleDebug.debug(`direct add deps from workspaces`);
-                        let table = table_1.createDependencyTable();
+                        let table = (0, table_1.createDependencyTable)();
                         data.exists.forEach(name => table.push([name, '', chalk.gray('exists')]));
                         data.added.forEach(([name, semver]) => table.push([name, semver, chalk.green('added')]));
                         index_1.console.log(table.toString());
-                        fs_extra_1.writeJSONSync(path_1.join(data.rootData.pkg, 'package.json'), data.pkg, {
+                        (0, fs_extra_1.writeJSONSync)((0, path_1.join)(data.rootData.pkg, 'package.json'), data.pkg, {
                             spaces: 2
                         });
                         args = data.packageNames;
@@ -76,15 +74,15 @@ const cmdModule = cmd_dir_1.createCommandModuleExports({
                         }
                     }
                     if ((_a = cache.yarnlock_old) === null || _a === void 0 ? void 0 : _a.length) {
-                        let data = await installDepsFromYarnLock_1.installDepsFromYarnLock(args, argv);
-                        if (data.updated) {
-                            let chalk = debug_color2_1.chalkByConsoleMaybe(index_1.console);
+                        let data = await (0, installDepsFromYarnLock_1.installDepsFromYarnLock)(args, argv);
+                        if (data === null || data === void 0 ? void 0 : data.updated) {
+                            let chalk = (0, debug_color2_1.chalkByConsoleMaybe)(index_1.console);
                             index_1.consoleDebug.debug(`direct add deps from yarn.lock`);
-                            let table = table_1.createDependencyTable();
+                            let table = (0, table_1.createDependencyTable)();
                             data.exists.forEach(name => table.push([name, '', chalk.gray('exists')]));
                             data.added.forEach(([name, semver]) => table.push([name, semver, chalk.green('added')]));
                             index_1.console.log(table.toString());
-                            fs_extra_1.writeJSONSync(path_1.join(data.rootData.pkg, 'package.json'), data.pkg, {
+                            (0, fs_extra_1.writeJSONSync)((0, path_1.join)(data.rootData.pkg, 'package.json'), data.pkg, {
                                 spaces: 2
                             });
                             args = data.others;
@@ -109,7 +107,7 @@ const cmdModule = cmd_dir_1.createCommandModuleExports({
                         throw cp.error;
                     }
                     else {
-                        assertExecInstall_1.assertExecInstall(cp);
+                        (0, assertExecInstall_1.assertExecInstall)(cp);
                     }
                 }
                 if (argv.types) {
@@ -126,7 +124,7 @@ const cmdModule = cmd_dir_1.createCommandModuleExports({
                         throw cp.error;
                     }
                     else {
-                        assertExecInstall_1.assertExecInstall(cp);
+                        (0, assertExecInstall_1.assertExecInstall)(cp);
                     }
                 }
                 return retBreak;
@@ -141,7 +139,7 @@ const cmdModule = cmd_dir_1.createCommandModuleExports({
                         throw cp.error;
                     }
                     else {
-                        assertExecInstall_1.assertExecInstall(cp);
+                        (0, assertExecInstall_1.assertExecInstall)(cp);
                     }
                 }
             },

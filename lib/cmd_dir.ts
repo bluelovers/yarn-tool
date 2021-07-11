@@ -1,15 +1,6 @@
-/**
- * 因為 ./cli.ts 似乎寫出BUG 所以只好打掉重練一個
- *
- * 但是依然BUG...
- * 放棄修正
- */
-
-import yargs = require('yargs');
-import { CommandModule, Arguments, Argv, CommandBuilder, Options } from 'yargs';
-import { ITSOverwrite } from 'ts-type';
-import path = require('upath2');
-import { checkModileExists, crossSpawnOther, processArgvSlice } from './spawn';
+import { Arguments, Argv, CommandModule, Options } from 'yargs';
+import { basename, join, extname } from 'upath2';
+import { crossSpawnOther, processArgvSlice } from './spawn';
 import { SpawnSyncOptions } from 'cross-spawn-extra/type';
 
 export interface IUnpackMyYargsArgv
@@ -77,7 +68,7 @@ export function _dummyHandler<T extends {}>(args: Arguments<T>): any
 
 export function basenameStrip(name: string)
 {
-	return path.basename(name, path.extname(name))
+	return basename(name, extname(name))
 }
 
 export function commandDirStrip(name: string, suffix = '_cmds')
@@ -87,7 +78,7 @@ export function commandDirStrip(name: string, suffix = '_cmds')
 
 export function commandDirJoin(root: string, name: string, suffix = '_cmds')
 {
-	return path.join(root, commandDirStrip(name))
+	return join(root, commandDirStrip(name, suffix))
 }
 
 export function lazySpawnArgvSlice(options: {

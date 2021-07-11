@@ -4,8 +4,8 @@
  */
 const cmd_dir_1 = require("../../../lib/cmd_dir");
 const index_1 = require("../../../lib/index");
-const cmdModule = cmd_dir_1.createCommandModuleExports({
-    command: cmd_dir_1.basenameStrip(__filename),
+const cmdModule = (0, cmd_dir_1.createCommandModuleExports)({
+    command: (0, cmd_dir_1.basenameStrip)(__filename),
     //aliases: [],
     describe: `Remove a package in workspaces.`,
     builder(yargs) {
@@ -13,14 +13,14 @@ const cmdModule = cmd_dir_1.createCommandModuleExports({
             .strict(false);
     },
     handler(argv) {
-        const key = cmd_dir_1.basenameStrip(__filename);
-        let rootData = index_1.findRoot({
+        const key = (0, cmd_dir_1.basenameStrip)(__filename);
+        let rootData = (0, index_1.findRoot)({
             ...argv,
         }, true);
         if (!rootData.hasWorkspace) {
-            return index_1.yargsProcessExit(`workspace not exists`);
+            return (0, index_1.yargsProcessExit)(`workspace not exists`);
         }
-        cmd_dir_1.lazySpawnArgvSlice({
+        (0, cmd_dir_1.lazySpawnArgvSlice)({
             command: key,
             bin: 'yarn',
             cmd: [

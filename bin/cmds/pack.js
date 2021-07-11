@@ -3,8 +3,8 @@
  * Created by user on 2019/5/19.
  */
 const cmd_dir_1 = require("../../lib/cmd_dir");
-const cmdModule = cmd_dir_1.createCommandModuleExports({
-    command: cmd_dir_1.basenameStrip(__filename),
+const cmdModule = (0, cmd_dir_1.createCommandModuleExports)({
+    command: (0, cmd_dir_1.basenameStrip)(__filename),
     //aliases: [],
     describe: `Creates a compressed gzip archive of package dependencies.`,
     builder(yargs) {
@@ -17,8 +17,8 @@ const cmdModule = cmd_dir_1.createCommandModuleExports({
         });
     },
     handler(argv) {
-        const key = cmd_dir_1.basenameStrip(__filename);
-        cmd_dir_1.lazySpawnArgvSlice({
+        const key = (0, cmd_dir_1.basenameStrip)(__filename);
+        (0, cmd_dir_1.lazySpawnArgvSlice)({
             command: key,
             bin: 'npm',
             cmd: key,

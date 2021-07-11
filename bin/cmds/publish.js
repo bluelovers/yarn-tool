@@ -4,8 +4,8 @@
  */
 const cmd_dir_1 = require("../../lib/cmd_dir");
 const spawn_1 = require("../../lib/spawn");
-const cmdModule = cmd_dir_1.createCommandModuleExports({
-    command: cmd_dir_1.basenameStrip(__filename),
+const cmdModule = (0, cmd_dir_1.createCommandModuleExports)({
+    command: (0, cmd_dir_1.basenameStrip)(__filename),
     aliases: ['push'],
     describe: `publish a npm package`,
     builder(yargs) {
@@ -28,8 +28,8 @@ const cmdModule = cmd_dir_1.createCommandModuleExports({
         });
     },
     handler(argv) {
-        let cmd_list = spawn_1.processArgvSlice(['publish', 'push']).argv;
-        spawn_1.crossSpawnOther('npm', [
+        let cmd_list = (0, spawn_1.processArgvSlice)(['publish', 'push']).argv;
+        (0, spawn_1.crossSpawnOther)('npm', [
             'publish',
             ...cmd_list,
         ], argv);
