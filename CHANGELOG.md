@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.2.1](https://github.com/bluelovers/yarn-tool/compare/yarn-tool@1.1.8...yarn-tool@1.2.1) (2021-07-11)
+
+
+### 🐛　Bug Fixes
+
+* data maybe undefined ([030ba3c](https://github.com/bluelovers/yarn-tool/commit/030ba3cd184977fe967fc8abd2464e983c9b78f5))
+
+
+### 🛠　Build System
+
+* update deps and use tslib ([cd7128c](https://github.com/bluelovers/yarn-tool/commit/cd7128c775e032604be890edad7a6d37f8889905))
+
+
+
+
+
 ## [1.1.8](https://github.com/bluelovers/yarn-tool/compare/yarn-tool@1.1.7...yarn-tool@1.1.8) (2021-06-22)
 
 
