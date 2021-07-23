@@ -29,10 +29,23 @@ const cmdModule = (0, cmd_dir_1.createCommandModuleExports)({
         }
         (0, cmd_dir_1.lazySpawnArgvSlice)({
             command: key,
+            bin: 'lerna',
+            cmd: [
+                '--concurrency',
+                '1',
+                'add',
+            ],
+            // @ts-ignore
+            argv: {
+                cwd: rootData.ws,
+            },
+        });
+        argv.types && (0, cmd_dir_1.lazySpawnArgvSlice)({
+            command: key,
             bin: 'node',
             cmd: [
                 require.resolve(index_1.YT_BIN),
-                'add',
+                'types',
                 '-W',
             ],
             // @ts-ignore
