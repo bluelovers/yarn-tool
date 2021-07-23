@@ -3,6 +3,27 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.2.4](https://github.com/bluelovers/yarn-tool/compare/yarn-tool@1.2.3...yarn-tool@1.2.4) (2021-07-23)
+
+
+### 📦　Code Refactoring
+
+* 將 `yt ws add` 的執行方式 改為 `lerna add` 而非 `yarn add -W` ([b9d4210](https://github.com/bluelovers/yarn-tool/commit/b9d421033bb989f5d49dcaaf75a4bb119bce239b))
+
+
+### ♻️　Chores
+
+* update deps ([2726da2](https://github.com/bluelovers/yarn-tool/commit/2726da250517f85aff841a222be0f5192a382b1b))
+
+
+### BREAKING CHANGE
+
+* 將 `yt ws add` 的執行方式 改為 `lerna add` 而非 `yarn add -W`
+
+
+
+
+
 ## [1.2.3](https://github.com/bluelovers/yarn-tool/compare/yarn-tool@1.2.2...yarn-tool@1.2.3) (2021-07-16)
 
 **Note:** Version bump only for package yarn-tool
