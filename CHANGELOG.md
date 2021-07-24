@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.2.6](https://github.com/bluelovers/yarn-tool/compare/yarn-tool@1.2.5...yarn-tool@1.2.6) (2021-07-24)
+
+
+### 🐛　Bug Fixes
+
+* 修正當 不存在 workspaces 時，初始化 會判定錯誤的問題 ([9549ce8](https://github.com/bluelovers/yarn-tool/commit/9549ce8291d7e0832c78a4f25432e6a58ec96bf3))
+
+
+
+
+
 ## [1.2.5](https://github.com/bluelovers/yarn-tool/compare/yarn-tool@1.2.4...yarn-tool@1.2.5) (2021-07-24)
 
 **Note:** Version bump only for package yarn-tool
