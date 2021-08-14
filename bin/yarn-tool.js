@@ -23,6 +23,7 @@ let cli = yargs_1.default
     default: process.cwd(),
 })
     .option('skipCheckWorkspace', {
+    alias: ['W'],
     desc: `this options is for search yarn.lock, pkg root, workspace root, not same as --ignore-workspace-root-check`,
     boolean: true,
 })
