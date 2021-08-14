@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.2.8](https://github.com/bluelovers/yarn-tool/compare/yarn-tool@1.2.7...yarn-tool@1.2.8) (2021-08-14)
+
+
+### ✨　Features
+
+* **bin:** global `-W` ([3042359](https://github.com/bluelovers/yarn-tool/commit/3042359bb95398e886482aac572ae6f6fd55d8a6))
+* **root:** lazy support other cmd ([1c8cc27](https://github.com/bluelovers/yarn-tool/commit/1c8cc272217ec8d56bccc48e9cd17966971fb463))
+* **ws:** add `ws sort` - sort each package.json file in workspaces ([50529ad](https://github.com/bluelovers/yarn-tool/commit/50529adfa84931570d1371af520a042e6373c25b))
+
+
+### ♻️　Chores
+
+* **deps:** update deps ([0480ff1](https://github.com/bluelovers/yarn-tool/commit/0480ff1c831daabed3cd9cdccff96f8c729dd529))
+
+
+
+
+
 ## [1.2.7](https://github.com/bluelovers/yarn-tool/compare/yarn-tool@1.2.6...yarn-tool@1.2.7) (2021-07-24)
 
 **Note:** Version bump only for package yarn-tool
