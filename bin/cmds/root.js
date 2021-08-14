@@ -8,6 +8,7 @@ const index_1 = require("../../lib/index");
 const spawn_1 = require("../../lib/spawn");
 const ws_root_spawn_1 = require("ws-root-spawn");
 const core_1 = (0, tslib_1.__importDefault)(require("find-yarn-workspace-root2/core"));
+const index_2 = require("../../index");
 const command = (0, cmd_dir_1.basenameStrip)(__filename);
 const cmdModule = (0, cmd_dir_1.createCommandModuleExports)({
     command,
@@ -59,8 +60,18 @@ printed`,
             }
         }
         else {
-            index_1.consoleDebug.error(`not support this command: ${cmd}`);
-            process.exit(1);
+            (0, cmd_dir_1.lazySpawnArgvSlice)({
+                command: cmd,
+                bin: 'node',
+                cmd: [
+                    require.resolve(index_2.YT_BIN),
+                    cmd,
+                    '-W',
+                ],
+                argv: {
+                    cwd: root,
+                },
+            });
         }
     },
 });

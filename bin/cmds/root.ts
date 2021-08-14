@@ -13,6 +13,8 @@ import {
 	console,
 } from '../../lib/index';
 import findWorkspaceRoot from 'find-yarn-workspace-root2/core';
+import crossSpawn from 'cross-spawn-extra';
+import { YT_BIN } from '../../index';
 
 const command = basenameStrip(__filename);
 
@@ -83,8 +85,18 @@ printed`,
 		}
 		else
 		{
-			consoleDebug.error(`not support this command: ${cmd}`)
-			process.exit(1)
+			lazySpawnArgvSlice({
+				command: cmd,
+				bin: 'node',
+				cmd: [
+					require.resolve(YT_BIN),
+					cmd,
+					'-W',
+				],
+				argv: {
+					cwd: root,
+				},
+			});
 		}
 	},
 
