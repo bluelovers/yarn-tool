@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.2.11](https://github.com/bluelovers/yarn-tool/compare/yarn-tool@1.2.10...yarn-tool@1.2.11) (2021-08-20)
+
+**Note:** Version bump only for package yarn-tool
+
+
+
+
+
 ## [1.2.10](https://github.com/bluelovers/yarn-tool/compare/yarn-tool@1.2.8...yarn-tool@1.2.10) (2021-08-20)
 
 
