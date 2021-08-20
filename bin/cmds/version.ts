@@ -80,6 +80,7 @@ const cmdModule = createCommandModuleExports({
 
 		let name = chalkByConsole((chalk, console) =>
 		{
+			// @ts-ignore
 			return chalk.green(pkg.name)
 		}, console);
 

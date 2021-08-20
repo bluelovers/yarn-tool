@@ -62,6 +62,7 @@ const cmdModule = (0, cmd_dir_1.createCommandModuleExports)({
         }
         let { pkg, bump, oldVersion, newVersion } = (0, index_2.nextVersionRecommendedByPackageFindUp)(argv);
         let name = (0, index_1.chalkByConsole)((chalk, console) => {
+            // @ts-ignore
             return chalk.green(pkg.name);
         }, index_1.console);
         index_1.console.log(`[${name}]`, (0, index_1.chalkByConsole)((chalk, console) => {

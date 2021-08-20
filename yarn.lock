@@ -530,10 +530,10 @@
   resolved "https://registry.npmjs.org/@types/minimist/-/minimist-1.2.2.tgz#ee771e2ba4b3dc5b372935d549fd9617bf345b8c"
   integrity sha512-jhuKLIRrhvCPLqwPcx6INqmKeiA5EWrsCOPhrlFSrbrmU4ZMPjj5Ul/oLCMDO98XRUIwVm78xICz4EPCektzeQ==
 
-"@types/node@*", "@types/node@^16.6.1":
-  version "16.6.1"
-  resolved "https://registry.npmjs.org/@types/node/-/node-16.6.1.tgz#aee62c7b966f55fc66c7b6dfa1d58db2a616da61"
-  integrity sha512-Sr7BhXEAer9xyGuCN3Ek9eg9xPviCF2gfu9kTfuU2HkTVAMYSDeX40fvpmo72n5nansg3nsBjuQBrsS28r+NUw==
+"@types/node@*", "@types/node@^16.6.2":
+  version "16.6.2"
+  resolved "https://registry.npmjs.org/@types/node/-/node-16.6.2.tgz#331b7b9f8621c638284787c5559423822fdffc50"
+  integrity sha512-LSw8TZt12ZudbpHc6EkIyDM3nHVWKYrAvGy6EAJfNfjusbwnThqjqxUKKRwuV3iWYeW/LYMzNgaq3MaLffQ2xA==
 
 "@types/normalize-package-data@^2.4.0":
   version "2.4.1"
@@ -591,10 +591,10 @@
   dependencies:
     "@types/yargs-parser" "*"
 
-"@yarn-tool/changelog@^1.0.53":
-  version "1.0.53"
-  resolved "https://registry.npmjs.org/@yarn-tool/changelog/-/changelog-1.0.53.tgz#d8cd4f2508ffac75e2e212d1f905c93d50acfaed"
-  integrity sha512-O+OAiIJLQB6oYi8dVYa/oKgnhBJx3h7SWjorKD8uMQ+jINvdvVv0oWXlxisQ5IkNCZGPUtmg/CD+qKg6c6KQ2Q==
+"@yarn-tool/changelog@^1.0.54":
+  version "1.0.54"
+  resolved "https://registry.npmjs.org/@yarn-tool/changelog/-/changelog-1.0.54.tgz#a7d8a9eca09c8f8b460cbe0ffcea8385cf518043"
+  integrity sha512-0Uk7mzpfaXJjR7aw7RdefajJD2Swx3yMlUcmQr/f7mTqS9JPjRGyVqCPFrr9An1GWj2TpMnxgNJU7+C6P1cehQ==
   dependencies:
     "@bluelovers/conventional-changelog-bluelovers" "*"
     "@lerna/conventional-commits" "^4.0.0"
@@ -604,7 +604,7 @@
     "@yarn-tool/table" "^1.0.33"
     "@yarn-tool/types" "^1.0.6"
     lodash "^4.17.21"
-    path-is-same "^1.0.14"
+    path-is-same "^1.0.15"
     ts-type "^1.2.39"
     tslib "^2.3.1"
     upath2 "^3.1.10"
@@ -658,10 +658,10 @@
     is-npx "^1.0.0"
     tslib "^2.3.1"
 
-"@yarn-tool/ncu@^1.0.75":
-  version "1.0.75"
-  resolved "https://registry.npmjs.org/@yarn-tool/ncu/-/ncu-1.0.75.tgz#5bec2b0ef23a3e64aed9b1a3a45414de991bc2d2"
-  integrity sha512-z573lPfgHzXIm6gx8PUBnvE2ytdFI8TpyBwLs0VstjpnHzJbSdszsqg4zG/LHkSKPj6jY67RSS2p0uBJDQ/2HA==
+"@yarn-tool/ncu@^1.0.76":
+  version "1.0.76"
+  resolved "https://registry.npmjs.org/@yarn-tool/ncu/-/ncu-1.0.76.tgz#1a8f045f81cbebe28e85e22a789fe622e56f4c9b"
+  integrity sha512-eYImfkfxh5Acogc7el4XeB7yZqB6ssxerfMlfcb1EGXfHJDBQvYUUr0fVDxnBdQBbOHtEEMNx+yx1q21tgLVOQ==
   dependencies:
     "@lazy-node/semver-simple-parse" "^1.1.16"
     "@ts-type/package-dts" "^1.0.50"
@@ -677,19 +677,19 @@
     ts-type "^1.2.39"
     tslib "^2.3.1"
 
-"@yarn-tool/node-modules-link@^1.0.24":
-  version "1.0.24"
-  resolved "https://registry.npmjs.org/@yarn-tool/node-modules-link/-/node-modules-link-1.0.24.tgz#2c18853c1303a5f7c813f928710a81b23b341a68"
-  integrity sha512-7SYo7XCBj3VEPMgsf2uxu2piyX46hBQmP+KE1Vb2U8wbuNvAISyyajRhXA+Rbzl1mt40dhaVTr6+bjZ5RvjtUQ==
+"@yarn-tool/node-modules-link@^1.0.25":
+  version "1.0.25"
+  resolved "https://registry.npmjs.org/@yarn-tool/node-modules-link/-/node-modules-link-1.0.25.tgz#5ef5dcd5deccfe184492eb846827e75242d8ac16"
+  integrity sha512-GglTjZlgQOjbNdXU06cQ6sf5V0oPyuAd4DJdcRJeggvkAxUztZzFksIV2S5KawPB3VxLbLlCsSjTxF6UtWpzUw==
   dependencies:
     "@ts-type/package-dts" "^1.0.50"
     "@yarn-tool/find-root" "^1.0.50"
     find-yarn-workspace-root2 "^1.2.32"
     fs-extra "^10.0.0"
-    fs-symlink-extra "^1.0.4"
+    fs-symlink-extra "^1.0.5"
     tslib "^2.3.1"
     upath2 "^3.1.10"
-    yargs "^17.1.0"
+    yargs "^17.1.1"
 
 "@yarn-tool/npm-package-arg-util@^1.0.19":
   version "1.0.19"
@@ -814,29 +814,29 @@
     "@yarn-tool/is-builtin-module" "^1.0.10"
     tslib "^2.3.1"
 
-"@yarn-tool/version-recommended@^1.0.30":
-  version "1.0.30"
-  resolved "https://registry.npmjs.org/@yarn-tool/version-recommended/-/version-recommended-1.0.30.tgz#3dc357bda747783ab731da344fe27dcbc23eae43"
-  integrity sha512-+3++TOTQQh4FxLXZwMv25zy3WwsdMzJcjSNT8F7egK6cL+wx/4XqCDRW3ZIAE+Hv62GDn9fNVNrHNkmSZFPTMw==
+"@yarn-tool/version-recommended@^1.0.31":
+  version "1.0.31"
+  resolved "https://registry.npmjs.org/@yarn-tool/version-recommended/-/version-recommended-1.0.31.tgz#3c8275e304baf7993d34fad5513754ed63f3c0af"
+  integrity sha512-c2t3DZksNYk/C+swl5Yx6kvOI7UYYEkX+n1SYP3nTEe/d3SckHuUh/EjoYxZjxzxIHbb8xSgZS3tvpC1zJ2qyw==
   dependencies:
     "@ts-type/package-dts" "^1.0.50"
     "@types/semver" "*"
     "@yarn-tool/find-root" "^1.0.50"
     "@yarn-tool/types" "^1.0.6"
-    "@yarn-tool/workspaces-project" "^1.0.52"
+    "@yarn-tool/workspaces-project" "^1.0.53"
     semver "^7.3.5"
     ts-type "^1.2.39"
     tslib "^2.3.1"
 
-"@yarn-tool/workspaces-project@^1.0.52":
-  version "1.0.52"
-  resolved "https://registry.npmjs.org/@yarn-tool/workspaces-project/-/workspaces-project-1.0.52.tgz#5af656cd7d106291473988784f9ae5f402f9c09b"
-  integrity sha512-+HnzCJK72xubtktFJN8DrCP5vvZLcPc4i9o/MaW4GOEqWK20wuUH76Lp/ni8xEKW6mGuyh1z+OQLVmF9opjmnw==
+"@yarn-tool/workspaces-project@^1.0.53":
+  version "1.0.53"
+  resolved "https://registry.npmjs.org/@yarn-tool/workspaces-project/-/workspaces-project-1.0.53.tgz#17f20a21e8fb81f2079bd536fb30511704c119b9"
+  integrity sha512-R0tuezZ4AI3mdZxXtM8fd06CUAOW5pg+o7OebZtjdPYwbTP0reZOjREFfitgvusZLZSfaZhA29SCgYj3aU3SmA==
   dependencies:
     "@lerna/project" "^4.0.0"
     "@ts-type/package-dts" "^1.0.50"
     "@types/npm-package-arg" "*"
-    "@yarn-tool/changelog" "^1.0.53"
+    "@yarn-tool/changelog" "^1.0.54"
     find-yarn-workspace-root2 "^1.2.32"
     fs-extra "^10.0.0"
     lodash "^4.17.21"
@@ -1728,22 +1728,22 @@ cosmiconfig@^7.0.0:
     path-type "^4.0.0"
     yaml "^1.10.0"
 
-create-yarn-workspaces@^1.0.117:
-  version "1.0.117"
-  resolved "https://registry.npmjs.org/create-yarn-workspaces/-/create-yarn-workspaces-1.0.117.tgz#63fec6a80b60f1c38aac3e0590ca26dd4d1d0190"
-  integrity sha512-TbcC0d2hJKhHWWgcp6T6o5H0KQy9GdnFi7//eA/IgXL4Dj5q6R3qILzmJYYpl10BM51keNBtYxkYCXF87Sbeew==
+create-yarn-workspaces@^1.0.118:
+  version "1.0.118"
+  resolved "https://registry.npmjs.org/create-yarn-workspaces/-/create-yarn-workspaces-1.0.118.tgz#8a46df41fab376cf49715c2d0ae6627598c492d8"
+  integrity sha512-4GZZ8QV/gacd0nub1OSUv2QZALq4YJxH1+nYe0uL0YpC4gt3nTXfIoF12gUQ+g9wAPmC7/J8Qg6mPBcUguITbg==
   dependencies:
     "@ts-type/package-dts" "^1.0.50"
     "@yarn-tool/static-file" "^1.0.73"
     debug-color2 "^1.2.7"
     find-yarn-workspace-root2 "^1.2.32"
     fs-extra "^10.0.0"
-    path-is-same "^1.0.14"
+    path-is-same "^1.0.15"
     pkg-dir "^5.0.0"
     sort-package-json "^1.50.0"
     sort-package-json3 "^1.0.38"
     tslib "^2.3.1"
-    yargs "^17.1.0"
+    yargs "^17.1.1"
 
 crlf-normalize@^1.0.6:
   version "1.0.6"
@@ -2241,14 +2241,14 @@ fs-stat@^1.0.12:
   dependencies:
     tslib "^2.3.1"
 
-fs-symlink-extra@^1.0.4:
-  version "1.0.4"
-  resolved "https://registry.npmjs.org/fs-symlink-extra/-/fs-symlink-extra-1.0.4.tgz#359e3a728ed066ffe4c2e884b7a9b13f75beea4a"
-  integrity sha512-ufBp0Xj8dnvi+s2VgLOS14qbgSvMCe6HiMW9UEQxst+EL3uib1+nj1LNdKacjzwdLePiJHlWyeu2+wREmbd6vw==
+fs-symlink-extra@^1.0.5:
+  version "1.0.5"
+  resolved "https://registry.npmjs.org/fs-symlink-extra/-/fs-symlink-extra-1.0.5.tgz#e766fb01827ab78dc338c36d22fe1f319a85c870"
+  integrity sha512-ChkQDU/MXKDt1xw2AGImpPnpEHz349i7Oee/YqqjE4BaTLAhi+rAqWVqmJZlM0+oikp9ochEg2MiT6mpNrnNsg==
   dependencies:
     fs-extra "^10.0.0"
     fs-stat "^1.0.12"
-    path-is-same "^1.0.14"
+    path-is-same "^1.0.15"
     ts-type "^1.2.39"
     tslib "^2.3.1"
 
@@ -3505,21 +3505,21 @@ npm-check-updates@^11.8.3:
     spawn-please "^1.0.0"
     update-notifier "^5.1.0"
 
-npm-init2@^1.0.173:
-  version "1.0.173"
-  resolved "https://registry.npmjs.org/npm-init2/-/npm-init2-1.0.173.tgz#90384b65a60773c0c72b2241f5eb57b0cf3a468e"
-  integrity sha512-uFGg+MsTf8TZ7uM3IqcCBwEx0OTcj+4p/wSk2xSAHSn64h9ex49s8HpA3B8hN/XM7+jcws0Txer4sTTQdH4C7A==
+npm-init2@^1.0.174:
+  version "1.0.174"
+  resolved "https://registry.npmjs.org/npm-init2/-/npm-init2-1.0.174.tgz#5c1e1955511c14bdadc06bb43cb00c3407489d23"
+  integrity sha512-Ke/k1jus/sYtpizGCRD6VdYudYSd0OtGAfMRJip5DYWplYuGSmhPenr0/z/IGKjNUonxDxIXint7n9HsiAq9VA==
   dependencies:
     "@ts-type/package-dts" "^1.0.50"
     "@yarn-tool/find-root" "^1.0.50"
     "@yarn-tool/init-path" "^1.0.15"
     "@yarn-tool/is-builtin-module" "^1.0.10"
-    "@yarn-tool/node-modules-link" "^1.0.24"
+    "@yarn-tool/node-modules-link" "^1.0.25"
     "@yarn-tool/pkg-git-info" "^1.0.21"
     "@yarn-tool/static-file" "^1.0.73"
     "@yarn-tool/types" "^1.0.6"
     "@yarn-tool/update-notifier" "^1.0.21"
-    "@yarn-tool/workspaces-project" "^1.0.52"
+    "@yarn-tool/workspaces-project" "^1.0.53"
     cross-spawn-extra "^2.1.0"
     find-yarn-workspace-root2 "^1.2.32"
     fs-extra "^10.0.0"
@@ -3527,13 +3527,13 @@ npm-init2@^1.0.173:
     lodash "^4.17.21"
     micromatch "^4.0.4"
     npm-package-json-loader "^1.0.55"
-    path-is-same "^1.0.14"
+    path-is-same "^1.0.15"
     sort-package-json-scripts "^1.1.9"
     tslib "^2.3.1"
     upath2 "^3.1.10"
     validate-npm-package-name "^3.0.0"
     workspaces-config "^1.0.35"
-    yargs "^17.1.0"
+    yargs "^17.1.1"
 
 npm-install-checks@^4.0.0:
   version "4.0.0"
@@ -3868,10 +3868,10 @@ path-is-network-drive@^1.0.10:
   dependencies:
     tslib "^2.3.1"
 
-path-is-same@^1.0.14:
-  version "1.0.14"
-  resolved "https://registry.npmjs.org/path-is-same/-/path-is-same-1.0.14.tgz#8472340ca18e25eedc8545ee36c9904d78ec897c"
-  integrity sha512-j3nfM5Sj8pHjExNYzeZ0l00NsMfcBEBhEXe6uVPM3CdSGQqQpl2vNlOFGMamWJND63Eb9gKJj43JMbHyUcatAQ==
+path-is-same@^1.0.15:
+  version "1.0.15"
+  resolved "https://registry.npmjs.org/path-is-same/-/path-is-same-1.0.15.tgz#6c052d222c345e9c7f689dc6c202eab2eaaaf3f8"
+  integrity sha512-Scwjs0VP7w6nWgsWEt6gZecrSKnExO7/sG1w7fHJ4xJq5HfRpoFzU5ifBYxSYQfr68YXGAfAsNcHcxoDaIkJFA==
   dependencies:
     tslib "^2.3.1"
     upath2 "^3.1.10"
@@ -5183,7 +5183,7 @@ yargs-unparser@^2.0.0:
     flat "^5.0.2"
     is-plain-obj "^2.1.0"
 
-yargs@*, yargs@^17.1.0, yargs@^17.1.1:
+yargs@*, yargs@^17.1.1:
   version "17.1.1"
   resolved "https://registry.npmjs.org/yargs/-/yargs-17.1.1.tgz#c2a8091564bdb196f7c0a67c1d12e5b85b8067ba"
   integrity sha512-c2k48R0PwKIqKhPMWjeiF6y2xY/gPMUlro0sgxqXpbOIohWiLNXWslsootttv7E1e73QPAMQSg5FeySbVcpsPQ==
