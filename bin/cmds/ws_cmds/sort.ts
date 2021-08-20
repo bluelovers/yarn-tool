@@ -38,7 +38,7 @@ const cmdModule = createCommandModuleExports({
 			let old = readFileSync(entry.manifestLocation).toString();
 
 			const json = sortPackageJson(JSON.parse(old));
-			const json_new = JSON.stringify(json);
+			const json_new = JSON.stringify(json, null, 2);
 
 			let changed: boolean = old !== json_new;
 

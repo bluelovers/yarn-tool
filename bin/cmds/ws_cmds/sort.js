@@ -29,7 +29,7 @@ const cmdModule = (0, cmd_dir_1.createCommandModuleExports)({
         listable.forEach(entry => {
             let old = (0, fs_1.readFileSync)(entry.manifestLocation).toString();
             const json = (0, sort_package_json3_1.default)(JSON.parse(old));
-            const json_new = JSON.stringify(json);
+            const json_new = JSON.stringify(json, null, 2);
             let changed = old !== json_new;
             if (changed) {
                 (0, fs_1.writeFileSync)(entry.manifestLocation, json_new);
