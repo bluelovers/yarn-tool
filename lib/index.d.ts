@@ -3,7 +3,7 @@
  */
 import { Console2 } from 'debug-color2';
 import { Arguments } from 'yargs';
-import { IUnpackMyYargsArgv } from './cmd_dir';
+import { IUnpackMyYargsArgvPartial } from './cmd_dir';
 import { findRoot } from '@yarn-tool/find-root';
 export declare const console: Console2;
 export declare const consoleDebug: Console2;
@@ -15,7 +15,7 @@ export declare function lazyFlags(keys: string[], argv: {
     [k: string]: boolean;
 }): string[];
 export declare const chalkByConsole: <R, C extends Console2 = Console2>(cb: (chalk: C["chalk"], _console: C) => R, _console?: C) => R;
-export declare function printRootData(rootData: ReturnType<typeof findRoot>, argv: Arguments<IUnpackMyYargsArgv>): void;
+export declare function printRootData(rootData: ReturnType<typeof findRoot>, argv: Arguments<IUnpackMyYargsArgvPartial>): void;
 export declare function yargsProcessExit(msg: string | Error, code?: number): void;
 declare const _default: typeof import("./index");
 export default _default;

@@ -27,12 +27,12 @@ export type ICommandModuleExports<T extends IUnpackMyYargsArgvPartial = IUnpackM
 	ICommandModuleOmit
 	& ({
 	builder(args: Argv<T>): Argv<U>;
-	handler: (args: Arguments<U>) => any;
+	handler(args: Arguments<U>): any;
 } | {
 	builder: ICommandBuilderObject;
-	handler: (args: Arguments<U>) => any;
+	handler(args: Arguments<U>): any;
 } | {
-	handler: (args: Arguments<T>) => any;
+	handler(args: Arguments<T>): any;
 } | {
 	builder(args: Argv<T>): Argv<U>;
 });

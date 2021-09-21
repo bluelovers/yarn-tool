@@ -7,7 +7,7 @@ import { Console2 } from 'debug-color2';
 import { createFnChalkByConsole } from 'debug-color2/lib/util';
 import { readPackageJson } from '@ts-type/package-dts';
 import { Arguments } from 'yargs';
-import { IUnpackMyYargsArgv } from './cmd_dir';
+import { IUnpackMyYargsArgv, IUnpackMyYargsArgvPartial } from './cmd_dir';
 import { findRoot } from '@yarn-tool/find-root';
 
 export const console = new Console2();
@@ -74,7 +74,7 @@ export function lazyFlags(keys: string[], argv: {
 
 export const chalkByConsole = createFnChalkByConsole(console);
 
-export function printRootData(rootData: ReturnType<typeof findRoot>, argv: Arguments<IUnpackMyYargsArgv>)
+export function printRootData(rootData: ReturnType<typeof findRoot>, argv: Arguments<IUnpackMyYargsArgvPartial>)
 {
 	let doWorkspace = !rootData.isWorkspace && rootData.hasWorkspace;
 

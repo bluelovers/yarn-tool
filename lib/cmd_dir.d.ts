@@ -15,12 +15,12 @@ export interface ICommandBuilderObject<T = object, U = object> {
 export declare type ICommandModuleOmit<T extends IUnpackMyYargsArgvPartial = IUnpackMyYargsArgv, U extends {} = IUnpackMyYargsArgvPartial> = Omit<CommandModule, 'handler' | 'builder'>;
 export declare type ICommandModuleExports<T extends IUnpackMyYargsArgvPartial = IUnpackMyYargsArgv, U extends IUnpackMyYargsArgvPartial = IUnpackMyYargsArgv> = ICommandModuleOmit & ({
     builder(args: Argv<T>): Argv<U>;
-    handler: (args: Arguments<U>) => any;
+    handler(args: Arguments<U>): any;
 } | {
     builder: ICommandBuilderObject;
-    handler: (args: Arguments<U>) => any;
+    handler(args: Arguments<U>): any;
 } | {
-    handler: (args: Arguments<T>) => any;
+    handler(args: Arguments<T>): any;
 } | {
     builder(args: Argv<T>): Argv<U>;
 });

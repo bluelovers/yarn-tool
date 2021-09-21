@@ -4,8 +4,8 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const tslib_1 = require("tslib");
 const yargs_1 = (0, tslib_1.__importDefault)(require("yargs"));
 const upath2_1 = (0, tslib_1.__importDefault)(require("upath2"));
-const os_locale_1 = (0, tslib_1.__importDefault)(require("os-locale"));
 const update_notifier_1 = require("@yarn-tool/update-notifier");
+const osLocaleSync_1 = require("../lib/osLocaleSync");
 if (upath2_1.default.extname(__filename) === '.js' && !process.argv.filter(v => {
     if (typeof v === 'string') {
         return v.includes('ts-node') || v.includes('source-map-support');
@@ -34,7 +34,7 @@ let cli = yargs_1.default
     .alias('h', 'help')
     .help('help')
     .recommendCommands()
-    .locale(os_locale_1.default.sync())
+    .locale((0, osLocaleSync_1.osLocaleSync)())
     .commandDir(upath2_1.default.join(__dirname, 'cmds'))
     .help(true)
     .showHelpOnFail(true)

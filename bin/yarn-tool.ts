@@ -6,7 +6,7 @@ import path from 'upath2';
 import osLocale from 'os-locale';
 import { updateNotifier } from '@yarn-tool/update-notifier';
 import { fsYarnLock } from '../lib/fsYarnLock';
-
+import { osLocaleSync } from '../lib/osLocaleSync';
 
 if (path.extname(__filename) === '.js' && !process.argv.filter(v => {
 	if (typeof v === 'string')
@@ -40,7 +40,7 @@ let cli = yargs
 	.alias('h', 'help')
 	.help('help')
 	.recommendCommands()
-	.locale(osLocale.sync())
+	.locale(osLocaleSync())
 	.commandDir(path.join(__dirname, 'cmds'))
 	.help(true)
 	.showHelpOnFail(true)

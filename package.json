@@ -88,6 +88,7 @@
     "fs-extra": "^10.0.0",
     "inquirer": "^8.1.4",
     "npm-init2": "^1.0.178",
+    "os-lang-locale": "^2.0.1",
     "os-locale": "<6 >=5",
     "package-json": "<7 >=6.5",
     "semver": "^7.3.5",
