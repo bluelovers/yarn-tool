@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.2.13](https://github.com/bluelovers/yarn-tool/compare/yarn-tool@1.2.12...yarn-tool@1.2.13) (2021-09-21)
+
+
+### 🐛　Bug Fixes
+
+* avoid wmic failed windows 10 ([cd76b51](https://github.com/bluelovers/yarn-tool/commit/cd76b51f3928f4131ee7bc0c205363344c8be8f4))
+
+
+### 🔖　Miscellaneous
+
+* . ([baa8a08](https://github.com/bluelovers/yarn-tool/commit/baa8a08b9ea8f56df1e1f9a1a89505eef97a16b6))
+
+
+
+
+
 ## [1.2.12](https://github.com/bluelovers/yarn-tool/compare/yarn-tool@1.2.11...yarn-tool@1.2.12) (2021-09-15)
 
 **Note:** Version bump only for package yarn-tool
