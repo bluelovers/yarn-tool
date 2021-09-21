@@ -19,7 +19,7 @@ import setupNcuToYargs, {
 	checkResolutionsUpdate,
 	isBadVersion,
 	isUpgradeable,
-	npmCheckUpdates, npmCheckUpdatesOptions, updateSemver,
+	npmCheckUpdates, npmCheckUpdatesOptions, setupNcuToYargs2, updateSemver,
 } from '../../lib/cli/ncu';
 import {
 	filterResolutions,
@@ -44,18 +44,7 @@ const cmdModule = createCommandModuleExports({
 
 	builder(yargs)
 	{
-		return setupNcuToYargs(yargs)
-			.option('resolutions', {
-				alias: ['R'],
-				desc: 'do with resolutions only',
-				boolean: true,
-			})
-			.option('no-safe', {
-				boolean: true,
-			})
-			.example(`$0 ncu -u`, `check new version and update package.json`)
-			.example(`$0 ncu -R`, `check new version of resolutions in package.json`)
-			.example(`$0 ncu -u -R`, `check new version of resolutions in package.json and update package.json`)
+		return setupNcuToYargs2(yargs)
 	},
 
 	async handler(argv)
@@ -66,10 +55,6 @@ const cmdModule = createCommandModuleExports({
 			...argv,
 			cwd,
 		}, true);
-
-		//console.dir(rootData);
-
-		let pkg_file_root = path.join(rootData.root, 'package.json');
 
 		let pkg_file = path.join(rootData.pkg, 'package.json');
 		let pkg_data = readPackageJson(pkg_file);

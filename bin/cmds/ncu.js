@@ -1,5 +1,4 @@
 "use strict";
-const tslib_1 = require("tslib");
 /**
  * Created by user on 2019/5/19.
  */
@@ -8,7 +7,7 @@ const path = require("upath2");
 const index_1 = require("../../lib/index");
 const package_dts_1 = require("@ts-type/package-dts");
 const pkg_1 = require("../../lib/pkg");
-const ncu_1 = (0, tslib_1.__importStar)(require("../../lib/cli/ncu"));
+const ncu_1 = require("../../lib/cli/ncu");
 const yarnlock_1 = require("../../lib/yarnlock");
 const table_1 = require("../../lib/table");
 const fsYarnLock_1 = require("../../lib/fsYarnLock");
@@ -19,18 +18,7 @@ const cmdModule = (0, cmd_dir_1.createCommandModuleExports)({
     aliases: ['update'],
     describe: `Find newer versions of dependencies than what your package.json allows`,
     builder(yargs) {
-        return (0, ncu_1.default)(yargs)
-            .option('resolutions', {
-            alias: ['R'],
-            desc: 'do with resolutions only',
-            boolean: true,
-        })
-            .option('no-safe', {
-            boolean: true,
-        })
-            .example(`$0 ncu -u`, `check new version and update package.json`)
-            .example(`$0 ncu -R`, `check new version of resolutions in package.json`)
-            .example(`$0 ncu -u -R`, `check new version of resolutions in package.json and update package.json`);
+        return (0, ncu_1.setupNcuToYargs2)(yargs);
     },
     async handler(argv) {
         const { cwd } = argv;
@@ -38,8 +26,6 @@ const cmdModule = (0, cmd_dir_1.createCommandModuleExports)({
             ...argv,
             cwd,
         }, true);
-        //console.dir(rootData);
-        let pkg_file_root = path.join(rootData.root, 'package.json');
         let pkg_file = path.join(rootData.pkg, 'package.json');
         let pkg_data = (0, package_dts_1.readPackageJson)(pkg_file);
         let resolutions = pkg_data.resolutions;
