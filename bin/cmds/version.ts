@@ -9,12 +9,12 @@ import { writePackageJson } from '../../lib/pkg';
 import { IUnpackMyYargsArgv } from '../../lib/cmd_dir';
 import { setupToYargs } from '@yarn-tool/version-recommended/lib/argv';
 import { releaseTypes } from '@yarn-tool/version-recommended/lib/types';
-import { nextVersionRecommendedByPackageFindUp } from '@yarn-tool/version-recommended/index';
+import { nextVersionRecommendedByPackageFindUp } from '@yarn-tool/version-recommended';
 import { join } from 'upath2';
 import { colorizeDiff } from '@yarn-tool/semver-diff/lib/colorize';
 import inquirer from 'inquirer';
-import { findRoot } from '@yarn-tool/find-root/index';
-import { readPackageJson } from '@ts-type/package-dts/index';
+import { findRoot } from '@yarn-tool/find-root';
+import { readPackageJson } from '@ts-type/package-dts';
 
 const cmdModule = createCommandModuleExports({
 
@@ -56,6 +56,7 @@ const cmdModule = createCommandModuleExports({
 			let rootData = findRoot(argv);
 			let pkg = readPackageJson(join(rootData.pkg, 'package.json'));
 
+			// @ts-ignore
 			console.info(`Current version`, pkg.version)
 
 			let ret = await inquirer

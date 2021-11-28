@@ -33,7 +33,7 @@ import semver = require('semver');
 import Bluebird = require('bluebird');
 import { toDependencyTable } from '../../lib/table';
 import { fsYarnLock } from '../../lib/fsYarnLock';
-import { updateYarnLockTag, printReport } from '@yarn-tool/yarnlock-ncu/index';
+import { updateYarnLockTag, printReport } from '@yarn-tool/yarnlock-ncu';
 import { writeFileSync } from 'fs';
 
 const cmdModule = createCommandModuleExports({

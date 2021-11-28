@@ -8,12 +8,12 @@ const index_1 = require("../../lib/index");
 const pkg_1 = require("../../lib/pkg");
 const argv_1 = require("@yarn-tool/version-recommended/lib/argv");
 const types_1 = require("@yarn-tool/version-recommended/lib/types");
-const index_2 = require("@yarn-tool/version-recommended/index");
+const version_recommended_1 = require("@yarn-tool/version-recommended");
 const upath2_1 = require("upath2");
 const colorize_1 = require("@yarn-tool/semver-diff/lib/colorize");
 const inquirer_1 = (0, tslib_1.__importDefault)(require("inquirer"));
-const index_3 = require("@yarn-tool/find-root/index");
-const index_4 = require("@ts-type/package-dts/index");
+const find_root_1 = require("@yarn-tool/find-root");
+const package_dts_1 = require("@ts-type/package-dts");
 const cmdModule = (0, cmd_dir_1.createCommandModuleExports)({
     command: (0, cmd_dir_1.basenameStrip)(__filename),
     //aliases: [],
@@ -37,14 +37,15 @@ const cmdModule = (0, cmd_dir_1.createCommandModuleExports)({
     },
     async handler(argv) {
         var _a;
-        let rootData = (0, index_3.findRoot)(argv);
+        let rootData = (0, find_root_1.findRoot)(argv);
         if (rootData.isWorkspace && argv.skipCheckWorkspace) {
             (0, index_1.yargsProcessExit)(`not allow bump version on root of workspace`);
             process.exit(1);
         }
         if (argv.interactive) {
-            let rootData = (0, index_3.findRoot)(argv);
-            let pkg = (0, index_4.readPackageJson)((0, upath2_1.join)(rootData.pkg, 'package.json'));
+            let rootData = (0, find_root_1.findRoot)(argv);
+            let pkg = (0, package_dts_1.readPackageJson)((0, upath2_1.join)(rootData.pkg, 'package.json'));
+            // @ts-ignore
             index_1.console.info(`Current version`, pkg.version);
             let ret = await inquirer_1.default
                 .prompt([
@@ -60,7 +61,7 @@ const cmdModule = (0, cmd_dir_1.createCommandModuleExports)({
                 argv.bump = ret.bump;
             }
         }
-        let { pkg, bump, oldVersion, newVersion } = (0, index_2.nextVersionRecommendedByPackageFindUp)(argv);
+        let { pkg, bump, oldVersion, newVersion } = (0, version_recommended_1.nextVersionRecommendedByPackageFindUp)(argv);
         let name = (0, index_1.chalkByConsole)((chalk, console) => {
             // @ts-ignore
             return chalk.green(pkg.name);

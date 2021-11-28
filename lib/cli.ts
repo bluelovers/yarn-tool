@@ -48,7 +48,8 @@ export function create_command<T, U extends T>(yarg: yargs.Argv<T>,
 
 export function call_commond<T, U>(yarg: yargs.Argv<T>, commond: string, argv?: yargs.Arguments<U>)
 {
-	return cached_command[commond].handler(argv == null ? yarg.argv : argv)
+	// @ts-ignore
+	return cached_command[commond].handler(argv ?? yarg.argv)
 }
 
 export type ICommandBuilder<T extends {}, U extends {}> = (args: yargs.Argv<T>) => yargs.Argv<IUnpackMyYargsArgv & U>;

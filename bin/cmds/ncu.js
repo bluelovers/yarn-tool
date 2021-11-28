@@ -11,7 +11,7 @@ const ncu_1 = require("../../lib/cli/ncu");
 const yarnlock_1 = require("../../lib/yarnlock");
 const table_1 = require("../../lib/table");
 const fsYarnLock_1 = require("../../lib/fsYarnLock");
-const index_2 = require("@yarn-tool/yarnlock-ncu/index");
+const yarnlock_ncu_1 = require("@yarn-tool/yarnlock-ncu");
 const fs_1 = require("fs");
 const cmdModule = (0, cmd_dir_1.createCommandModuleExports)({
     command: (0, cmd_dir_1.basenameStrip)(__filename) + ' [-u]',
@@ -150,10 +150,10 @@ const cmdModule = (0, cmd_dir_1.createCommandModuleExports)({
         }
         let yl = (0, fsYarnLock_1.fsYarnLock)(rootData.root);
         if (yl.yarnlock_exists) {
-            let ret = await (0, index_2.updateYarnLockTag)(yl.yarnlock_old);
+            let ret = await (0, yarnlock_ncu_1.updateYarnLockTag)(yl.yarnlock_old);
             if (ret.yarnlock_changed) {
                 index_1.consoleDebug.magenta.info(`higher versions exists on registry`);
-                let s = (0, index_2.printReport)(ret.report);
+                let s = (0, yarnlock_ncu_1.printReport)(ret.report);
                 (s === null || s === void 0 ? void 0 : s.length) > 0 && index_1.console.log(s);
                 if (argv.upgrade) {
                     (0, fs_1.writeFileSync)(yl.yarnlock_file, ret.yarnlock_new);

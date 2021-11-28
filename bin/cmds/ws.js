@@ -32,6 +32,7 @@ const cmdModule = (0, cmd_dir_1.createCommandModuleExports)({
             handler(argv) {
                 lazyLerna('run', 'run', argv, {
                     beforeSpawn(data) {
+                        // @ts-ignore
                         if (data.argv.stream == null && data.argv.parallel == null) {
                             data.cmd_list.unshift(`--stream`);
                         }
