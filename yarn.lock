@@ -288,10 +288,10 @@
     semver "^7"
     tslib "^2.3.1"
 
-"@lazy-node/semver-simple-parse@^1.1.20":
-  version "1.1.20"
-  resolved "https://registry.npmjs.org/@lazy-node/semver-simple-parse/-/semver-simple-parse-1.1.20.tgz#985ef5af55c586eb7f865a9296e0a19ec122651d"
-  integrity sha512-BXX95YrXR3YV5sIHTB2dFwk5HJ2GOewrjMhJmtsL7x1lFfqWH3qf2ettwOaQYRjWQSwqRyUUzLTc9bG5yqUcuA==
+"@lazy-node/semver-simple-parse@^1.1.21":
+  version "1.1.21"
+  resolved "https://registry.npmjs.org/@lazy-node/semver-simple-parse/-/semver-simple-parse-1.1.21.tgz#eeb4cb7271028a768e02ac6efdc35fcb15fb1427"
+  integrity sha512-v+Qf6SqVmZ7MxVG1fidFKn1yIrMMUfahqhYi8AfBwU3RdLmqDPlhYoYUHbd1sGxW7Y1KmdvfSvVXa6pQgh3UYw==
   dependencies:
     ts-type "^2.0.3"
     tslib "^2.3.1"
@@ -542,10 +542,10 @@
   resolved "https://registry.npmjs.org/@types/minimist/-/minimist-1.2.2.tgz#ee771e2ba4b3dc5b372935d549fd9617bf345b8c"
   integrity sha512-jhuKLIRrhvCPLqwPcx6INqmKeiA5EWrsCOPhrlFSrbrmU4ZMPjj5Ul/oLCMDO98XRUIwVm78xICz4EPCektzeQ==
 
-"@types/node@*", "@types/node@^16.11.10":
-  version "16.11.10"
-  resolved "https://registry.npmjs.org/@types/node/-/node-16.11.10.tgz#2e3ad0a680d96367103d3e670d41c2fed3da61ae"
-  integrity sha512-3aRnHa1KlOEEhJ6+CvyHKK5vE9BcLGjtUpwvqYLRvYNQKMfabu3BwfJaA/SLW8dxe28LsNDjtHwePTuzn3gmOA==
+"@types/node@*", "@types/node@^16.11.11":
+  version "16.11.11"
+  resolved "https://registry.npmjs.org/@types/node/-/node-16.11.11.tgz#6ea7342dfb379ea1210835bada87b3c512120234"
+  integrity sha512-KB0sixD67CeecHC33MYn+eYARkqTheIRNuu97y2XMjR7Wu3XibO1vaY6VBV6O/a89SPI81cEUIYT87UqUWlZNw==
 
 "@types/normalize-package-data@^2.4.0":
   version "2.4.1"
@@ -678,12 +678,12 @@
     is-npx "^1.0.0"
     tslib "^2.3.1"
 
-"@yarn-tool/ncu@^1.0.84":
-  version "1.0.84"
-  resolved "https://registry.npmjs.org/@yarn-tool/ncu/-/ncu-1.0.84.tgz#901bde1a55188e124cb5b2736f329fee62bfe40d"
-  integrity sha512-Avv9G6UXKSVJ9aRS9fqkwSJ1Te1STPwrLzAavW7twuS3fTCco9fDS8YOoAaZNzxQgL72aIPriL2uMkeQkXSbag==
+"@yarn-tool/ncu@^1.0.85":
+  version "1.0.85"
+  resolved "https://registry.npmjs.org/@yarn-tool/ncu/-/ncu-1.0.85.tgz#286a366ca2ae73fc548cc24eab6742a5423f365a"
+  integrity sha512-qm6V32Kckwk5Bke1X9oy1A75LTVaagf8uzJx+iUU2vvXxYOFClb2WtAxuy9xGCcreCcGRxK90BhsN6ix+nVqug==
   dependencies:
-    "@lazy-node/semver-simple-parse" "^1.1.20"
+    "@lazy-node/semver-simple-parse" "^1.1.21"
     "@ts-type/package-dts" "^1.0.54"
     "@yarn-tool/pkg-version-query" "^1.0.37"
     "@yarn-tool/semver-diff" "^1.0.28"
@@ -823,10 +823,10 @@
     ts-type "^2.0.3"
     tslib "^2.3.1"
 
-"@yarn-tool/setup-module-env@^1.0.1":
-  version "1.0.1"
-  resolved "https://registry.npmjs.org/@yarn-tool/setup-module-env/-/setup-module-env-1.0.1.tgz#f2f100d054f0e26c6d3ef16b870887a924133d32"
-  integrity sha512-hgIlet2o8dMve5Y+23Pp5ecpMaPcaTvZhkQl3/PU/rOvDzOWZ5npDx+LmHyEp9XB/lFI4YXuVkeBYe4s8R6pyQ==
+"@yarn-tool/setup-module-env@^1.0.2":
+  version "1.0.2"
+  resolved "https://registry.npmjs.org/@yarn-tool/setup-module-env/-/setup-module-env-1.0.2.tgz#7129f27d381124a7a28d06c5d43329a1cff00a1c"
+  integrity sha512-oA8GoQGI4tItNbEX3dVmibRI0hx5fpZFqouhTulooEAxdHjcXzy3lEpW0iLEL9ES08jK7UDKnI3SxJ63sX1zOw==
   dependencies:
     tslib "^2.3.1"
 
@@ -3582,10 +3582,10 @@ npm-bundled@^1.1.1:
     spawn-please "^1.0.0"
     update-notifier "^5.1.0"
 
-npm-init2@^1.0.184:
-  version "1.0.184"
-  resolved "https://registry.npmjs.org/npm-init2/-/npm-init2-1.0.184.tgz#88f640140bd00a770cfa2da1e4d69ab58723aec2"
-  integrity sha512-yeWvpAjb0Y5WcG/dqKaxpVT1YJKLCZvKxyZ9BmxQsbxNxV2mK8C81x+IgHWAltOVlkKTfADkicLeFYlwodtCFQ==
+npm-init2@^1.0.185:
+  version "1.0.185"
+  resolved "https://registry.npmjs.org/npm-init2/-/npm-init2-1.0.185.tgz#226f58c500691a6cb7500f2c14ce47b6d23f9d57"
+  integrity sha512-x/IaHTmlXlVGjZ9GHGLwhTbnbmdFJy6f/ixgawo8IL05JY92vyanB5bOanrO5z2UrtW9iF2zc5fyhh2SODST6w==
   dependencies:
     "@ts-type/package-dts" "^1.0.54"
     "@yarn-tool/find-root" "^1.0.56"
@@ -3594,7 +3594,7 @@ npm-init2@^1.0.184:
     "@yarn-tool/node-modules-link" "^1.0.30"
     "@yarn-tool/pkg-git-info" "^1.0.22"
     "@yarn-tool/pkg-hosted-info" "^1.0.4"
-    "@yarn-tool/setup-module-env" "^1.0.1"
+    "@yarn-tool/setup-module-env" "^1.0.2"
     "@yarn-tool/static-file" "^1.0.77"
     "@yarn-tool/types" "^1.0.6"
     "@yarn-tool/update-notifier" "^1.0.22"
