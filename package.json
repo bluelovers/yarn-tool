@@ -1,6 +1,6 @@
 {
   "name": "yarn-tool",
-  "version": "1.2.19",
+  "version": "1.2.20",
   "description": "yarn cli tool helper",
   "keywords": [
     "cli",
