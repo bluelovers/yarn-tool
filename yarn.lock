@@ -288,10 +288,10 @@
     semver "^7"
     tslib "^2.3.1"
 
-"@lazy-node/semver-simple-parse@^1.1.23":
-  version "1.1.23"
-  resolved "https://registry.npmjs.org/@lazy-node/semver-simple-parse/-/semver-simple-parse-1.1.23.tgz#d23a3ca3c03a8d0d04f008a598a83b0652350a14"
-  integrity sha512-389fxYggAbqRRnm3h8uIlxlBSoe2XXLpjXVcDz+3KI+nzdeosae5LivOzWjAx9u57852SX+KvZy5C+tG22uucQ==
+"@lazy-node/semver-simple-parse@^1.1.24":
+  version "1.1.24"
+  resolved "https://registry.npmjs.org/@lazy-node/semver-simple-parse/-/semver-simple-parse-1.1.24.tgz#74918232c6c09a93f34b57b6cf9f7d8cf171d72d"
+  integrity sha512-9umVWjmFJAiFbGEb7Tjuo46Zm3ltY+0XTAMDL87X2EW5o/1GY02zJXs4gBX7494At+4eFfX0RCKz3nnol6YKow==
   dependencies:
     ts-type "^2.1.2"
     tslib "^2.3.1"
@@ -678,12 +678,12 @@
     is-npx "^1.0.0"
     tslib "^2.3.1"
 
-"@yarn-tool/ncu@^1.0.87":
-  version "1.0.87"
-  resolved "https://registry.npmjs.org/@yarn-tool/ncu/-/ncu-1.0.87.tgz#391a6e8fe65356ad0710b44fa96e65d77da8f9b5"
-  integrity sha512-GRw8lB8V9ocgrjdRUqPE23/JIzwkAHwZJBq+m4Q5wnWPe8h9cHIlsRlYzBLeRQyyVPw5w02A6TYO4AAHXtOIxQ==
+"@yarn-tool/ncu@^1.0.88":
+  version "1.0.88"
+  resolved "https://registry.npmjs.org/@yarn-tool/ncu/-/ncu-1.0.88.tgz#593af317af098399093ac73ed4d21d8dee1a670d"
+  integrity sha512-bzmEArNeaD7oOHsRtcJToewG/5XaJrXljrvQYr5PI+ZA0ISnV4u0HTnRuqW75gCq8HASNoMxTeRIAmP5PaVMcw==
   dependencies:
-    "@lazy-node/semver-simple-parse" "^1.1.23"
+    "@lazy-node/semver-simple-parse" "^1.1.24"
     "@ts-type/package-dts" "^1.0.56"
     "@yarn-tool/pkg-version-query" "^1.0.38"
     "@yarn-tool/semver-diff" "^1.0.29"
@@ -823,10 +823,10 @@
     ts-type "^2.1.2"
     tslib "^2.3.1"
 
-"@yarn-tool/setup-module-env@^1.0.3":
-  version "1.0.3"
-  resolved "https://registry.npmjs.org/@yarn-tool/setup-module-env/-/setup-module-env-1.0.3.tgz#1d9e154c269e05a7407706da0da6e0cf95a78c47"
-  integrity sha512-7WoQ+Z1dPthLyQpZ2Tsc0MxY7vVspMiX7Vr9T20VYAtTzUfVsG5y5K7XjCjTWRhuVjlI6SnZypGC7WjdL7WRyg==
+"@yarn-tool/setup-module-env@^1.0.4":
+  version "1.0.4"
+  resolved "https://registry.npmjs.org/@yarn-tool/setup-module-env/-/setup-module-env-1.0.4.tgz#851faf1a2597c76f3b2bce8d3bdb0699e77958a8"
+  integrity sha512-MNzLqmMIulSAGyV5GZQ04XJyIxAzcaQgde4MDP2uV23fUju9K5rjekFvnmfTkcMWjGmanA3Y+VZUq/dA+LvzVQ==
   dependencies:
     tslib "^2.3.1"
 
@@ -1804,10 +1804,10 @@ cosmiconfig@^7.0.0:
     path-type "^4.0.0"
     yaml "^1.10.0"
 
-create-yarn-workspaces@^1.0.127:
-  version "1.0.127"
-  resolved "https://registry.npmjs.org/create-yarn-workspaces/-/create-yarn-workspaces-1.0.127.tgz#4a2aa29f00118573cc7c2f1b4faf4e5d70a5e6bc"
-  integrity sha512-ir1M69wE/8/gLilZpxwYiz6cH7ZNpUawORCs714SKt9xxJEu95E916Lh1rkjQoj21MMoATJFP+MguO4rj4oujA==
+create-yarn-workspaces@^1.0.128:
+  version "1.0.128"
+  resolved "https://registry.npmjs.org/create-yarn-workspaces/-/create-yarn-workspaces-1.0.128.tgz#cfa9c1c1419128dd23ad96c13d4d0dea06b9869d"
+  integrity sha512-T2uAgLZbc+OmQHNQPH8g+yjJM6xUFfgmrto1CC+T5mFDDDqwFqU5Kk4hukPaM0J4qLcaXD5IkBtGss7YBSg50A==
   dependencies:
     "@ts-type/package-dts" "^1.0.56"
     "@yarn-tool/static-file" "^1.0.78"
@@ -1817,7 +1817,7 @@ create-yarn-workspaces@^1.0.127:
     path-is-same "^1.0.15"
     pkg-dir "< 6 >= 5"
     sort-package-json "^1.53.1"
-    sort-package-json3 "^1.0.45"
+    sort-package-json3 "^1.0.46"
     tslib "^2.3.1"
     yargs "^17.3.0"
 
@@ -3594,10 +3594,10 @@ npm-bundled@^1.1.1:
     spawn-please "^1.0.0"
     update-notifier "^5.1.0"
 
-npm-init2@^1.0.188:
-  version "1.0.188"
-  resolved "https://registry.npmjs.org/npm-init2/-/npm-init2-1.0.188.tgz#0868720943e67bbec3568f374d3954a5b3862eb5"
-  integrity sha512-Mezy8pG7+89/s4EvyVNzGoQhKIlViR8AQnqCCT6KBu6Fu/MfxZptwSi0eZSegh/lwUU4NEaIN70fGZ6WsK1D5A==
+npm-init2@^1.0.189:
+  version "1.0.189"
+  resolved "https://registry.npmjs.org/npm-init2/-/npm-init2-1.0.189.tgz#1687fd247e79d633dd85f39a5184d134964ed1b8"
+  integrity sha512-PuXSY8vGxUCipYKcv51Ue0hwIj4p3murB0Rd2Ts6iE0AX1lbwTZQ8Wi/nu9sTHB8E0KUELcHISrYiW9sOVQL+w==
   dependencies:
     "@ts-type/package-dts" "^1.0.56"
     "@yarn-tool/find-root" "^1.0.57"
@@ -3606,7 +3606,7 @@ npm-init2@^1.0.188:
     "@yarn-tool/node-modules-link" "^1.0.32"
     "@yarn-tool/pkg-git-info" "^1.0.22"
     "@yarn-tool/pkg-hosted-info" "^1.0.5"
-    "@yarn-tool/setup-module-env" "^1.0.3"
+    "@yarn-tool/setup-module-env" "^1.0.4"
     "@yarn-tool/static-file" "^1.0.78"
     "@yarn-tool/types" "^1.0.6"
     "@yarn-tool/update-notifier" "^1.0.22"
@@ -3618,7 +3618,7 @@ npm-init2@^1.0.188:
     json5 "^2.2.0"
     lodash "^4.17.21"
     micromatch "^4.0.4"
-    npm-package-json-loader "^1.0.61"
+    npm-package-json-loader "^1.0.62"
     path-is-same "^1.0.15"
     sort-package-json-scripts "^1.1.10"
     tslib "^2.3.1"
@@ -3649,17 +3649,17 @@ npm-package-arg@^8.0.0, npm-package-arg@^8.0.1, npm-package-arg@^8.1.0, npm-pack
     semver "^7.3.4"
     validate-npm-package-name "^3.0.0"
 
-npm-package-json-loader@^1.0.61:
-  version "1.0.61"
-  resolved "https://registry.npmjs.org/npm-package-json-loader/-/npm-package-json-loader-1.0.61.tgz#431df568fba69e76d4d1811e9a02d2dbe892e584"
-  integrity sha512-iCEb3yS8KfxCtHBpWrc086HQ0L2+ifzsm3/GJqL7wcRrm38SRGBKCVFZFxEE/JqE0qi/H1mJflFRmmrcMKYLXw==
+npm-package-json-loader@^1.0.62:
+  version "1.0.62"
+  resolved "https://registry.npmjs.org/npm-package-json-loader/-/npm-package-json-loader-1.0.62.tgz#5009f787356abdbf76e331b366303a15d4eb501e"
+  integrity sha512-HEWeI7ZpcreBhxFTyo9U2rY7tUJtsczMDGYKAveYoq/EDxVBpiU/CM6stbSuhY2i7AF+SWKpLe6VLQEaMWQEig==
   dependencies:
     "@ts-type/package-dts" "^1.0.56"
     "@yarn-tool/resolve-package" "^1.0.40"
     bind-decorator "^1.0.11"
     fs-extra "^10.0.0"
     sort-package-json "^1.53.1"
-    sort-package-json3 "^1.0.45"
+    sort-package-json3 "^1.0.46"
     ts-type "^2.1.2"
     tslib "^2.3.1"
 
@@ -4527,10 +4527,10 @@ sort-package-json-scripts@^1.1.10:
     sort-object-keys2 "^2.0.3"
     tslib "^2.3.1"
 
-sort-package-json3@^1.0.45:
-  version "1.0.45"
-  resolved "https://registry.npmjs.org/sort-package-json3/-/sort-package-json3-1.0.45.tgz#2eb40c79c13c2848137fb88d4fa0abf3dd11c071"
-  integrity sha512-PHz4zPvlDZUiXcyZfFnp6OeUMXx9S2ir4sRQ5oHaE6CPa/tO0CJXJsw7ogkqb4972C1TrZdRIMOfvScUyf/U1Q==
+sort-package-json3@^1.0.46:
+  version "1.0.46"
+  resolved "https://registry.npmjs.org/sort-package-json3/-/sort-package-json3-1.0.46.tgz#e69fcdf2712599515d9a3d7df9e9214c79bddcf7"
+  integrity sha512-41Y7nes/CV0SIkHN8Nk/UOZ3vj9/JP8jCyfyko1NRsiorYQFCsACxP51RoMvJO8jMHjdSDWe5FyIxD2+lkMAyQ==
   dependencies:
     "@ts-type/package-dts" "^1.0.56"
     is-plain-obj "< 4"
