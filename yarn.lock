@@ -1804,10 +1804,10 @@ cosmiconfig@^7.0.0:
     path-type "^4.0.0"
     yaml "^1.10.0"
 
-create-yarn-workspaces@^1.0.128:
-  version "1.0.128"
-  resolved "https://registry.npmjs.org/create-yarn-workspaces/-/create-yarn-workspaces-1.0.128.tgz#cfa9c1c1419128dd23ad96c13d4d0dea06b9869d"
-  integrity sha512-T2uAgLZbc+OmQHNQPH8g+yjJM6xUFfgmrto1CC+T5mFDDDqwFqU5Kk4hukPaM0J4qLcaXD5IkBtGss7YBSg50A==
+create-yarn-workspaces@^1.0.129:
+  version "1.0.129"
+  resolved "https://registry.npmjs.org/create-yarn-workspaces/-/create-yarn-workspaces-1.0.129.tgz#f5f76fc2628dfc2be752245495fd781fb95ba627"
+  integrity sha512-5BxLIug8867I4ncSfaiUqXxgo/w7mgmbV4pI5lYnhe0KAMEuKJg/74PcLF7hboE0BkpTxvv7GetHUeGqzz+4UA==
   dependencies:
     "@ts-type/package-dts" "^1.0.56"
     "@yarn-tool/static-file" "^1.0.78"
@@ -1817,7 +1817,7 @@ create-yarn-workspaces@^1.0.128:
     path-is-same "^1.0.15"
     pkg-dir "< 6 >= 5"
     sort-package-json "^1.53.1"
-    sort-package-json3 "^1.0.46"
+    sort-package-json3 "^1.0.47"
     tslib "^2.3.1"
     yargs "^17.3.0"
 
@@ -3594,10 +3594,10 @@ npm-bundled@^1.1.1:
     spawn-please "^1.0.0"
     update-notifier "^5.1.0"
 
-npm-init2@^1.0.189:
-  version "1.0.189"
-  resolved "https://registry.npmjs.org/npm-init2/-/npm-init2-1.0.189.tgz#1687fd247e79d633dd85f39a5184d134964ed1b8"
-  integrity sha512-PuXSY8vGxUCipYKcv51Ue0hwIj4p3murB0Rd2Ts6iE0AX1lbwTZQ8Wi/nu9sTHB8E0KUELcHISrYiW9sOVQL+w==
+npm-init2@^1.0.190:
+  version "1.0.190"
+  resolved "https://registry.npmjs.org/npm-init2/-/npm-init2-1.0.190.tgz#1738014e4b1ade71cab6c22125db2587ae7ebdb1"
+  integrity sha512-EcVqQYgXIlGfeCBGt3FnymSngq2Tau8+eKj44SMyqbpF4Xxoqc6ZaKWMz6qDMvypJXHk4OUvoMnnhT9+fgSY/A==
   dependencies:
     "@ts-type/package-dts" "^1.0.56"
     "@yarn-tool/find-root" "^1.0.57"
@@ -3618,7 +3618,7 @@ npm-init2@^1.0.189:
     json5 "^2.2.0"
     lodash "^4.17.21"
     micromatch "^4.0.4"
-    npm-package-json-loader "^1.0.62"
+    npm-package-json-loader "^1.0.63"
     path-is-same "^1.0.15"
     sort-package-json-scripts "^1.1.10"
     tslib "^2.3.1"
@@ -3649,17 +3649,17 @@ npm-package-arg@^8.0.0, npm-package-arg@^8.0.1, npm-package-arg@^8.1.0, npm-pack
     semver "^7.3.4"
     validate-npm-package-name "^3.0.0"
 
-npm-package-json-loader@^1.0.62:
-  version "1.0.62"
-  resolved "https://registry.npmjs.org/npm-package-json-loader/-/npm-package-json-loader-1.0.62.tgz#5009f787356abdbf76e331b366303a15d4eb501e"
-  integrity sha512-HEWeI7ZpcreBhxFTyo9U2rY7tUJtsczMDGYKAveYoq/EDxVBpiU/CM6stbSuhY2i7AF+SWKpLe6VLQEaMWQEig==
+npm-package-json-loader@^1.0.63:
+  version "1.0.63"
+  resolved "https://registry.npmjs.org/npm-package-json-loader/-/npm-package-json-loader-1.0.63.tgz#9d040c6fab99827ca1cfc92d5434d34da924e0e1"
+  integrity sha512-hnisCLRkGVc3YeNwxzq1OsnNknry55LByfpmvbsxq5jqKmCSXVqfGOA9MXUuPqtHAkpa6jQ+OaGrzLI2a9TuqQ==
   dependencies:
     "@ts-type/package-dts" "^1.0.56"
     "@yarn-tool/resolve-package" "^1.0.40"
     bind-decorator "^1.0.11"
     fs-extra "^10.0.0"
     sort-package-json "^1.53.1"
-    sort-package-json3 "^1.0.46"
+    sort-package-json3 "^1.0.47"
     ts-type "^2.1.2"
     tslib "^2.3.1"
 
@@ -4527,10 +4527,10 @@ sort-package-json-scripts@^1.1.10:
     sort-object-keys2 "^2.0.3"
     tslib "^2.3.1"
 
-sort-package-json3@^1.0.46:
-  version "1.0.46"
-  resolved "https://registry.npmjs.org/sort-package-json3/-/sort-package-json3-1.0.46.tgz#e69fcdf2712599515d9a3d7df9e9214c79bddcf7"
-  integrity sha512-41Y7nes/CV0SIkHN8Nk/UOZ3vj9/JP8jCyfyko1NRsiorYQFCsACxP51RoMvJO8jMHjdSDWe5FyIxD2+lkMAyQ==
+sort-package-json3@^1.0.47:
+  version "1.0.47"
+  resolved "https://registry.npmjs.org/sort-package-json3/-/sort-package-json3-1.0.47.tgz#59235143d8621a61c1478d169051e8b2bf018f2d"
+  integrity sha512-gUbKsRH5aGmukJ5J3pTYAp/KTcKYcEPaOIhDFkTKIkQx8VaS5VELUdG897zw4FVzsATZX23xQjDPqKlq9t+3zQ==
   dependencies:
     "@ts-type/package-dts" "^1.0.56"
     is-plain-obj "< 4"
