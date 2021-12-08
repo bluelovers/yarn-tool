@@ -23,6 +23,9 @@ const cmdModule = (0, cmd_dir_1.createCommandModuleExports)({
                 }
                 argv._.forEach(scope => {
                     if (scope === (0, upath2_1.basename)(scope)) {
+                        if (!scope.startsWith('@')) {
+                            scope = `@${scope}`;
+                        }
                         scope = `packages/${scope}/*`;
                         (0, fs_extra_1.ensureDirSync)((0, upath2_1.join)(wss.rootData.ws, `packages/${scope}`));
                     }
@@ -49,6 +52,9 @@ const cmdModule = (0, cmd_dir_1.createCommandModuleExports)({
                 }
                 argv._.forEach(scope => {
                     if (scope === (0, upath2_1.basename)(scope)) {
+                        if (!scope.startsWith('@')) {
+                            scope = `@${scope}`;
+                        }
                         scope = `packages/${scope}/*`;
                     }
                     wss.remove(scope);

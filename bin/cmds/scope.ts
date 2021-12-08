@@ -34,6 +34,11 @@ const cmdModule = createCommandModuleExports({
 
 						if (scope === basename(scope as string))
 						{
+							if (!scope.startsWith('@'))
+							{
+									scope = `@${scope}`
+							}
+
 							scope = `packages/${scope}/*`
 							ensureDirSync(join(wss.rootData.ws, `packages/${scope}`));
 						}
@@ -71,6 +76,11 @@ const cmdModule = createCommandModuleExports({
 
 						if (scope === basename(scope as string))
 						{
+							if (!scope.startsWith('@'))
+							{
+									scope = `@${scope}`
+							}
+
 							scope = `packages/${scope}/*`
 						}
 
