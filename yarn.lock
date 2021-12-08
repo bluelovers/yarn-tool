@@ -905,10 +905,10 @@
     tslib "^2.3.1"
     upath2 "^3.1.10"
 
-"@yarn-tool/ws-scope@^1.0.3":
-  version "1.0.3"
-  resolved "https://registry.npmjs.org/@yarn-tool/ws-scope/-/ws-scope-1.0.3.tgz#6244c242253fc28efa42bfaceef8f4a7cffdf678"
-  integrity sha512-NzOVnHRDPxaJBeOir+DdYHMmIsfbpnkkEHRLrSNQMUdHJ+64oXv9bLo/chZ7N08oemt88Wz4IUVHl05LXA9Hng==
+"@yarn-tool/ws-scope@^1.0.5":
+  version "1.0.5"
+  resolved "https://registry.npmjs.org/@yarn-tool/ws-scope/-/ws-scope-1.0.5.tgz#3ac14fb1835135220eee0fea6046e18ccaa7e4a0"
+  integrity sha512-MvHB1PuTtjPBL13K4w0Lh8d7NC3+bTK6ksWvRTF2V3MNB9bmSEGhZ3833/lzCeXwt2Ea4m/A9nwdciUIQKBy4w==
   dependencies:
     "@yarn-tool/find-root" "^1.0.57"
     array-hyper-unique "^2.0.6"

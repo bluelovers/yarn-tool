@@ -12,23 +12,28 @@ const cmdModule = (0, cmd_dir_1.createCommandModuleExports)({
     builder(yargs) {
         return yargs
             .command({
-            command: 'add',
+            command: 'add ...[rule]',
             describe: `add scope`,
             handler(argv) {
                 // @ts-ignore
                 const wss = new ws_scope_1.default(argv.cwd);
-                if (!argv._) {
+                // @ts-ignore
+                let list = [argv.rule].concat(argv._.slice(1)).filter(v => v.length);
+                if (!list.length) {
                     yargs.exit(1, new Error(`yarn-tool scope add [rule]`));
                     return;
                 }
-                argv._.forEach(scope => {
+                list.forEach(scope => {
+                    let _path = (0, upath2_1.join)(wss.rootData.ws, `packages/${scope}`);
                     if (scope === (0, upath2_1.basename)(scope)) {
                         if (!scope.startsWith('@')) {
                             scope = `@${scope}`;
                         }
                         scope = `packages/${scope}/*`;
-                        (0, fs_extra_1.ensureDirSync)((0, upath2_1.join)(wss.rootData.ws, `packages/${scope}`));
+                        _path = (0, upath2_1.join)(wss.rootData.ws, scope);
                     }
+                    _path = _path.replace(/[\/\\]\*$/, '');
+                    (0, fs_extra_1.ensureDirSync)(_path);
                     wss.add(scope);
                 });
                 if (wss.changed) {
@@ -41,16 +46,18 @@ const cmdModule = (0, cmd_dir_1.createCommandModuleExports)({
             },
         })
             .command({
-            command: 'remove',
+            command: 'remove ...[rule]',
             describe: `remove scope`,
             handler(argv) {
                 // @ts-ignore
                 const wss = new ws_scope_1.default(argv.cwd);
-                if (!argv._) {
+                // @ts-ignore
+                let list = [argv.rule].concat(argv._.slice(1)).filter(v => v.length);
+                if (!list.length) {
                     yargs.exit(1, new Error(`yarn-tool scope remove [rule]`));
                     return;
                 }
-                argv._.forEach(scope => {
+                list.forEach(scope => {
                     if (scope === (0, upath2_1.basename)(scope)) {
                         if (!scope.startsWith('@')) {
                             scope = `@${scope}`;
@@ -67,9 +74,7 @@ const cmdModule = (0, cmd_dir_1.createCommandModuleExports)({
                     index_1.console.warn(`workspace scope not changed`);
                 }
             },
-        })
-            .strict()
-            .demandCommand();
+        });
     },
 });
 module.exports = cmdModule;

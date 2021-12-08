@@ -15,7 +15,7 @@ const cmdModule = createCommandModuleExports({
 	{
 		return yargs
 			.command({
-				command: 'add',
+				command: 'add ...[rule]',
 				describe: `add scope`,
 				handler(argv)
 				{
@@ -23,14 +23,19 @@ const cmdModule = createCommandModuleExports({
 					// @ts-ignore
 					const wss = new WorkspacesScope(argv.cwd);
 
-					if (!argv._)
+					// @ts-ignore
+					let list: string[] = [argv.rule].concat(argv._.slice(1)).filter(v => v.length);
+
+					if (!list.length)
 					{
 						yargs.exit(1, new Error(`yarn-tool scope add [rule]`))
 						return;
 					}
 
-					argv._.forEach(scope =>
+					list.forEach(scope =>
 					{
+
+						let _path = join(wss.rootData.ws, `packages/${scope}`);
 
 						if (scope === basename(scope as string))
 						{
@@ -40,8 +45,13 @@ const cmdModule = createCommandModuleExports({
 							}
 
 							scope = `packages/${scope}/*`
-							ensureDirSync(join(wss.rootData.ws, `packages/${scope}`));
+
+							_path = join(wss.rootData.ws, scope);
 						}
+
+						_path = _path.replace(/[\/\\]\*$/, '');
+
+						ensureDirSync(_path);
 
 						wss.add(scope as string)
 					});
@@ -58,7 +68,7 @@ const cmdModule = createCommandModuleExports({
 				},
 			})
 			.command({
-				command: 'remove',
+				command: 'remove ...[rule]',
 				describe: `remove scope`,
 				handler(argv)
 				{
@@ -66,13 +76,16 @@ const cmdModule = createCommandModuleExports({
 					// @ts-ignore
 					const wss = new WorkspacesScope(argv.cwd);
 
-					if (!argv._)
+					// @ts-ignore
+					let list: string[] = [argv.rule].concat(argv._.slice(1)).filter(v => v.length);
+
+					if (!list.length)
 					{
 						yargs.exit(1, new Error(`yarn-tool scope remove [rule]`))
 						return;
 					}
 
-					argv._.forEach(scope => {
+					list.forEach(scope => {
 
 						if (scope === basename(scope as string))
 						{
@@ -98,8 +111,6 @@ const cmdModule = createCommandModuleExports({
 					}
 				},
 			})
-			.strict()
-			.demandCommand()
 			;
 	},
 
