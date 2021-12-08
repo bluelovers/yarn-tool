@@ -24,7 +24,12 @@ const cmdModule = createCommandModuleExports({
 					const wss = new WorkspacesScope(argv.cwd);
 
 					// @ts-ignore
-					let list: string[] = [argv.rule].concat(argv._.slice(1)).filter(v => v.length);
+					let list: string[] = [argv.rule].concat(argv._.slice(2)).filter(v => v.length);
+
+					console.dir({
+						argv,
+						list,
+					})
 
 					if (!list.length)
 					{
@@ -77,7 +82,7 @@ const cmdModule = createCommandModuleExports({
 					const wss = new WorkspacesScope(argv.cwd);
 
 					// @ts-ignore
-					let list: string[] = [argv.rule].concat(argv._.slice(1)).filter(v => v.length);
+					let list: string[] = [argv.rule].concat(argv._.slice(2)).filter(v => v.length);
 
 					if (!list.length)
 					{

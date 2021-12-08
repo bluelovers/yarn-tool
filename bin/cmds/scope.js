@@ -18,7 +18,11 @@ const cmdModule = (0, cmd_dir_1.createCommandModuleExports)({
                 // @ts-ignore
                 const wss = new ws_scope_1.default(argv.cwd);
                 // @ts-ignore
-                let list = [argv.rule].concat(argv._.slice(1)).filter(v => v.length);
+                let list = [argv.rule].concat(argv._.slice(2)).filter(v => v.length);
+                index_1.console.dir({
+                    argv,
+                    list,
+                });
                 if (!list.length) {
                     yargs.exit(1, new Error(`yarn-tool scope add [rule]`));
                     return;
@@ -52,7 +56,7 @@ const cmdModule = (0, cmd_dir_1.createCommandModuleExports)({
                 // @ts-ignore
                 const wss = new ws_scope_1.default(argv.cwd);
                 // @ts-ignore
-                let list = [argv.rule].concat(argv._.slice(1)).filter(v => v.length);
+                let list = [argv.rule].concat(argv._.slice(2)).filter(v => v.length);
                 if (!list.length) {
                     yargs.exit(1, new Error(`yarn-tool scope remove [rule]`));
                     return;
