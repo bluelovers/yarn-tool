@@ -54,10 +54,10 @@
     string-natural-compare "^3.0.1"
     tslib "^2.3.0"
 
-"@bluelovers/tsconfig@^1.0.27":
-  version "1.0.27"
-  resolved "https://registry.npmjs.org/@bluelovers/tsconfig/-/tsconfig-1.0.27.tgz#38130986bb2f6596433d65de886958e1a4ee718f"
-  integrity sha512-vr+f2gPiA4h8N0fL5C2e1Kuot2aV5zVRkigjZRn5J1oYSDzAnqlcDVXihoa2qLfnlsQInLqTY2NjG7jvj1d7wA==
+"@bluelovers/tsconfig@^1.0.28":
+  version "1.0.28"
+  resolved "https://registry.npmjs.org/@bluelovers/tsconfig/-/tsconfig-1.0.28.tgz#6fb35c233af7b36ed1be568d5e15c71b8b486412"
+  integrity sha512-ncNfJUFO44Aa7zm8e+wH1ffwbtEmT+8HMEm9OnWXQpSvDDYml1NSSdOdmyXPvFSsRy4qObK6QVlLhL4meFthqA==
   dependencies:
     tslib "^2.3.0"
 
@@ -542,10 +542,10 @@
   resolved "https://registry.npmjs.org/@types/minimist/-/minimist-1.2.2.tgz#ee771e2ba4b3dc5b372935d549fd9617bf345b8c"
   integrity sha512-jhuKLIRrhvCPLqwPcx6INqmKeiA5EWrsCOPhrlFSrbrmU4ZMPjj5Ul/oLCMDO98XRUIwVm78xICz4EPCektzeQ==
 
-"@types/node@*", "@types/node@^16.11.11":
-  version "16.11.11"
-  resolved "https://registry.npmjs.org/@types/node/-/node-16.11.11.tgz#6ea7342dfb379ea1210835bada87b3c512120234"
-  integrity sha512-KB0sixD67CeecHC33MYn+eYARkqTheIRNuu97y2XMjR7Wu3XibO1vaY6VBV6O/a89SPI81cEUIYT87UqUWlZNw==
+"@types/node@*", "@types/node@^16.11.12":
+  version "16.11.12"
+  resolved "https://registry.npmjs.org/@types/node/-/node-16.11.12.tgz#ac7fb693ac587ee182c3780c26eb65546a1a3c10"
+  integrity sha512-+2Iggwg7PxoO5Kyhvsq9VarmPbIelXP070HMImEpbtGCoyWNINQj4wzjbQCXzdHTRXnqufutJb5KAURZANNBAw==
 
 "@types/normalize-package-data@^2.4.0":
   version "2.4.1"
