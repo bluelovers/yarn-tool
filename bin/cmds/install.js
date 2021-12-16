@@ -5,9 +5,9 @@ const tslib_1 = require("tslib");
  */
 const cmd_dir_1 = require("../../lib/cmd_dir");
 const index_1 = require("../../lib/index");
-const install_1 = (0, tslib_1.__importDefault)(require("../../lib/cli/install"));
+const install_1 = tslib_1.__importDefault(require("../../lib/cli/install"));
 const dedupe_1 = require("../../lib/cli/dedupe");
-const cross_spawn_extra_1 = (0, tslib_1.__importDefault)(require("cross-spawn-extra"));
+const cross_spawn_extra_1 = tslib_1.__importDefault(require("cross-spawn-extra"));
 const fs_extra_1 = require("fs-extra");
 const cmdModule = (0, cmd_dir_1.createCommandModuleExports)({
     command: (0, cmd_dir_1.basenameStrip)(__filename) + ' [cwd]',

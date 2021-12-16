@@ -2,8 +2,8 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const tslib_1 = require("tslib");
-const yargs_1 = (0, tslib_1.__importDefault)(require("yargs"));
-const upath2_1 = (0, tslib_1.__importDefault)(require("upath2"));
+const yargs_1 = tslib_1.__importDefault(require("yargs"));
+const upath2_1 = tslib_1.__importDefault(require("upath2"));
 const update_notifier_1 = require("@yarn-tool/update-notifier");
 const osLocaleSync_1 = require("../lib/osLocaleSync");
 if (upath2_1.default.extname(__filename) === '.js' && !process.argv.filter(v => {

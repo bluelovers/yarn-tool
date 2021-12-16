@@ -8,7 +8,7 @@ const upath2_1 = require("upath2");
 const index_1 = require("../../lib/index");
 const package_dts_1 = require("@ts-type/package-dts");
 const pkg_1 = require("../../lib/pkg");
-const sort_package_json3_1 = (0, tslib_1.__importDefault)(require("sort-package-json3"));
+const sort_package_json3_1 = tslib_1.__importDefault(require("sort-package-json3"));
 const cmdModule = (0, cmd_dir_1.createCommandModuleExports)({
     command: (0, cmd_dir_1.basenameStrip)(__filename),
     //aliases: [],

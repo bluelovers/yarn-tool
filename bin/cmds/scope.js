@@ -1,7 +1,7 @@
 "use strict";
 const tslib_1 = require("tslib");
 const cmd_dir_1 = require("../../lib/cmd_dir");
-const ws_scope_1 = (0, tslib_1.__importDefault)(require("@yarn-tool/ws-scope"));
+const ws_scope_1 = tslib_1.__importDefault(require("@yarn-tool/ws-scope"));
 const index_1 = require("../../lib/index");
 const upath2_1 = require("upath2");
 const fs_extra_1 = require("fs-extra");
