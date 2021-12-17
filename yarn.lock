@@ -697,19 +697,31 @@
     ts-type "^2.1.2"
     tslib "^2.3.1"
 
-"@yarn-tool/node-modules-link@^1.0.34":
-  version "1.0.34"
-  resolved "https://registry.npmjs.org/@yarn-tool/node-modules-link/-/node-modules-link-1.0.34.tgz#972bd5984eda422d1e22712b3a96e31bfaa5f5fa"
-  integrity sha512-EPtEv6JZgAeQEx9TMIDYC8zfb97yD99LSVBrONQTJjC6VUcESXzFRxM2Bou3pe2lz0yo/rU69Dc5mk3InbfEhw==
+"@yarn-tool/node-modules-link@^1.0.35":
+  version "1.0.35"
+  resolved "https://registry.npmjs.org/@yarn-tool/node-modules-link/-/node-modules-link-1.0.35.tgz#b6580652d05ba63c6a1543f1bdbc64cf7e7eece0"
+  integrity sha512-xNzROxdiMItFUXE6Lrsg9Nxhqot8gfGz9t1JWCORUeUUb22Gho72V5zLDi9Mabj4nZnbs8xm8O7H+pBV7lZ1zA==
   dependencies:
     "@ts-type/package-dts" "^1.0.56"
     "@yarn-tool/find-root" "^1.0.58"
+    "@yarn-tool/node-modules" "^1.0.60"
     find-yarn-workspace-root2 "^1.2.35"
     fs-extra "^10.0.0"
     fs-symlink-extra "^1.0.8"
     tslib "^2.3.1"
     upath2 "^3.1.10"
     yargs "^17.3.0"
+
+"@yarn-tool/node-modules@^1.0.60":
+  version "1.0.60"
+  resolved "https://registry.npmjs.org/@yarn-tool/node-modules/-/node-modules-1.0.60.tgz#c34f50fe5edfae47ca69a59c690dec3f849ca250"
+  integrity sha512-NFNTZke6g0jM6QJ1Y+HvVL4wl9hcnX7oSo+jvSuI763VYazQWTesVHGGEbOpeIlOqNGMW7oOfKxfM2cbJygPqg==
+  dependencies:
+    "@bluelovers/fast-glob" "^3.0.4"
+    pkg-dir "< 6 >= 5"
+    tslib "^2.3.1"
+    upath2 "^3.1.10"
+    ws-pkg-list "^1.0.70"
 
 "@yarn-tool/npm-package-arg-util@^1.0.22":
   version "1.0.22"
@@ -3585,16 +3597,16 @@ npm-bundled@^1.1.1:
     spawn-please "^1.0.0"
     update-notifier "^5.1.0"
 
-npm-init2@^1.0.193:
-  version "1.0.193"
-  resolved "https://registry.npmjs.org/npm-init2/-/npm-init2-1.0.193.tgz#6c2e7bc98f4c4340013d7edb0484af068408398e"
-  integrity sha512-46OnFpAoQyLNBA5Nh+D1jo3xEdaBQKNMip+3NyQLPX3G7GkL5rhGO12P0Qjwr2tc+RaIf1WwUeof+3mLc+C5pQ==
+npm-init2@^1.0.194:
+  version "1.0.194"
+  resolved "https://registry.npmjs.org/npm-init2/-/npm-init2-1.0.194.tgz#b0d699ea14ede113eb5211742608fe2a214973b7"
+  integrity sha512-Diu7/TntJai2xw3egGbo5v6JQjv4RIur86ulzYEu3A6cu+aQaJPCeCsOiFOP3T8c69BGj/5xH41P1JNy0yp9VA==
   dependencies:
     "@ts-type/package-dts" "^1.0.56"
     "@yarn-tool/find-root" "^1.0.58"
     "@yarn-tool/init-path" "^1.0.17"
     "@yarn-tool/is-builtin-module" "^1.0.11"
-    "@yarn-tool/node-modules-link" "^1.0.34"
+    "@yarn-tool/node-modules-link" "^1.0.35"
     "@yarn-tool/pkg-git-info" "^1.0.23"
     "@yarn-tool/pkg-hosted-info" "^1.0.6"
     "@yarn-tool/setup-module-env" "^1.0.4"
