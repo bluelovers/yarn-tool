@@ -763,6 +763,16 @@
     tslib "^2.3.1"
     ws-pkg-list "^1.0.70"
 
+"@yarn-tool/pkg-entry-util@^1.0.1":
+  version "1.0.1"
+  resolved "https://registry.npmjs.org/@yarn-tool/pkg-entry-util/-/pkg-entry-util-1.0.1.tgz#91d1acf94cea5ea88ddbedc8207736c5cb39c096"
+  integrity sha512-2QafVwjYoKwsuxX+LGc26S8d5g+bB31a0aWKWn1m6tY1yJ/XE2a3YKP8NJAiIx+VGEUBnUuVnsF+AVl3KrcPTw==
+  dependencies:
+    "@ts-type/package-dts" "^1.0.56"
+    "@yarn-tool/find-root" "^1.0.58"
+    fs-extra "^10.0.0"
+    tslib "^2.3.1"
+
 "@yarn-tool/pkg-git-info@^1.0.23":
   version "1.0.23"
   resolved "https://registry.npmjs.org/@yarn-tool/pkg-git-info/-/pkg-git-info-1.0.23.tgz#3d1297414cf912596fb7ea81a28f7c98501ef386"
@@ -3597,10 +3607,10 @@ npm-bundled@^1.1.1:
     spawn-please "^1.0.0"
     update-notifier "^5.1.0"
 
-npm-init2@^1.0.194:
-  version "1.0.194"
-  resolved "https://registry.npmjs.org/npm-init2/-/npm-init2-1.0.194.tgz#b0d699ea14ede113eb5211742608fe2a214973b7"
-  integrity sha512-Diu7/TntJai2xw3egGbo5v6JQjv4RIur86ulzYEu3A6cu+aQaJPCeCsOiFOP3T8c69BGj/5xH41P1JNy0yp9VA==
+npm-init2@^1.0.195:
+  version "1.0.195"
+  resolved "https://registry.npmjs.org/npm-init2/-/npm-init2-1.0.195.tgz#0b0f7a546d6984a2d94eff58aa011f6e94e3e6f7"
+  integrity sha512-dLT+yQLNiF+wxdKnFKq/ENNZ0mMeuke+Ko7mc0gWLTPp7ZNBoGHSXHQDcRINKJQilNuZP+u1hQwLPby/gE9Zmg==
   dependencies:
     "@ts-type/package-dts" "^1.0.56"
     "@yarn-tool/find-root" "^1.0.58"
@@ -3621,7 +3631,7 @@ npm-init2@^1.0.194:
     json5 "^2.2.0"
     lodash "^4.17.21"
     micromatch "^4.0.4"
-    npm-package-json-loader "^1.0.64"
+    npm-package-json-loader "^1.0.65"
     path-is-same "^1.0.15"
     sort-package-json-scripts "^1.1.11"
     tslib "^2.3.1"
@@ -3652,12 +3662,13 @@ npm-package-arg@^8.0.0, npm-package-arg@^8.0.1, npm-package-arg@^8.1.0, npm-pack
     semver "^7.3.4"
     validate-npm-package-name "^3.0.0"
 
-npm-package-json-loader@^1.0.64:
-  version "1.0.64"
-  resolved "https://registry.npmjs.org/npm-package-json-loader/-/npm-package-json-loader-1.0.64.tgz#a2c8e71cb432139cba971ec1822a0fcdbdb00f7a"
-  integrity sha512-Xb3GBFI1FEkEqlQHvOhYz84ep/gfIGB+fxi94XnSbWUz0XY1g1P5eSXagX9y+rj6DbOf58iQMX3KEGIPtatY6Q==
+npm-package-json-loader@^1.0.65:
+  version "1.0.65"
+  resolved "https://registry.npmjs.org/npm-package-json-loader/-/npm-package-json-loader-1.0.65.tgz#819b24adafefda1259d81b09a99a5a01adcc97d4"
+  integrity sha512-6ZZZfDt/6JAts0EoCLl5IJRSA4XnonRtOaIQAZQEx3EBDpCTFa0f2Lh4YY0YeCpGI3R5U/6i11/gOiN5qjUIyA==
   dependencies:
     "@ts-type/package-dts" "^1.0.56"
+    "@yarn-tool/pkg-entry-util" "^1.0.1"
     "@yarn-tool/resolve-package" "^1.0.40"
     bind-decorator "^1.0.11"
     fs-extra "^10.0.0"
