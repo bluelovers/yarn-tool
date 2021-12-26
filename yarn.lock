@@ -927,10 +927,10 @@
     tslib "^2.3.1"
     upath2 "^3.1.10"
 
-"@yarn-tool/ws-scope@^1.0.7":
-  version "1.0.7"
-  resolved "https://registry.npmjs.org/@yarn-tool/ws-scope/-/ws-scope-1.0.7.tgz#7a22b793092db31a7fe270c299101a2826925fa5"
-  integrity sha512-IIAYBAm4F8ocsIZak/baQoRfTiC83G9qmrxL5gU7F4DZEB2HAqqRzKEx8XXCXjyn6dL31FAv+ykRmx4kd4CXHw==
+"@yarn-tool/ws-scope@^1.0.8":
+  version "1.0.8"
+  resolved "https://registry.npmjs.org/@yarn-tool/ws-scope/-/ws-scope-1.0.8.tgz#eb67da7de1518fa92aee26704365821f8877afee"
+  integrity sha512-yij2Uo17qG4uuYQNemUrwsMZ92nkWzhrdQ8jBnwsxBjhBkd5nbZPMyJ5QqAdJrxXv0YeTEzZd2uY37NyTWzfDw==
   dependencies:
     "@yarn-tool/find-root" "^1.0.59"
     array-hyper-unique "^2.0.6"
