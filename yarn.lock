@@ -542,10 +542,10 @@
   resolved "https://registry.npmjs.org/@types/minimist/-/minimist-1.2.2.tgz#ee771e2ba4b3dc5b372935d549fd9617bf345b8c"
   integrity sha512-jhuKLIRrhvCPLqwPcx6INqmKeiA5EWrsCOPhrlFSrbrmU4ZMPjj5Ul/oLCMDO98XRUIwVm78xICz4EPCektzeQ==
 
-"@types/node@*", "@types/node@^17.0.4":
-  version "17.0.4"
-  resolved "https://registry.npmjs.org/@types/node/-/node-17.0.4.tgz#fec0ce0526abb6062fd206d72a642811b887a111"
-  integrity sha512-6xwbrW4JJiJLgF+zNypN5wr2ykM9/jHcL7rQ8fZe2vuftggjzZeRSM4OwRc6Xk8qWjwJ99qVHo/JgOGmomWRog==
+"@types/node@*", "@types/node@^17.0.5":
+  version "17.0.5"
+  resolved "https://registry.npmjs.org/@types/node/-/node-17.0.5.tgz#57ca67ec4e57ad9e4ef5a6bab48a15387a1c83e0"
+  integrity sha512-w3mrvNXLeDYV1GKTZorGJQivK6XLCoGwpnyJFbJVK/aTBQUxOCaa/GlFAAN3OTDFcb7h5tiFG+YXCO2By+riZw==
 
 "@types/normalize-package-data@^2.4.0":
   version "2.4.1"
@@ -1817,10 +1817,10 @@ cosmiconfig@^7.0.0:
     path-type "^4.0.0"
     yaml "^1.10.0"
 
-create-yarn-workspaces@^1.0.133:
-  version "1.0.133"
-  resolved "https://registry.npmjs.org/create-yarn-workspaces/-/create-yarn-workspaces-1.0.133.tgz#9c36f08a54b13c320a648efff259a42df42d825b"
-  integrity sha512-yyC+hsztCMzZUGGSDhXDZ1iGl7mPrVTNu52ZvVIRKR2ddUqrxr2xNALx85AmOErHSKnvDsGJL0Z+ylw+SfiSGg==
+create-yarn-workspaces@^1.0.134:
+  version "1.0.134"
+  resolved "https://registry.npmjs.org/create-yarn-workspaces/-/create-yarn-workspaces-1.0.134.tgz#6017e647729afa1245acbba6ed0f8787fca32528"
+  integrity sha512-eY4CFCcB5lTPIzXxqRfoxFg1fBLSU2ylQhX9IfuTg1BNNGsMOEA4yuiBt0z8W97c4rzNP428YEfJJTPPkWCKvg==
   dependencies:
     "@ts-type/package-dts" "^1.0.56"
     "@yarn-tool/find-root" "^1.0.59"
