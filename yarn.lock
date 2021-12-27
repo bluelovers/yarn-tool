@@ -937,10 +937,10 @@
     tslib "^2.3.1"
     upath2 "^3.1.10"
 
-"@yarn-tool/ws-scope@^1.0.9":
-  version "1.0.9"
-  resolved "https://registry.npmjs.org/@yarn-tool/ws-scope/-/ws-scope-1.0.9.tgz#ecd28a6d1f14a101c1f43d6cea8efab04a0c40fa"
-  integrity sha512-BAEYDRxekW3a76sCMe7vxxU3Z3PqqQcvoKaGvQyCwvqy8uTuW6qGizdD5kvfTqz20HCqYYe77+lWKz7enTRGog==
+"@yarn-tool/ws-scope@^1.0.10":
+  version "1.0.10"
+  resolved "https://registry.npmjs.org/@yarn-tool/ws-scope/-/ws-scope-1.0.10.tgz#7a8c2cb79b3be4dd4b1ab2541cc0bb1c49774342"
+  integrity sha512-Ca16zWWFDV8oPu03DKE9zQVh9F9uaw+37+6bQy3DP2AhajORCKgRh8pQNwVhQLs9ZR/q5AFlmFHGSTqfDDxxcQ==
   dependencies:
     "@yarn-tool/find-root" "^1.0.59"
     "@yarn-tool/sort-lerna-json" "^1.0.1"

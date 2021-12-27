@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.2.38](https://github.com/bluelovers/yarn-tool/compare/yarn-tool@1.2.37...yarn-tool@1.2.38) (2021-12-27)
+
+
+### ✨　Features
+
+* add `scope sync` ([76bda2a](https://github.com/bluelovers/yarn-tool/commit/76bda2a6a20226d25b1fc8c84c0e1e6e1ec4f39c))
+
+
+
+
+
 ## [1.2.37](https://github.com/bluelovers/yarn-tool/compare/yarn-tool@1.2.36...yarn-tool@1.2.37) (2021-12-27)
 
 **Note:** Version bump only for package yarn-tool
