@@ -1,5 +1,5 @@
 import { basenameStrip, createCommandModuleExports } from '../../lib/cmd_dir';
-import WorkspacesScope from '@yarn-tool/ws-scope';
+import { WorkspacesScope } from '@yarn-tool/ws-scope';
 import { console } from '../../lib/index';
 import { basename, join } from 'upath2';
 import { ensureDirSync } from 'fs-extra';

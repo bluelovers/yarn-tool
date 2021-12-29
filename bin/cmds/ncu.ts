@@ -198,7 +198,7 @@ const cmdModule = createCommandModuleExports({
 
 		if (pkgNcu.json_changed && argv.upgrade)
 		{
-			writeJSONSync(pkg_file, pkgNcu.json_new);
+			writePackageJson(pkg_file, pkgNcu.json_new);
 			consoleDebug.info(`package.json updated`);
 		}
 

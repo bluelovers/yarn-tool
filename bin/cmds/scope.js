@@ -1,7 +1,6 @@
 "use strict";
-const tslib_1 = require("tslib");
 const cmd_dir_1 = require("../../lib/cmd_dir");
-const ws_scope_1 = tslib_1.__importDefault(require("@yarn-tool/ws-scope"));
+const ws_scope_1 = require("@yarn-tool/ws-scope");
 const index_1 = require("../../lib/index");
 const upath2_1 = require("upath2");
 const fs_extra_1 = require("fs-extra");
@@ -30,7 +29,7 @@ const cmdModule = (0, cmd_dir_1.createCommandModuleExports)({
             describe: `sync scope`,
             handler(argv) {
                 // @ts-ignore
-                const wss = new ws_scope_1.default(argv.cwd);
+                const wss = new ws_scope_1.WorkspacesScope(argv.cwd);
                 // @ts-ignore
                 wss.sync();
                 wss.save();
@@ -51,7 +50,7 @@ function _method(cmd, yargs, argv) {
         return;
     }
     // @ts-ignore
-    const wss = new ws_scope_1.default(argv.cwd);
+    const wss = new ws_scope_1.WorkspacesScope(argv.cwd);
     list.forEach(scope => {
         let _path = (0, upath2_1.join)(wss.rootData.ws, `packages/${scope}`);
         if (scope === (0, upath2_1.basename)(scope)) {

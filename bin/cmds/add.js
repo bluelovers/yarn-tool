@@ -5,6 +5,7 @@ const tslib_1 = require("tslib");
  */
 const cmd_dir_1 = require("../../lib/cmd_dir");
 const index_1 = require("../../lib/index");
+const pkg_1 = require("../../lib/pkg");
 const wrapDedupeAsync_1 = require("@yarn-tool/yarnlock/lib/wrapDedupe/wrapDedupeAsync");
 const cross_spawn_extra_1 = tslib_1.__importDefault(require("cross-spawn-extra"));
 const index_2 = require("../../index");
@@ -12,7 +13,6 @@ const setupYarnAddToYargs_1 = require("@yarn-tool/pkg-deps-util/lib/cli/setupYar
 const flagsYarnAdd_1 = require("@yarn-tool/pkg-deps-util/lib/cli/flagsYarnAdd");
 const assertExecInstall_1 = require("@yarn-tool/pkg-deps-util/lib/cli/assertExecInstall");
 const installDeps_1 = require("@yarn-tool/pkg-deps-util/lib/installDeps");
-const fs_extra_1 = require("fs-extra");
 const path_1 = require("path");
 const table_1 = require("@yarn-tool/table");
 const debug_color2_1 = require("debug-color2");
@@ -65,7 +65,7 @@ const cmdModule = (0, cmd_dir_1.createCommandModuleExports)({
                         data.exists.forEach(name => table.push([name, '', chalk.gray('exists')]));
                         data.added.forEach(([name, semver]) => table.push([name, semver, chalk.green('added')]));
                         index_1.console.log(table.toString());
-                        (0, fs_extra_1.writeJSONSync)((0, path_1.join)(data.rootData.pkg, 'package.json'), data.pkg, {
+                        (0, pkg_1.writePackageJson)((0, path_1.join)(data.rootData.pkg, 'package.json'), data.pkg, {
                             spaces: 2
                         });
                         args = data.packageNames;
@@ -82,7 +82,7 @@ const cmdModule = (0, cmd_dir_1.createCommandModuleExports)({
                             data.exists.forEach(name => table.push([name, '', chalk.gray('exists')]));
                             data.added.forEach(([name, semver]) => table.push([name, semver, chalk.green('added')]));
                             index_1.console.log(table.toString());
-                            (0, fs_extra_1.writeJSONSync)((0, path_1.join)(data.rootData.pkg, 'package.json'), data.pkg, {
+                            (0, pkg_1.writePackageJson)((0, path_1.join)(data.rootData.pkg, 'package.json'), data.pkg, {
                                 spaces: 2
                             });
                             args = data.others;

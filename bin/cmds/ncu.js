@@ -109,7 +109,7 @@ const cmdModule = (0, cmd_dir_1.createCommandModuleExports)({
             json_old: pkg_data,
         });
         if (pkgNcu.json_changed && argv.upgrade) {
-            (0, pkg_1.writeJSONSync)(pkg_file, pkgNcu.json_new);
+            (0, pkg_1.writePackageJson)(pkg_file, pkgNcu.json_new);
             index_1.consoleDebug.info(`package.json updated`);
         }
         if (argv.dedupe && resolutions && Object.keys(resolutions).length) {

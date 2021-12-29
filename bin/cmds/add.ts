@@ -101,7 +101,7 @@ const cmdModule = createCommandModuleExports({
 
 						console.log(table.toString())
 
-						writeJSONSync(join(data.rootData.pkg, 'package.json'), data.pkg, {
+						writePackageJson(join(data.rootData.pkg, 'package.json'), data.pkg, {
 							spaces: 2
 						})
 
@@ -130,7 +130,7 @@ const cmdModule = createCommandModuleExports({
 
 							console.log(table.toString())
 
-							writeJSONSync(join(data.rootData.pkg, 'package.json'), data.pkg, {
+							writePackageJson(join(data.rootData.pkg, 'package.json'), data.pkg, {
 								spaces: 2
 							})
 
