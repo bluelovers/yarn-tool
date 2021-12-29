@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.2.39](https://github.com/bluelovers/yarn-tool/compare/yarn-tool@1.2.38...yarn-tool@1.2.39) (2021-12-29)
+
+
+### ✨　Features
+
+* auto check/fix workspaces/package ([cc3ecb4](https://github.com/bluelovers/yarn-tool/commit/cc3ecb40454804e34a1cc19f3a6de78b907eb1f4))
+
+
+
+
+
 ## [1.2.38](https://github.com/bluelovers/yarn-tool/compare/yarn-tool@1.2.37...yarn-tool@1.2.38) (2021-12-27)
 
 
