@@ -39,8 +39,7 @@ const cmdModule = createCommandModuleExports({
 					// @ts-ignore
 					const wss = new WorkspacesScope(argv.cwd);
 
-					// @ts-ignore
-					wss.sync();
+					wss.syncValue();
 					wss.save();
 
 					console.success(`workspace scope sync completed`)
@@ -101,8 +100,7 @@ function _method(cmd: 'add' | 'remove', yargs: Argv, argv: ArgumentsCamelCase)
 
 	if (wss.changed)
 	{
-		// @ts-ignore
-		wss.sync();
+		wss.syncValue();
 		wss.save();
 		console.success(`workspace scope updated`)
 	}

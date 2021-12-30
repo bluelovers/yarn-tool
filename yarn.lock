@@ -662,10 +662,10 @@
     tslib "^2.3.1"
     upath2 "^3.1.10"
 
-"@yarn-tool/fix-all@^1.0.2":
-  version "1.0.2"
-  resolved "https://registry.npmjs.org/@yarn-tool/fix-all/-/fix-all-1.0.2.tgz#3c0545afe6d069db8f645afcfff18b9bff6ac48d"
-  integrity sha512-olVNB7gNff7OhefQsToYonJg9KunsOl/fnTrEu0OShhhEm/ccs1wUYSXjOp3ggbzZo4ldsFBy1GyHJu9vzs8rg==
+"@yarn-tool/fix-all@^1.0.3":
+  version "1.0.3"
+  resolved "https://registry.npmjs.org/@yarn-tool/fix-all/-/fix-all-1.0.3.tgz#d8afdf714c8c0829b59e53e13671343d98fe22ea"
+  integrity sha512-ZYIdbCgnifCfOCwrbiQypAE8nG0FnllFi4hEE3/qvYTQMqaNbdIkpa8fdskCIpRguamVM4+rWA0r49HH7q5qNA==
   dependencies:
     "@yarn-tool/find-root" "^1.0.59"
     "@yarn-tool/pkg-git-info" "^1.0.24"
@@ -676,9 +676,9 @@
     debug-color2 "^1.2.7"
     fs-extra "^10.0.0"
     lazy-aggregate-error "^1.0.6"
-    npm-package-json-loader "^1.0.68"
+    npm-package-json-loader "^1.0.69"
     progress-estimator "^0.3.0"
-    sort-package-json3 "^1.0.48"
+    sort-package-json3 "^1.0.49"
     ts-type "^2.1.2"
     tslib "^2.3.1"
     upath2 "^3.1.10"
@@ -1936,10 +1936,10 @@ cosmiconfig@^7.0.0:
     path-type "^4.0.0"
     yaml "^1.10.0"
 
-create-yarn-workspaces@^1.0.139:
-  version "1.0.139"
-  resolved "https://registry.npmjs.org/create-yarn-workspaces/-/create-yarn-workspaces-1.0.139.tgz#1eaca30c906696ca84f7fb9b8ac1f405fc93bf44"
-  integrity sha512-Ij7GtMXacaRjsV9KUkBE+Gh/WaJk73XakRTBBydmDS+Ky0MwICis7YHFQjLUFpL4VGM+XytLx7keDUthPk3rRA==
+create-yarn-workspaces@^1.0.140:
+  version "1.0.140"
+  resolved "https://registry.npmjs.org/create-yarn-workspaces/-/create-yarn-workspaces-1.0.140.tgz#9c8964fd6ec55ab0df71c9f33f24f6d295a4eaec"
+  integrity sha512-dJHt4WDK42VHl3lPgL0IXiiWZWrbcIXtGwP7vjUEw/e+KFiJk3v7ZniUpVibUe3FPO6Kx0n++rLs9KEzkCv9IQ==
   dependencies:
     "@ts-type/package-dts" "^1.0.56"
     "@yarn-tool/find-root" "^1.0.59"
@@ -1950,7 +1950,7 @@ create-yarn-workspaces@^1.0.139:
     path-is-same "^1.0.15"
     pkg-dir "< 6 >= 5"
     sort-package-json "^1.53.1"
-    sort-package-json3 "^1.0.48"
+    sort-package-json3 "^1.0.49"
     tslib "^2.3.1"
     upath2 "^3.1.10"
     yargs "^17.3.1"
@@ -3985,10 +3985,10 @@ npm-bundled@^1.1.1:
     spawn-please "^1.0.0"
     update-notifier "^5.1.0"
 
-npm-init2@^1.0.202:
-  version "1.0.202"
-  resolved "https://registry.npmjs.org/npm-init2/-/npm-init2-1.0.202.tgz#5ab885e4864d73c402060b0716ef699ff0fd6480"
-  integrity sha512-4SY1xBQGnrG3z8rSYDUk3PZ60uXsJD8h2DIrP1WBJjG4gkzudQ7Sj/mOeprtB62j3+8dzUPh3quGF8RUtHqc8g==
+npm-init2@^1.0.203:
+  version "1.0.203"
+  resolved "https://registry.npmjs.org/npm-init2/-/npm-init2-1.0.203.tgz#d4a5f6d685ae89157dfc7b852eef9917610ede78"
+  integrity sha512-O7g8bo12S65Enpc+PHuwsSAQ1+IuLZwwF55UpFOyr0yRsTd7AWU/J8eV6V/SsQ2s3ov4jqo6M20f4gJdNHxRDw==
   dependencies:
     "@ts-type/package-dts" "^1.0.56"
     "@yarn-tool/find-root" "^1.0.59"
@@ -4009,9 +4009,9 @@ npm-init2@^1.0.202:
     json5 "^2.2.0"
     lodash "^4.17.21"
     micromatch "^4.0.4"
-    npm-package-json-loader "^1.0.68"
+    npm-package-json-loader "^1.0.69"
     path-is-same "^1.0.15"
-    sort-package-json-scripts "^1.1.11"
+    sort-package-json-scripts "^1.1.12"
     tslib "^2.3.1"
     upath2 "^3.1.10"
     validate-npm-package-name "^3.0.0"
@@ -4040,10 +4040,10 @@ npm-package-arg@^8.0.0, npm-package-arg@^8.0.1, npm-package-arg@^8.1.0, npm-pack
     semver "^7.3.4"
     validate-npm-package-name "^3.0.0"
 
-npm-package-json-loader@^1.0.68:
-  version "1.0.68"
-  resolved "https://registry.npmjs.org/npm-package-json-loader/-/npm-package-json-loader-1.0.68.tgz#91e1bebed2302c46ae4b6bdfc1c889e89337f396"
-  integrity sha512-q6kWGJ55fnrRbezVC5HjnoT+xFm/IwDSkG8aUcZUzOA7dwsC9fm526yq3nn2Ab/9K2kIZKXMH8z2034mi9UnAg==
+npm-package-json-loader@^1.0.69:
+  version "1.0.69"
+  resolved "https://registry.npmjs.org/npm-package-json-loader/-/npm-package-json-loader-1.0.69.tgz#298eff9b8224c42296a23a70666473cd6f8b835c"
+  integrity sha512-YI3AsB8sjl6mzdM/QTFdA8mRq0/0nb4vPu0VuUpmEitRZjquBgIkavFWkAF+syAmvD5VeOOToN7pKRd/qQOevw==
   dependencies:
     "@bluelovers/fs-json" "^1.0.3"
     "@ts-type/package-dts" "^1.0.56"
@@ -4052,7 +4052,7 @@ npm-package-json-loader@^1.0.68:
     bind-decorator "^1.0.11"
     fs-extra "^10.0.0"
     sort-package-json "^1.53.1"
-    sort-package-json3 "^1.0.48"
+    sort-package-json3 "^1.0.49"
     ts-type "^2.1.2"
     tslib "^2.3.1"
 
@@ -4976,22 +4976,22 @@ sort-object-keys@^1.1.3:
   resolved "https://registry.npmjs.org/sort-object-keys/-/sort-object-keys-1.1.3.tgz#bff833fe85cab147b34742e45863453c1e190b45"
   integrity sha512-855pvK+VkU7PaKYPc+Jjnmt4EzejQHyhhF33q31qG8x7maDzkeFhAAThdCYay11CISO+qAMwjOBP+fPZe0IPyg==
 
-sort-package-json-scripts@^1.1.11:
-  version "1.1.11"
-  resolved "https://registry.npmjs.org/sort-package-json-scripts/-/sort-package-json-scripts-1.1.11.tgz#1a8c6174ca15b2a0f5bdcf9bba50b7ba3f4bd557"
-  integrity sha512-4Om+SL5MiKXgM71E0xMZ2BXFKxI4uem1ngmW6W/Skm2zDrE+saP+89lkWa+WLCls8mDt0JsgU1IJpRjjMw9cxw==
+sort-package-json-scripts@^1.1.12:
+  version "1.1.12"
+  resolved "https://registry.npmjs.org/sort-package-json-scripts/-/sort-package-json-scripts-1.1.12.tgz#7f2868187f28c9c4e1b4ec9ca477d1d99a8ec43b"
+  integrity sha512-EM5wOv7hDW+7UWpfNRsXirh76bNxpEilpJyJek3xnXH0h2NNEqXG0XTnI3gXbazh1Q7Cs8I19uYVzAinBp8b2w==
   dependencies:
     sort-object-keys2 "^2.0.3"
     tslib "^2.3.1"
 
-sort-package-json3@^1.0.48:
-  version "1.0.48"
-  resolved "https://registry.npmjs.org/sort-package-json3/-/sort-package-json3-1.0.48.tgz#23dc1fce3c8661dda798db56f3b76d3d53ad2107"
-  integrity sha512-ESgHcw8KSngeyxecEVQYZhQDGRgiPfIPmKw6w2Hc5UuVL7Hjg5XCL4dmJxnWhn5j+sqi7be/ZWJ038aKueIvXw==
+sort-package-json3@^1.0.49:
+  version "1.0.49"
+  resolved "https://registry.npmjs.org/sort-package-json3/-/sort-package-json3-1.0.49.tgz#9f6095e12f9618541d1c364b81ab44b64330eb46"
+  integrity sha512-VcvbGbphuAluIdJoidP5USJtR/hfogZBBc9rsCktHb0fPzKwymSA+AytVe5W9Zic1s+kCOIbeqaGWA3wzTJ1Zg==
   dependencies:
     "@ts-type/package-dts" "^1.0.56"
     is-plain-obj "< 4"
-    sort-package-json-scripts "^1.1.11"
+    sort-package-json-scripts "^1.1.12"
     tslib "^2.3.1"
 
 sort-package-json@^1.53.1:
@@ -5500,12 +5500,11 @@ universalify@^2.0.0:
   resolved "https://registry.npmjs.org/universalify/-/universalify-2.0.0.tgz#75a4984efedc4b08975c5aeb73f530d02df25717"
   integrity sha512-hAZsKq7Yy11Zu1DE0OzWjw7nnLZmJZYTDZZyEFHZdUhV8FkH5MCfoU1XMaxXovpyW5nq5scPqq0ZDP9Zyl04oQ==
 
-upath2@^3, upath2@^3.1.10, upath2@^3.1.11, upath2@^3.1.9:
-  version "3.1.11"
-  resolved "https://registry.npmjs.org/upath2/-/upath2-3.1.11.tgz#e89d4887b8b74d7ea69c8102af19e43a28da60c1"
-  integrity sha512-+uMqpfIbIRXaoCqtxEy7ueR41T9MU6VcsX5f2OUTsGPA4ZLBkFGmpNaU4eaG04a2mBbrwk2D/l0YrH8ZYXPDew==
+upath2@^3, upath2@^3.1.10, upath2@^3.1.12, upath2@^3.1.9:
+  version "3.1.12"
+  resolved "https://registry.npmjs.org/upath2/-/upath2-3.1.12.tgz#441b3dfbadde21731017bd1b7beb169498efd0a9"
+  integrity sha512-yC3eZeCyCXFWjy7Nu4pgjLhXNYjuzuUmJiRgSSw6TJp8Emc+E4951HGPJf+bldFC5SL7oBLeNbtm1fGzXn2gxw==
   dependencies:
-    lodash "^4.17.21"
     path-is-network-drive "^1.0.13"
     path-strip-sep "^1.0.10"
     tslib "^2.3.1"

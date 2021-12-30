@@ -30,8 +30,7 @@ const cmdModule = (0, cmd_dir_1.createCommandModuleExports)({
             handler(argv) {
                 // @ts-ignore
                 const wss = new ws_scope_1.WorkspacesScope(argv.cwd);
-                // @ts-ignore
-                wss.sync();
+                wss.syncValue();
                 wss.save();
                 index_1.console.success(`workspace scope sync completed`);
             },
@@ -67,8 +66,7 @@ function _method(cmd, yargs, argv) {
         wss[cmd](scope);
     });
     if (wss.changed) {
-        // @ts-ignore
-        wss.sync();
+        wss.syncValue();
         wss.save();
         index_1.console.success(`workspace scope updated`);
     }
