@@ -12,8 +12,9 @@ const cmdModule = createCommandModuleExports({
 		return yargs
 			.option('overwriteHostedGitInfo', {
 				boolean: true,
+				alias: ['O', 'overwrite'],
 			})
-		.option('branch', {
+			.option('branch', {
 				string: true,
 			})
 	},
@@ -26,7 +27,7 @@ const cmdModule = createCommandModuleExports({
 			overwriteHostedGitInfo: args.overwriteHostedGitInfo,
 
 		})
-	}
+	},
 
 });
 

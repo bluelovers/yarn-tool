@@ -8,6 +8,7 @@ const cmdModule = (0, cmd_dir_1.createCommandModuleExports)({
         return yargs
             .option('overwriteHostedGitInfo', {
             boolean: true,
+            alias: ['O', 'overwrite'],
         })
             .option('branch', {
             string: true,
@@ -18,7 +19,7 @@ const cmdModule = (0, cmd_dir_1.createCommandModuleExports)({
             branch: args.branch,
             overwriteHostedGitInfo: args.overwriteHostedGitInfo,
         });
-    }
+    },
 });
 module.exports = cmdModule;
 //# sourceMappingURL=fix-all.js.map
