@@ -533,10 +533,10 @@
   resolved "https://registry.npmjs.org/@types/hosted-git-info/-/hosted-git-info-3.0.2.tgz#aa671076f5edefa4fab1189b467e6c63987be818"
   integrity sha512-RURNTeEFUwF+ifnp7kK3WLLlTmBSlRynLNS9jeAsI6RHtSrupV0l0nO6kmpaz75EUJVexy348bR452SvmH98vQ==
 
-"@types/inquirer@^8.1.3":
-  version "8.1.3"
-  resolved "https://registry.npmjs.org/@types/inquirer/-/inquirer-8.1.3.tgz#dfda4c97cdbe304e4dceb378a80f79448ea5c8fe"
-  integrity sha512-AayK4ZL5ssPzR1OtnOLGAwpT0Dda3Xi/h1G0l1oJDNrowp7T1423q4Zb8/emr7tzRlCy4ssEri0LWVexAqHyKQ==
+"@types/inquirer@^8.2.0":
+  version "8.2.0"
+  resolved "https://registry.npmjs.org/@types/inquirer/-/inquirer-8.2.0.tgz#b9566d048f5ff65159f2ed97aff45fe0f00b35ec"
+  integrity sha512-BNoMetRf3gmkpAlV5we+kxyZTle7YibdOntIZbU5pyIfMdcwy784KfeZDAcuyMznkh5OLa17RVXZOGA5LTlkgQ==
   dependencies:
     "@types/through" "*"
     rxjs "^7.2.0"
@@ -561,10 +561,10 @@
   resolved "https://registry.npmjs.org/@types/minimist/-/minimist-1.2.2.tgz#ee771e2ba4b3dc5b372935d549fd9617bf345b8c"
   integrity sha512-jhuKLIRrhvCPLqwPcx6INqmKeiA5EWrsCOPhrlFSrbrmU4ZMPjj5Ul/oLCMDO98XRUIwVm78xICz4EPCektzeQ==
 
-"@types/node@*", "@types/node@^17.0.12":
-  version "17.0.12"
-  resolved "https://registry.npmjs.org/@types/node/-/node-17.0.12.tgz#f7aa331b27f08244888c47b7df126184bc2339c5"
-  integrity sha512-4YpbAsnJXWYK/fpTVFlMIcUIho2AYCi4wg5aNPrG1ng7fn/1/RZfCIpRCiBX+12RVa34RluilnvCqD+g3KiSiA==
+"@types/node@*", "@types/node@^17.0.13":
+  version "17.0.13"
+  resolved "https://registry.npmjs.org/@types/node/-/node-17.0.13.tgz#5ed7ed7c662948335fcad6c412bb42d99ea754e3"
+  integrity sha512-Y86MAxASe25hNzlDbsviXl8jQHb0RDvKt4c40ZJQ1Don0AAL0STLZSs4N+6gLEO55pedy7r2cLwS+ZDxPm/2Bw==
 
 "@types/normalize-package-data@^2.4.0":
   version "2.4.1"
@@ -905,10 +905,10 @@
     sort-object-keys2 "^2.0.3"
     tslib "^2.3.1"
 
-"@yarn-tool/static-file@^1.0.90":
-  version "1.0.90"
-  resolved "https://registry.npmjs.org/@yarn-tool/static-file/-/static-file-1.0.90.tgz#2c0a788142557775b9470a2325a7dc67afe44b26"
-  integrity sha512-Thk6tCAA+8SI3eFWK3HpHUrqyDMmeTPFfSZ6FbOD+w4eTWlttZDdZ3RZbBLNwXV81/l1MrgotqBumgkUCzUYug==
+"@yarn-tool/static-file@^1.0.91":
+  version "1.0.91"
+  resolved "https://registry.npmjs.org/@yarn-tool/static-file/-/static-file-1.0.91.tgz#830a2fd94ea7a1a25fffe5f7c4f077fa8aba10ae"
+  integrity sha512-fXpqNtocidCbW1uwXTRbz464vKCUH9UxkPyrmz6fxs9Yj9fQG/tyitIAaHpiWPMbpnzEJQy7cwL490BIFZnVdg==
   dependencies:
     fs-extra "^10.0.0"
     tslib "^2.3.1"
@@ -1936,15 +1936,15 @@ cosmiconfig@^7.0.0:
     path-type "^4.0.0"
     yaml "^1.10.0"
 
-create-yarn-workspaces@^1.0.146:
-  version "1.0.146"
-  resolved "https://registry.npmjs.org/create-yarn-workspaces/-/create-yarn-workspaces-1.0.146.tgz#931d42e1f0c879336d6f00351a1f5558674e1d3a"
-  integrity sha512-BNG3qSKIT2EZB1GuTKwSFw+rRc/l9TeiPmKAO9Yop+li20RF+oI1wx6imONt0KN+JJE4mRUh45PDFDFAHWpn7Q==
+create-yarn-workspaces@^1.0.147:
+  version "1.0.147"
+  resolved "https://registry.npmjs.org/create-yarn-workspaces/-/create-yarn-workspaces-1.0.147.tgz#101aae4b7613ad0b918a8a2a2633b2b2ad5bb08a"
+  integrity sha512-TsZ+WiZn/5mjTDTo8EmTiz3SDamIB3P6qKbN710yW2yz/UxRY3IZ6l9LQlTKMDrNhq4PmJrSw5pkuhRIFViuPg==
   dependencies:
     "@ts-type/package-dts" "^1.0.58"
     "@yarn-tool/find-root" "^1.0.61"
     "@yarn-tool/pkg-entry-util" "^1.0.6"
-    "@yarn-tool/static-file" "^1.0.90"
+    "@yarn-tool/static-file" "^1.0.91"
     debug-color2 "^1.2.7"
     find-yarn-workspace-root2 "^1.2.36"
     fs-extra "^10.0.0"
@@ -3986,10 +3986,10 @@ npm-bundled@^1.1.1:
     spawn-please "^1.0.0"
     update-notifier "^5.1.0"
 
-npm-init2@^1.0.208:
-  version "1.0.208"
-  resolved "https://registry.npmjs.org/npm-init2/-/npm-init2-1.0.208.tgz#dd0082a9ca7b4bb7bee7ebf368dba7a0030596ed"
-  integrity sha512-eCUPMseLqGHeUTjD333RfK5qbfPT24D9XvLGq1uqQiur/JfIMwjFFFuCHzaV+vQamIDsSMZUOBUY7OjuoyD7Sg==
+npm-init2@^1.0.209:
+  version "1.0.209"
+  resolved "https://registry.npmjs.org/npm-init2/-/npm-init2-1.0.209.tgz#19ee8717f68dcd4b7d89163c1a274aabcab832e2"
+  integrity sha512-1xn2M8hTD7/cZ6W3wwCL1ynVDVA6WXmvamApV1eNonlM0Gr2F5xe6ZYZDANnDUIDzJdE8oqY38/o87bPJ9HnAg==
   dependencies:
     "@ts-type/package-dts" "^1.0.58"
     "@yarn-tool/find-root" "^1.0.61"
@@ -4000,7 +4000,7 @@ npm-init2@^1.0.208:
     "@yarn-tool/pkg-git-info" "^1.0.25"
     "@yarn-tool/pkg-hosted-info" "^1.0.11"
     "@yarn-tool/setup-module-env" "^1.0.7"
-    "@yarn-tool/static-file" "^1.0.90"
+    "@yarn-tool/static-file" "^1.0.91"
     "@yarn-tool/types" "^1.0.6"
     "@yarn-tool/update-notifier" "^1.0.24"
     "@yarn-tool/workspaces-project" "^1.0.65"
