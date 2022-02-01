@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.2.51](https://github.com/bluelovers/yarn-tool/compare/yarn-tool@1.2.50...yarn-tool@1.2.51) (2022-02-01)
+
+**Note:** Version bump only for package yarn-tool
+
+
+
+
+
 ## [1.2.50](https://github.com/bluelovers/yarn-tool/compare/yarn-tool@1.2.49...yarn-tool@1.2.50) (2022-02-01)
 
 **Note:** Version bump only for package yarn-tool
