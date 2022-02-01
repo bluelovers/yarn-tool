@@ -887,10 +887,10 @@
     ts-type "^2.1.4"
     tslib "^2.3.1"
 
-"@yarn-tool/setup-module-env@^1.0.7":
-  version "1.0.7"
-  resolved "https://registry.npmjs.org/@yarn-tool/setup-module-env/-/setup-module-env-1.0.7.tgz#b4177f98b1c353fe67baa208832389a9b3160d15"
-  integrity sha512-Y2k9A5ugK3MnhZKMOF6sGWfbPrOt++GTOjbeWnVsTy5hMrFBhJraTF1sQ/4rCGKzQdZHRToskWP8rexNCWsMrQ==
+"@yarn-tool/setup-module-env@^1.0.8":
+  version "1.0.8"
+  resolved "https://registry.npmjs.org/@yarn-tool/setup-module-env/-/setup-module-env-1.0.8.tgz#c1903b5923261cac95ec8e8d7f624b152f21e124"
+  integrity sha512-jQ3uy/OfGr1p9eUYqyB0xY18t7JICsd2sD58ACjcHBfavxJAlLd4TgaTeDO+RsAlyBJTmanrS1xBqBuqhASxdw==
   dependencies:
     tslib "^2.3.1"
 
@@ -3986,10 +3986,10 @@ npm-bundled@^1.1.1:
     spawn-please "^1.0.0"
     update-notifier "^5.1.0"
 
-npm-init2@^1.0.210:
-  version "1.0.210"
-  resolved "https://registry.npmjs.org/npm-init2/-/npm-init2-1.0.210.tgz#ec29731ca138350624edd6a2fb7ca34e5215e07f"
-  integrity sha512-SbTqbeu/QX6A8frLwutJK8kNqZjcbWOivDp/tveAL79aNhoXkiuCyMZItqGjSVWnxzq+pz0gxfc+Bmxhd5JWwg==
+npm-init2@^1.0.211:
+  version "1.0.211"
+  resolved "https://registry.npmjs.org/npm-init2/-/npm-init2-1.0.211.tgz#ba2b1ff3391111037112925a4be24caecd4e2271"
+  integrity sha512-vjzstR7rv4epEDVD+xgL1kVcvohcDIi9hwF1sPNVlBxKH+CtBqiINIrGM/2C2KqIzj+r+qD8PA5ee3zf7Sf3Kg==
   dependencies:
     "@ts-type/package-dts" "^1.0.58"
     "@yarn-tool/find-root" "^1.0.61"
@@ -3999,7 +3999,7 @@ npm-init2@^1.0.210:
     "@yarn-tool/pkg-entry-util" "^1.0.6"
     "@yarn-tool/pkg-git-info" "^1.0.25"
     "@yarn-tool/pkg-hosted-info" "^1.0.11"
-    "@yarn-tool/setup-module-env" "^1.0.7"
+    "@yarn-tool/setup-module-env" "^1.0.8"
     "@yarn-tool/static-file" "^1.0.92"
     "@yarn-tool/types" "^1.0.6"
     "@yarn-tool/update-notifier" "^1.0.24"
