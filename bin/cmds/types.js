@@ -93,16 +93,16 @@ const cmdModule = (0, cmd_dir_1.createCommandModuleExports)({
                 pkg,
             });
             switch (check.error) {
-                case 2 /* DEPRECATED */:
+                case 2 /* EnumInstallTypesErrorCode.DEPRECATED */:
                     warns.push([`[ignore]`, check.target, '：', check.msg]);
                     break;
-                case 1 /* NOT_EXISTS */:
+                case 1 /* EnumInstallTypesErrorCode.NOT_EXISTS */:
                     warns.push([`[warn]`, index_1.console.red.chalk(check.msg)]);
                     break;
-                case 3 /* SKIP */:
+                case 3 /* EnumInstallTypesErrorCode.SKIP */:
                     warns.push([`[skip]`, check.msg]);
                     break;
-                case 0 /* SUCCESS */:
+                case 0 /* EnumInstallTypesErrorCode.SUCCESS */:
                     success.push([`[success]`, `add ${index_1.console.green.chalk(check.target)} to dependency`]);
                     list.push(check.target);
                     break;
