@@ -21,7 +21,7 @@ const cmdModule = createCommandModuleExports({
 
 	handler(args)
 	{
-		npmAutoFixAll(args.cwd, {
+		return npmAutoFixAll(args.cwd, {
 
 			branch: args.branch,
 			overwriteHostedGitInfo: args.overwriteHostedGitInfo,

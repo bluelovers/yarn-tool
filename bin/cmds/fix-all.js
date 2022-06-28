@@ -15,7 +15,7 @@ const cmdModule = (0, cmd_dir_1.createCommandModuleExports)({
         });
     },
     handler(args) {
-        (0, fix_all_1.npmAutoFixAll)(args.cwd, {
+        return (0, fix_all_1.npmAutoFixAll)(args.cwd, {
             branch: args.branch,
             overwriteHostedGitInfo: args.overwriteHostedGitInfo,
         });
