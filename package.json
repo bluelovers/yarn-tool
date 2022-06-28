@@ -1,6 +1,6 @@
 {
   "name": "yarn-tool",
-  "version": "1.2.58",
+  "version": "1.2.59",
   "description": "yarn cli tool helper",
   "keywords": [
     "cli",
@@ -89,7 +89,7 @@
     "debug-color2": "^1.2.7",
     "find-yarn-workspace-root2": "^1.2.38",
     "fs-extra": "^10.1.0",
-    "inquirer": "^9.0.0",
+    "inquirer": "< 9 >= 8.2.4",
     "npm-init2": "^1.0.224",
     "os-lang-locale": "^2.0.1",
     "os-locale": "<6 >=5",
