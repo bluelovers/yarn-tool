@@ -9,6 +9,8 @@ import { readPackageJson } from '@ts-type/package-dts';
 import { Arguments } from 'yargs';
 import { IUnpackMyYargsArgv, IUnpackMyYargsArgvPartial } from './cmd_dir';
 import { findRoot } from '@yarn-tool/find-root';
+import { yargsProcessExit } from '@yarn-tool/yargs-util';
+import { relative } from 'upath2';
 
 export const console = new Console2();
 
@@ -74,29 +76,26 @@ export function lazyFlags(keys: string[], argv: {
 
 export const chalkByConsole = createFnChalkByConsole(console);
 
-export function printRootData(rootData: ReturnType<typeof findRoot>, argv: Arguments<IUnpackMyYargsArgvPartial>)
+export function printRootData(rootData: ReturnType<typeof findRoot>, argv: {
+	cwd: string,
+})
 {
 	let doWorkspace = !rootData.isWorkspace && rootData.hasWorkspace;
 
 	let pkg_file = path.join(rootData.pkg, 'package.json');
 	let pkg_data = readPackageJson(pkg_file);
 
-	consoleDebug.info(`${pkg_data.name}@${pkg_data.version}`, path.relative(doWorkspace ? rootData.ws : argv.cwd, rootData.pkg));
-}
-
-export function yargsProcessExit(msg: string | Error, code: number = 1)
-{
-	if (!(msg instanceof Error))
+	chalkByConsole((chalk, console) =>
 	{
-		msg = new Error(msg);
+		console.info([
+			chalk.white(`Package:`),
+			`${pkg_data.name}@${pkg_data.version}`,
+			chalk.red(relative(doWorkspace ? rootData.ws : argv.cwd, rootData.pkg)),
+		].join(' '));
 
-		// @ts-ignore
-		msg.code = code
-	}
-
-	console.error(msg.message);
-	require('yargs').exit(code, msg);
-	process.exit(code)
+	}, consoleDebug);
 }
+
+export { yargsProcessExit }
 
 export default exports as typeof import('./index');
