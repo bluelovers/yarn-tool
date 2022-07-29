@@ -764,10 +764,10 @@
     is-npx "^1.0.0"
     tslib "^2"
 
-"@yarn-tool/ncu-ws@^1.0.2":
-  version "1.0.2"
-  resolved "https://registry.npmjs.org/@yarn-tool/ncu-ws/-/ncu-ws-1.0.2.tgz#a32a353ff59a762e57e037d44beb26949f5206c3"
-  integrity sha512-BiXFYQDPsz1+2Yx3tBzUPW3UNfvpof5+vWsXZfGkbHtCeeB2GttXWoXYbSOdqNTGwyW+LQKyjRZNK/2l3QuIVA==
+"@yarn-tool/ncu-ws@^1.0.3":
+  version "1.0.3"
+  resolved "https://registry.npmjs.org/@yarn-tool/ncu-ws/-/ncu-ws-1.0.3.tgz#f405e1faadd44754b449ebe7a8ee6697f8179379"
+  integrity sha512-E0R01t1eFAvBADkyFZrMqkgHxCg+v6NCpFHzmskLTQs1E+WOz8Ioz2uI5BaguLJ+FW86W6Dx74sep6W3uMaYeA==
   dependencies:
     "@ts-type/package-dts" "^2.0.2"
     "@yarn-tool/find-root" "^2.0.1"
