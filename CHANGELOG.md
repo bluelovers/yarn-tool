@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.2.63](https://github.com/bluelovers/yarn-tool/compare/yarn-tool@1.2.62...yarn-tool@1.2.63) (2022-07-29)
+
+
+### ✨　Features
+
+* **ncu:** 優化 ncu 指令並且支援直接處理 workspace 下所有 package ([84fc99b](https://github.com/bluelovers/yarn-tool/commit/84fc99bd926c972db595289688d17113f7489fda))
+
+
+### BREAKING CHANGES
+
+* **ncu:** 優化 ncu 指令並且支援直接處理 workspace 下所有 package
+
+
+
+
+
 ## [1.2.62](https://github.com/bluelovers/yarn-tool/compare/yarn-tool@1.2.61...yarn-tool@1.2.62) (2022-07-14)
 
 **Note:** Version bump only for package yarn-tool
