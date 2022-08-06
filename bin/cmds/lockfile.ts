@@ -12,10 +12,10 @@ import { IUnpackMyYargsArgv } from '../../lib/cmd_dir';
 import { exportYarnLock, parse as parseYarnLock } from '../../lib/yarnlock';
 import { SemVer, rcompare } from 'semver';
 import { Arguments, CommandModule } from 'yargs';
-import Dedupe from '../../lib/cli/dedupe';
+import { Dedupe } from '../../lib/cli/dedupe';
 import { npmToYarnCore, yarnToNpmCore } from 'synp2/lib';
-import fixNpmLock from '../../lib/cli/lockfile/fixNpmLock';
-import { fsYarnLock } from '../../lib/fsYarnLock';
+import { fixNpmLock } from '../../lib/cli/lockfile/fixNpmLock';
+import { fsYarnLockSafe } from '@yarn-tool/yarnlock/lib/fs';
 
 const COMMAND_KEY = basenameStrip(__filename);
 
@@ -62,12 +62,12 @@ const cmdModule = createCommandModuleExports({
 
 		//let rootData = findRoot(argv, true);
 
-		//let yl = fsYarnLock(rootData.root);
+		//let yl = fsYarnLockSafe(rootData.root);
 
 		if (argv.yarn || argv.npm || argv.shrinkwrap)
 		{
 			let rootData = findRoot(argv, true);
-			let yl = fsYarnLock(rootData.root);
+			let yl = fsYarnLockSafe(rootData.root);
 
 			let file_package_lock_json = path.join(rootData.pkg, 'package-lock.json');
 
@@ -215,7 +215,7 @@ function _showYarnLockList(argv: Arguments<IUnpackCmdMod<typeof cmdModule>>): ar
 {
 	let rootData = findRoot(argv, true);
 
-	let yl = fsYarnLock(rootData.root);
+	let yl = fsYarnLockSafe(rootData.root);
 
 	let yarnlock_old_obj = parseYarnLock(yl.yarnlock_old);
 

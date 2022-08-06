@@ -1,5 +1,4 @@
 "use strict";
-const tslib_1 = require("tslib");
 /**
  * Created by user on 2019/5/19.
  */
@@ -10,10 +9,10 @@ const index_1 = require("../../lib/index");
 const package_dts_1 = require("@ts-type/package-dts");
 const yarnlock_1 = require("../../lib/yarnlock");
 const semver_1 = require("semver");
-const dedupe_1 = tslib_1.__importDefault(require("../../lib/cli/dedupe"));
+const dedupe_1 = require("../../lib/cli/dedupe");
 const lib_1 = require("synp2/lib");
-const fixNpmLock_1 = tslib_1.__importDefault(require("../../lib/cli/lockfile/fixNpmLock"));
-const fsYarnLock_1 = require("../../lib/fsYarnLock");
+const fixNpmLock_1 = require("../../lib/cli/lockfile/fixNpmLock");
+const fs_1 = require("@yarn-tool/yarnlock/lib/fs");
 const COMMAND_KEY = (0, cmd_dir_1.basenameStrip)(__filename);
 const cmdModule = (0, cmd_dir_1.createCommandModuleExports)({
     command: (0, cmd_dir_1.basenameStrip)(__filename),
@@ -51,10 +50,10 @@ const cmdModule = (0, cmd_dir_1.createCommandModuleExports)({
     handler(argv) {
         const key = COMMAND_KEY;
         //let rootData = findRoot(argv, true);
-        //let yl = fsYarnLock(rootData.root);
+        //let yl = fsYarnLockSafe(rootData.root);
         if (argv.yarn || argv.npm || argv.shrinkwrap) {
             let rootData = (0, index_1.findRoot)(argv, true);
-            let yl = (0, fsYarnLock_1.fsYarnLock)(rootData.root);
+            let yl = (0, fs_1.fsYarnLockSafe)(rootData.root);
             let file_package_lock_json = path.join(rootData.pkg, 'package-lock.json');
             let file_package_lock_json_exists = fs.existsSync(file_package_lock_json);
             if (argv.npm || argv.shrinkwrap) {
@@ -89,7 +88,7 @@ const cmdModule = (0, cmd_dir_1.createCommandModuleExports)({
                         ...s.dependencies,
                     };
                 }
-                const lock = (0, fixNpmLock_1.default)(s);
+                const lock = (0, fixNpmLock_1.fixNpmLock)(s);
                 if (argv.npm) {
                     fs.writeJSONSync(file_package_lock_json, lock, {
                         spaces: 2,
@@ -114,7 +113,7 @@ const cmdModule = (0, cmd_dir_1.createCommandModuleExports)({
                 if (!file_package_lock_json_exists) {
                     if (yl.yarnlock_exists && rootData.hasWorkspace && !rootData.isWorkspace) {
                         index_1.consoleDebug.warn(`package-lock.json not exists, but yarn.lock exists in workspaces`);
-                        let s = (0, dedupe_1.default)(yl.yarnlock_old).yarnlock_new;
+                        let s = (0, dedupe_1.Dedupe)(yl.yarnlock_old).yarnlock_new;
                         fs.writeFileSync(yarnlock_file_pkg, s);
                         index_1.consoleDebug.info(`yarn.lock copied`);
                         return;
@@ -122,7 +121,7 @@ const cmdModule = (0, cmd_dir_1.createCommandModuleExports)({
                     (0, index_1.yargsProcessExit)(new Error(`package-lock.json not exists`));
                 }
                 let s = npmToYarn(fs.readFileSync(file_package_lock_json).toString(), rootData.root);
-                s = (0, dedupe_1.default)(s).yarnlock_new;
+                s = (0, dedupe_1.Dedupe)(s).yarnlock_new;
                 fs.writeFileSync(yarnlock_file_pkg, s);
                 index_1.consoleDebug.info(`yarn.lock updated`);
             }
@@ -143,7 +142,7 @@ function _fix(argv) {
 // @ts-ignore
 function _showYarnLockList(argv) {
     let rootData = (0, index_1.findRoot)(argv, true);
-    let yl = (0, fsYarnLock_1.fsYarnLock)(rootData.root);
+    let yl = (0, fs_1.fsYarnLockSafe)(rootData.root);
     let yarnlock_old_obj = (0, yarnlock_1.parse)(yl.yarnlock_old);
     let fy = (0, yarnlock_1.exportYarnLock)(yarnlock_old_obj);
     let ks = Object.keys(fy.installed);

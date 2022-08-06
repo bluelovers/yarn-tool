@@ -5,7 +5,6 @@ import yargs from 'yargs';
 import path from 'upath2';
 import osLocale from 'os-locale';
 import { updateNotifier } from '@yarn-tool/update-notifier';
-import { fsYarnLock } from '../lib/fsYarnLock';
 import { osLocaleSync } from '../lib/osLocaleSync';
 
 if (path.extname(__filename) === '.js' && !process.argv.filter(v => {
@@ -50,4 +49,3 @@ let cli = yargs
 ;
 
 cli.argv;
-
