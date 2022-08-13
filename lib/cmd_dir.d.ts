@@ -6,14 +6,14 @@ export interface IUnpackMyYargsArgv {
     skipCheckWorkspace?: boolean;
     ytDebugMode?: boolean;
 }
-export declare type IUnpackMyYargsArgvPartial = Partial<IUnpackMyYargsArgv>;
-export declare type IUnpackYargsArgv<T extends Argv, D = any> = T extends Argv<infer U> ? U : D;
-export declare type ICommandBuilderFn<T = object, U = object> = (args: Argv<T>) => Argv<U>;
+export type IUnpackMyYargsArgvPartial = Partial<IUnpackMyYargsArgv>;
+export type IUnpackYargsArgv<T extends Argv, D = any> = T extends Argv<infer U> ? U : D;
+export type ICommandBuilderFn<T = object, U = object> = (args: Argv<T>) => Argv<U>;
 export interface ICommandBuilderObject<T = object, U = object> {
     [key: string]: Options;
 }
-export declare type ICommandModuleOmit<T extends IUnpackMyYargsArgvPartial = IUnpackMyYargsArgv, U extends {} = IUnpackMyYargsArgvPartial> = Omit<CommandModule, 'handler' | 'builder'>;
-export declare type ICommandModuleExports<T extends IUnpackMyYargsArgvPartial = IUnpackMyYargsArgv, U extends IUnpackMyYargsArgvPartial = IUnpackMyYargsArgv> = ICommandModuleOmit & ({
+export type ICommandModuleOmit<T extends IUnpackMyYargsArgvPartial = IUnpackMyYargsArgv, U extends {} = IUnpackMyYargsArgvPartial> = Omit<CommandModule, 'handler' | 'builder'>;
+export type ICommandModuleExports<T extends IUnpackMyYargsArgvPartial = IUnpackMyYargsArgv, U extends IUnpackMyYargsArgvPartial = IUnpackMyYargsArgv> = ICommandModuleOmit & ({
     builder(args: Argv<T>): Argv<U>;
     handler(args: Arguments<U>): any;
 } | {

@@ -5,7 +5,7 @@ import yargs = require('yargs');
 import { Arguments, Argv } from 'yargs';
 import { IUnpackMyYargsArgv } from './cmd_dir';
 export { IUnpackMyYargsArgv };
-export declare type IUnpackYargsArgv<T extends yargs.Argv> = T extends yargs.Argv<infer U> ? U : never;
+export type IUnpackYargsArgv<T extends yargs.Argv> = T extends yargs.Argv<infer U> ? U : never;
 export interface ICachedCommond {
     [cmd: string]: yargs.CommandModule;
 }
@@ -13,8 +13,8 @@ export declare function dummy_builder<T extends {}>(yarg: yargs.Argv<T>): yargs.
 export declare function dummy_handler<T extends {}>(args: yargs.Arguments<T>): any;
 export declare function create_command<T, U extends T>(yarg: yargs.Argv<T>, command: string, handler: (args: yargs.Arguments<U>) => void, builder?: (yarg: yargs.Argv<T>) => yargs.Argv<U>): readonly [(yarg: yargs.Argv<T>) => yargs.Argv<U>, (args: yargs.Arguments<U>) => void];
 export declare function call_commond<T, U>(yarg: yargs.Argv<T>, commond: string, argv?: yargs.Arguments<U>): void | Promise<void>;
-export declare type ICommandBuilder<T extends {}, U extends {}> = (args: yargs.Argv<T>) => yargs.Argv<IUnpackMyYargsArgv & U>;
-export declare type ICommandModule<T extends {}, U extends {} = IUnpackMyYargsArgv> = {
+export type ICommandBuilder<T extends {}, U extends {}> = (args: yargs.Argv<T>) => yargs.Argv<IUnpackMyYargsArgv & U>;
+export type ICommandModule<T extends {}, U extends {} = IUnpackMyYargsArgv> = {
     command?: ReadonlyArray<string> | string;
     aliases?: ReadonlyArray<string> | string;
     describe?: string | false;
