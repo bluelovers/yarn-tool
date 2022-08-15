@@ -3,10 +3,10 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const tslib_1 = require("tslib");
 const yargs_1 = tslib_1.__importDefault(require("yargs"));
-const upath2_1 = tslib_1.__importDefault(require("upath2"));
+const upath2_1 = require("upath2");
 const update_notifier_1 = require("@yarn-tool/update-notifier");
 const osLocaleSync_1 = require("../lib/osLocaleSync");
-if (upath2_1.default.extname(__filename) === '.js' && !process.argv.filter(v => {
+if ((0, upath2_1.extname)(__filename) === '.js' && !process.argv.filter(v => {
     if (typeof v === 'string') {
         return v.includes('ts-node') || v.includes('source-map-support');
     }
@@ -15,7 +15,7 @@ if (upath2_1.default.extname(__filename) === '.js' && !process.argv.filter(v => 
         hookRequire: true
     });
 }
-(0, update_notifier_1.updateNotifier)(upath2_1.default.join(__dirname, '..'));
+(0, update_notifier_1.updateNotifier)((0, upath2_1.join)(__dirname, '..'));
 let cli = yargs_1.default
     .option('cwd', {
     desc: `current working directory or package directory`,
@@ -35,7 +35,7 @@ let cli = yargs_1.default
     .help('help')
     .recommendCommands()
     .locale((0, osLocaleSync_1.osLocaleSync)())
-    .commandDir(upath2_1.default.join(__dirname, 'cmds'))
+    .commandDir((0, upath2_1.join)(__dirname, 'cmds'))
     .help(true)
     .showHelpOnFail(true)
     .strict()

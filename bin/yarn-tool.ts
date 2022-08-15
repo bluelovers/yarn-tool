@@ -2,12 +2,11 @@
 
 
 import yargs from 'yargs';
-import path from 'upath2';
-import osLocale from 'os-locale';
+import { extname, join } from 'upath2';
 import { updateNotifier } from '@yarn-tool/update-notifier';
 import { osLocaleSync } from '../lib/osLocaleSync';
 
-if (path.extname(__filename) === '.js' && !process.argv.filter(v => {
+if (extname(__filename) === '.js' && !process.argv.filter(v => {
 	if (typeof v === 'string')
 	{
 		return v.includes('ts-node') || v.includes('source-map-support')
@@ -19,7 +18,7 @@ if (path.extname(__filename) === '.js' && !process.argv.filter(v => {
 	});
 }
 
-updateNotifier(path.join(__dirname, '..'));
+updateNotifier(join(__dirname, '..'));
 
 let cli = yargs
 	.option('cwd', {
@@ -40,7 +39,7 @@ let cli = yargs
 	.help('help')
 	.recommendCommands()
 	.locale(osLocaleSync())
-	.commandDir(path.join(__dirname, 'cmds'))
+	.commandDir(join(__dirname, 'cmds'))
 	.help(true)
 	.showHelpOnFail(true)
 	.strict()
