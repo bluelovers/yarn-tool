@@ -1,12 +1,9 @@
 /**
  * Created by user on 2019/5/19.
  */
-import { basenameStrip, createCommandModuleExports, lazySpawnArgvSlice } from '../../lib/cmd_dir';
-import path = require('upath2');
-import { console, chalkByConsole, consoleDebug, yargsProcessExit } from '../../lib/index';
+import { basenameStrip, createCommandModuleExports } from '../../lib/cmd_dir';
+import { chalkByConsole, console, yargsProcessExit } from '../../lib/index';
 import { writePackageJson } from '../../lib/pkg';
-
-import { IUnpackMyYargsArgv } from '../../lib/cmd_dir';
 import { setupToYargs } from '@yarn-tool/version-recommended/lib/argv';
 import { releaseTypes } from '@yarn-tool/version-recommended/lib/types';
 import { nextVersionRecommendedByPackageFindUp } from '@yarn-tool/version-recommended';

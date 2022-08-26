@@ -2,7 +2,6 @@
  * Created by user on 2019/5/19.
  */
 import { basenameStrip, createCommandModuleExports, lazySpawnArgvSlice } from '../../../lib/cmd_dir';
-import { YT_BIN } from '../../../index';
 import { findRoot, yargsProcessExit } from '../../../lib/index';
 
 const cmdModule = createCommandModuleExports({

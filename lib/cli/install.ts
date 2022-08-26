@@ -1,4 +1,4 @@
-import { Argv, Omit } from 'yargs';
+import { Argv } from 'yargs';
 
 export function setupYarnInstallToYargs<T extends any>(yargs: Argv<T>)
 {

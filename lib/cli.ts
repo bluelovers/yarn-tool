@@ -3,7 +3,6 @@
  */
 
 import yargs = require('yargs');
-import { Arguments, Argv, CommandBuilder, Omit } from 'yargs';
 import { IUnpackMyYargsArgv } from './cmd_dir';
 
 const cached_command: ICachedCommond = {};

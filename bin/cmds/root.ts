@@ -2,18 +2,10 @@
  * Created by user on 2019/5/19.
  */
 import { basenameStrip, createCommandModuleExports, lazySpawnArgvSlice } from '../../lib/cmd_dir';
-import path = require('upath2');
-import { chalkByConsole, consoleDebug, findRoot } from '../../lib/index';
-import { readPackageJson } from '@ts-type/package-dts';
-import { writePackageJson } from '../../lib/pkg';
-import { IUnpackMyYargsArgv } from '../../lib/cmd_dir';
+import { consoleDebug } from '../../lib/index';
 import { processArgvSlice } from '../../lib/spawn';
-import { spawnWsRootRunSync, spawnWsRootExecSync } from 'ws-root-spawn';
-import {
-	console,
-} from '../../lib/index';
+import { spawnWsRootExecSync, spawnWsRootRunSync } from 'ws-root-spawn';
 import findWorkspaceRoot from 'find-yarn-workspace-root2/core';
-import crossSpawn from 'cross-spawn-extra';
 import { YT_BIN } from '../../index';
 
 const command = basenameStrip(__filename);

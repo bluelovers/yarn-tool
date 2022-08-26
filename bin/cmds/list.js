@@ -7,7 +7,6 @@ const index_1 = require("../../lib/index");
 const spawn_1 = require("../../lib/spawn");
 const crlf_normalize_1 = require("crlf-normalize");
 const array_hyper_unique_1 = require("array-hyper-unique");
-const index_2 = require("../../lib/index");
 const command = (0, cmd_dir_1.basenameStrip)(__filename);
 const cmdModule = (0, cmd_dir_1.createCommandModuleExports)({
     command,
@@ -83,12 +82,12 @@ const cmdModule = (0, cmd_dir_1.createCommandModuleExports)({
                     if (vs.length == 1) {
                         continue;
                     }
-                    index_2.console.log(name);
+                    index_1.console.log(name);
                     let arr = vs.slice(0, -1);
                     if (arr.length) {
-                        index_2.console.log('├─', arr.join('\n├─ '));
+                        index_1.console.log('├─', arr.join('\n├─ '));
                     }
-                    index_2.console.log('└─', vs[vs.length - 1]);
+                    index_1.console.log('└─', vs[vs.length - 1]);
                 }
             }
             else {

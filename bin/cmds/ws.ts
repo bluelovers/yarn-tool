@@ -1,16 +1,9 @@
 /**
  * Created by user on 2019/5/19.
  */
-import { basenameStrip, commandDirStrip, createCommandModuleExports, commandDirJoin } from '../../lib/cmd_dir';
-import path = require('upath2');
-import { consoleDebug, findRoot } from '../../lib/index';
-import { readPackageJson } from '@ts-type/package-dts';
-import { writePackageJson } from '../../lib/pkg';
-
-import { IUnpackMyYargsArgv } from '../../lib/cmd_dir';
-import { setupWorkspacesInitToYargs } from 'create-yarn-workspaces/yargs-setting';
+import { basenameStrip, commandDirJoin, createCommandModuleExports } from '../../lib/cmd_dir';
 import { checkModileExists, crossSpawnOther, processArgvSlice } from '../../lib/spawn';
-import { Arguments, Argv } from 'yargs';
+import { Arguments } from 'yargs';
 
 const cmdModule = createCommandModuleExports({
 

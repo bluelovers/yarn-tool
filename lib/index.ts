@@ -7,7 +7,6 @@ import { Console2 } from 'debug-color2';
 import { createFnChalkByConsole } from 'debug-color2/lib/util';
 import { readPackageJson } from '@ts-type/package-dts';
 import { Arguments } from 'yargs';
-import { IUnpackMyYargsArgv, IUnpackMyYargsArgvPartial } from './cmd_dir';
 import { findRoot } from '@yarn-tool/find-root';
 import { yargsProcessExit } from '@yarn-tool/yargs-util';
 import { relative } from 'upath2';

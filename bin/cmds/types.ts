@@ -10,7 +10,6 @@ import { checkInstallTargetTypes } from '@yarn-tool/pkg-deps-util/lib/installTyp
 import path from 'upath2';
 import crossSpawn from 'cross-spawn-extra';
 import { EnumInstallTypesErrorCode } from '@yarn-tool/pkg-deps-util/lib/const';
-import { setupYarnAddToYargs } from '@yarn-tool/pkg-deps-util/lib/cli/setupYarnAddToYargs';
 import { setupYarnAddTypesToYargs } from '@yarn-tool/pkg-deps-util/lib/cli/setupYarnAddTypesToYargs';
 import { assertExecInstall } from '@yarn-tool/pkg-deps-util/lib/cli/assertExecInstall';
 import { wrapDedupe } from '@yarn-tool/yarnlock/lib/wrapDedupe/wrapDedupe';

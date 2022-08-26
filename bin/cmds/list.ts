@@ -2,17 +2,10 @@
  * Created by user on 2019/5/19.
  */
 import { basenameStrip, createCommandModuleExports, lazySpawnArgvSlice } from '../../lib/cmd_dir';
-import path = require('upath2');
-import { chalkByConsole, consoleDebug, filterYargsArguments, findRoot, lazyFlags } from '../../lib/index';
-import { readPackageJson } from '@ts-type/package-dts';
-import { writePackageJson } from '../../lib/pkg';
-
-import { IUnpackMyYargsArgv } from '../../lib/cmd_dir';
+import { console, consoleDebug, filterYargsArguments } from '../../lib/index';
 import { crossSpawnOther } from '../../lib/spawn';
 import { crlf, LF } from 'crlf-normalize';
 import { array_unique_overwrite } from 'array-hyper-unique';
-import semver = require('semver');
-import { console } from '../../lib/index';
 
 const command = basenameStrip(__filename);
 

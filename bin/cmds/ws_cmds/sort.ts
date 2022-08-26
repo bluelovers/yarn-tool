@@ -1,11 +1,10 @@
 /**
  * Created by user on 2019/5/19.
  */
-import { basenameStrip, createCommandModuleExports, lazySpawnArgvSlice } from '../../../lib/cmd_dir';
+import { basenameStrip, createCommandModuleExports } from '../../../lib/cmd_dir';
 import { wsPkgListable } from 'ws-pkg-list/lib/listable';
 import { chalkByConsole, consoleDebug, findRoot } from '../../../lib/index';
 import sortPackageJson from 'sort-package-json3';
-import { readPackageJson } from '@ts-type/package-dts';
 import { readFileSync, writeFileSync } from 'fs';
 import { relative } from 'upath2';
 

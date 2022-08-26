@@ -3,11 +3,8 @@
  */
 
 import crossSpawn = require('cross-spawn-extra');
-import * as yargs from 'yargs';
-import { IUnpackMyYargsArgv } from './cli';
-import { consoleDebug, console } from './index';
-import Bluebird = require('bluebird');
 import { Arguments } from 'yargs';
+import { console, consoleDebug } from './index';
 import { SpawnSyncOptions } from 'cross-spawn-extra/type';
 
 export function requireResolve(name: string)

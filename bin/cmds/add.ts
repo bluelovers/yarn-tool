@@ -2,19 +2,15 @@
  * Created by user on 2019/5/19.
  */
 import { basenameStrip, createCommandModuleExports } from '../../lib/cmd_dir';
-import path from 'upath2';
-import { console, consoleDebug, findRoot, printRootData } from '../../lib/index';
-import { readPackageJson } from '@ts-type/package-dts';
+import { console, consoleDebug, printRootData } from '../../lib/index';
 import { writePackageJson } from '../../lib/pkg';
 import { wrapDedupeAsync } from '@yarn-tool/yarnlock/lib/wrapDedupe/wrapDedupeAsync';
-import yargs from 'yargs';
 import crossSpawn from 'cross-spawn-extra';
 import { YT_BIN } from '../../index';
 import { setupYarnAddToYargs } from '@yarn-tool/pkg-deps-util/lib/cli/setupYarnAddToYargs';
 import { flagsYarnAdd } from '@yarn-tool/pkg-deps-util/lib/cli/flagsYarnAdd';
 import { assertExecInstall } from '@yarn-tool/pkg-deps-util/lib/cli/assertExecInstall';
 import { filterInstallDeps } from '@yarn-tool/pkg-deps-util/lib/installDeps';
-import { writeJSONSync } from 'fs-extra';
 import { join } from 'path';
 import { createDependencyTable } from '@yarn-tool/table';
 import { chalkByConsoleMaybe } from 'debug-color2';

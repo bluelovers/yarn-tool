@@ -3,8 +3,6 @@
  */
 import { basenameStrip, createCommandModuleExports } from '../../lib/cmd_dir';
 import { checkModileExists, crossSpawnOther, processArgvSlice } from '../../lib/spawn';
-import { setupToYargs as setupInitToYargs } from 'npm-init2/lib/yargs-setting';
-import { IUnpackMyYargsArgv } from '../../lib/cmd_dir';
 
 const cmdModule = createCommandModuleExports({
 

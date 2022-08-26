@@ -1,5 +1,5 @@
 import { Arguments, Argv, CommandModule, Options } from 'yargs';
-import { basename, join, extname } from 'upath2';
+import { basename, extname, join } from 'upath2';
 import { crossSpawnOther, processArgvSlice } from './spawn';
 import { SpawnSyncOptions } from 'cross-spawn-extra/type';
 

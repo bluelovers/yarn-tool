@@ -2,8 +2,8 @@
  * Created by user on 2019/5/18.
  */
 /// <reference types="node" />
+/// <reference types="bluebird" />
 import crossSpawn = require('cross-spawn-extra');
-import Bluebird = require('bluebird');
 import { Arguments } from 'yargs';
 import { SpawnSyncOptions } from 'cross-spawn-extra/type';
 export declare function requireResolve(name: string): string;
@@ -18,7 +18,7 @@ export declare function _crossSpawnOther<T>(cp: T): T;
 export declare function crossSpawnOther(bin: string, cmd_list: string[], argv: Partial<Arguments> & {
     cwd: string;
 }, crossSpawnOptions?: SpawnSyncOptions): crossSpawn.SpawnSyncReturns<Buffer>;
-export declare function crossSpawnOtherAsync(bin: string, cmd_list: string[], argv: any): Bluebird<crossSpawn.SpawnASyncReturns<Buffer>>;
+export declare function crossSpawnOtherAsync(bin: string, cmd_list: string[], argv: any): import("bluebird")<crossSpawn.SpawnASyncReturns<Buffer>>;
 export declare function processArgvSlice(keys_input: string | string[], argv_input?: string[], startindex?: number): {
     idx_rebase: number;
     idx: number;

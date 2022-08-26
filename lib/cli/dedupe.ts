@@ -8,7 +8,7 @@ export { infoFromDedupeCache } from '@yarn-tool/yarnlock/lib/wrapDedupe/infoFrom
 export { yarnDedupe, Dedupe } from '@yarn-tool/yarnlock/lib/dedupe';
 export { IWrapDedupeCache } from '@yarn-tool/yarnlock/lib/types';
 
-import { yarnDedupe, Dedupe } from '@yarn-tool/yarnlock/lib/dedupe';
+import { Dedupe, yarnDedupe } from '@yarn-tool/yarnlock/lib/dedupe';
 
 export default yarnDedupe;
 

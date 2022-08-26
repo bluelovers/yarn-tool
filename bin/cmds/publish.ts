@@ -2,14 +2,7 @@
  * Created by user on 2019/5/19.
  */
 import { basenameStrip, createCommandModuleExports } from '../../lib/cmd_dir';
-import path = require('upath2');
-import { consoleDebug, findRoot } from '../../lib/index';
-import { readPackageJson } from '@ts-type/package-dts';
-import { writePackageJson } from '../../lib/pkg';
-
-import { IUnpackMyYargsArgv } from '../../lib/cmd_dir';
 import { crossSpawnOther, processArgvSlice } from '../../lib/spawn';
-import { Argv } from 'yargs';
 
 const cmdModule = createCommandModuleExports({
 

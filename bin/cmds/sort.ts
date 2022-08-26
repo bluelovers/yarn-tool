@@ -8,8 +8,6 @@ import { readPackageJson } from '@ts-type/package-dts';
 import { writePackageJson } from '../../lib/pkg';
 import sortPackageJson from 'sort-package-json3';
 
-import { IUnpackMyYargsArgv } from '../../lib/cmd_dir';
-
 const cmdModule = createCommandModuleExports({
 
 	command: basenameStrip(__filename),

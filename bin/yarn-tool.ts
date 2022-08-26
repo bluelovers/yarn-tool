@@ -1,6 +1,5 @@
 #!/usr/bin/env node
 
-
 import yargs from 'yargs';
 import { extname, join } from 'upath2';
 import { updateNotifier } from '@yarn-tool/update-notifier';
