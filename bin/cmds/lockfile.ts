@@ -1,21 +1,20 @@
 /**
  * Created by user on 2019/5/19.
  */
-import { basenameStrip, createCommandModuleExports, lazySpawnArgvSlice } from '../../lib/cmd_dir';
-import path = require('upath2');
-import fs = require('fs-extra');
-import { chalkByConsole, console, consoleDebug, findRoot, yargsProcessExit } from '../../lib/index';
+import { basenameStrip, createCommandModuleExports, IUnpackMyYargsArgv } from '../../lib/cmd_dir';
+import { console, consoleDebug, findRoot, yargsProcessExit } from '../../lib/index';
 import { readPackageJson } from '@ts-type/package-dts';
-import { writePackageJson } from '../../lib/pkg';
-
-import { IUnpackMyYargsArgv } from '../../lib/cmd_dir';
-import { exportYarnLock, parse as parseYarnLock } from '../../lib/yarnlock';
-import { SemVer, rcompare } from 'semver';
+import { exportYarnLock } from '../../lib/yarnlock';
+import { rcompare } from 'semver';
 import { Arguments, CommandModule } from 'yargs';
 import { Dedupe } from '../../lib/cli/dedupe';
 import { npmToYarnCore, yarnToNpmCore } from 'synp2/lib';
 import { fixNpmLock } from '../../lib/cli/lockfile/fixNpmLock';
-import { fsYarnLockSafe } from '@yarn-tool/yarnlock/lib/fs';
+import { fsYarnLockSafe } from '@yarn-tool/yarnlock-fs/lib/read';
+import { yarnLockParse } from '@yarn-tool/yarnlock-parse';
+
+import path = require('upath2');
+import fs = require('fs-extra');
 
 const COMMAND_KEY = basenameStrip(__filename);
 
@@ -217,7 +216,7 @@ function _showYarnLockList(argv: Arguments<IUnpackCmdMod<typeof cmdModule>>): ar
 
 	let yl = fsYarnLockSafe(rootData.root);
 
-	let yarnlock_old_obj = parseYarnLock(yl.yarnlock_old);
+	let yarnlock_old_obj = yarnLockParse(yl.yarnlock_old).data;
 
 	let fy = exportYarnLock(yarnlock_old_obj);
 

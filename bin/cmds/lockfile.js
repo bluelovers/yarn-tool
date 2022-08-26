@@ -3,8 +3,6 @@
  * Created by user on 2019/5/19.
  */
 const cmd_dir_1 = require("../../lib/cmd_dir");
-const path = require("upath2");
-const fs = require("fs-extra");
 const index_1 = require("../../lib/index");
 const package_dts_1 = require("@ts-type/package-dts");
 const yarnlock_1 = require("../../lib/yarnlock");
@@ -12,7 +10,10 @@ const semver_1 = require("semver");
 const dedupe_1 = require("../../lib/cli/dedupe");
 const lib_1 = require("synp2/lib");
 const fixNpmLock_1 = require("../../lib/cli/lockfile/fixNpmLock");
-const fs_1 = require("@yarn-tool/yarnlock/lib/fs");
+const read_1 = require("@yarn-tool/yarnlock-fs/lib/read");
+const yarnlock_parse_1 = require("@yarn-tool/yarnlock-parse");
+const path = require("upath2");
+const fs = require("fs-extra");
 const COMMAND_KEY = (0, cmd_dir_1.basenameStrip)(__filename);
 const cmdModule = (0, cmd_dir_1.createCommandModuleExports)({
     command: (0, cmd_dir_1.basenameStrip)(__filename),
@@ -53,7 +54,7 @@ const cmdModule = (0, cmd_dir_1.createCommandModuleExports)({
         //let yl = fsYarnLockSafe(rootData.root);
         if (argv.yarn || argv.npm || argv.shrinkwrap) {
             let rootData = (0, index_1.findRoot)(argv, true);
-            let yl = (0, fs_1.fsYarnLockSafe)(rootData.root);
+            let yl = (0, read_1.fsYarnLockSafe)(rootData.root);
             let file_package_lock_json = path.join(rootData.pkg, 'package-lock.json');
             let file_package_lock_json_exists = fs.existsSync(file_package_lock_json);
             if (argv.npm || argv.shrinkwrap) {
@@ -142,8 +143,8 @@ function _fix(argv) {
 // @ts-ignore
 function _showYarnLockList(argv) {
     let rootData = (0, index_1.findRoot)(argv, true);
-    let yl = (0, fs_1.fsYarnLockSafe)(rootData.root);
-    let yarnlock_old_obj = (0, yarnlock_1.parse)(yl.yarnlock_old);
+    let yl = (0, read_1.fsYarnLockSafe)(rootData.root);
+    let yarnlock_old_obj = (0, yarnlock_parse_1.yarnLockParse)(yl.yarnlock_old).data;
     let fy = (0, yarnlock_1.exportYarnLock)(yarnlock_old_obj);
     let ks = Object.keys(fy.installed);
     let max = 0;
