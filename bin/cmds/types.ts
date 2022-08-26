@@ -13,6 +13,7 @@ import { EnumInstallTypesErrorCode } from '@yarn-tool/pkg-deps-util/lib/const';
 import { setupYarnAddToYargs } from '@yarn-tool/pkg-deps-util/lib/cli/setupYarnAddToYargs';
 import { setupYarnAddTypesToYargs } from '@yarn-tool/pkg-deps-util/lib/cli/setupYarnAddTypesToYargs';
 import { assertExecInstall } from '@yarn-tool/pkg-deps-util/lib/cli/assertExecInstall';
+import { wrapDedupe } from '@yarn-tool/yarnlock/lib/wrapDedupe/wrapDedupe';
 
 const cmdModule = createCommandModuleExports({
 
@@ -166,25 +167,41 @@ const cmdModule = createCommandModuleExports({
 
 		if (list.length)
 		{
-			let cmd_argv = [
-				'add',
-				...list,
-				...flags2,
-			].filter(v => v != null);
+			wrapDedupe(require('yargs'), argv, {
 
-			let cp = crossSpawn.sync('yarn', cmd_argv, {
-				cwd: argv.cwd,
-				stdio: 'inherit',
+				consoleDebug,
+
+				main(yarg, argv, cache)
+				{
+					const cmd_argv = [
+						'add',
+						...list,
+						...flags2,
+					].filter(v => v != null);
+
+					const cp = crossSpawn.sync('yarn', cmd_argv, {
+						cwd: argv.cwd,
+						stdio: 'inherit',
+					});
+
+					if (cp.error)
+					{
+						throw cp.error
+					}
+					else
+					{
+						assertExecInstall(cp);
+					}
+				},
+
+				end(yarg, argv, cache)
+				{
+					if (cache.yarnlock_msg)
+					{
+						console.log(`\n${cache.yarnlock_msg}\n`);
+					}
+				},
 			});
-
-			if (cp.error)
-			{
-				throw cp.error
-			}
-			else
-			{
-				assertExecInstall(cp);
-			}
 		}
 		else
 		{

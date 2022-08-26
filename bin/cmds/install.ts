@@ -9,7 +9,8 @@ import { writePackageJson } from '../../lib/pkg';
 
 import { IUnpackMyYargsArgv } from '../../lib/cmd_dir';
 import setupYarnInstallToYargs from '../../lib/cli/install';
-import { infoFromDedupeCache, wrapDedupe } from '../../lib/cli/dedupe';
+import { infoFromDedupeCache } from '@yarn-tool/yarnlock/lib/wrapDedupe/infoFromDedupeCache';
+import { wrapDedupe } from '@yarn-tool/yarnlock/lib/wrapDedupe/wrapDedupe';
 import crossSpawn from 'cross-spawn-extra';
 import { truncateSync } from 'fs-extra';
 

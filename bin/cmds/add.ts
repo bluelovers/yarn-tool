@@ -6,9 +6,6 @@ import path from 'upath2';
 import { console, consoleDebug, findRoot, printRootData } from '../../lib/index';
 import { readPackageJson } from '@ts-type/package-dts';
 import { writePackageJson } from '../../lib/pkg';
-
-import { IUnpackMyYargsArgv } from '../../lib/cmd_dir';
-import { infoFromDedupeCache, wrapDedupe } from '../../lib/cli/dedupe';
 import { wrapDedupeAsync } from '@yarn-tool/yarnlock/lib/wrapDedupe/wrapDedupeAsync';
 import yargs from 'yargs';
 import crossSpawn from 'cross-spawn-extra';

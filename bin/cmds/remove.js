@@ -4,7 +4,7 @@
  */
 const cmd_dir_1 = require("../../lib/cmd_dir");
 const index_1 = require("../../lib/index");
-const dedupe_1 = require("../../lib/cli/dedupe");
+const wrapDedupe_1 = require("@yarn-tool/yarnlock/lib/wrapDedupe/wrapDedupe");
 const command = (0, cmd_dir_1.basenameStrip)(__filename);
 const cmdModule = (0, cmd_dir_1.createCommandModuleExports)({
     command,
@@ -15,7 +15,7 @@ const cmdModule = (0, cmd_dir_1.createCommandModuleExports)({
             .strict(false);
     },
     handler(argv) {
-        (0, dedupe_1.wrapDedupe)(require('yargs'), argv, {
+        (0, wrapDedupe_1.wrapDedupe)(require('yargs'), argv, {
             consoleDebug: index_1.consoleDebug,
             main(yarg, argv, cache) {
                 (0, cmd_dir_1.lazySpawnArgvSlice)({
