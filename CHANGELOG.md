@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.4.5](https://github.com/bluelovers/yarn-tool/compare/yarn-tool@1.4.4...yarn-tool@1.4.5) (2022-08-28)
+
+
+
+### ✨　Features
+
+* v8-compile-cache ([3d18ccc](https://github.com/bluelovers/yarn-tool/commit/3d18ccc057c9c05975bdff235583868692c10c1f))
+
+
+
 ## [1.4.4](https://github.com/bluelovers/yarn-tool/compare/yarn-tool@1.4.3...yarn-tool@1.4.4) (2022-08-26)
 
 **Note:** Version bump only for package yarn-tool
