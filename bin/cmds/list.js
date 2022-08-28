@@ -58,7 +58,7 @@ const cmdModule = (0, cmd_dir_1.createCommandModuleExports)({
             //console.dir(list2);
             if (0) {
                 for (let name of list2) {
-                    delete fc.pattern;
+                    delete fc['pattern'];
                     let fca2 = unparse(fc);
                     let cp2 = (0, spawn_1.crossSpawnOther)('yarn', [
                         key,
@@ -91,7 +91,7 @@ const cmdModule = (0, cmd_dir_1.createCommandModuleExports)({
                 }
             }
             else {
-                fc.pattern = list2.join('|');
+                fc['pattern'] = list2.join('|');
                 let fca2 = unparse(fc);
                 let cp2 = (0, spawn_1.crossSpawnOther)('yarn', [
                     key,

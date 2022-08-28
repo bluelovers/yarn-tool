@@ -77,7 +77,7 @@ const cmdModule = createCommandModuleExports({
 			{
 				for (let name of list2)
 				{
-					delete fc.pattern;
+					delete fc['pattern'];
 
 					let fca2: string[] = unparse(fc);
 
@@ -130,7 +130,7 @@ const cmdModule = createCommandModuleExports({
 			}
 			else
 			{
-				fc.pattern = list2.join('|');
+				fc['pattern'] = list2.join('|');
 
 				let fca2: string[] = unparse(fc);
 
