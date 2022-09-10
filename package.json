@@ -1,6 +1,6 @@
 {
   "name": "yarn-tool",
-  "version": "1.4.6",
+  "version": "1.4.7",
   "description": "yarn cli tool helper",
   "keywords": [
     "cli",
@@ -70,18 +70,18 @@
     "@ts-type/package-dts": "^2.0.5",
     "@yarn-tool/find-root": "^2.0.6",
     "@yarn-tool/fix-all": "^2.0.18",
-    "@yarn-tool/ncu": "^2.0.13",
-    "@yarn-tool/ncu-ws": "^1.0.16",
+    "@yarn-tool/ncu": "^2.0.14",
+    "@yarn-tool/ncu-ws": "^1.0.17",
     "@yarn-tool/npm-package-arg-util": "^1.0.33",
-    "@yarn-tool/pkg-deps-util": "^2.0.12",
+    "@yarn-tool/pkg-deps-util": "^2.0.13",
     "@yarn-tool/semver-diff": "^2.0.6",
     "@yarn-tool/static-file": "^2.0.8",
     "@yarn-tool/table": "^2.0.6",
     "@yarn-tool/update-notifier": "^1.0.33",
-    "@yarn-tool/version-recommended": "^2.0.10",
+    "@yarn-tool/version-recommended": "^2.0.11",
     "@yarn-tool/ws-scope": "^2.0.6",
-    "@yarn-tool/yarnlock": "^2.0.10",
-    "@yarn-tool/yarnlock-ncu": "^2.0.10",
+    "@yarn-tool/yarnlock": "^2.0.11",
+    "@yarn-tool/yarnlock-ncu": "^2.0.11",
     "array-hyper-unique": "^2.0.8",
     "bluebird": "^3.7.2",
     "create-yarn-workspaces": "^2.0.15",
@@ -91,7 +91,7 @@
     "find-yarn-workspace-root2": "^1.2.43",
     "fs-extra": "^10.1.0",
     "inquirer": "< 9 >= 8.2.4",
-    "npm-init2": "^2.0.16",
+    "npm-init2": "^2.0.17",
     "os-lang-locale": "^2.0.2",
     "os-locale": "<6 >=5",
     "package-json": "<7 >=6.5",
@@ -119,7 +119,7 @@
     "@types/fs-extra": "*",
     "@types/inquirer": "^9.0.1",
     "@types/lodash": "^4.14.184",
-    "@types/node": "^18.7.15",
+    "@types/node": "^18.7.16",
     "@types/semver": "^7.3.12",
     "@types/semver-utils": "^1.1.1",
     "@types/source-map-support": "^0.5.6",
@@ -128,7 +128,7 @@
     "ts-type": "^2.1.10"
   },
   "peerDependencies": {
-    "lerna": "^5.5.0",
+    "lerna": "^5.5.1",
     "yarn": "^1.22.19"
   }
 }
