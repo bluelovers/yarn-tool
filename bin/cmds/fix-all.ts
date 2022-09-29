@@ -1,5 +1,6 @@
 import { basenameStrip, createCommandModuleExports } from '../../lib/cmd_dir';
 import { npmAutoFixAll } from '@yarn-tool/fix-all';
+import { setupToYargs } from '@yarn-tool/fix-all/lib/util/yargs-setting';
 
 const cmdModule = createCommandModuleExports({
 
@@ -7,16 +8,10 @@ const cmdModule = createCommandModuleExports({
 
 	describe: `auto check/fix workspaces/package`,
 
+	// @ts-ignore
 	builder(yargs)
 	{
-		return yargs
-			.option('overwriteHostedGitInfo', {
-				boolean: true,
-				alias: ['O', 'overwrite'],
-			})
-			.option('branch', {
-				string: true,
-			})
+		return setupToYargs(yargs)
 	},
 
 	handler(args)
@@ -25,6 +20,8 @@ const cmdModule = createCommandModuleExports({
 
 			branch: args.branch,
 			overwriteHostedGitInfo: args.overwriteHostedGitInfo,
+			// @ts-ignore
+			resetStaticFiles: args.resetStaticFiles,
 
 		})
 	},
