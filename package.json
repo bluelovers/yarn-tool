@@ -1,6 +1,6 @@
 {
   "name": "yarn-tool",
-  "version": "1.4.12",
+  "version": "1.4.13",
   "description": "yarn cli tool helper",
   "keywords": [
     "cli",
@@ -69,7 +69,7 @@
     "@bluelovers/fs-json": "^1.0.12",
     "@ts-type/package-dts": "^2.0.5",
     "@yarn-tool/find-root": "^2.0.10",
-    "@yarn-tool/fix-all": "^2.0.25",
+    "@yarn-tool/fix-all": "^2.0.26",
     "@yarn-tool/ncu": "^2.0.19",
     "@yarn-tool/ncu-ws": "^1.0.23",
     "@yarn-tool/npm-package-arg-util": "^1.0.35",
@@ -84,21 +84,21 @@
     "@yarn-tool/yarnlock-ncu": "^2.0.17",
     "array-hyper-unique": "^2.1.2",
     "bluebird": "^3.7.2",
-    "create-yarn-workspaces": "^2.0.20",
+    "create-yarn-workspaces": "^2.0.21",
     "crlf-normalize": "^1.0.15",
     "cross-spawn-extra": "^2.1.0",
     "debug-color2": "^1.3.2",
     "find-yarn-workspace-root2": "^1.2.46",
     "fs-extra": "^10.1.0",
     "inquirer": "< 9 >= 8.2.4",
-    "npm-init2": "^2.0.23",
+    "npm-init2": "^2.0.24",
     "os-lang-locale": "^2.0.2",
     "os-locale": "<6 >=5",
     "package-json": "<7 >=6.5",
     "semver": "^7.3.7",
     "semver-utils": "^1.1.4",
     "sort-package-json": "<2 >=1.57.0",
-    "sort-package-json3": "^2.0.9",
+    "sort-package-json3": "^2.0.10",
     "source-map-support": "^0.5.21",
     "string-natural-compare": "^3.0.1",
     "synp2": "^1.4.0",
@@ -128,7 +128,7 @@
     "ts-type": "^2.1.10"
   },
   "peerDependencies": {
-    "lerna": "^5.5.4",
+    "lerna": "^5.6.1",
     "yarn": "^1.22.19"
   }
 }
