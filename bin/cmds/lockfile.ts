@@ -12,7 +12,6 @@ import { npmToYarnCore, yarnToNpmCore } from 'synp2/lib';
 import { fixNpmLock } from '../../lib/cli/lockfile/fixNpmLock';
 import { fsYarnLockSafe } from '@yarn-tool/yarnlock-fs/lib/read';
 import { yarnLockParse } from '@yarn-tool/yarnlock-parse';
-
 import path = require('upath2');
 import fs = require('fs-extra');
 
