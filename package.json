@@ -79,6 +79,7 @@
     "@yarn-tool/table": "^2.0.13",
     "@yarn-tool/update-notifier": "^1.0.38",
     "@yarn-tool/version-recommended": "^2.0.22",
+    "@yarn-tool/write-package-json": "^1.0.12",
     "@yarn-tool/ws-scope": "^2.0.14",
     "@yarn-tool/yarnlock": "^2.0.22",
     "@yarn-tool/yarnlock-ncu": "^2.0.23",

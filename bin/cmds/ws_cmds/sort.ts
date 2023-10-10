@@ -4,9 +4,11 @@
 import { basenameStrip, createCommandModuleExports } from '../../../lib/cmd_dir';
 import { wsPkgListable } from 'ws-pkg-list/lib/listable';
 import { chalkByConsole, consoleDebug, findRoot } from '../../../lib/index';
-import sortPackageJson from 'sort-package-json3';
+import { sortPackageJson } from 'sort-package-json3';
 import { readFileSync, writeFileSync } from 'fs';
 import { relative } from 'upath2';
+import { _handleOptions } from '@yarn-tool/write-package-json';
+import { stringifyJSON } from '@bluelovers/fs-json';
 
 const cmdModule = createCommandModuleExports({
 
@@ -37,7 +39,7 @@ const cmdModule = createCommandModuleExports({
 			let old = readFileSync(entry.manifestLocation).toString();
 
 			const json = sortPackageJson(JSON.parse(old));
-			const json_new = JSON.stringify(json, null, 2);
+			const json_new = stringifyJSON(json, _handleOptions({}));
 
 			let changed: boolean = old !== json_new;
 
