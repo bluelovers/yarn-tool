@@ -1,6 +1,6 @@
 {
   "name": "yarn-tool",
-  "version": "2.1.2",
+  "version": "2.1.3",
   "description": "yarn cli tool helper",
   "keywords": [
     "cli",
@@ -71,7 +71,7 @@
     "@yarn-tool/find-root": "^2.0.13",
     "@yarn-tool/fix-all": "^3.0.1",
     "@yarn-tool/ncu": "^3.0.1",
-    "@yarn-tool/ncu-ws": "^2.0.1",
+    "@yarn-tool/ncu-ws": "^2.0.2",
     "@yarn-tool/npm-package-arg-util": "^2.0.0",
     "@yarn-tool/pkg-deps-util": "^3.0.1",
     "@yarn-tool/semver-diff": "^2.0.11",
@@ -82,7 +82,7 @@
     "@yarn-tool/write-package-json": "^1.0.12",
     "@yarn-tool/ws-scope": "^3.0.1",
     "@yarn-tool/yarnlock": "^3.0.1",
-    "@yarn-tool/yarnlock-ncu": "^3.0.1",
+    "@yarn-tool/yarnlock-ncu": "^3.0.2",
     "array-hyper-unique": "^2.1.4",
     "bluebird": "^3.7.2",
     "create-yarn-workspaces": "^3.0.1",

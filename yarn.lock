@@ -880,10 +880,10 @@
     is-npx "^1.0.0"
     tslib ">=2"
 
-"@yarn-tool/ncu-ws@^2.0.1":
-  version "2.0.1"
-  resolved "https://registry.npmjs.org/@yarn-tool/ncu-ws/-/ncu-ws-2.0.1.tgz#40cd79d6845598e757ff11379d933c449d0331c0"
-  integrity sha512-3FAXByJMHr37EzMD12qCk36KkY0ESDmq6HeQ9IxN9sMGueMCaj33iQBf42E2vp4laXOi2gAY1/E8EftHYZDGfw==
+"@yarn-tool/ncu-ws@^2.0.2":
+  version "2.0.2"
+  resolved "https://registry.npmjs.org/@yarn-tool/ncu-ws/-/ncu-ws-2.0.2.tgz#4f5b149eac31e218a7c888cfdad7629b19e5b855"
+  integrity sha512-9MhGVbcQ4RXTdroBEnW3mKpTIcn36vWQETdJl3+fdJ5ZqsK20Rd8dQy+Ica7CgwPMSd8CacPsqZigQR5Z4N6XA==
   dependencies:
     "@ts-type/package-dts" "^2.0.8"
     "@yarn-tool/find-root" "^2.0.13"
@@ -893,7 +893,7 @@
     "@yarn-tool/yargs-util" "^1.0.9"
     "@yarn-tool/yarnlock" "^3.0.1"
     "@yarn-tool/yarnlock-fs" "^3.0.1"
-    "@yarn-tool/yarnlock-ncu" "^3.0.1"
+    "@yarn-tool/yarnlock-ncu" "^3.0.2"
     debug-color2 "^1.3.2"
     fs-extra "^11.2.0"
     tslib ">=2"
@@ -1300,10 +1300,10 @@
     fs-extra "^11.2.0"
     tslib ">=2"
 
-"@yarn-tool/yarnlock-ncu@^3.0.1":
-  version "3.0.1"
-  resolved "https://registry.npmjs.org/@yarn-tool/yarnlock-ncu/-/yarnlock-ncu-3.0.1.tgz#504f689c631b21237d721260410d7a3d0bdea550"
-  integrity sha512-7wkWa70Fq/XXWcMDlp9ubKtoCsfvHujmNv40JG7RF8R5b426tV+LUV43SYJvbgzcHTXJAn7ykWvhLkIrCo9oCw==
+"@yarn-tool/yarnlock-ncu@^3.0.2":
+  version "3.0.2"
+  resolved "https://registry.npmjs.org/@yarn-tool/yarnlock-ncu/-/yarnlock-ncu-3.0.2.tgz#8f29ef9d489383e046233a629a55cd43398dcbb5"
+  integrity sha512-/il6vK5O8pQlr6QHOehGUXvcqFxVRqBpjilY5e0uflD2IEIWifIqsDL+MXoifU0Evu6qF+MK2NXhoaDiVkKnaw==
   dependencies:
     "@yarn-tool/pkg-version-query" "^3.0.1"
     "@yarn-tool/semver-diff" "^2.0.11"
