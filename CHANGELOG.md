@@ -3,6 +3,21 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.1.4](https://github.com/bluelovers/yarn-tool/compare/yarn-tool@2.1.3...yarn-tool@2.1.4) (2024-05-03)
+
+
+
+### 🛠　Build System
+
+* update typescript ([43d7695](https://github.com/bluelovers/yarn-tool/commit/43d76958c38e15a7e721b32ddb3a6e29e1ea842e))
+
+
+### 📌　Dependencies
+
+* update deps ([5a9d7a4](https://github.com/bluelovers/yarn-tool/commit/5a9d7a4b697eded06eb6575a4bd3b5fb59895c77))
+
+
+
 ## [2.1.3](https://github.com/bluelovers/yarn-tool/compare/yarn-tool@2.1.2...yarn-tool@2.1.3) (2024-03-01)
 
 **Note:** Version bump only for package yarn-tool
