@@ -1,4 +1,3 @@
-/// <reference types="node" />
 import { Arguments, Argv, CommandModule, Options } from 'yargs';
 import { SpawnSyncOptions } from 'cross-spawn-extra/type';
 export interface IUnpackMyYargsArgv {

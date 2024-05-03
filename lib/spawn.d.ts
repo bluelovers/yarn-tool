@@ -1,8 +1,6 @@
 /**
  * Created by user on 2019/5/18.
  */
-/// <reference types="node" />
-/// <reference types="bluebird" />
 import crossSpawn = require('cross-spawn-extra');
 import { Arguments } from 'yargs';
 import { SpawnSyncOptions } from 'cross-spawn-extra/type';
