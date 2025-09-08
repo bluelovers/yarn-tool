@@ -1179,10 +1179,10 @@
     "@yarn-tool/is-builtin-module" "^1.0.23"
     tslib ">=2"
 
-"@yarn-tool/version-recommended@^3.0.3":
-  version "3.0.3"
-  resolved "https://registry.npmjs.org/@yarn-tool/version-recommended/-/version-recommended-3.0.3.tgz#a704f63ded2254c5b5c5f77498f9d2ff578ef9c8"
-  integrity sha512-k/0MnTZl/DfAgFULk3bzfdLyWeupayGot4hO+DXPTd37eIq4W9NNOQlVbWz5mnkpSj8jTfVfYAbZWMDoejqI9g==
+"@yarn-tool/version-recommended@^3.0.4":
+  version "3.0.4"
+  resolved "https://registry.npmjs.org/@yarn-tool/version-recommended/-/version-recommended-3.0.4.tgz#ca6323b52ef9ef949e9125e2c159b3aad5724c33"
+  integrity sha512-4WyICZVReQt0esXMepTcjCdQiDMvHYm/C0hzUX4TwOSiUiPs5ZDu4ewKPWago4PjQ/YM/awPxbXfhDkSZ/oCEA==
   dependencies:
     "@ts-type/package-dts" "^2.0.8"
     "@types/semver" "*"

@@ -1,6 +1,6 @@
 {
   "name": "yarn-tool",
-  "version": "2.1.5",
+  "version": "2.1.6",
   "description": "yarn cli tool helper",
   "keywords": [
     "cli",
@@ -78,7 +78,7 @@
     "@yarn-tool/static-file": "^3.0.4",
     "@yarn-tool/table": "^2.0.15",
     "@yarn-tool/update-notifier": "^1.0.40",
-    "@yarn-tool/version-recommended": "^3.0.3",
+    "@yarn-tool/version-recommended": "^3.0.4",
     "@yarn-tool/write-package-json": "^1.0.13",
     "@yarn-tool/ws-scope": "^3.0.3",
     "@yarn-tool/yarnlock": "^3.0.3",
