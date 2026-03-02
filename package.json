@@ -1,6 +1,6 @@
 {
   "name": "yarn-tool",
-  "version": "2.2.0",
+  "version": "2.2.1",
   "description": "yarn cli tool helper",
   "keywords": [
     "cli",
@@ -50,7 +50,7 @@
     "install:resetLockfile": "ts-node ./bin/yarn-tool install --reset-lockfile",
     "npm:publish": "yarn run version:bump && npm publish",
     "version:bump": "ts-node ./bin/yarn-tool version",
-    "prepublish:yarn:install": "ts-node ./bin/yarn-tool install",
+    "prepublish:yarn:install": "echo ts-node ./bin/yarn-tool install",
     "prepublishOnly": "yarn run ncu && yarn run prepublish:yarn:install && yarn run sort-package-json",
     "prepublishOnly_": "yarn run prepublishOnly:update && yarn run prepublishOnly:check-bin && yarn run test",
     "prepublishOnly:check-bin": "ynpx --quiet @yarn-tool/check-pkg-bin",

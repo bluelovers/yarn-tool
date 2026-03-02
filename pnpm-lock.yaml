@@ -3253,7 +3253,6 @@ packages:
   npm-init2@3.0.6:
     resolution: {integrity: sha512-V2t3GpuFbe+r+1F8cMWrRjESO0AdO1OBLkcPQmJUR+G3t345sM0/USI1LNbwM3/CsEICvWH46WHu1i2qz+CzCw==}
     hasBin: true
-    bundledDependencies: []
 
   npm-install-checks@4.0.0:
     resolution: {integrity: sha512-09OmyDkNLYwqKPOnbI8exiOZU2GVVmQp7tgez2BPi5OZC8M82elDAps7sxC4l//uSUtotWqoEIDwjRvWH4qz8w==}
@@ -3292,7 +3291,6 @@ packages:
 
   npm-package-json-loader@3.0.4:
     resolution: {integrity: sha512-KcnzRMW2LivElimVvWYhDN+5ctKfGSxib3QuvXPzMqX7kAzIVzjHzt4rC3qx6eOwW2bhzZqS6BYHxW3JQH2E4g==}
-    bundledDependencies: []
 
   npm-packlist@2.2.2:
     resolution: {integrity: sha512-Jt01acDvJRhJGthnUJVF/w6gumWOZxO7IkpY/lsX9//zqQgnF7OJaxgQXcerd4uQOLu7W5bkb4mChL9mdfm+Zg==}
