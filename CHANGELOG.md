@@ -3,6 +3,28 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.2.2](https://github.com/bluelovers/yarn-tool/compare/yarn-tool@2.1.6...yarn-tool@2.2.2) (2026-03-02)
+
+
+### BREAKING CHANGES
+
+* **deps:** 移除 v8-compile-cache 並更新 string-natural-compare 引入來源
+
+
+
+### 🛠　Build System
+
+* update build ([dd48b72](https://github.com/bluelovers/yarn-tool/commit/dd48b7252fc8d3ab781800c039de43b781654ab0))
+* **scripts:** 停用 prepublish 自動安裝功能 ([e5c8a5b](https://github.com/bluelovers/yarn-tool/commit/e5c8a5b7e6677fdddc8a6a45a46ef53b5773f5e9))
+
+
+### ♻️　Chores
+
+* **deps:** 更新依賴項目並升級版本至 2.2.0 ([d4852b4](https://github.com/bluelovers/yarn-tool/commit/d4852b44ba35539d9a597fae9dfbcf5b421ffa5b))
+* **deps:** 移除 v8-compile-cache 並更新 string-natural-compare 引入來源 ([bfab1ea](https://github.com/bluelovers/yarn-tool/commit/bfab1ea4c19846270dee8990253b30e84f8f4aee))
+
+
+
 ## [2.1.6](https://github.com/bluelovers/yarn-tool/compare/yarn-tool@2.1.5...yarn-tool@2.1.6) (2025-09-08)
 
 **Note:** Version bump only for package yarn-tool
