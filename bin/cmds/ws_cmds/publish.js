@@ -23,6 +23,7 @@ const cmdModule = (0, cmd_dir_1.createCommandModuleExports)({
             return (0, index_1.yargsProcessExit)(`workspace not exists`);
         }
         (0, cmd_dir_1.lazySpawnArgvSlice)({
+            // @ts-ignore
             command: [key, ...cmdModule.aliases],
             bin: 'lerna',
             cmd: [

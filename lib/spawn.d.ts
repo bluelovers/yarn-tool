@@ -15,8 +15,8 @@ export declare function checkModileExists(argv: {
 export declare function _crossSpawnOther<T>(cp: T): T;
 export declare function crossSpawnOther(bin: string, cmd_list: string[], argv: Partial<Arguments> & {
     cwd: string;
-}, crossSpawnOptions?: SpawnSyncOptions): crossSpawn.SpawnSyncReturns<Buffer>;
-export declare function crossSpawnOtherAsync(bin: string, cmd_list: string[], argv: any): import("bluebird")<crossSpawn.SpawnASyncReturns<Buffer>>;
+}, crossSpawnOptions?: SpawnSyncOptions): crossSpawn.SpawnSyncReturns<Buffer<ArrayBufferLike>>;
+export declare function crossSpawnOtherAsync(bin: string, cmd_list: string[], argv: any): import("bluebird")<crossSpawn.SpawnASyncReturns<Buffer<ArrayBufferLike>>>;
 export declare function processArgvSlice(keys_input: string | string[], argv_input?: string[], startindex?: number): {
     idx_rebase: number;
     idx: number;
