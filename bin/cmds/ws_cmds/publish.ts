@@ -32,6 +32,7 @@ const cmdModule = createCommandModuleExports({
 		}
 
 		lazySpawnArgvSlice({
+			// @ts-ignore
 			command: [key, ...cmdModule.aliases],
 			bin: 'lerna',
 			cmd: [

@@ -1,7 +1,7 @@
 /**
  * Created by user on 2020/3/31.
  */
-import naturalCompare = require('string-natural-compare');
+import { naturalCompare } from '@bluelovers/string-natural-compare';
 
 export interface INpmLock
 {
