@@ -8,7 +8,7 @@ const update_notifier_1 = require("@yarn-tool/update-notifier");
 const osLocaleSync_1 = require("../lib/osLocaleSync");
 if ((0, upath2_1.extname)(__filename) === '.js' && !process.argv.filter(v => {
     if (typeof v === 'string') {
-        return v.includes('ts-node') || v.includes('source-map-support');
+        return v.includes('ts-node') || v.includes('source-map-support') || v.includes('tsx');
     }
 }).length) {
     require('source-map-support').install({

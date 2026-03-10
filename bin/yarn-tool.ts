@@ -8,7 +8,7 @@ import { osLocaleSync } from '../lib/osLocaleSync';
 if (extname(__filename) === '.js' && !process.argv.filter(v => {
 	if (typeof v === 'string')
 	{
-		return v.includes('ts-node') || v.includes('source-map-support')
+		return v.includes('ts-node') || v.includes('source-map-support') || v.includes('tsx')
 	}
 }).length)
 {
