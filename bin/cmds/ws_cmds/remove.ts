@@ -1,9 +1,18 @@
 /**
- * Created by user on 2019/5/19.
+ * yarn-tool workspaces remove 命令模組
+ * yarn-tool workspaces remove command module
+ *
+ * @author user
+ * @created 2019/5/19
  */
+
 import { basenameStrip, createCommandModuleExports, lazySpawnArgvSlice } from '../../../lib/cmd_dir';
 import { findRoot, yargsProcessExit } from '../../../lib/index';
 
+/**
+ * 創建 workspaces remove 命令模組
+ * Create workspaces remove command module
+ */
 const cmdModule = createCommandModuleExports({
 
 	command: basenameStrip(__filename),
@@ -45,4 +54,8 @@ const cmdModule = createCommandModuleExports({
 
 });
 
+/**
+ * 導出 workspaces remove 命令模組
+ * Export workspaces remove command module
+ */
 export = cmdModule

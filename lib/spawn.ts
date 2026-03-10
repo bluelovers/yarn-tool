@@ -1,12 +1,21 @@
 /**
- * Created by user on 2019/5/18.
+ * 子進程執行工具模組
+ * Child process execution utilities
+ *
+ * @author user
+ * @created 2019/5/18
  */
 
-import crossSpawn = require('cross-spawn-extra');
+import crossSpawn, { SpawnSyncOptions } from 'cross-spawn-extra';
 import { Arguments } from 'yargs';
 import { console, consoleDebug } from './index';
-import { SpawnSyncOptions } from 'cross-spawn-extra/type';
 
+/**
+ * 安全解析模組路徑
+ * Safely resolve module path
+ * @param name 模組名稱
+ * @returns 模組路徑或 null
+ */
 export function requireResolve(name: string)
 {
 	try
@@ -26,6 +35,12 @@ export function requireResolve(name: string)
 	return null;
 }
 
+/**
+ * 檢查模組是否存在，若不存在則提示安裝
+ * Check if module exists, prompt installation if not
+ * @param argv 檢查配置對象
+ * @returns 模組路徑或 null
+ */
 export function checkModileExists(argv: {
 	name: string,
 	msg?: string,
@@ -58,6 +73,12 @@ export function checkModileExists(argv: {
 	return ret;
 }
 
+/**
+ * 處理子進程執行結果
+ * Handle child process execution result
+ * @param cp 子進程執行結果
+ * @returns 原始結果或拋出錯誤
+ */
 export function _crossSpawnOther<T>(cp: T)
 {
 	// @ts-ignore
@@ -78,6 +99,15 @@ export function _crossSpawnOther<T>(cp: T)
 	return cp;
 }
 
+/**
+ * 同步執行子進程命令
+ * Synchronously execute child process command
+ * @param bin 可執行文件路徑
+ * @param cmd_list 命令參數列表
+ * @param argv 參數對象
+ * @param crossSpawnOptions 子進程選項
+ * @returns 子進程執行結果
+ */
 export function crossSpawnOther(bin: string,
 	cmd_list: string[],
 	argv: Partial<Arguments> & {
@@ -97,6 +127,14 @@ export function crossSpawnOther(bin: string,
 	return _crossSpawnOther(cp);
 }
 
+/**
+ * 異步執行子進程命令
+ * Asynchronously execute child process command
+ * @param bin 可執行文件路徑
+ * @param cmd_list 命令參數列表
+ * @param argv 參數對象
+ * @returns 子進程執行結果的 Promise
+ */
 export function crossSpawnOtherAsync(bin: string, cmd_list: string[], argv)
 {
 	//consoleDebug.debug(bin, cmd_list);
@@ -108,6 +146,14 @@ export function crossSpawnOtherAsync(bin: string, cmd_list: string[], argv)
 		.tap(_crossSpawnOther)
 }
 
+/**
+ * 處理命令行參數切片
+ * Process command line argument slicing
+ * @param keys_input 鍵名或鍵名列表
+ * @param argv_input 原始參數數組
+ * @param startindex 開始索引
+ * @returns 處理後的參數信息對象
+ */
 export function processArgvSlice(keys_input: string | string[], argv_input = process.argv, startindex: number = 2)
 {
 	if (typeof keys_input === 'string')

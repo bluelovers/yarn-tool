@@ -1,6 +1,11 @@
 /**
- * Created by user on 2019/5/19.
+ * yarn-tool workspaces sort 命令模組
+ * yarn-tool workspaces sort command module
+ *
+ * @author user
+ * @created 2019/5/19
  */
+
 import { basenameStrip, createCommandModuleExports } from '../../../lib/cmd_dir';
 import { wsPkgListable } from 'ws-pkg-list/lib/listable';
 import { chalkByConsole, consoleDebug, findRoot } from '../../../lib/index';
@@ -10,6 +15,10 @@ import { relative } from 'upath2';
 import { _handleOptions } from '@yarn-tool/write-package-json';
 import { stringifyJSON } from '@bluelovers/fs-json';
 
+/**
+ * 創建 workspaces sort 命令模組
+ * Create workspaces sort command module
+ */
 const cmdModule = createCommandModuleExports({
 
 	command: basenameStrip(__filename),
@@ -60,4 +69,8 @@ const cmdModule = createCommandModuleExports({
 
 });
 
+/**
+ * 導出 workspaces sort 命令模組
+ * Export workspaces sort command module
+ */
 export = cmdModule

@@ -1,6 +1,11 @@
 /**
- * Created by user on 2019/5/19.
+ * yarn-tool add 命令模組
+ * yarn-tool add command module
+ *
+ * @author user
+ * @created 2019/5/19
  */
+
 import { basenameStrip, createCommandModuleExports } from '../../lib/cmd_dir';
 import { console, consoleDebug, printRootData } from '../../lib/index';
 import { writePackageJson } from '../../lib/pkg';
@@ -16,6 +21,10 @@ import { createDependencyTable } from '@yarn-tool/table';
 import { chalkByConsoleMaybe } from 'debug-color2';
 import { installDepsFromYarnLock } from '@yarn-tool/pkg-deps-util/lib/installDepsFromYarnLock';
 
+/**
+ * 創建 add 命令模組
+ * Create add command module
+ */
 const cmdModule = createCommandModuleExports({
 
 	command: basenameStrip(__filename) + ' [name]',
@@ -230,4 +239,8 @@ const cmdModule = createCommandModuleExports({
 
 });
 
+/**
+ * 導出 add 命令模組
+ * Export add command module
+ */
 export = cmdModule

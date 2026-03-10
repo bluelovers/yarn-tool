@@ -1,10 +1,19 @@
 /**
- * Created by user on 2019/5/19.
+ * yarn-tool workspaces 命令模組
+ * yarn-tool workspaces command module
+ *
+ * @author user
+ * @created 2019/5/19
  */
+
 import { basenameStrip, commandDirJoin, createCommandModuleExports } from '../../lib/cmd_dir';
 import { checkModileExists, crossSpawnOther, processArgvSlice } from '../../lib/spawn';
 import { Arguments } from 'yargs';
 
+/**
+ * 創建 workspaces 命令模組
+ * Create workspaces command module
+ */
 const cmdModule = createCommandModuleExports({
 
 	command: basenameStrip(__filename) + ' <cmd>',
@@ -75,8 +84,21 @@ const cmdModule = createCommandModuleExports({
 
 });
 
+/**
+ * 導出 workspaces 命令模組
+ * Export workspaces command module
+ */
 export = cmdModule
 
+/**
+ * 懶加載 lerna 命令
+ * Lazy load lerna command
+ * @param command 命令名稱
+ * @param cmd 子命令
+ * @param argv 參數對象
+ * @param opts 選項配置
+ * @returns 子進程執行結果
+ */
 function lazyLerna<A extends Arguments<any>>(command: string, cmd: string, argv: A, opts: {
 	beforeSpawn?(data: {
 		cmd: string,

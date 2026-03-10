@@ -1,6 +1,11 @@
 /**
- * Created by user on 2019/5/19.
+ * yarn-tool types 命令模組
+ * yarn-tool types command module
+ *
+ * @author user
+ * @created 2019/5/19
  */
+
 import { basenameStrip, createCommandModuleExports } from '../../lib/cmd_dir';
 import { console, consoleDebug, findRoot } from '../../lib/index';
 import { readPackageJson } from '@ts-type/package-dts';
@@ -14,6 +19,10 @@ import { setupYarnAddTypesToYargs } from '@yarn-tool/pkg-deps-util/lib/cli/setup
 import { assertExecInstall } from '@yarn-tool/pkg-deps-util/lib/cli/assertExecInstall';
 import { wrapDedupe } from '@yarn-tool/yarnlock/lib/wrapDedupe/wrapDedupe';
 
+/**
+ * 創建 types 命令模組
+ * Create types command module
+ */
 const cmdModule = createCommandModuleExports({
 
 	command: basenameStrip(__filename) + ' [name]',
@@ -224,4 +233,8 @@ const cmdModule = createCommandModuleExports({
 
 });
 
+/**
+ * 導出 types 命令模組
+ * Export types command module
+ */
 export = cmdModule

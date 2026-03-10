@@ -1,6 +1,11 @@
 /**
- * Created by user on 2019/5/19.
+ * yarn-tool install 命令模組
+ * yarn-tool install command module
+ *
+ * @author user
+ * @created 2019/5/19
  */
+
 import { basenameStrip, createCommandModuleExports } from '../../lib/cmd_dir';
 import { console, consoleDebug } from '../../lib/index';
 import setupYarnInstallToYargs from '../../lib/cli/install';
@@ -9,6 +14,10 @@ import { wrapDedupe } from '@yarn-tool/yarnlock/lib/wrapDedupe/wrapDedupe';
 import crossSpawn from 'cross-spawn-extra';
 import { truncateSync } from 'fs-extra';
 
+/**
+ * 創建 install 命令模組
+ * Create install command module
+ */
 const cmdModule = createCommandModuleExports({
 
 	command: basenameStrip(__filename) + ' [cwd]',
@@ -121,4 +130,8 @@ const cmdModule = createCommandModuleExports({
 
 });
 
+/**
+ * 導出 install 命令模組
+ * Export install command module
+ */
 export = cmdModule
