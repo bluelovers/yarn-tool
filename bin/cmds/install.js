@@ -1,8 +1,12 @@
 "use strict";
-const tslib_1 = require("tslib");
 /**
- * Created by user on 2019/5/19.
+ * yarn-tool install 命令模組
+ * yarn-tool install command module
+ *
+ * @author user
+ * @created 2019/5/19
  */
+const tslib_1 = require("tslib");
 const cmd_dir_1 = require("../../lib/cmd_dir");
 const index_1 = require("../../lib/index");
 const install_1 = tslib_1.__importDefault(require("../../lib/cli/install"));
@@ -10,6 +14,10 @@ const infoFromDedupeCache_1 = require("@yarn-tool/yarnlock/lib/wrapDedupe/infoFr
 const wrapDedupe_1 = require("@yarn-tool/yarnlock/lib/wrapDedupe/wrapDedupe");
 const cross_spawn_extra_1 = tslib_1.__importDefault(require("cross-spawn-extra"));
 const fs_extra_1 = require("fs-extra");
+/**
+ * 創建 install 命令模組
+ * Create install command module
+ */
 const cmdModule = (0, cmd_dir_1.createCommandModuleExports)({
     command: (0, cmd_dir_1.basenameStrip)(__filename) + ' [cwd]',
     aliases: ['i'],

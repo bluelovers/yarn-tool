@@ -17,6 +17,9 @@ importers:
       '@ts-type/package-dts':
         specifier: ^3.0.6
         version: 3.0.6(ts-toolbelt@9.6.0)
+      '@yarn-tool/detect-package-manager':
+        specifier: ^1.0.5
+        version: 1.0.5
       '@yarn-tool/find-root':
         specifier: ^2.0.21
         version: 2.0.21(ts-toolbelt@9.6.0)
@@ -808,6 +811,9 @@ packages:
   '@types/treeify@1.0.3':
     resolution: {integrity: sha512-hx0o7zWEUU4R2Amn+pjCBQQt23Khy/Dk56gQU5xi5jtPL1h83ACJCeFaB2M/+WO1AntvWrSoVnnCAfI1AQH4Cg==}
 
+  '@types/which@3.0.4':
+    resolution: {integrity: sha512-liyfuo/106JdlgSchJzXEQCVArk0CvevqPote8F8HgWgJ3dRCcTHgJIsLDuee0kxk/mhbInzIZk3QWSZJ8R+2w==}
+
   '@types/yallist@5.0.0':
     resolution: {integrity: sha512-RwBxUglEChIAr7aLriIAR6bdWeF81BJlA2NdCFuioQMUokLwzDmAh2rGHycdY/P+QTJ2aTxEAxOIw5bAxze97w==}
     deprecated: This is a stub types definition. yallist provides its own type definitions, so you do not need this installed.
@@ -823,6 +829,9 @@ packages:
     hasBin: true
     peerDependencies:
       '@bluelovers/conventional-changelog-bluelovers': '*'
+
+  '@yarn-tool/detect-package-manager@1.0.5':
+    resolution: {integrity: sha512-RmG94Qw/VYeVFzoWiFxU2SKXtl/yPMQcCDKrvwgGtt8UjogV06Yi+oCtJ99w0RHOAnTwISHxRHQeTv4FunOk1w==}
 
   '@yarn-tool/detect-yarnlock-version@2.0.7':
     resolution: {integrity: sha512-PoIEzSns9ttfSO2jxAVzCqvfHjl0XPOksNUUQ5oRd1gHBRmVSCgLFQFieNrSLDi9tEvp3HHDhRLYsnpsKeSA+Q==}
@@ -2742,6 +2751,10 @@ packages:
   isexe@2.0.0:
     resolution: {integrity: sha512-RHxMLp9lnKHGHRng9QFhRCMbYAcVpn69smSGcq3f36xjgVVWThj4qqLbTLlq7Ssj8B+fIQ1EuCEGI2lKsyQeIw==}
 
+  isexe@4.0.0:
+    resolution: {integrity: sha512-FFUtZMpoZ8RqHS3XeXEmHWLA4thH+ZxCv2lOiPIn1Xc7CxrqhWzNSDzD+/chS/zbYezmiwWLdQC09JdQKmthOw==}
+    engines: {node: '>=20'}
+
   isobject@3.0.1:
     resolution: {integrity: sha512-WhB9zCku7EGTj/HQQRz5aUQEUeoQZH2bWcltRErOpymJ4boYE6wL9Tbr23krRPSZ+C5zqNSrSw+Cc7sZZ4b7vg==}
     engines: {node: '>=0.10.0'}
@@ -4581,6 +4594,11 @@ packages:
     engines: {node: ^14.17.0 || ^16.13.0 || >=18.0.0}
     hasBin: true
 
+  which@6.0.1:
+    resolution: {integrity: sha512-oGLe46MIrCRqX7ytPUf66EAYvdeMIZYn3WaocqqKZAxrBpkqHfL/qvTyJ/bTk5+AqHCjXmrv3CEWgy368zhRUg==}
+    engines: {node: ^20.17.0 || >=22.9.0}
+    hasBin: true
+
   wide-align@1.1.5:
     resolution: {integrity: sha512-eDMORYaPNZ4sQIuuYPDHdQvf4gyCF9rEEV/yPxGfwPkRodwEgiMUUXTx/dex+Me0wxx53S+NgUHaP7y3MGlDmg==}
 
@@ -5660,6 +5678,8 @@ snapshots:
 
   '@types/treeify@1.0.3': {}
 
+  '@types/which@3.0.4': {}
+
   '@types/yallist@5.0.0':
     dependencies:
       yallist: 4.0.0
@@ -5689,6 +5709,12 @@ snapshots:
     transitivePeerDependencies:
       - debug-color2
       - ts-toolbelt
+
+  '@yarn-tool/detect-package-manager@1.0.5':
+    dependencies:
+      '@types/which': 3.0.4
+      tslib: 2.8.1
+      which: 6.0.1
 
   '@yarn-tool/detect-yarnlock-version@2.0.7(ts-toolbelt@9.6.0)':
     dependencies:
@@ -8403,6 +8429,8 @@ snapshots:
 
   isexe@2.0.0: {}
 
+  isexe@4.0.0: {}
+
   isobject@3.0.1: {}
 
   isobject@4.0.0: {}
@@ -10764,6 +10792,10 @@ snapshots:
   which@3.0.1:
     dependencies:
       isexe: 2.0.0
+
+  which@6.0.1:
+    dependencies:
+      isexe: 4.0.0
 
   wide-align@1.1.5:
     dependencies:

@@ -1,4 +1,11 @@
 import { Argv } from 'yargs';
+/**
+ * 設置 Yarn 安裝命令的 Yargs 選項
+ * Setup Yargs options for Yarn install command
+ *
+ * @param yargs Yargs 實例
+ * @returns 配置了選項的 Yargs 實例
+ */
 export declare function setupYarnInstallToYargs<T extends any>(yargs: Argv<T>): Argv<T & {
     "check-files": boolean;
 } & {
@@ -40,4 +47,8 @@ export declare function setupYarnInstallToYargs<T extends any>(yargs: Argv<T>): 
 } & {
     "link-duplicates": boolean;
 }>;
+/**
+ * 預設導出 Yarn 安裝命令配置函數
+ * Default export of Yarn install command configuration function
+ */
 export default setupYarnInstallToYargs;

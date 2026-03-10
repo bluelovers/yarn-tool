@@ -1,9 +1,17 @@
 "use strict";
 /**
- * Created by user on 2019/5/19.
+ * yarn-tool workspaces 命令模組
+ * yarn-tool workspaces command module
+ *
+ * @author user
+ * @created 2019/5/19
  */
 const cmd_dir_1 = require("../../lib/cmd_dir");
 const spawn_1 = require("../../lib/spawn");
+/**
+ * 創建 workspaces 命令模組
+ * Create workspaces command module
+ */
 const cmdModule = (0, cmd_dir_1.createCommandModuleExports)({
     command: (0, cmd_dir_1.basenameStrip)(__filename) + ' <cmd>',
     aliases: ['ws', 'workspaces', 'workspace'],
@@ -57,6 +65,15 @@ const cmdModule = (0, cmd_dir_1.createCommandModuleExports)({
     handler(argv) {
     },
 });
+/**
+ * 懶加載 lerna 命令
+ * Lazy load lerna command
+ * @param command 命令名稱
+ * @param cmd 子命令
+ * @param argv 參數對象
+ * @param opts 選項配置
+ * @returns 子進程執行結果
+ */
 function lazyLerna(command, cmd, argv, opts = {}) {
     let ret = (0, spawn_1.checkModileExists)({
         name: 'lerna',

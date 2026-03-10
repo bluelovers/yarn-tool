@@ -1,11 +1,19 @@
 "use strict";
 /**
- * Created by user on 2019/5/19.
+ * yarn-tool workspaces add 命令模組
+ * yarn-tool workspaces add command module
+ *
+ * @author user
+ * @created 2019/5/19
  */
 const cmd_dir_1 = require("../../../lib/cmd_dir");
 const index_1 = require("../../../index");
 const index_2 = require("../../../lib/index");
 const setupYarnAddToYargs_1 = require("@yarn-tool/pkg-deps-util/lib/cli/setupYarnAddToYargs");
+/**
+ * 創建 workspaces add 命令模組
+ * Create workspaces add command module
+ */
 const cmdModule = (0, cmd_dir_1.createCommandModuleExports)({
     command: (0, cmd_dir_1.basenameStrip)(__filename),
     //aliases: [],

@@ -1,9 +1,17 @@
 "use strict";
 /**
- * Created by user on 2019/5/19.
+ * yarn-tool workspaces remove 命令模組
+ * yarn-tool workspaces remove command module
+ *
+ * @author user
+ * @created 2019/5/19
  */
 const cmd_dir_1 = require("../../../lib/cmd_dir");
 const index_1 = require("../../../lib/index");
+/**
+ * 創建 workspaces remove 命令模組
+ * Create workspaces remove command module
+ */
 const cmdModule = (0, cmd_dir_1.createCommandModuleExports)({
     command: (0, cmd_dir_1.basenameStrip)(__filename),
     //aliases: [],

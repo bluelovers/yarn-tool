@@ -1,8 +1,12 @@
 "use strict";
-const tslib_1 = require("tslib");
 /**
- * Created by user on 2019/5/19.
+ * yarn-tool types 命令模組
+ * yarn-tool types command module
+ *
+ * @author user
+ * @created 2019/5/19
  */
+const tslib_1 = require("tslib");
 const cmd_dir_1 = require("../../lib/cmd_dir");
 const index_1 = require("../../lib/index");
 const package_dts_1 = require("@ts-type/package-dts");
@@ -14,6 +18,10 @@ const cross_spawn_extra_1 = tslib_1.__importDefault(require("cross-spawn-extra")
 const setupYarnAddTypesToYargs_1 = require("@yarn-tool/pkg-deps-util/lib/cli/setupYarnAddTypesToYargs");
 const assertExecInstall_1 = require("@yarn-tool/pkg-deps-util/lib/cli/assertExecInstall");
 const wrapDedupe_1 = require("@yarn-tool/yarnlock/lib/wrapDedupe/wrapDedupe");
+/**
+ * 創建 types 命令模組
+ * Create types command module
+ */
 const cmdModule = (0, cmd_dir_1.createCommandModuleExports)({
     command: (0, cmd_dir_1.basenameStrip)(__filename) + ' [name]',
     //aliases: [],

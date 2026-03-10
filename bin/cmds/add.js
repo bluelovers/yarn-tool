@@ -1,8 +1,12 @@
 "use strict";
-const tslib_1 = require("tslib");
 /**
- * Created by user on 2019/5/19.
+ * yarn-tool add 命令模組
+ * yarn-tool add command module
+ *
+ * @author user
+ * @created 2019/5/19
  */
+const tslib_1 = require("tslib");
 const cmd_dir_1 = require("../../lib/cmd_dir");
 const index_1 = require("../../lib/index");
 const pkg_1 = require("../../lib/pkg");
@@ -17,6 +21,10 @@ const path_1 = require("path");
 const table_1 = require("@yarn-tool/table");
 const debug_color2_1 = require("debug-color2");
 const installDepsFromYarnLock_1 = require("@yarn-tool/pkg-deps-util/lib/installDepsFromYarnLock");
+/**
+ * 創建 add 命令模組
+ * Create add command module
+ */
 const cmdModule = (0, cmd_dir_1.createCommandModuleExports)({
     command: (0, cmd_dir_1.basenameStrip)(__filename) + ' [name]',
     //aliases: [],

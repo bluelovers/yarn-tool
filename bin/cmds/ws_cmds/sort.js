@@ -1,6 +1,10 @@
 "use strict";
 /**
- * Created by user on 2019/5/19.
+ * yarn-tool workspaces sort 命令模組
+ * yarn-tool workspaces sort command module
+ *
+ * @author user
+ * @created 2019/5/19
  */
 const cmd_dir_1 = require("../../../lib/cmd_dir");
 const listable_1 = require("ws-pkg-list/lib/listable");
@@ -10,6 +14,10 @@ const fs_1 = require("fs");
 const upath2_1 = require("upath2");
 const write_package_json_1 = require("@yarn-tool/write-package-json");
 const fs_json_1 = require("@bluelovers/fs-json");
+/**
+ * 創建 workspaces sort 命令模組
+ * Create workspaces sort command module
+ */
 const cmdModule = (0, cmd_dir_1.createCommandModuleExports)({
     command: (0, cmd_dir_1.basenameStrip)(__filename),
     //aliases: [],
