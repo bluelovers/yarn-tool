@@ -8,7 +8,7 @@
 
 import { basenameStrip, createCommandModuleExports } from '../../lib/cmd_dir';
 import { console, consoleDebug, printRootData } from '../../lib/index';
-import { writePackageJson } from '../../lib/pkg';
+import { writePackageJSON } from '@yarn-tool/write-package-json';
 import { wrapDedupeAsync } from '@yarn-tool/yarnlock/lib/wrapDedupe/wrapDedupeAsync';
 import crossSpawn from 'cross-spawn-extra';
 import { YT_BIN } from '../../index';
@@ -103,7 +103,7 @@ const cmdModule = createCommandModuleExports({
 
 						console.log(table.toString())
 
-						writePackageJson(join(data.rootData.pkg, 'package.json'), data.pkg, {
+						await writePackageJSON(join(data.rootData.pkg, 'package.json'), data.pkg, {
 							spaces: 2
 						})
 
@@ -132,7 +132,7 @@ const cmdModule = createCommandModuleExports({
 
 							console.log(table.toString())
 
-							writePackageJson(join(data.rootData.pkg, 'package.json'), data.pkg, {
+							await writePackageJSON(join(data.rootData.pkg, 'package.json'), data.pkg, {
 								spaces: 2
 							})
 

@@ -3,7 +3,7 @@
  */
 import { basenameStrip, createCommandModuleExports } from '../../lib/cmd_dir';
 import { chalkByConsole, console, yargsProcessExit } from '../../lib/index';
-import { writePackageJson } from '../../lib/pkg';
+import { writePackageJSON } from '@yarn-tool/write-package-json';
 import { setupToYargs } from '@yarn-tool/version-recommended/lib/argv';
 import { releaseTypes } from '@yarn-tool/version-recommended/lib/types';
 import { nextVersionRecommendedByPackageFindUp } from '@yarn-tool/version-recommended';
@@ -95,7 +95,7 @@ const cmdModule = createCommandModuleExports({
 
 			console.debug(`[${name}]`, `update`, file);
 
-			writePackageJson(file, {
+			await writePackageJSON(file, {
 				...pkg,
 				version: newVersion,
 			})

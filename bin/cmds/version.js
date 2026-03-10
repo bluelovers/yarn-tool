@@ -5,7 +5,7 @@ const tslib_1 = require("tslib");
  */
 const cmd_dir_1 = require("../../lib/cmd_dir");
 const index_1 = require("../../lib/index");
-const pkg_1 = require("../../lib/pkg");
+const write_package_json_1 = require("@yarn-tool/write-package-json");
 const argv_1 = require("@yarn-tool/version-recommended/lib/argv");
 const types_1 = require("@yarn-tool/version-recommended/lib/types");
 const version_recommended_1 = require("@yarn-tool/version-recommended");
@@ -74,7 +74,7 @@ const cmdModule = (0, cmd_dir_1.createCommandModuleExports)({
         if (!argv['dry-run'] && oldVersion !== newVersion) {
             let file = (0, upath2_1.join)(rootData.pkg, `package.json`);
             index_1.console.debug(`[${name}]`, `update`, file);
-            (0, pkg_1.writePackageJson)(file, {
+            await (0, write_package_json_1.writePackageJSON)(file, {
                 ...pkg,
                 version: newVersion,
             });

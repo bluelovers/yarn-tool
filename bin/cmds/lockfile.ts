@@ -4,10 +4,10 @@
 import { basenameStrip, createCommandModuleExports, IUnpackMyYargsArgv } from '../../lib/cmd_dir';
 import { console, consoleDebug, findRoot, yargsProcessExit } from '../../lib/index';
 import { readPackageJson } from '@ts-type/package-dts';
-import { exportYarnLock } from '../../lib/yarnlock';
+import { exportYarnLock } from '@yarn-tool/yarnlock';
 import { rcompare } from 'semver';
 import { Arguments, CommandModule } from 'yargs';
-import { Dedupe } from '../../lib/cli/dedupe';
+import { Dedupe } from '@yarn-tool/yarnlock/lib/dedupe';
 import { npmToYarnCore, yarnToNpmCore } from 'synp2/lib';
 import { fixNpmLock } from '../../lib/cli/lockfile/fixNpmLock';
 import { fsYarnLockSafe } from '@yarn-tool/yarnlock-fs/lib/read';

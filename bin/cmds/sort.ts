@@ -5,7 +5,7 @@ import { basenameStrip, createCommandModuleExports } from '../../lib/cmd_dir';
 import { join, relative } from 'upath2';
 import { chalkByConsole, consoleDebug, findRoot } from '../../lib/index';
 import { readPackageJson } from '@ts-type/package-dts';
-import { writePackageJson } from '../../lib/pkg';
+import { writePackageJSON, writePackageJSONSync } from '@yarn-tool/write-package-json';
 import sortPackageJson from 'sort-package-json3';
 
 const cmdModule = createCommandModuleExports({
@@ -38,7 +38,7 @@ const cmdModule = createCommandModuleExports({
 		// @ts-ignore
 		json = sortPackageJson(json);
 
-		writePackageJson(json_file, json);
+		writePackageJSONSync(json_file, json);
 
 		!argv.silent && chalkByConsole((chalk, console) => {
 
