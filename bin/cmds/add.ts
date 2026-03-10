@@ -36,7 +36,7 @@ const cmdModule = createCommandModuleExports({
 		return setupYarnAddToYargs(yargs)
 			.option('types', {
 				alias: ['type'],
-				desc: `try auto install @types/* too`,
+				desc: `嘗試自動安裝 @types/* 套件 / Try auto install @types/* too`,
 				boolean: true,
 			})
 			.strict(false)

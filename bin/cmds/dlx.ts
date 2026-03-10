@@ -16,10 +16,12 @@ const cmdModule = createCommandModuleExports({
 		return yargs
 			.option('package', {
 				alias: ['p'],
+				desc: `指定要運行的套件名稱 / Specify the package name to run`,
 				string: true,
 			})
 			.option('quiet', {
 				alias: ['q'],
+				desc: `安靜模式，不輸出訊息 / Quiet mode, no output`,
 				boolean: true,
 			})
 			.help(false)

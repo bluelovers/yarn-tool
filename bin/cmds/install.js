@@ -26,7 +26,7 @@ const cmdModule = (0, cmd_dir_1.createCommandModuleExports)({
         return (0, install_1.default)(yargs)
             .option('reset-lockfile', {
             alias: ['L'],
-            desc: `ignore and reset yarn.lock lockfile.`,
+            desc: `忽略並重置 yarn.lock 鎖定文件 / Ignore and reset yarn.lock lockfile.`,
             boolean: true,
         });
     },

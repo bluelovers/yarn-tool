@@ -7,32 +7,32 @@ const fs_extra_1 = require("fs-extra");
 const cmdModule = (0, cmd_dir_1.createCommandModuleExports)({
     command: (0, cmd_dir_1.basenameStrip)(__filename) + ' <cmd>',
     aliases: ['scope', 'scoped'],
-    describe: `update workspaces scope setting`,
+    describe: `更新工作區範圍設定 / Update workspaces scope setting`,
     builder(yargs) {
         return yargs
             .command({
             command: 'add ...[rule]',
-            describe: `add scope`,
+            describe: `新增範圍 / Add scope`,
             handler(argv) {
                 return _method('add', yargs, argv);
             },
         })
             .command({
             command: 'remove ...[rule]',
-            describe: `remove scope`,
+            describe: `移除範圍 / Remove scope`,
             handler(argv) {
                 return _method('remove', yargs, argv);
             },
         })
             .command({
             command: 'sync',
-            describe: `sync scope`,
+            describe: `同步範圍 / Sync scope`,
             handler(argv) {
                 // @ts-ignore
                 const wss = new ws_scope_1.WorkspacesScope(argv.cwd);
                 wss.syncValue();
                 wss.save();
-                index_1.console.success(`workspace scope sync completed`);
+                index_1.console.success(`工作區範圍同步完成 / workspace scope sync completed`);
             },
         });
     },
@@ -68,10 +68,10 @@ function _method(cmd, yargs, argv) {
     if (wss.changed) {
         wss.syncValue();
         wss.save();
-        index_1.console.success(`workspace scope updated`);
+        index_1.console.success(`工作區範圍已更新 / workspace scope updated`);
     }
     else {
-        index_1.console.warn(`workspace scope not changed`);
+        index_1.console.warn(`工作區範圍未變更 / workspace scope not changed`);
     }
 }
 module.exports = cmdModule;

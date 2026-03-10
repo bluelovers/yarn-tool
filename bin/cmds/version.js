@@ -26,11 +26,11 @@ const cmdModule = (0, cmd_dir_1.createCommandModuleExports)({
         })
             .option('interactive', {
             alias: ['i'],
-            desc: 'show interactive prompts',
+            desc: '顯示互動式提示 / Show interactive prompts',
             boolean: true,
         })
             .option('dry-run', {
-            desc: 'dry run',
+            desc: '模擬執行，不實際修改 / Dry run, do not actually modify',
             boolean: true,
         })
             .strict(false);
@@ -39,7 +39,7 @@ const cmdModule = (0, cmd_dir_1.createCommandModuleExports)({
         var _a;
         let rootData = (0, find_root_1.findRoot)(argv);
         if (rootData.isWorkspace && argv.skipCheckWorkspace) {
-            (0, index_1.yargsProcessExit)(`not allow bump version on root of workspace`);
+            (0, index_1.yargsProcessExit)(`不允許在工作區根目錄上升級版本 / not allow bump version on root of workspace`);
             process.exit(1);
         }
         if (argv.interactive) {

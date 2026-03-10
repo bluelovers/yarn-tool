@@ -34,16 +34,17 @@ if ((0, upath2_1.extname)(__filename) === '.js' && !process.argv.filter(v => {
  */
 let cli = yargs_1.default
     .option('cwd', {
-    desc: `current working directory or package directory`,
+    desc: `目前工作目錄或套件目錄 / Current working directory or package directory`,
     normalize: true,
     default: process.cwd(),
 })
     .option('skipCheckWorkspace', {
     alias: ['W'],
-    desc: `this options is for search yarn.lock, pkg root, workspace root, not same as --ignore-workspace-root-check`,
+    desc: `搜尋 yarn.lock、套件根目錄、工作區根目錄時使用 (不同於 --ignore-workspace-root-check) / Use for searching yarn.lock, pkg root, workspace root (not same as --ignore-workspace-root-check)`,
     boolean: true,
 })
     .option('yt-debug-mode', {
+    desc: `啟用除錯模式 / Enable debug mode`,
     boolean: true,
 })
     .alias('v', 'version')

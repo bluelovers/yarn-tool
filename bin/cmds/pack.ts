@@ -14,9 +14,11 @@ const cmdModule = createCommandModuleExports({
 		return yargs
 			.option('dry-run', {
 				boolean: true,
+				desc: `模擬運行，不實際執行 / Simulate running without actually executing`,
 			})
 			.option('filename', {
 				string: true,
+				desc: `指定輸出文件名 / Specify output filename`,
 			})
 	},
 

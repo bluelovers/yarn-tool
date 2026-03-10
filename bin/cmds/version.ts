@@ -28,11 +28,11 @@ const cmdModule = createCommandModuleExports({
 			})
 			.option('interactive', {
 				alias: ['i'],
-				desc: 'show interactive prompts',
+				desc: '顯示互動式提示 / Show interactive prompts',
 				boolean: true,
 			})
 			.option('dry-run', {
-				desc: 'dry run',
+				desc: '模擬執行，不實際修改 / Dry run, do not actually modify',
 				boolean: true,
 			})
 			.strict(false)
@@ -44,7 +44,7 @@ const cmdModule = createCommandModuleExports({
 
 		if (rootData.isWorkspace && argv.skipCheckWorkspace)
 		{
-			yargsProcessExit(`not allow bump version on root of workspace`);
+			yargsProcessExit(`不允許在工作區根目錄上升級版本 / not allow bump version on root of workspace`);
 			process.exit(1);
 		}
 

@@ -29,7 +29,7 @@ const cmdModule = createCommandModuleExports({
 		return setupYarnInstallToYargs(yargs)
 			.option('reset-lockfile', {
 				alias: ['L'],
-				desc: `ignore and reset yarn.lock lockfile.`,
+				desc: `忽略並重置 yarn.lock 鎖定文件 / Ignore and reset yarn.lock lockfile.`,
 				boolean: true,
 			})
 		;

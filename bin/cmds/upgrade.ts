@@ -16,19 +16,23 @@ const cmdModule = createCommandModuleExports({
 	{
 		return yargs
 			.option('latest', {
-				desc: 'The upgrade --latest command upgrades packages the same as the upgrade command, but ignores the version range specified in package.json. Instead, the version specified by the latest tag will be used (potentially upgrading the packages across major versions).',
+				desc: '升級到最新版本，忽略 package.json 中的版本範圍 / Upgrade to latest version, ignoring version range in package.json. The version specified by the latest tag will be used (potentially upgrading the packages across major versions).',
 				boolean: true,
 			})
 			.option('caret', {
+				desc: '使用 caret (^) 語意化版本 / Use caret (^) semver',
 				boolean: true,
 			})
 			.option('tilde', {
+				desc: '使用 tilde (~) 語意化版本 / Use tilde (~) semver',
 				boolean: true,
 			})
 			.option('exact', {
+				desc: '使用精確版本 (無語意化前綴) / Use exact version (no semver prefix)',
 				boolean: true,
 			})
 			.option('pattern', {
+				desc: '套件名稱匹配模式 / Package name match pattern',
 				string: true,
 			})
 		;

@@ -7,7 +7,7 @@ const cmdModule = createCommandModuleExports({
 
 	command: basenameStrip(__filename),
 	//aliases: [],
-	describe: `To remove a symlinked package created with yarn link, yarn unlink can be used.`,
+	describe: `移除使用 yarn link 建立的符號鏈接 / Remove a symlinked package created with yarn link`,
 
 	builder(yargs)
 	{

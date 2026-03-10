@@ -28,25 +28,25 @@ const cmdModule = createCommandModuleExports({
 		return yargs
 			.option('duplicate', {
 				alias: ['D'],
-				desc: `show duplicate list by yarn.lock`,
+				desc: `顯示 yarn.lock 中的重複套件列表 / Show duplicate list by yarn.lock`,
 				boolean: true,
 				//default: true,
 			})
 			.option('npm', {
-				desc: `Convert yarn.lock to package-lock.json`,
+				desc: `將 yarn.lock 轉換為 package-lock.json / Convert yarn.lock to package-lock.json`,
 				boolean: true,
 			})
 			.option('shrinkwrap', {
-				desc: `Convert yarn.lock to npm-shrinkwrap.json`,
+				desc: `將 yarn.lock 轉換為 npm-shrinkwrap.json / Convert yarn.lock to npm-shrinkwrap.json`,
 				boolean: true,
 			})
 			.option('yarn', {
-				desc: `Convert package-lock.json to yarn.lock if yarn.lock not exists`,
+				desc: `若 yarn.lock 不存在，將 package-lock.json 轉換為 yarn.lock / Convert package-lock.json to yarn.lock if yarn.lock not exists`,
 				boolean: true,
 			})
 			.option('overwrite', {
 				alias: ['O'],
-				desc: `overwrite file if exists`,
+				desc: `如果文件存在則覆蓋 / Overwrite file if exists`,
 				boolean: true,
 			})
 			.conflicts('npm', ['yarn', 'duplicate'])

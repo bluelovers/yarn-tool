@@ -21,17 +21,17 @@ const cmdModule = (0, cmd_dir_1.createCommandModuleExports)({
             .commandDir((0, cmd_dir_1.commandDirJoin)(__dirname, __filename))
             .command({
             command: 'run',
-            describe: `run script by lerna`,
+            describe: `使用 lerna 執行腳本 / Run script by lerna`,
             builder(yargs) {
                 return yargs
                     .option('stream', {
-                    desc: `Stream output with lines prefixed by package.`,
+                    desc: `以行為單位輸出，並以套件名稱作為前綴 / Stream output with lines prefixed by package.`,
                 })
                     .option('parallel', {
-                    desc: `Run script with unlimited concurrency, streaming prefixed output.`,
+                    desc: `以無限並行執行腳本，並輸出帶前綴的結果 / Run script with unlimited concurrency, streaming prefixed output.`,
                 })
                     .option('no-prefix', {
-                    desc: `Do not prefix streaming output.`,
+                    desc: `不對輸出添加前綴 / Do not prefix streaming output.`,
                 })
                     .help(false)
                     .version(false)
@@ -50,7 +50,7 @@ const cmdModule = (0, cmd_dir_1.createCommandModuleExports)({
         })
             .command({
             command: 'exec',
-            describe: `Execute an arbitrary command in each package`,
+            describe: `在每個套件中執行任意命令 / Execute an arbitrary command in each package`,
             builder(yargs) {
                 return yargs
                     .strict(false);

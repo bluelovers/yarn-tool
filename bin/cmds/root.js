@@ -13,13 +13,12 @@ const command = (0, cmd_dir_1.basenameStrip)(__filename);
 const cmdModule = (0, cmd_dir_1.createCommandModuleExports)({
     command,
     //aliases: [],
-    describe: `run/exec in workspaces root`,
+    describe: `在工作區根目錄執行指令 / Run/exec in workspaces root`,
     builder(yargs) {
         return yargs
             .option('silent', {
             alias: ['s'],
-            description: `skip Yarn console logs, other types of logs (script output) will be
-printed`,
+            description: `跳過 Yarn 控制台日誌，其他類型日誌（腳本輸出）將會印出 / Skip Yarn console logs, other types of logs (script output) will be printed`,
             boolean: true,
         })
             .example(`yarn-tool root run test`, `run in workspaces root`)

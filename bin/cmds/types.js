@@ -73,7 +73,7 @@ const cmdModule = (0, cmd_dir_1.createCommandModuleExports)({
             argv.optional = argv.peer = argv.dev = false;
         }
         if (!args.length) {
-            index_1.consoleDebug.error(`Missing list of packages to add to your project.`);
+            index_1.consoleDebug.error(`缺少要添加的套件列表。 / Missing list of packages to add to your project.`);
             return process.exit(1);
         }
         else {
@@ -84,7 +84,7 @@ const cmdModule = (0, cmd_dir_1.createCommandModuleExports)({
             }, []);
             args = (0, array_hyper_unique_1.array_unique)(args);
             if (!args.length) {
-                index_1.consoleDebug.warn(`no package list for install types`);
+                index_1.consoleDebug.warn(`無套件列表可供安裝類型 / No package list for install types`);
                 return process.exit();
             }
         }

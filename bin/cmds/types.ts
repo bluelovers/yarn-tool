@@ -105,7 +105,7 @@ const cmdModule = createCommandModuleExports({
 
 		if (!args.length)
 		{
-			consoleDebug.error(`Missing list of packages to add to your project.`);
+			consoleDebug.error(`缺少要添加的套件列表。 / Missing list of packages to add to your project.`);
 
 			return process.exit(1);
 		}
@@ -125,7 +125,7 @@ const cmdModule = createCommandModuleExports({
 
 			if (!args.length)
 			{
-				consoleDebug.warn(`no package list for install types`);
+				consoleDebug.warn(`無套件列表可供安裝類型 / No package list for install types`);
 
 				return process.exit();
 			}

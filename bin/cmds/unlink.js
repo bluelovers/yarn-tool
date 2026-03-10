@@ -6,7 +6,7 @@ const cmd_dir_1 = require("../../lib/cmd_dir");
 const cmdModule = (0, cmd_dir_1.createCommandModuleExports)({
     command: (0, cmd_dir_1.basenameStrip)(__filename),
     //aliases: [],
-    describe: `To remove a symlinked package created with yarn link, yarn unlink can be used.`,
+    describe: `移除使用 yarn link 建立的符號鏈接 / Remove a symlinked package created with yarn link`,
     builder(yargs) {
         return yargs
             .example(`$0 unlink [...package]`, ``)
