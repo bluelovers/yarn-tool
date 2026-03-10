@@ -110,4 +110,5 @@ export declare function lazySpawnArgvSlice(options: {
         cwd: string;
     };
     crossSpawnOptions?: SpawnSyncOptions;
+    fnCmdList?(cmd_list: string[]): string[];
 }): import("cross-spawn-extra").SpawnSyncReturns<Buffer<ArrayBufferLike>>;

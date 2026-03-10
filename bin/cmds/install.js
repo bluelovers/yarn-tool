@@ -15,6 +15,8 @@ const wrapDedupe_1 = require("@yarn-tool/yarnlock/lib/wrapDedupe/wrapDedupe");
 const cross_spawn_extra_1 = tslib_1.__importDefault(require("cross-spawn-extra"));
 const fs_extra_1 = require("fs-extra");
 const pm_1 = require("../../lib/pm");
+const find_root_1 = tslib_1.__importDefault(require("@yarn-tool/find-root"));
+const upath2_1 = require("upath2");
 const command = (0, cmd_dir_1.basenameStrip)(__filename);
 /**
  * 創建 install 命令模組
@@ -35,11 +37,27 @@ const cmdModule = (0, cmd_dir_1.createCommandModuleExports)({
     handler(argv) {
         const { npmClients, pmIsYarn } = (0, pm_1.detectPackageManager)(argv);
         if (!pmIsYarn) {
+            index_1.console.dir(argv);
+            if (argv.resetLockfile) {
+                const lockfile = (0, upath2_1.join)((0, find_root_1.default)({
+                    cwd: argv.cwd,
+                }, true).root, 'pnpm-lock.yaml');
+                if ((0, fs_extra_1.existsSync)(lockfile)) {
+                    index_1.consoleDebug.red.info(`'--reset-lockfile' 模式已啟用，重置當前鎖定文件。 / '--reset-lockfile' mode is enabled, reset current lockfile.\n${lockfile}`);
+                    (0, fs_extra_1.removeSync)(lockfile);
+                }
+            }
             (0, cmd_dir_1.lazySpawnArgvSlice)({
                 command: [command, ...cmdModule.aliases],
                 bin: npmClients,
                 cmd: command,
                 argv,
+                fnCmdList(cmd_list) {
+                    return cmd_list.filter((key) => ![
+                        '--resetLockfile',
+                        '-L',
+                    ].includes(key));
+                }
             });
             return;
         }
