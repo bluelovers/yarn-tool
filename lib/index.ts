@@ -13,6 +13,7 @@ import { readPackageJson } from '@ts-type/package-dts';
 import { Arguments } from 'yargs';
 import { findRoot } from '@yarn-tool/find-root';
 import { yargsProcessExit } from '@yarn-tool/yargs-util';
+import { detectPackageManager } from './pm';
 
 /**
  * 主要的控制台輸出實例
@@ -28,35 +29,6 @@ export const consoleDebug = new Console2(null, {
 	label: true,
 	time: true,
 });
-
-/**
- * 導出 findRoot 函數，用於尋找項目根目錄
- * Export findRoot function for finding project root directory
- */
-export { findRoot }
-
-/**
- * 路徑標準化函數
- * Path normalization function
- * @param input 輸入路徑
- * @returns 標準化後的路徑
- */
-export function pathNormalize(input: string)
-{
-	return path.normalize(input)
-}
-
-/**
- * 比較兩個路徑是否相等（標準化後比較）
- * Compare if two paths are equal (after normalization)
- * @param a 第一個路徑
- * @param b 第二個路徑
- * @returns 路徑是否相等
- */
-export function pathEqual(a: string, b: string)
-{
-	return path.normalize(a) === path.normalize(b)
-}
 
 /**
  * 過濾 Yargs 參數，只保留指定的鍵或符合條件的鍵值對
@@ -136,6 +108,8 @@ export function printRootData(rootData: ReturnType<typeof findRoot>, argv: {
 	let pkg_file = path.join(rootData.pkg, 'package.json');
 	let pkg_data = readPackageJson(pkg_file);
 
+	const { npmClients, pmIsYarn, pmMap } = detectPackageManager(argv as any);
+
 	chalkByConsole((chalk, console) =>
 	{
 		console.info([
@@ -143,8 +117,15 @@ export function printRootData(rootData: ReturnType<typeof findRoot>, argv: {
 			`${pkg_data.name}@${pkg_data.version}`,
 			chalk.red(relative(doWorkspace ? rootData.ws : argv.cwd, rootData.pkg)),
 		].join(' '));
+		console.info([
+			chalk.white(`npmClients:`),
+			npmClients,
+			chalk.red(pmMap[npmClients]),
+		].join(' '));
 
 	}, consoleDebug);
+
+	consoleDebug.dir(pmMap);
 }
 
 /**

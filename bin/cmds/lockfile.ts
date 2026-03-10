@@ -1,7 +1,7 @@
 /**
  * Created by user on 2019/5/19.
  */
-import { basenameStrip, createCommandModuleExports, IUnpackMyYargsArgv } from '../../lib/cmd_dir';
+import { basenameStrip, createCommandModuleExports, IUnpackMyYargsArgv, lazySpawnArgvSlice } from '../../lib/cmd_dir';
 import { console, consoleDebug, findRoot, yargsProcessExit } from '../../lib/index';
 import { readPackageJson } from '@ts-type/package-dts';
 import { exportYarnLock } from '@yarn-tool/yarnlock';
@@ -14,12 +14,13 @@ import { fsYarnLockSafe } from '@yarn-tool/yarnlock-fs/lib/read';
 import { yarnLockParse } from '@yarn-tool/yarnlock-parse';
 import path = require('upath2');
 import fs = require('fs-extra');
+import { detectPackageManager } from '../../lib/pm';
 
 const COMMAND_KEY = basenameStrip(__filename);
 
 const cmdModule = createCommandModuleExports({
 
-	command: basenameStrip(__filename),
+	command: COMMAND_KEY,
 	//aliases: [],
 	describe: `顯示 yarn.lock 信息 / show yarn.lock info`,
 
@@ -56,11 +57,12 @@ const cmdModule = createCommandModuleExports({
 
 	handler(argv)
 	{
-		const key = COMMAND_KEY;
+		const { npmClients, pmIsYarn } = detectPackageManager(argv);
 
-		//let rootData = findRoot(argv, true);
-
-		//let yl = fsYarnLockSafe(rootData.root);
+		if (!pmIsYarn)
+		{
+			console.warn(`此命令 '${COMMAND_KEY}' 不支援 ${npmClients}。 / This command '${COMMAND_KEY}' not support for ${npmClients}`);
+		}
 
 		if (argv.yarn || argv.npm || argv.shrinkwrap)
 		{
@@ -127,7 +129,7 @@ const cmdModule = createCommandModuleExports({
 					fs.writeJSONSync(file_package_lock_json, lock, {
 						spaces: 2,
 					});
-					consoleDebug.info(`package-lock.json updated`);
+					consoleDebug.info(`package-lock.json 已更新 / package-lock.json updated`);
 				}
 
 				if (argv.shrinkwrap)
@@ -135,7 +137,7 @@ const cmdModule = createCommandModuleExports({
 					fs.writeJSONSync(file_shrinkwrap_json, lock, {
 						spaces: 2,
 					});
-					consoleDebug.info(`npm-shrinkwrap.json updated`);
+					consoleDebug.info(`npm-shrinkwrap.json 已更新 / npm-shrinkwrap.json updated`);
 				}
 
 			}
@@ -157,13 +159,13 @@ const cmdModule = createCommandModuleExports({
 				{
 					if (yl.yarnlock_exists && rootData.hasWorkspace && !rootData.isWorkspace)
 					{
-						consoleDebug.warn(`package-lock.json not exists, but yarn.lock exists in workspaces`);
+						consoleDebug.warn(`package-lock.json 不存在，但 yarn.lock 存在於工作區中 / package-lock.json not exists, but yarn.lock exists in workspaces`);
 
 						let s = Dedupe(yl.yarnlock_old).yarnlock_new;
 
 						fs.writeFileSync(yarnlock_file_pkg, s);
 
-						consoleDebug.info(`yarn.lock copied`);
+						consoleDebug.info(`yarn.lock 已複製 / yarn.lock copied`);
 
 						return;
 					}
@@ -177,7 +179,7 @@ const cmdModule = createCommandModuleExports({
 
 				fs.writeFileSync(yarnlock_file_pkg, s)
 
-				consoleDebug.info(`yarn.lock updated`);
+				consoleDebug.info(`yarn.lock 已更新 / yarn.lock updated`);
 			}
 		}
 		else if (argv.duplicate || !argv.duplicate)
@@ -268,12 +270,12 @@ function _showYarnLockList(argv: Arguments<IUnpackCmdMod<typeof cmdModule>>): ar
 	if (argv.duplicate)
 	{
 		// @ts-ignore
-		console.cyan.info(`\nFound duplicate in ${chalk.yellow(ks2.length)} packages, ${chalk.yellow(len)}/${chalk.yellow(len + ks2.length)} installed version, highest is ${max}, in total ${ks.length} packages`);
+		console.cyan.info(`\n找到 ${chalk.yellow(ks2.length)} 個重複套件，${chalk.yellow(len)}/${chalk.yellow(len + ks2.length)} 個已安裝版本，最高為 ${max}，共 ${ks.length} 個套件 / Found duplicate in ${chalk.yellow(ks2.length)} packages, ${chalk.yellow(len)}/${chalk.yellow(len + ks2.length)} installed version, highest is ${max}, in total ${ks.length} packages`);
 	}
 	else
 	{
 		// @ts-ignore
-		console.cyan.info(`\nTotal ${chalk.yellow(ks.length)} packages, with ${chalk.yellow(len)}/${chalk.yellow(len + ks2.length)} installed version`);
+		console.cyan.info(`\n共 ${chalk.yellow(ks.length)} 個套件，${chalk.yellow(len)}/${chalk.yellow(len + ks2.length)} 個已安裝版本 / Total ${chalk.yellow(ks.length)} packages, with ${chalk.yellow(len)}/${chalk.yellow(len + ks2.length)} installed version`);
 	}
 
 	if (len > 0)
@@ -286,7 +288,7 @@ function _showYarnLockList(argv: Arguments<IUnpackCmdMod<typeof cmdModule>>): ar
 			},
 		});
 
-		console.cyan.info(`You can try add they to ${console.chalk.yellow('resolutions')} in package.json, for force package dedupe, ${link}`);
+		console.cyan.info(`可以嘗試將它們添加到 ${console.chalk.yellow('resolutions')} 在 package.json 中，以強制套件去重複 / You can try add they to ${console.chalk.yellow('resolutions')} in package.json, for force package dedupe, ${link}`);
 	}
 
 	return true

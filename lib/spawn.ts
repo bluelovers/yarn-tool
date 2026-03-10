@@ -9,31 +9,8 @@
 import crossSpawn, { SpawnSyncOptions } from 'cross-spawn-extra';
 import { Arguments } from 'yargs';
 import { console, consoleDebug } from './index';
-
-/**
- * 安全解析模組路徑
- * Safely resolve module path
- * @param name 模組名稱
- * @returns 模組路徑或 null
- */
-export function requireResolve(name: string)
-{
-	try
-	{
-		let ret = require.resolve(name);
-
-		if (ret)
-		{
-			return ret
-		}
-	}
-	catch (e)
-	{
-
-	}
-
-	return null;
-}
+import { normalize } from 'upath2';
+import { requireResolveExtra } from '@yarn-tool/require-resolve';
 
 /**
  * 檢查模組是否存在，若不存在則提示安裝
@@ -49,7 +26,10 @@ export function checkModileExists(argv: {
 	processExit?: boolean | number,
 })
 {
-	let ret = requireResolve(argv.requireName || argv.name);
+	let ret = requireResolveExtra(argv.requireName || argv.name, {
+		includeGlobal: true,
+		includeCurrentDirectory: true,
+	}).result;
 
 	if (!ret)
 	{

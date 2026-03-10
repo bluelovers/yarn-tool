@@ -20,6 +20,7 @@ import { join } from 'path';
 import { createDependencyTable } from '@yarn-tool/table';
 import { chalkByConsoleMaybe } from 'debug-color2';
 import { installDepsFromYarnLock } from '@yarn-tool/pkg-deps-util/lib/installDepsFromYarnLock';
+import { detectPackageManager } from '../../lib/pm';
 
 /**
  * 創建 add 命令模組
@@ -44,6 +45,8 @@ const cmdModule = createCommandModuleExports({
 
 	async handler(argv)
 	{
+		const { npmClients, pmIsYarn } = detectPackageManager(argv);
+
 		let args = argv._.slice();
 
 		if (args[0] === 'add')
@@ -59,8 +62,8 @@ const cmdModule = createCommandModuleExports({
 
 		//console.dir(argv);
 
-if (!args.length)
-{
+		if (!args.length)
+		{
 //			yargs.showHelp();
 
 			consoleDebug.error(`缺少要添加到項目的套件列表。 / Missing list of packages to add to your project.`);
@@ -83,6 +86,42 @@ if (!args.length)
 
 				// @ts-ignore
 				let flags = flagsYarnAdd(argv).filter(v => v != null);
+
+				if (!pmIsYarn)
+				{
+					flags = flags.filter(v => ![
+						'--dev',
+						'--peer',
+						'--optional',
+						'--prod',
+						'--exact',
+					].includes(v));
+
+					if (argv.exact)
+					{
+						flags.unshift('-E');
+					}
+
+					if (argv.peer)
+					{
+						flags.unshift('--save-peer');
+					}
+
+					if (argv.prod)
+					{
+						flags.unshift('-P');
+					}
+
+					if (argv.optional)
+					{
+						flags.unshift('-O');
+					}
+
+					if (argv.dev)
+					{
+						flags.unshift('-D');
+					}
+				}
 
 				const oldArgs = args.slice();
 
@@ -115,7 +154,7 @@ if (!args.length)
 						}
 					}
 
-					if (cache.yarnlock_old?.length)
+					if (pmIsYarn && cache.yarnlock_old?.length)
 					{
 						let data = await installDepsFromYarnLock(args, argv);
 
@@ -160,7 +199,7 @@ if (!args.length)
 
 					consoleDebug.debug(cmd_argv);
 
-					let cp = crossSpawn.sync('yarn', cmd_argv, {
+					let cp = crossSpawn.sync(npmClients, cmd_argv, {
 						cwd: argv.cwd,
 						stdio: 'inherit',
 					});
@@ -181,6 +220,9 @@ if (!args.length)
 						require.resolve(YT_BIN),
 
 						'types',
+
+						'--npmClients',
+						npmClients,
 
 						...oldArgs,
 
@@ -206,7 +248,7 @@ if (!args.length)
 			after(yarg, argv, cache)
 			{
 
-				if (!cache.rootData.isWorkspace && cache.rootData.hasWorkspace)
+				if (pmIsYarn && !cache.rootData.isWorkspace && cache.rootData.hasWorkspace)
 				{
 					let cp = crossSpawn.sync('yarn', [], {
 						cwd: cache.rootData.ws,
@@ -229,7 +271,7 @@ if (!args.length)
 			{
 				//console.dir(infoFromDedupeCache(cache));
 
-				if (cache.yarnlock_msg)
+				if (pmIsYarn && cache.yarnlock_msg)
 				{
 					console.log(`\n${cache.yarnlock_msg}\n`);
 				}

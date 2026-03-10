@@ -6,13 +6,16 @@
  * @created 2019/5/19
  */
 
-import { basenameStrip, createCommandModuleExports } from '../../lib/cmd_dir';
+import { basenameStrip, createCommandModuleExports, lazySpawnArgvSlice } from '../../lib/cmd_dir';
 import { console, consoleDebug } from '../../lib/index';
 import setupYarnInstallToYargs from '../../lib/cli/install';
 import { infoFromDedupeCache } from '@yarn-tool/yarnlock/lib/wrapDedupe/infoFromDedupeCache';
 import { wrapDedupe } from '@yarn-tool/yarnlock/lib/wrapDedupe/wrapDedupe';
 import crossSpawn from 'cross-spawn-extra';
 import { truncateSync } from 'fs-extra';
+import { detectPackageManager } from '../../lib/pm';
+
+const command = basenameStrip(__filename);
 
 /**
  * 創建 install 命令模組
@@ -20,7 +23,7 @@ import { truncateSync } from 'fs-extra';
  */
 const cmdModule = createCommandModuleExports({
 
-	command: basenameStrip(__filename) + ' [cwd]',
+	command: command +' [cwd]',
 	aliases: ['i'],
 	describe: `使用 yarn install 進行重複數據刪除 / do dedupe with yarn install`,
 
@@ -37,6 +40,19 @@ const cmdModule = createCommandModuleExports({
 
 	handler(argv)
 	{
+		const { npmClients, pmIsYarn } = detectPackageManager(argv);
+
+		if (!pmIsYarn)
+		{
+			lazySpawnArgvSlice({
+				command: [command, ...cmdModule.aliases],
+				bin: npmClients,
+				cmd: command,
+				argv,
+			});
+			return;
+		}
+
 		const { cwd } = argv;
 
 		let _once = true;

@@ -5,6 +5,8 @@ import { basenameStrip, createCommandModuleExports, lazySpawnArgvSlice } from '.
 import { console, consoleDebug } from '../../lib/index';
 import { wrapDedupe } from '@yarn-tool/yarnlock/lib/wrapDedupe/wrapDedupe';
 import { crossSpawnOther } from '../../lib/spawn';
+import { detectPackageManager } from '../../lib/pm';
+import { EnumPackageManager } from '@yarn-tool/detect-package-manager';
 
 const cmdModule = createCommandModuleExports({
 
@@ -40,6 +42,7 @@ const cmdModule = createCommandModuleExports({
 
 	handler(argv)
 	{
+		const { npmClients, pmIsYarn } = detectPackageManager(argv);
 
 		wrapDedupe(require('yargs'), argv, {
 
@@ -49,11 +52,11 @@ const cmdModule = createCommandModuleExports({
 			{
 				const key = basenameStrip(__filename);
 
-				crossSpawnOther('yarn', [], argv);
+				pmIsYarn && crossSpawnOther('yarn', [], argv);
 
 				lazySpawnArgvSlice({
 					command: ['upgrade', 'up', key],
-					bin: 'yarn',
+					bin: npmClients,
 					cmd: key,
 					argv,
 				})
@@ -66,7 +69,7 @@ const cmdModule = createCommandModuleExports({
 
 			end(yarg, argv, cache)
 			{
-				if (cache.yarnlock_msg)
+				if (pmIsYarn && cache.yarnlock_msg)
 				{
 					console.log(`\n${cache.yarnlock_msg}\n`);
 				}

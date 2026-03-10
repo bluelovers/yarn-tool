@@ -6,10 +6,13 @@
  * @created 2019/5/19
  */
 
-import { basenameStrip, createCommandModuleExports } from '../../lib/cmd_dir';
+import { basenameStrip, createCommandModuleExports, lazySpawnArgvSlice } from '../../lib/cmd_dir';
 import { console, consoleDebug } from '../../lib/index';
 import { infoFromDedupeCache } from '@yarn-tool/yarnlock/lib/wrapDedupe/infoFromDedupeCache';
 import { wrapDedupe } from '@yarn-tool/yarnlock/lib/wrapDedupe/wrapDedupe';
+import { detectPackageManager } from '../../lib/pm';
+
+const command = basenameStrip(__filename);
 
 /**
  * 創建 dedupe 命令模組
@@ -17,7 +20,7 @@ import { wrapDedupe } from '@yarn-tool/yarnlock/lib/wrapDedupe/wrapDedupe';
  */
 const cmdModule = createCommandModuleExports({
 
-	command: basenameStrip(__filename) + ' [cwd]',
+	command: command + ' [cwd]',
 	//aliases: [],
 	describe: `yarn.lock 的套件重複數據刪除 / package deduplication for yarn.lock`,
 	aliases: ['d'],
@@ -29,6 +32,19 @@ const cmdModule = createCommandModuleExports({
 
 	handler(argv, ...a)
 	{
+		const { npmClients, pmIsYarn } = detectPackageManager(argv);
+
+		if (!pmIsYarn)
+		{
+			lazySpawnArgvSlice({
+				command: [command, ...cmdModule.aliases],
+				bin: npmClients,
+				cmd: command,
+				argv,
+			});
+			return;
+		}
+
 		wrapDedupe(require('yargs'), argv, {
 
 			consoleDebug,

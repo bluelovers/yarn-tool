@@ -6,6 +6,7 @@ import { console, consoleDebug, filterYargsArguments } from '../../lib/index';
 import { crossSpawnOther } from '../../lib/spawn';
 import { crlf, LF } from 'crlf-normalize';
 import { array_unique_overwrite } from 'array-hyper-unique';
+import { detectPackageManager } from '../../lib/pm';
 
 const command = basenameStrip(__filename);
 
@@ -36,6 +37,19 @@ const cmdModule = createCommandModuleExports({
 
 	handler(argv)
 	{
+		const { npmClients, pmIsYarn } = detectPackageManager(argv);
+
+		if (!pmIsYarn)
+		{
+			lazySpawnArgvSlice({
+				command,
+				bin: npmClients,
+				cmd: command,
+				argv,
+			});
+			return;
+		}
+
 		const key = command;
 
 		if ('duplicate' in argv && argv.duplicate == null)
@@ -58,7 +72,7 @@ const cmdModule = createCommandModuleExports({
 			delete argv.duplicate;
 			delete argv.D;
 
-			let cp = crossSpawnOther('yarn', [
+			let cp = crossSpawnOther(npmClients, [
 				key,
 				//...fca,
 				//...argv._,

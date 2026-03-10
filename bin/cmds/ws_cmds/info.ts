@@ -7,6 +7,10 @@
  */
 
 import { basenameStrip, createCommandModuleExports, lazySpawnArgvSlice } from '../../../lib/cmd_dir';
+import { detectPackageManager } from '../../../lib/pm';
+import { console } from '../../../lib/index';
+
+const command = basenameStrip(__filename);
 
 /**
  * 創建 workspaces info 命令模組
@@ -14,7 +18,7 @@ import { basenameStrip, createCommandModuleExports, lazySpawnArgvSlice } from '.
  */
 const cmdModule = createCommandModuleExports({
 
-	command: basenameStrip(__filename),
+	command,
 	//aliases: [],
 	describe: `顯示工作區域信息 / Show information about your workspaces.`,
 
@@ -27,6 +31,13 @@ const cmdModule = createCommandModuleExports({
 	handler(argv)
 	{
 		const key = basenameStrip(__filename);
+
+		const { npmClients, pmIsYarn } = detectPackageManager(argv);
+
+		if (!pmIsYarn)
+		{
+			console.warn(`此命令 'ws ${command}' 不支援 ${npmClients}。 / This command 'ws ${command}' not support for ${npmClients}`);
+		}
 
 		lazySpawnArgvSlice({
 			command: key,

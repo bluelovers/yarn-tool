@@ -9,6 +9,7 @@ import yargs from 'yargs';
 import { extname, join } from 'upath2';
 import { updateNotifier } from '@yarn-tool/update-notifier';
 import { osLocaleSync } from '../lib/osLocaleSync';
+import { cliArgv } from '../lib/argv';
 
 /**
  * 如果是 .js 文件且未使用 ts-node 執行，則安裝 source-map-support
@@ -36,33 +37,7 @@ updateNotifier(join(__dirname, '..'));
  * 創建 Yargs CLI 實例
  * Create Yargs CLI instance
  */
-let cli = yargs
-	.option('cwd', {
-		desc: `目前工作目錄或套件目錄 / Current working directory or package directory`,
-		normalize: true,
-		default: process.cwd(),
-	})
-	.option('skipCheckWorkspace', {
-		alias: ['W'],
-		desc: `搜尋 yarn.lock、套件根目錄、工作區根目錄時使用 (不同於 --ignore-workspace-root-check) / Use for searching yarn.lock, pkg root, workspace root (not same as --ignore-workspace-root-check)`,
-		boolean: true,
-	})
-	.option('yt-debug-mode', {
-		desc: `啟用除錯模式 / Enable debug mode`,
-		boolean: true,
-	})
-	.alias('v', 'version')
-	.alias('h', 'help')
-	.help('help')
-	.recommendCommands()
-	// .locale(osLocaleSync())
-	.commandDir(join(__dirname, 'cmds'))
-	.help(true)
-	.showHelpOnFail(true)
-	.strict()
-	.demandCommand()
-	.scriptName('yt')
-;
+let cli = cliArgv();
 
 /**
  * 解析命令行參數

@@ -9,6 +9,7 @@
 import { basenameStrip, commandDirJoin, createCommandModuleExports } from '../../lib/cmd_dir';
 import { checkModileExists, crossSpawnOther, processArgvSlice } from '../../lib/spawn';
 import { Arguments } from 'yargs';
+import { detectPackageManager } from '../../lib/pm';
 
 /**
  * 創建 workspaces 命令模組
@@ -109,7 +110,7 @@ function lazyLerna<A extends Arguments<any>>(command: string, cmd: string, argv:
 	}),
 } = {})
 {
-	let ret = checkModileExists({
+	let ret = detectPackageManager(null).pmMap['lerna'] || checkModileExists({
 		name: 'lerna',
 	});
 

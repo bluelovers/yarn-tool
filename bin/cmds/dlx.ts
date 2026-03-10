@@ -2,6 +2,7 @@
  * Created by user on 2019/5/19.
  */
 import { basenameStrip, createCommandModuleExports, lazySpawnArgvSlice } from '../../lib/cmd_dir';
+import { detectPackageManager } from '../../lib/pm';
 
 const command = basenameStrip(__filename);
 
@@ -31,9 +32,11 @@ const cmdModule = createCommandModuleExports({
 
 	handler(argv)
 	{
+		const { npmClients, pmIsYarn } = detectPackageManager(argv);
+
 		lazySpawnArgvSlice({
 			command,
-			bin: 'yarn',
+			bin: npmClients,
 			cmd: command,
 			argv,
 		})

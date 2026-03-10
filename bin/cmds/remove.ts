@@ -4,6 +4,7 @@
 import { basenameStrip, createCommandModuleExports, lazySpawnArgvSlice } from '../../lib/cmd_dir';
 import { console, consoleDebug } from '../../lib/index';
 import { wrapDedupe } from '@yarn-tool/yarnlock/lib/wrapDedupe/wrapDedupe';
+import { detectPackageManager } from '../../lib/pm';
 
 const command = basenameStrip(__filename);
 
@@ -22,6 +23,8 @@ const cmdModule = createCommandModuleExports({
 
 	handler(argv)
 	{
+		const { npmClients, pmIsYarn } = detectPackageManager(argv);
+
 		wrapDedupe(require('yargs'), argv, {
 
 			consoleDebug,
@@ -30,7 +33,7 @@ const cmdModule = createCommandModuleExports({
 			{
 				lazySpawnArgvSlice({
 					command,
-					bin: 'yarn',
+					bin: npmClients,
 					cmd: command,
 					argv,
 				})
@@ -40,7 +43,7 @@ const cmdModule = createCommandModuleExports({
 			{
 				//console.dir(infoFromDedupeCache(cache));
 
-				if (cache.yarnlock_msg)
+				if (pmIsYarn && cache.yarnlock_msg)
 				{
 					console.log(`\n${cache.yarnlock_msg}\n`);
 				}

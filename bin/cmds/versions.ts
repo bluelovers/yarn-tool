@@ -2,6 +2,8 @@
  * Created by user on 2019/5/19.
  */
 import { basenameStrip, createCommandModuleExports, lazySpawnArgvSlice } from '../../lib/cmd_dir';
+import { detectPackageManager } from '../../lib/pm';
+import { EnumPackageManager } from '@yarn-tool/detect-package-manager';
 
 const cmdModule = createCommandModuleExports({
 
@@ -19,10 +21,12 @@ const cmdModule = createCommandModuleExports({
 	{
 		const key = basenameStrip(__filename);
 
+		const { npmClients, pmIsYarn } = detectPackageManager(argv);
+
 		lazySpawnArgvSlice({
 			command: key,
-			bin: 'yarn',
-			cmd: key,
+			bin: npmClients,
+			cmd: pmIsYarn ? key : 'version',
 			argv,
 		})
 	},
