@@ -3,6 +3,47 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.2.4](https://github.com/bluelovers/yarn-tool/compare/yarn-tool@2.2.2...yarn-tool@2.2.4) (2026-03-10)
+
+
+### BREAKING CHANGES
+
+* **i18n:** 移除 lib/index.ts 的預設匯出 (default export)，請改用命名匯出
+
+
+
+### ✨　Features
+
+* **i18n:** 新增 CLI 命令描述的中文翻譯 ([73047cd](https://github.com/bluelovers/yarn-tool/commit/73047cd18551a7bcd2651bec10c46444bdf66807))
+
+
+### 📦　Code Refactoring
+
+* remove unused library modules and update imports ([57a1003](https://github.com/bluelovers/yarn-tool/commit/57a1003909c9074fe885173fb9290c93648025b0))
+
+
+### 📚　Documentation
+
+* add JSDoc documentation comments to command modules and core libraries ([6e911ee](https://github.com/bluelovers/yarn-tool/commit/6e911ee5ecf0a8716a98f3e389e540600bb7de1b))
+* **i18n:** 新增 CLI 選項描述的中文翻譯 ([e0d9ea1](https://github.com/bluelovers/yarn-tool/commit/e0d9ea1611016dc5c185a7170526fc5ac37e47c6))
+
+
+### 🛠　Build System
+
+* update build ([b32812a](https://github.com/bluelovers/yarn-tool/commit/b32812a0069cca9c14344354e86c167136953526))
+
+
+### ♻️　Chores
+
+* **deps:** update dependencies and include `tsx` support check in CLI startup logic, bump version to 2.2.3 ([647075b](https://github.com/bluelovers/yarn-tool/commit/647075b314a52a920866133d42ec69e09468ae03))
+
+
+### 🔖　Miscellaneous
+
+* . ([8b4a922](https://github.com/bluelovers/yarn-tool/commit/8b4a92268491cea9bb93549ffa8bdddc07fc5f45))
+
+
+
 ## [2.2.2](https://github.com/bluelovers/yarn-tool/compare/yarn-tool@2.1.6...yarn-tool@2.2.2) (2026-03-02)
 
 
