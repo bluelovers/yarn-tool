@@ -14,9 +14,10 @@ const read_1 = require("@yarn-tool/yarnlock-fs/lib/read");
 const yarnlock_parse_1 = require("@yarn-tool/yarnlock-parse");
 const path = require("upath2");
 const fs = require("fs-extra");
+const pm_1 = require("../../lib/pm");
 const COMMAND_KEY = (0, cmd_dir_1.basenameStrip)(__filename);
 const cmdModule = (0, cmd_dir_1.createCommandModuleExports)({
-    command: (0, cmd_dir_1.basenameStrip)(__filename),
+    command: COMMAND_KEY,
     //aliases: [],
     describe: `顯示 yarn.lock 信息 / show yarn.lock info`,
     builder(yargs) {
@@ -49,9 +50,10 @@ const cmdModule = (0, cmd_dir_1.createCommandModuleExports)({
             .example(`$0 ${COMMAND_KEY} --duplicate false`, `show packages list by yarn.lock`);
     },
     handler(argv) {
-        const key = COMMAND_KEY;
-        //let rootData = findRoot(argv, true);
-        //let yl = fsYarnLockSafe(rootData.root);
+        const { npmClients, pmIsYarn } = (0, pm_1.detectPackageManager)(argv);
+        if (!pmIsYarn) {
+            index_1.console.warn(`此命令 '${COMMAND_KEY}' 不支援 ${npmClients}。 / This command '${COMMAND_KEY}' not support for ${npmClients}`);
+        }
         if (argv.yarn || argv.npm || argv.shrinkwrap) {
             let rootData = (0, index_1.findRoot)(argv, true);
             let yl = (0, read_1.fsYarnLockSafe)(rootData.root);
@@ -94,13 +96,13 @@ const cmdModule = (0, cmd_dir_1.createCommandModuleExports)({
                     fs.writeJSONSync(file_package_lock_json, lock, {
                         spaces: 2,
                     });
-                    index_1.consoleDebug.info(`package-lock.json updated`);
+                    index_1.consoleDebug.info(`package-lock.json 已更新 / package-lock.json updated`);
                 }
                 if (argv.shrinkwrap) {
                     fs.writeJSONSync(file_shrinkwrap_json, lock, {
                         spaces: 2,
                     });
-                    index_1.consoleDebug.info(`npm-shrinkwrap.json updated`);
+                    index_1.consoleDebug.info(`npm-shrinkwrap.json 已更新 / npm-shrinkwrap.json updated`);
                 }
             }
             else if (argv.yarn) {
@@ -113,10 +115,10 @@ const cmdModule = (0, cmd_dir_1.createCommandModuleExports)({
                 }
                 if (!file_package_lock_json_exists) {
                     if (yl.yarnlock_exists && rootData.hasWorkspace && !rootData.isWorkspace) {
-                        index_1.consoleDebug.warn(`package-lock.json not exists, but yarn.lock exists in workspaces`);
+                        index_1.consoleDebug.warn(`package-lock.json 不存在，但 yarn.lock 存在於工作區中 / package-lock.json not exists, but yarn.lock exists in workspaces`);
                         let s = (0, dedupe_1.Dedupe)(yl.yarnlock_old).yarnlock_new;
                         fs.writeFileSync(yarnlock_file_pkg, s);
-                        index_1.consoleDebug.info(`yarn.lock copied`);
+                        index_1.consoleDebug.info(`yarn.lock 已複製 / yarn.lock copied`);
                         return;
                     }
                     (0, index_1.yargsProcessExit)(new Error(`package-lock.json 不存在 / package-lock.json not exists`));
@@ -124,7 +126,7 @@ const cmdModule = (0, cmd_dir_1.createCommandModuleExports)({
                 let s = npmToYarn(fs.readFileSync(file_package_lock_json).toString(), rootData.root);
                 s = (0, dedupe_1.Dedupe)(s).yarnlock_new;
                 fs.writeFileSync(yarnlock_file_pkg, s);
-                index_1.consoleDebug.info(`yarn.lock updated`);
+                index_1.consoleDebug.info(`yarn.lock 已更新 / yarn.lock updated`);
             }
         }
         else if (argv.duplicate || !argv.duplicate) {
@@ -173,11 +175,11 @@ function _showYarnLockList(argv) {
     let chalk = index_1.console.chalk;
     if (argv.duplicate) {
         // @ts-ignore
-        index_1.console.cyan.info(`\nFound duplicate in ${chalk.yellow(ks2.length)} packages, ${chalk.yellow(len)}/${chalk.yellow(len + ks2.length)} installed version, highest is ${max}, in total ${ks.length} packages`);
+        index_1.console.cyan.info(`\n找到 ${chalk.yellow(ks2.length)} 個重複套件，${chalk.yellow(len)}/${chalk.yellow(len + ks2.length)} 個已安裝版本，最高為 ${max}，共 ${ks.length} 個套件 / Found duplicate in ${chalk.yellow(ks2.length)} packages, ${chalk.yellow(len)}/${chalk.yellow(len + ks2.length)} installed version, highest is ${max}, in total ${ks.length} packages`);
     }
     else {
         // @ts-ignore
-        index_1.console.cyan.info(`\nTotal ${chalk.yellow(ks.length)} packages, with ${chalk.yellow(len)}/${chalk.yellow(len + ks2.length)} installed version`);
+        index_1.console.cyan.info(`\n共 ${chalk.yellow(ks.length)} 個套件，${chalk.yellow(len)}/${chalk.yellow(len + ks2.length)} 個已安裝版本 / Total ${chalk.yellow(ks.length)} packages, with ${chalk.yellow(len)}/${chalk.yellow(len + ks2.length)} installed version`);
     }
     if (len > 0) {
         const terminalLink = require('terminal-link');
@@ -186,7 +188,7 @@ function _showYarnLockList(argv) {
                 return text + ' ' + url;
             },
         });
-        index_1.console.cyan.info(`You can try add they to ${index_1.console.chalk.yellow('resolutions')} in package.json, for force package dedupe, ${link}`);
+        index_1.console.cyan.info(`可以嘗試將它們添加到 ${index_1.console.chalk.yellow('resolutions')} 在 package.json 中，以強制套件去重複 / You can try add they to ${index_1.console.chalk.yellow('resolutions')} in package.json, for force package dedupe, ${link}`);
     }
     return true;
 }

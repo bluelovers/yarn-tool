@@ -5,6 +5,7 @@
 const cmd_dir_1 = require("../../lib/cmd_dir");
 const index_1 = require("../../lib/index");
 const wrapDedupe_1 = require("@yarn-tool/yarnlock/lib/wrapDedupe/wrapDedupe");
+const pm_1 = require("../../lib/pm");
 const command = (0, cmd_dir_1.basenameStrip)(__filename);
 const cmdModule = (0, cmd_dir_1.createCommandModuleExports)({
     command,
@@ -15,19 +16,20 @@ const cmdModule = (0, cmd_dir_1.createCommandModuleExports)({
             .strict(false);
     },
     handler(argv) {
+        const { npmClients, pmIsYarn } = (0, pm_1.detectPackageManager)(argv);
         (0, wrapDedupe_1.wrapDedupe)(require('yargs'), argv, {
             consoleDebug: index_1.consoleDebug,
             main(yarg, argv, cache) {
                 (0, cmd_dir_1.lazySpawnArgvSlice)({
                     command,
-                    bin: 'yarn',
+                    bin: npmClients,
                     cmd: command,
                     argv,
                 });
             },
             end(yarg, argv, cache) {
                 //console.dir(infoFromDedupeCache(cache));
-                if (cache.yarnlock_msg) {
+                if (pmIsYarn && cache.yarnlock_msg) {
                     index_1.console.log(`\n${cache.yarnlock_msg}\n`);
                 }
             },

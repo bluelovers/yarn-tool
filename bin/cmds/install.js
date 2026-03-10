@@ -14,12 +14,14 @@ const infoFromDedupeCache_1 = require("@yarn-tool/yarnlock/lib/wrapDedupe/infoFr
 const wrapDedupe_1 = require("@yarn-tool/yarnlock/lib/wrapDedupe/wrapDedupe");
 const cross_spawn_extra_1 = tslib_1.__importDefault(require("cross-spawn-extra"));
 const fs_extra_1 = require("fs-extra");
+const pm_1 = require("../../lib/pm");
+const command = (0, cmd_dir_1.basenameStrip)(__filename);
 /**
  * 創建 install 命令模組
  * Create install command module
  */
 const cmdModule = (0, cmd_dir_1.createCommandModuleExports)({
-    command: (0, cmd_dir_1.basenameStrip)(__filename) + ' [cwd]',
+    command: command + ' [cwd]',
     aliases: ['i'],
     describe: `使用 yarn install 進行重複數據刪除 / do dedupe with yarn install`,
     builder(yargs) {
@@ -31,6 +33,16 @@ const cmdModule = (0, cmd_dir_1.createCommandModuleExports)({
         });
     },
     handler(argv) {
+        const { npmClients, pmIsYarn } = (0, pm_1.detectPackageManager)(argv);
+        if (!pmIsYarn) {
+            (0, cmd_dir_1.lazySpawnArgvSlice)({
+                command: [command, ...cmdModule.aliases],
+                bin: npmClients,
+                cmd: command,
+                argv,
+            });
+            return;
+        }
         const { cwd } = argv;
         let _once = true;
         (0, wrapDedupe_1.wrapDedupe)(require('yargs'), argv, {

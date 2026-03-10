@@ -20,26 +20,6 @@ export declare const console: Console2;
  */
 export declare const consoleDebug: Console2;
 /**
- * 導出 findRoot 函數，用於尋找項目根目錄
- * Export findRoot function for finding project root directory
- */
-export { findRoot };
-/**
- * 路徑標準化函數
- * Path normalization function
- * @param input 輸入路徑
- * @returns 標準化後的路徑
- */
-export declare function pathNormalize(input: string): string;
-/**
- * 比較兩個路徑是否相等（標準化後比較）
- * Compare if two paths are equal (after normalization)
- * @param a 第一個路徑
- * @param b 第二個路徑
- * @returns 路徑是否相等
- */
-export declare function pathEqual(a: string, b: string): boolean;
-/**
  * 過濾 Yargs 參數，只保留指定的鍵或符合條件的鍵值對
  * Filter Yargs arguments, keeping only specified keys or key-value pairs that meet conditions
  * @param argv Yargs 參數對象

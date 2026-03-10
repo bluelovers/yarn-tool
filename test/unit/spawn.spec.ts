@@ -11,8 +11,6 @@
 
 import path from 'upath2';
 import {
-	requireResolve,
-	checkModileExists,
 	_crossSpawnOther,
 	processArgvSlice,
 } from '../../lib/spawn';
@@ -23,20 +21,6 @@ import { __ROOT } from '../../__root';
 
 describe('lib/spawn', () =>
 {
-	describe('requireResolve', () =>
-	{
-		it('should resolve existing module', () =>
-		{
-			const result = requireResolve('upath2/package.json');
-			expect(result).toBe(normalize(realpathSync(join(__ROOT, 'node_modules/upath2/package.json'))));
-		});
-
-		it('should return null for non-existing module', () =>
-		{
-			const result = requireResolve('non-existing-module-xyz123');
-			expect(result).toBeNull();
-		});
-	});
 
 	describe('_crossSpawnOther', () =>
 	{

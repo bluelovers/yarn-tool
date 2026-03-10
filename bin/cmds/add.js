@@ -21,6 +21,7 @@ const path_1 = require("path");
 const table_1 = require("@yarn-tool/table");
 const debug_color2_1 = require("debug-color2");
 const installDepsFromYarnLock_1 = require("@yarn-tool/pkg-deps-util/lib/installDepsFromYarnLock");
+const pm_1 = require("../../lib/pm");
 /**
  * 創建 add 命令模組
  * Create add command module
@@ -39,6 +40,7 @@ const cmdModule = (0, cmd_dir_1.createCommandModuleExports)({
             .strict(false);
     },
     async handler(argv) {
+        const { npmClients, pmIsYarn } = (0, pm_1.detectPackageManager)(argv);
         let args = argv._.slice();
         if (args[0] === 'add') {
             args.shift();
@@ -63,6 +65,30 @@ const cmdModule = (0, cmd_dir_1.createCommandModuleExports)({
                 let retBreak;
                 // @ts-ignore
                 let flags = (0, flagsYarnAdd_1.flagsYarnAdd)(argv).filter(v => v != null);
+                if (!pmIsYarn) {
+                    flags = flags.filter(v => ![
+                        '--dev',
+                        '--peer',
+                        '--optional',
+                        '--prod',
+                        '--exact',
+                    ].includes(v));
+                    if (argv.exact) {
+                        flags.unshift('-E');
+                    }
+                    if (argv.peer) {
+                        flags.unshift('--save-peer');
+                    }
+                    if (argv.prod) {
+                        flags.unshift('-P');
+                    }
+                    if (argv.optional) {
+                        flags.unshift('-O');
+                    }
+                    if (argv.dev) {
+                        flags.unshift('-D');
+                    }
+                }
                 const oldArgs = args.slice();
                 if (args.length) {
                     let data = (0, installDeps_1.filterInstallDeps)(args, argv);
@@ -81,7 +107,7 @@ const cmdModule = (0, cmd_dir_1.createCommandModuleExports)({
                             retBreak = true;
                         }
                     }
-                    if ((_a = cache.yarnlock_old) === null || _a === void 0 ? void 0 : _a.length) {
+                    if (pmIsYarn && ((_a = cache.yarnlock_old) === null || _a === void 0 ? void 0 : _a.length)) {
                         let data = await (0, installDepsFromYarnLock_1.installDepsFromYarnLock)(args, argv);
                         if (data === null || data === void 0 ? void 0 : data.updated) {
                             let chalk = (0, debug_color2_1.chalkByConsoleMaybe)(index_1.console);
@@ -107,7 +133,7 @@ const cmdModule = (0, cmd_dir_1.createCommandModuleExports)({
                         ...flags,
                     ].filter(v => v != null);
                     index_1.consoleDebug.debug(cmd_argv);
-                    let cp = cross_spawn_extra_1.default.sync('yarn', cmd_argv, {
+                    let cp = cross_spawn_extra_1.default.sync(npmClients, cmd_argv, {
                         cwd: argv.cwd,
                         stdio: 'inherit',
                     });
@@ -122,6 +148,8 @@ const cmdModule = (0, cmd_dir_1.createCommandModuleExports)({
                     let cp = cross_spawn_extra_1.default.sync('node', [
                         require.resolve(index_2.YT_BIN),
                         'types',
+                        '--npmClients',
+                        npmClients,
                         ...oldArgs,
                         ...flags,
                     ], {
@@ -138,7 +166,7 @@ const cmdModule = (0, cmd_dir_1.createCommandModuleExports)({
                 return retBreak;
             },
             after(yarg, argv, cache) {
-                if (!cache.rootData.isWorkspace && cache.rootData.hasWorkspace) {
+                if (pmIsYarn && !cache.rootData.isWorkspace && cache.rootData.hasWorkspace) {
                     let cp = cross_spawn_extra_1.default.sync('yarn', [], {
                         cwd: cache.rootData.ws,
                         stdio: 'inherit',
@@ -153,7 +181,7 @@ const cmdModule = (0, cmd_dir_1.createCommandModuleExports)({
             },
             end(yarg, argv, cache) {
                 //console.dir(infoFromDedupeCache(cache));
-                if (cache.yarnlock_msg) {
+                if (pmIsYarn && cache.yarnlock_msg) {
                     index_1.console.log(`\n${cache.yarnlock_msg}\n`);
                 }
             },

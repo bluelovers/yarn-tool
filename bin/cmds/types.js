@@ -18,6 +18,7 @@ const cross_spawn_extra_1 = tslib_1.__importDefault(require("cross-spawn-extra")
 const setupYarnAddTypesToYargs_1 = require("@yarn-tool/pkg-deps-util/lib/cli/setupYarnAddTypesToYargs");
 const assertExecInstall_1 = require("@yarn-tool/pkg-deps-util/lib/cli/assertExecInstall");
 const wrapDedupe_1 = require("@yarn-tool/yarnlock/lib/wrapDedupe/wrapDedupe");
+const pm_1 = require("../../lib/pm");
 /**
  * 創建 types 命令模組
  * Create types command module
@@ -121,6 +122,7 @@ const cmdModule = (0, cmd_dir_1.createCommandModuleExports)({
             }
         }
         if (list.length) {
+            const { npmClients, pmIsYarn } = (0, pm_1.detectPackageManager)(argv);
             (0, wrapDedupe_1.wrapDedupe)(require('yargs'), argv, {
                 consoleDebug: index_1.consoleDebug,
                 main(yarg, argv, cache) {
@@ -129,7 +131,7 @@ const cmdModule = (0, cmd_dir_1.createCommandModuleExports)({
                         ...list,
                         ...flags2,
                     ].filter(v => v != null);
-                    const cp = cross_spawn_extra_1.default.sync('yarn', cmd_argv, {
+                    const cp = cross_spawn_extra_1.default.sync(npmClients, cmd_argv, {
                         cwd: argv.cwd,
                         stdio: 'inherit',
                     });
@@ -141,7 +143,7 @@ const cmdModule = (0, cmd_dir_1.createCommandModuleExports)({
                     }
                 },
                 end(yarg, argv, cache) {
-                    if (cache.yarnlock_msg) {
+                    if (pmIsYarn && cache.yarnlock_msg) {
                         index_1.console.log(`\n${cache.yarnlock_msg}\n`);
                     }
                 },

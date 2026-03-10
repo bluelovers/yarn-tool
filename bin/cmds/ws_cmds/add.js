@@ -10,6 +10,7 @@ const cmd_dir_1 = require("../../../lib/cmd_dir");
 const index_1 = require("../../../index");
 const index_2 = require("../../../lib/index");
 const setupYarnAddToYargs_1 = require("@yarn-tool/pkg-deps-util/lib/cli/setupYarnAddToYargs");
+const find_root_1 = require("@yarn-tool/find-root");
 /**
  * 創建 workspaces add 命令模組
  * Create workspaces add command module
@@ -29,7 +30,7 @@ const cmdModule = (0, cmd_dir_1.createCommandModuleExports)({
     },
     handler(argv) {
         const key = (0, cmd_dir_1.basenameStrip)(__filename);
-        let rootData = (0, index_2.findRoot)({
+        let rootData = (0, find_root_1.findRoot)({
             ...argv,
         }, true);
         if (!rootData.hasWorkspace) {

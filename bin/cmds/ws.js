@@ -8,6 +8,7 @@
  */
 const cmd_dir_1 = require("../../lib/cmd_dir");
 const spawn_1 = require("../../lib/spawn");
+const pm_1 = require("../../lib/pm");
 /**
  * 創建 workspaces 命令模組
  * Create workspaces command module
@@ -75,7 +76,7 @@ const cmdModule = (0, cmd_dir_1.createCommandModuleExports)({
  * @returns 子進程執行結果
  */
 function lazyLerna(command, cmd, argv, opts = {}) {
-    let ret = (0, spawn_1.checkModileExists)({
+    let ret = (0, pm_1.detectPackageManager)(null).pmMap['lerna'] || (0, spawn_1.checkModileExists)({
         name: 'lerna',
     });
     if (!ret) {

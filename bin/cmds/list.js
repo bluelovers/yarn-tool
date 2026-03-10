@@ -7,6 +7,7 @@ const index_1 = require("../../lib/index");
 const spawn_1 = require("../../lib/spawn");
 const crlf_normalize_1 = require("crlf-normalize");
 const array_hyper_unique_1 = require("array-hyper-unique");
+const pm_1 = require("../../lib/pm");
 const command = (0, cmd_dir_1.basenameStrip)(__filename);
 const cmdModule = (0, cmd_dir_1.createCommandModuleExports)({
     command,
@@ -30,6 +31,16 @@ const cmdModule = (0, cmd_dir_1.createCommandModuleExports)({
             .strict(false);
     },
     handler(argv) {
+        const { npmClients, pmIsYarn } = (0, pm_1.detectPackageManager)(argv);
+        if (!pmIsYarn) {
+            (0, cmd_dir_1.lazySpawnArgvSlice)({
+                command,
+                bin: npmClients,
+                cmd: command,
+                argv,
+            });
+            return;
+        }
         const key = command;
         if ('duplicate' in argv && argv.duplicate == null) {
             argv.duplicate = true;
@@ -44,7 +55,7 @@ const cmdModule = (0, cmd_dir_1.createCommandModuleExports)({
         if (argv.duplicate) {
             delete argv.duplicate;
             delete argv.D;
-            let cp = (0, spawn_1.crossSpawnOther)('yarn', [
+            let cp = (0, spawn_1.crossSpawnOther)(npmClients, [
                 key,
                 //...fca,
                 //...argv._,

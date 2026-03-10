@@ -10,8 +10,6 @@
 /// <reference types="node" />
 
 import {
-	pathNormalize,
-	pathEqual,
 	filterYargsArguments,
 	lazyFlags,
 } from '../../lib/index';

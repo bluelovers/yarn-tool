@@ -8,13 +8,6 @@
 import { SpawnSyncOptions } from 'cross-spawn-extra';
 import { Arguments } from 'yargs';
 /**
- * 安全解析模組路徑
- * Safely resolve module path
- * @param name 模組名稱
- * @returns 模組路徑或 null
- */
-export declare function requireResolve(name: string): string;
-/**
  * 檢查模組是否存在，若不存在則提示安裝
  * Check if module exists, prompt installation if not
  * @param argv 檢查配置對象
