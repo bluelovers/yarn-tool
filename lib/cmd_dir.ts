@@ -2,6 +2,7 @@ import { Arguments, Argv, CommandModule, Options } from 'yargs';
 import { basename, extname, join } from 'upath2';
 import { crossSpawnOther, processArgvSlice } from './spawn';
 import { SpawnSyncOptions } from 'cross-spawn-extra';
+import { consoleDebug } from '.';
 
 /**
  * Yargs 參數解包接口
@@ -162,14 +163,24 @@ export function lazySpawnArgvSlice(options: {
 		cwd: string
 	},
 	crossSpawnOptions?: SpawnSyncOptions
+	fnCmdList?(cmd_list: string[]): string[],
 })
 {
 	let cmd_list = processArgvSlice(options.command).argv;
 
-	return crossSpawnOther(options.bin, [
+	if (options.fnCmdList)
+	{
+		cmd_list = options.fnCmdList(cmd_list);
+	}
+
+	const args = [
 
 		...(Array.isArray(options.cmd) ? options.cmd : [options.cmd]),
 
 		...cmd_list,
-	], options.argv, options.crossSpawnOptions);
+	];
+
+	// consoleDebug.debug(options.bin, args.join(' '));
+
+	return crossSpawnOther(options.bin, args, options.argv, options.crossSpawnOptions);
 }

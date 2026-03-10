@@ -12,8 +12,10 @@ import setupYarnInstallToYargs from '../../lib/cli/install';
 import { infoFromDedupeCache } from '@yarn-tool/yarnlock/lib/wrapDedupe/infoFromDedupeCache';
 import { wrapDedupe } from '@yarn-tool/yarnlock/lib/wrapDedupe/wrapDedupe';
 import crossSpawn from 'cross-spawn-extra';
-import { truncateSync } from 'fs-extra';
+import { truncateSync, removeSync, existsSync } from 'fs-extra';
 import { detectPackageManager } from '../../lib/pm';
+import findRoot from '@yarn-tool/find-root';
+import { join } from 'upath2';
 
 const command = basenameStrip(__filename);
 
@@ -44,11 +46,33 @@ const cmdModule = createCommandModuleExports({
 
 		if (!pmIsYarn)
 		{
+			console.dir(argv)
+
+			if (argv.resetLockfile)
+			{
+				const lockfile = join(findRoot({
+					cwd: argv.cwd,
+				}, true).root, 'pnpm-lock.yaml');
+
+				if (existsSync(lockfile))
+				{
+					consoleDebug.red.info(`'--reset-lockfile' 模式已啟用，重置當前鎖定文件。 / '--reset-lockfile' mode is enabled, reset current lockfile.\n${lockfile}`);
+					removeSync(lockfile);
+				}
+			}
+
 			lazySpawnArgvSlice({
 				command: [command, ...cmdModule.aliases],
 				bin: npmClients,
 				cmd: command,
 				argv,
+				fnCmdList(cmd_list)
+				{
+					return cmd_list.filter((key) => ![
+						'--resetLockfile',
+						'-L',
+					].includes(key));
+				}
 			});
 			return;
 		}
