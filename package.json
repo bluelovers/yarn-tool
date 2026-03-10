@@ -1,7 +1,7 @@
 {
   "name": "yarn-tool",
   "version": "3.0.0",
-  "description": "yarn cli tool helper",
+  "description": "yarn/pnpm/lerna cli tool helper - support pnpm and yarn",
   "keywords": [
     "cli",
     "data deduplication",
@@ -17,6 +17,7 @@
     "package",
     "package manager",
     "packages",
+    "pnpm",
     "project",
     "tool",
     "workspace",
@@ -24,7 +25,8 @@
     "ws",
     "yarn",
     "yarn-tool",
-    "yarn.lock"
+    "yarn.lock",
+    "pnpm-lock.yaml"
   ],
   "homepage": "https://github.com/bluelovers/yarn-tool#readme",
   "bugs": {

@@ -1,6 +1,8 @@
 # README
 
-    a yarn cli tool helper
+> ⚠️ **BREAKING CHANGE (v3+)**: 從 v3 開始，指令預設支援 pnpm。若要使用 yarn，需明確指定 `--npmClients yarn` 或確保系統中無 pnpm。
+
+---
 
 ## install
 
