@@ -55,7 +55,7 @@ let cli = yargs
 	.alias('h', 'help')
 	.help('help')
 	.recommendCommands()
-	.locale(osLocaleSync())
+	// .locale(osLocaleSync())
 	.commandDir(join(__dirname, 'cmds'))
 	.help(true)
 	.showHelpOnFail(true)

@@ -9,7 +9,6 @@ const tslib_1 = require("tslib");
 const yargs_1 = tslib_1.__importDefault(require("yargs"));
 const upath2_1 = require("upath2");
 const update_notifier_1 = require("@yarn-tool/update-notifier");
-const osLocaleSync_1 = require("../lib/osLocaleSync");
 /**
  * 如果是 .js 文件且未使用 ts-node 執行，則安裝 source-map-support
  * Install source-map-support if running as .js file without ts-node
@@ -51,7 +50,7 @@ let cli = yargs_1.default
     .alias('h', 'help')
     .help('help')
     .recommendCommands()
-    .locale((0, osLocaleSync_1.osLocaleSync)())
+    // .locale(osLocaleSync())
     .commandDir((0, upath2_1.join)(__dirname, 'cmds'))
     .help(true)
     .showHelpOnFail(true)
