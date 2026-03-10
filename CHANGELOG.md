@@ -3,6 +3,46 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.0.2](https://github.com/bluelovers/yarn-tool/compare/yarn-tool@2.2.4...yarn-tool@3.0.2) (2026-03-10)
+
+
+### BREAKING CHANGES
+
+* 更新 README 與 package.json 以反映 v3+ 的 pnpm 支援
+* 指令現在預設支援 pnpm，需透過 --npmClients 指定使用的套件管理器
+* 指令現在預設優先使用 pnpm，若要使用 yarn 需明確指定 `--npmClients yarn` 或確保系統中無 pnpm
+* disable locale setting in yarn-tool for speed up
+
+
+
+### 🐛　Bug Fixes
+
+* **deps:** 將 findRoot 改為直接從 @yarn-tool/find-root 匯入 ([2c48f76](https://github.com/bluelovers/yarn-tool/commit/2c48f7617b526cf5fa515c1f9c481043b9038290))
+* **install:** 新增 --reset-lockfile 選項支援 pnpm ([11d1a01](https://github.com/bluelovers/yarn-tool/commit/11d1a018e596507167507b5e6da40debc49d92b0))
+
+
+### 📦　Code Refactoring
+
+* 新增 pnpm 支援並重構指令以支援動態套件管理器偵測 ([74f245c](https://github.com/bluelovers/yarn-tool/commit/74f245cfefb08b423c6afc956801ab36210000ca))
+
+
+### 📚　Documentation
+
+* 更新 README 與 package.json 以反映 v3+ 的 pnpm 支援 ([25ea228](https://github.com/bluelovers/yarn-tool/commit/25ea228fbefd5c3e44469e903207095dca1a430f))
+
+
+### 🛠　Build System
+
+* 新增 pnpm 支援並重構指令以支援動態套件管理器偵測 ([eb52402](https://github.com/bluelovers/yarn-tool/commit/eb52402f05c17ea6697feda63ace08037bf5f4e7))
+* **install:** 新增 --reset-lockfile 選項支援 pnpm ([9ee2c2f](https://github.com/bluelovers/yarn-tool/commit/9ee2c2fcd5460bc3204ce70b0cf02278bc8df051))
+
+
+### ♻️　Chores
+
+* disable locale setting in yarn-tool for speed up ([a6f6112](https://github.com/bluelovers/yarn-tool/commit/a6f6112c8303f3ec344951fae0b22fcf05ea96df))
+
+
+
 ## [2.2.4](https://github.com/bluelovers/yarn-tool/compare/yarn-tool@2.2.2...yarn-tool@2.2.4) (2026-03-10)
 
 

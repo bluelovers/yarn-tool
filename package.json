@@ -1,6 +1,6 @@
 {
   "name": "yarn-tool",
-  "version": "3.0.1",
+  "version": "3.0.2",
   "description": "yarn/pnpm/lerna cli tool helper - support pnpm and yarn",
   "keywords": [
     "cli",
@@ -52,8 +52,6 @@
     "install:resetLockfile": "ts-node ./bin/yarn-tool install --reset-lockfile",
     "npm:publish": "node --run version:bump && npm publish",
     "version:bump": "ts-node ./bin/yarn-tool version",
-    "bin:self": "ts-node ./bin/yarn-tool",
-    "bin:self:js": "node ./bin/yarn-tool.js",
     "prepublish:yarn:install": "echo ts-node ./bin/yarn-tool install",
     "prepublishOnly": "yarn run ncu && node --run prepublish:yarn:install && yarn run sort-package-json",
     "prepublishOnly_": "node --run prepublishOnly:update && node --run prepublishOnly:check-bin && yarn run test",
@@ -65,6 +63,8 @@
     "postpublish:git:commit": "git commit -m \"chore(release): publish\" . & echo postpublish:git:commit",
     "postpublish:git:push": "git push --follow-tags",
     "postpublish:git:tag": "ynpx --quiet @yarn-tool/tag",
+    "bin:self": "ts-node ./bin/yarn-tool",
+    "bin:self:js": "node ./bin/yarn-tool.js",
     "help": "ts-node ./bin/yarn-tool --help",
     "ncu": "ts-node ./bin/yarn-tool ncu -u",
     "sort-package-json": "ts-node ./bin/yarn-tool sort"
@@ -119,7 +119,7 @@
     "upath2": "^3.1.23",
     "ws-pkg-list": "^3.0.8",
     "ws-root-spawn": "^1.0.52",
-    "yargs": "^18.0.0",
+    "yargs": "<18 >=17.7.2",
     "yargs-parser": "^22.0.0",
     "yargs-unparser": "^2.0.0"
   },
