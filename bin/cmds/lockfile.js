@@ -1,4 +1,5 @@
 "use strict";
+const tslib_1 = require("tslib");
 /**
  * Created by user on 2019/5/19.
  */
@@ -15,6 +16,7 @@ const yarnlock_parse_1 = require("@yarn-tool/yarnlock-parse");
 const path = require("upath2");
 const fs = require("fs-extra");
 const pm_1 = require("../../lib/pm");
+const find_root_1 = tslib_1.__importDefault(require("@yarn-tool/find-root"));
 const COMMAND_KEY = (0, cmd_dir_1.basenameStrip)(__filename);
 const cmdModule = (0, cmd_dir_1.createCommandModuleExports)({
     command: COMMAND_KEY,
@@ -55,7 +57,7 @@ const cmdModule = (0, cmd_dir_1.createCommandModuleExports)({
             index_1.console.warn(`此命令 '${COMMAND_KEY}' 不支援 ${npmClients}。 / This command '${COMMAND_KEY}' not support for ${npmClients}`);
         }
         if (argv.yarn || argv.npm || argv.shrinkwrap) {
-            let rootData = (0, index_1.findRoot)(argv, true);
+            let rootData = (0, find_root_1.default)(argv, true);
             let yl = (0, read_1.fsYarnLockSafe)(rootData.root);
             let file_package_lock_json = path.join(rootData.pkg, 'package-lock.json');
             let file_package_lock_json_exists = fs.existsSync(file_package_lock_json);
@@ -144,7 +146,7 @@ function _fix(argv) {
 }
 // @ts-ignore
 function _showYarnLockList(argv) {
-    let rootData = (0, index_1.findRoot)(argv, true);
+    let rootData = (0, find_root_1.default)(argv, true);
     let yl = (0, read_1.fsYarnLockSafe)(rootData.root);
     let yarnlock_old_obj = (0, yarnlock_parse_1.yarnLockParse)(yl.yarnlock_old).data;
     let fy = (0, yarnlock_1.exportYarnLock)(yarnlock_old_obj);

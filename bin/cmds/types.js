@@ -19,6 +19,7 @@ const setupYarnAddTypesToYargs_1 = require("@yarn-tool/pkg-deps-util/lib/cli/set
 const assertExecInstall_1 = require("@yarn-tool/pkg-deps-util/lib/cli/assertExecInstall");
 const wrapDedupe_1 = require("@yarn-tool/yarnlock/lib/wrapDedupe/wrapDedupe");
 const pm_1 = require("../../lib/pm");
+const find_root_1 = tslib_1.__importDefault(require("@yarn-tool/find-root"));
 /**
  * 創建 types 命令模組
  * Create types command module
@@ -40,7 +41,7 @@ const cmdModule = (0, cmd_dir_1.createCommandModuleExports)({
             // @ts-ignore
             args.unshift(argv.name);
         }
-        let rootData = (0, index_1.findRoot)({
+        let rootData = (0, find_root_1.default)({
             ...argv,
         });
         let pkg_file = upath2_1.default.join(rootData.pkg, 'package.json');

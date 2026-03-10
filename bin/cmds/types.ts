@@ -7,7 +7,7 @@
  */
 
 import { basenameStrip, createCommandModuleExports } from '../../lib/cmd_dir';
-import { console, consoleDebug, findRoot } from '../../lib/index';
+import { console, consoleDebug } from '../../lib/index';
 import { readPackageJson } from '@ts-type/package-dts';
 import { array_unique } from 'array-hyper-unique';
 import { flagsYarnAdd } from '@yarn-tool/pkg-deps-util/lib/cli/flagsYarnAdd';
@@ -19,6 +19,7 @@ import { setupYarnAddTypesToYargs } from '@yarn-tool/pkg-deps-util/lib/cli/setup
 import { assertExecInstall } from '@yarn-tool/pkg-deps-util/lib/cli/assertExecInstall';
 import { wrapDedupe } from '@yarn-tool/yarnlock/lib/wrapDedupe/wrapDedupe';
 import { detectPackageManager } from '../../lib/pm';
+import findRoot from '@yarn-tool/find-root';
 
 /**
  * 創建 types 命令模組

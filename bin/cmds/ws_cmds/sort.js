@@ -6,6 +6,7 @@
  * @author user
  * @created 2019/5/19
  */
+const tslib_1 = require("tslib");
 const cmd_dir_1 = require("../../../lib/cmd_dir");
 const listable_1 = require("ws-pkg-list/lib/listable");
 const index_1 = require("../../../lib/index");
@@ -14,6 +15,7 @@ const fs_1 = require("fs");
 const upath2_1 = require("upath2");
 const write_package_json_1 = require("@yarn-tool/write-package-json");
 const fs_json_1 = require("@bluelovers/fs-json");
+const find_root_1 = tslib_1.__importDefault(require("@yarn-tool/find-root"));
 /**
  * 創建 workspaces sort 命令模組
  * Create workspaces sort command module
@@ -30,7 +32,7 @@ const cmdModule = (0, cmd_dir_1.createCommandModuleExports)({
         });
     },
     handler(argv) {
-        let rootData = (0, index_1.findRoot)({
+        let rootData = (0, find_root_1.default)({
             ...argv,
             cwd: argv.cwd,
         }, true);

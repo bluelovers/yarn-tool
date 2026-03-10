@@ -2,7 +2,7 @@
  * Created by user on 2019/5/19.
  */
 import { basenameStrip, createCommandModuleExports, IUnpackMyYargsArgv, lazySpawnArgvSlice } from '../../lib/cmd_dir';
-import { console, consoleDebug, findRoot, yargsProcessExit } from '../../lib/index';
+import { console, consoleDebug, yargsProcessExit } from '../../lib/index';
 import { readPackageJson } from '@ts-type/package-dts';
 import { exportYarnLock } from '@yarn-tool/yarnlock';
 import { rcompare } from 'semver';
@@ -15,6 +15,7 @@ import { yarnLockParse } from '@yarn-tool/yarnlock-parse';
 import path = require('upath2');
 import fs = require('fs-extra');
 import { detectPackageManager } from '../../lib/pm';
+import findRoot from '@yarn-tool/find-root';
 
 const COMMAND_KEY = basenameStrip(__filename);
 

@@ -6,6 +6,8 @@
  * @author user
  * @created 2019/5/19
  */
+const tslib_1 = require("tslib");
+const find_root_1 = tslib_1.__importDefault(require("@yarn-tool/find-root"));
 const cmd_dir_1 = require("../../../lib/cmd_dir");
 const index_1 = require("../../../lib/index");
 /**
@@ -24,7 +26,7 @@ const cmdModule = (0, cmd_dir_1.createCommandModuleExports)({
     },
     handler(argv) {
         const key = (0, cmd_dir_1.basenameStrip)(__filename);
-        let rootData = (0, index_1.findRoot)({
+        let rootData = (0, find_root_1.default)({
             ...argv,
         }, true);
         if (!rootData.hasWorkspace) {

@@ -9,6 +9,7 @@ const index_1 = require("../../lib/index");
 const package_dts_1 = require("@ts-type/package-dts");
 const write_package_json_1 = require("@yarn-tool/write-package-json");
 const sort_package_json3_1 = tslib_1.__importDefault(require("sort-package-json3"));
+const find_root_1 = tslib_1.__importDefault(require("@yarn-tool/find-root"));
 const cmdModule = (0, cmd_dir_1.createCommandModuleExports)({
     command: (0, cmd_dir_1.basenameStrip)(__filename),
     //aliases: [],
@@ -21,7 +22,7 @@ const cmdModule = (0, cmd_dir_1.createCommandModuleExports)({
         });
     },
     handler(argv) {
-        let rootData = (0, index_1.findRoot)({
+        let rootData = (0, find_root_1.default)({
             ...argv,
             cwd: argv.cwd,
         }, true);

@@ -6,8 +6,9 @@
  * @created 2019/5/19
  */
 
+import findRoot from '@yarn-tool/find-root';
 import { basenameStrip, createCommandModuleExports, lazySpawnArgvSlice } from '../../../lib/cmd_dir';
-import { findRoot, yargsProcessExit } from '../../../lib/index';
+import { yargsProcessExit } from '../../../lib/index';
 
 /**
  * 創建 workspaces publish 命令模組

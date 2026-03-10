@@ -3,10 +3,11 @@
  */
 import { basenameStrip, createCommandModuleExports } from '../../lib/cmd_dir';
 import { join, relative } from 'upath2';
-import { chalkByConsole, consoleDebug, findRoot } from '../../lib/index';
+import { chalkByConsole, consoleDebug } from '../../lib/index';
 import { readPackageJson } from '@ts-type/package-dts';
 import { writePackageJSON, writePackageJSONSync } from '@yarn-tool/write-package-json';
 import sortPackageJson from 'sort-package-json3';
+import findRoot from '@yarn-tool/find-root';
 
 const cmdModule = createCommandModuleExports({
 

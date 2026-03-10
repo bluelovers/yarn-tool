@@ -8,12 +8,13 @@
 
 import { basenameStrip, createCommandModuleExports } from '../../../lib/cmd_dir';
 import { wsPkgListable } from 'ws-pkg-list/lib/listable';
-import { chalkByConsole, consoleDebug, findRoot } from '../../../lib/index';
+import { chalkByConsole, consoleDebug } from '../../../lib/index';
 import { sortPackageJson } from 'sort-package-json3';
 import { readFileSync, writeFileSync } from 'fs';
 import { relative } from 'upath2';
 import { _handleOptions } from '@yarn-tool/write-package-json';
 import { stringifyJSON } from '@bluelovers/fs-json';
+import findRoot from '@yarn-tool/find-root';
 
 /**
  * 創建 workspaces sort 命令模組
