@@ -21,7 +21,7 @@ const cmdModule = createCommandModuleExports({
 
 	command: basenameStrip(__filename),
 	//aliases: [],
-	describe: `show yarn.lock info`,
+	describe: `顯示 yarn.lock 信息 / show yarn.lock info`,
 
 	builder(yargs)
 	{
@@ -75,18 +75,18 @@ const cmdModule = createCommandModuleExports({
 			{
 				if (!yl.yarnlock_exists)
 				{
-					yargsProcessExit(new Error(`yarn.lock not exists`))
+					yargsProcessExit(new Error(`yarn.lock 不存在 / yarn.lock not exists`))
 				}
 
 				if (argv.npm)
 				{
 					if (!argv.overwrite && file_package_lock_json_exists)
 					{
-						yargsProcessExit(new Error(`package-lock.json is exists, use --overwrite for overwrite file`))
+						yargsProcessExit(new Error(`package-lock.json 已存在，請使用 --overwrite 選項覆蓋文件 / package-lock.json is exists, use --overwrite for overwrite file`))
 					}
 					else if (file_package_lock_json_exists)
 					{
-						consoleDebug.warn(`package-lock.json is exists, will got overwrite`);
+						consoleDebug.warn(`package-lock.json 已存在，將會覆蓋 / package-lock.json is exists, will got overwrite`);
 					}
 				}
 
@@ -97,11 +97,11 @@ const cmdModule = createCommandModuleExports({
 				{
 					if (!argv.overwrite && file_shrinkwrap_json_exists)
 					{
-						yargsProcessExit(new Error(`npm-shrinkwrap.json is exists, use --overwrite for overwrite file`))
+						yargsProcessExit(new Error(`npm-shrinkwrap.json 已存在，請使用 --overwrite 選項覆蓋文件 / npm-shrinkwrap.json is exists, use --overwrite for overwrite file`))
 					}
 					else if (file_shrinkwrap_json_exists)
 					{
-						consoleDebug.warn(`npm-shrinkwrap.json is exists, will got overwrite`);
+						consoleDebug.warn(`npm-shrinkwrap.json 已存在，將會覆蓋 / npm-shrinkwrap.json is exists, will got overwrite`);
 					}
 				}
 
@@ -147,10 +147,10 @@ const cmdModule = createCommandModuleExports({
 				{
 					if (!argv.overwrite)
 					{
-						yargsProcessExit(new Error(`yarn.lock is exists, use --overwrite for overwrite file`))
+						yargsProcessExit(new Error(`yarn.lock 已存在，請使用 --overwrite 選項覆蓋文件 / yarn.lock is exists, use --overwrite for overwrite file`))
 					}
 
-					consoleDebug.warn(`yarn.lock is exists, will got overwrite`);
+					consoleDebug.warn(`yarn.lock 已存在，將會覆蓋 / yarn.lock is exists, will got overwrite`);
 				}
 
 				if (!file_package_lock_json_exists)
@@ -168,7 +168,7 @@ const cmdModule = createCommandModuleExports({
 						return;
 					}
 
-					yargsProcessExit(new Error(`package-lock.json not exists`))
+					yargsProcessExit(new Error(`package-lock.json 不存在 / package-lock.json not exists`))
 				}
 
 				let s = npmToYarn(fs.readFileSync(file_package_lock_json).toString(), rootData.root);

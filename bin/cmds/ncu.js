@@ -17,7 +17,7 @@ const ncu_ws_1 = require("@yarn-tool/ncu-ws");
 const cmdModule = (0, cmd_dir_1.createCommandModuleExports)({
     command: (0, cmd_dir_1.basenameStrip)(__filename) + ' [-u]',
     aliases: ['update'],
-    describe: `Find newer versions of dependencies than what your package.json allows`,
+    describe: `查找比 package.json 允許的更新的依賴版本 / Find newer versions of dependencies than what your package.json allows`,
     builder(yargs) {
         return (0, argv_1.setupNcuToYargs2)(yargs);
     },

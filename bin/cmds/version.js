@@ -17,7 +17,7 @@ const package_dts_1 = require("@ts-type/package-dts");
 const cmdModule = (0, cmd_dir_1.createCommandModuleExports)({
     command: (0, cmd_dir_1.basenameStrip)(__filename),
     //aliases: [],
-    describe: `bump version of packages`,
+    describe: `更新套件版本 / bump version of packages`,
     builder(yargs) {
         return (0, argv_1.setupToYargs)(yargs)
             .option('cwd', {

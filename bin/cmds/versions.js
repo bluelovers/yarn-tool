@@ -6,7 +6,7 @@ const cmd_dir_1 = require("../../lib/cmd_dir");
 const cmdModule = (0, cmd_dir_1.createCommandModuleExports)({
     command: (0, cmd_dir_1.basenameStrip)(__filename),
     //aliases: [],
-    describe: `Displays version information of the currently installed Yarn, Node.js, and its dependencies.`,
+    describe: `顯示當前安裝的 Yarn、Node.js 及其依賴項的版本信息 / Displays version information of the currently installed Yarn, Node.js, and its dependencies.`,
     builder(yargs) {
         return yargs
             .strict(false);

@@ -17,7 +17,7 @@ const cmdModule = createCommandModuleExports({
 
 	command: basenameStrip(__filename),
 	//aliases: [],
-	describe: `Remove a package in workspaces.`,
+	describe: `在工作區域中移除套件 / Remove a package in workspaces.`,
 
 	builder(yargs)
 	{

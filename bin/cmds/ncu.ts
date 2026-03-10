@@ -19,7 +19,7 @@ const cmdModule = createCommandModuleExports({
 
 	command: basenameStrip(__filename) + ' [-u]',
 	aliases: ['update'],
-	describe: `Find newer versions of dependencies than what your package.json allows`,
+	describe: `查找比 package.json 允許的更新的依賴版本 / Find newer versions of dependencies than what your package.json allows`,
 
 	builder(yargs)
 	{

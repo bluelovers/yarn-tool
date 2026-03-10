@@ -16,7 +16,7 @@ const cmdModule = createCommandModuleExports({
 
 	command: basenameStrip(__filename),
 	//aliases: [],
-	describe: `Show information about your workspaces.`,
+	describe: `顯示工作區域信息 / Show information about your workspaces.`,
 
 	builder(yargs)
 	{

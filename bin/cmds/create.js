@@ -7,7 +7,7 @@ const command = (0, cmd_dir_1.basenameStrip)(__filename);
 const cmdModule = (0, cmd_dir_1.createCommandModuleExports)({
     command,
     //aliases: [],
-    describe: `Creates new projects from any create-* starter kits.`,
+    describe: `從任何 create-* 啟動器套件創建新項目 / Creates new projects from any create-* starter kits.`,
     builder(yargs) {
         return yargs
             .example(`$0 create <starter-kit-package> [<args>]`, ``)

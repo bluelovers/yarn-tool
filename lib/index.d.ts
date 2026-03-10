@@ -76,9 +76,3 @@ export declare function printRootData(rootData: ReturnType<typeof findRoot>, arg
  * Export yargsProcessExit function for handling Yargs error exit
  */
 export { yargsProcessExit };
-/**
- * 預設導出模組
- * Default export of the module
- */
-declare const _default: typeof import("./index");
-export default _default;

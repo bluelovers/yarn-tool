@@ -7,7 +7,7 @@ const spawn_1 = require("../../lib/spawn");
 const cmdModule = (0, cmd_dir_1.createCommandModuleExports)({
     command: (0, cmd_dir_1.basenameStrip)(__filename),
     aliases: ['push'],
-    describe: `publish a npm package`,
+    describe: `發布 npm 套件 / publish a npm package`,
     builder(yargs) {
         return yargs
             .option('tag', {

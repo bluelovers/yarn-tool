@@ -6,7 +6,7 @@ const cmdModule = createCommandModuleExports({
 
 	command: basenameStrip(__filename),
 
-	describe: `auto check/fix workspaces/package`,
+	describe: `自動檢查/修復工作區域/套件 / auto check/fix workspaces/package`,
 
 	// @ts-ignore
 	builder(yargs)

@@ -17,7 +17,7 @@ const setupYarnAddToYargs_1 = require("@yarn-tool/pkg-deps-util/lib/cli/setupYar
 const cmdModule = (0, cmd_dir_1.createCommandModuleExports)({
     command: (0, cmd_dir_1.basenameStrip)(__filename),
     //aliases: [],
-    describe: `Installs a package in workspaces.`,
+    describe: `在工作區域中安裝套件 / Installs a package in workspaces.`,
     builder(yargs) {
         return (0, setupYarnAddToYargs_1.setupYarnAddToYargs)(yargs)
             .option('types', {

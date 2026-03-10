@@ -8,7 +8,7 @@ const cmdModule = createCommandModuleExports({
 
 	command: basenameStrip(__filename),
 	aliases: ['push'],
-	describe: `publish a npm package`,
+	describe: `發布 npm 套件 / publish a npm package`,
 
 	builder(yargs)
 	{

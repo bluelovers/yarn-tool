@@ -18,7 +18,7 @@ const cmdModule = createCommandModuleExports({
 
 	command: basenameStrip(__filename),
 	//aliases: [],
-	describe: `create yarn workspaces`,
+	describe: `創建 yarn 工作區域 / create yarn workspaces`,
 
 	builder(yargs)
 	{

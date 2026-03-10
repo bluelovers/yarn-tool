@@ -21,7 +21,7 @@ const fs_json_1 = require("@bluelovers/fs-json");
 const cmdModule = (0, cmd_dir_1.createCommandModuleExports)({
     command: (0, cmd_dir_1.basenameStrip)(__filename),
     //aliases: [],
-    describe: `sort each package.json file in workspaces`,
+    describe: `排序工作區域中每個 package.json 文件 / sort each package.json file in workspaces`,
     builder(yargs) {
         return yargs
             .option('silent', {

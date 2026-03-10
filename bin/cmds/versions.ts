@@ -7,7 +7,7 @@ const cmdModule = createCommandModuleExports({
 
 	command: basenameStrip(__filename),
 	//aliases: [],
-	describe: `Displays version information of the currently installed Yarn, Node.js, and its dependencies.`,
+	describe: `顯示當前安裝的 Yarn、Node.js 及其依賴項的版本信息 / Displays version information of the currently installed Yarn, Node.js, and its dependencies.`,
 
 	builder(yargs)
 	{

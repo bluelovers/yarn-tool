@@ -27,7 +27,7 @@ const cmdModule = createCommandModuleExports({
 
 	command: basenameStrip(__filename) + ' [name]',
 	//aliases: [],
-	describe: `Installs @types/* of packages if not exists in package.json`,
+	describe: `如果 package.json 中不存在，則安裝套件的 @types/* / Installs @types/* of packages if not exists in package.json`,
 
 	builder(yargs)
 	{

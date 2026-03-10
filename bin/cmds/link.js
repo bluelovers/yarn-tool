@@ -6,7 +6,7 @@ const cmd_dir_1 = require("../../lib/cmd_dir");
 const cmdModule = (0, cmd_dir_1.createCommandModuleExports)({
     command: (0, cmd_dir_1.basenameStrip)(__filename),
     //aliases: [],
-    describe: `Symlink a package folder during development.`,
+    describe: `在開發過程中為套件文件創建符號鏈接 / Symlink a package folder during development.`,
     builder(yargs) {
         return yargs
             .example(`$0 link`, `in package you want to link`)

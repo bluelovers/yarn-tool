@@ -21,7 +21,7 @@ const fs_extra_1 = require("fs-extra");
 const cmdModule = (0, cmd_dir_1.createCommandModuleExports)({
     command: (0, cmd_dir_1.basenameStrip)(__filename) + ' [cwd]',
     aliases: ['i'],
-    describe: `do dedupe with yarn install`,
+    describe: `使用 yarn install 進行重複數據刪除 / do dedupe with yarn install`,
     builder(yargs) {
         return (0, install_1.default)(yargs)
             .option('reset-lockfile', {
@@ -40,7 +40,7 @@ const cmdModule = (0, cmd_dir_1.createCommandModuleExports)({
                 let info = (0, infoFromDedupeCache_1.infoFromDedupeCache)(cache);
                 if (!info.yarnlock_old_exists || !((_a = cache.yarnlock_old) === null || _a === void 0 ? void 0 : _a.length) || argv.resetLockfile) {
                     if (argv.resetLockfile && (info.yarnlock_old_exists || ((_b = cache.yarnlock_old) === null || _b === void 0 ? void 0 : _b.length))) {
-                        index_1.consoleDebug.red.info(`'--reset-lockfile' mode is enabled, reset current lockfile.\n${info.yarnlock_file}`);
+                        index_1.consoleDebug.red.info(`'--reset-lockfile' 模式已啟用，重置當前鎖定文件。 / '--reset-lockfile' mode is enabled, reset current lockfile.\n${info.yarnlock_file}`);
                         (0, fs_extra_1.truncateSync)(info.yarnlock_file);
                     }
                     cross_spawn_extra_1.default.sync('yarn', [], {

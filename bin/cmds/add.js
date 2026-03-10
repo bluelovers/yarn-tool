@@ -28,7 +28,7 @@ const installDepsFromYarnLock_1 = require("@yarn-tool/pkg-deps-util/lib/installD
 const cmdModule = (0, cmd_dir_1.createCommandModuleExports)({
     command: (0, cmd_dir_1.basenameStrip)(__filename) + ' [name]',
     //aliases: [],
-    describe: `Installs a package`,
+    describe: `安裝套件 / Installs a package`,
     builder(yargs) {
         return (0, setupYarnAddToYargs_1.setupYarnAddToYargs)(yargs)
             .option('types', {
@@ -50,7 +50,7 @@ const cmdModule = (0, cmd_dir_1.createCommandModuleExports)({
         //console.dir(argv);
         if (!args.length) {
             //			yargs.showHelp();
-            index_1.consoleDebug.error(`Missing list of packages to add to your project.`);
+            index_1.consoleDebug.error(`缺少要添加到項目的套件列表。 / Missing list of packages to add to your project.`);
             return process.exit(1);
         }
         await (0, wrapDedupeAsync_1.wrapDedupeAsync)(require('yargs'), argv, {

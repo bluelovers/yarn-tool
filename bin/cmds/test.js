@@ -6,7 +6,7 @@ const cmd_dir_1 = require("../../lib/cmd_dir");
 const cmdModule = (0, cmd_dir_1.createCommandModuleExports)({
     command: (0, cmd_dir_1.basenameStrip)(__filename),
     //aliases: [],
-    describe: `Runs the test script defined by the package.`,
+    describe: `運行套件定義的測試腳本 / Runs the test script defined by the package.`,
     builder(yargs) {
         return yargs;
     },

@@ -19,7 +19,7 @@ const cmdModule = createCommandModuleExports({
 
 	command: basenameStrip(__filename) + ' [cwd]',
 	//aliases: [],
-	describe: `package deduplication for yarn.lock`,
+	describe: `yarn.lock 的套件重複數據刪除 / package deduplication for yarn.lock`,
 	aliases: ['d'],
 
 	builder(yargs)

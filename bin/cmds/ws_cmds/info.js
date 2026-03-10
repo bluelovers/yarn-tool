@@ -14,7 +14,7 @@ const cmd_dir_1 = require("../../../lib/cmd_dir");
 const cmdModule = (0, cmd_dir_1.createCommandModuleExports)({
     command: (0, cmd_dir_1.basenameStrip)(__filename),
     //aliases: [],
-    describe: `Show information about your workspaces.`,
+    describe: `顯示工作區域信息 / Show information about your workspaces.`,
     builder(yargs) {
         return yargs
             .strict(false);

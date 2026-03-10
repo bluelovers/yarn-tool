@@ -9,7 +9,7 @@ const cmdModule = createCommandModuleExports({
 
 	command,
 	//aliases: [],
-	describe: `Diff all packages or a single package since the last release`,
+	describe: `比較所有套件或自上次發布以來的單個套件 / Diff all packages or a single package since the last release`,
 
 	builder(yargs)
 	{

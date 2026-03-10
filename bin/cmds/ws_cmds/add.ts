@@ -19,7 +19,7 @@ const cmdModule = createCommandModuleExports({
 
 	command: basenameStrip(__filename),
 	//aliases: [],
-	describe: `Installs a package in workspaces.`,
+	describe: `在工作區域中安裝套件 / Installs a package in workspaces.`,
 
 	builder(yargs)
 	{

@@ -23,7 +23,7 @@ const cmdModule = createCommandModuleExports({
 
 	command: basenameStrip(__filename),
 	//aliases: [],
-	describe: `sort each package.json file in workspaces`,
+	describe: `排序工作區域中每個 package.json 文件 / sort each package.json file in workspaces`,
 
 	builder(yargs)
 	{

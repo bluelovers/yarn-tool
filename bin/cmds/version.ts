@@ -17,7 +17,7 @@ const cmdModule = createCommandModuleExports({
 
 	command: basenameStrip(__filename),
 	//aliases: [],
-	describe: `bump version of packages`,
+	describe: `更新套件版本 / bump version of packages`,
 
 	builder(yargs)
 	{

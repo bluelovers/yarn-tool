@@ -17,7 +17,7 @@ const wrapDedupe_1 = require("@yarn-tool/yarnlock/lib/wrapDedupe/wrapDedupe");
 const cmdModule = (0, cmd_dir_1.createCommandModuleExports)({
     command: (0, cmd_dir_1.basenameStrip)(__filename) + ' [cwd]',
     //aliases: [],
-    describe: `package deduplication for yarn.lock`,
+    describe: `yarn.lock 的套件重複數據刪除 / package deduplication for yarn.lock`,
     aliases: ['d'],
     builder(yargs) {
         return yargs;

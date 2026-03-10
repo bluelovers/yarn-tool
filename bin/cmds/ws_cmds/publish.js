@@ -17,7 +17,7 @@ const cmdModule = (0, cmd_dir_1.createCommandModuleExports)({
     aliases: [
         'push',
     ],
-    describe: `publish packages in workspaces.`,
+    describe: `在工作區域中發布套件 / publish packages in workspaces.`,
     builder(yargs) {
         return yargs
             .strict(false);

@@ -6,7 +6,7 @@ const cmd_dir_1 = require("../../lib/cmd_dir");
 const cmdModule = (0, cmd_dir_1.createCommandModuleExports)({
     command: (0, cmd_dir_1.basenameStrip)(__filename),
     //aliases: [],
-    describe: `Show information about why a package is installed.`,
+    describe: `顯示為什麼安裝套件的信息 / Show information about why a package is installed.`,
     builder(yargs) {
         return yargs
             .strict(false);

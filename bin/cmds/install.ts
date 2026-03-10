@@ -22,7 +22,7 @@ const cmdModule = createCommandModuleExports({
 
 	command: basenameStrip(__filename) + ' [cwd]',
 	aliases: ['i'],
-	describe: `do dedupe with yarn install`,
+	describe: `使用 yarn install 進行重複數據刪除 / do dedupe with yarn install`,
 
 	builder(yargs)
 	{
@@ -51,11 +51,11 @@ const cmdModule = createCommandModuleExports({
 
 				if (!info.yarnlock_old_exists || !cache.yarnlock_old?.length || argv.resetLockfile)
 				{
-					if (argv.resetLockfile && (info.yarnlock_old_exists || cache.yarnlock_old?.length))
-					{
-						consoleDebug.red.info(`'--reset-lockfile' mode is enabled, reset current lockfile.\n${info.yarnlock_file}`);
-						truncateSync(info.yarnlock_file);
-					}
+if (argv.resetLockfile && (info.yarnlock_old_exists || cache.yarnlock_old?.length))
+			{
+				consoleDebug.red.info(`'--reset-lockfile' 模式已啟用，重置當前鎖定文件。 / '--reset-lockfile' mode is enabled, reset current lockfile.\n${info.yarnlock_file}`);
+				truncateSync(info.yarnlock_file);
+			}
 
 					crossSpawn.sync('yarn', [], {
 						cwd,

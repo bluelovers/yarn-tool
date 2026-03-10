@@ -7,7 +7,7 @@ const cmdModule = createCommandModuleExports({
 
 	command: basenameStrip(__filename),
 	//aliases: [],
-	describe: `Runs the test script defined by the package.`,
+	describe: `運行套件定義的測試腳本 / Runs the test script defined by the package.`,
 
 	builder(yargs)
 	{

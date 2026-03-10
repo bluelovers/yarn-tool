@@ -25,7 +25,7 @@ const wrapDedupe_1 = require("@yarn-tool/yarnlock/lib/wrapDedupe/wrapDedupe");
 const cmdModule = (0, cmd_dir_1.createCommandModuleExports)({
     command: (0, cmd_dir_1.basenameStrip)(__filename) + ' [name]',
     //aliases: [],
-    describe: `Installs @types/* of packages if not exists in package.json`,
+    describe: `如果 package.json 中不存在，則安裝套件的 @types/* / Installs @types/* of packages if not exists in package.json`,
     builder(yargs) {
         return (0, setupYarnAddTypesToYargs_1.setupYarnAddTypesToYargs)(yargs)
             .strict(false);

@@ -12,7 +12,7 @@ const sort_package_json3_1 = tslib_1.__importDefault(require("sort-package-json3
 const cmdModule = (0, cmd_dir_1.createCommandModuleExports)({
     command: (0, cmd_dir_1.basenameStrip)(__filename),
     //aliases: [],
-    describe: `sort package.json file`,
+    describe: `排序 package.json 文件 / sort package.json file`,
     builder(yargs) {
         return yargs
             .option('silent', {

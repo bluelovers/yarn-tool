@@ -11,7 +11,7 @@ const command = (0, cmd_dir_1.basenameStrip)(__filename);
 const cmdModule = (0, cmd_dir_1.createCommandModuleExports)({
     command,
     aliases: [],
-    describe: `List installed packages.`,
+    describe: `列出已安裝的套件 / List installed packages.`,
     builder(yargs) {
         return yargs
             .option('depth', {

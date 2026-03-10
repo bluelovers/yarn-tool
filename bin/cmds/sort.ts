@@ -12,7 +12,7 @@ const cmdModule = createCommandModuleExports({
 
 	command: basenameStrip(__filename),
 	//aliases: [],
-	describe: `sort package.json file`,
+	describe: `排序 package.json 文件 / sort package.json file`,
 
 	builder(yargs)
 	{

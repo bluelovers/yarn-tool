@@ -10,7 +10,7 @@ const cmdModule = createCommandModuleExports({
 
 	command: basenameStrip(__filename),
 	aliases: ['upgrade', 'up'],
-	describe: `Symlink a package folder during development.`,
+	describe: `升級套件 / Upgrade packages`,
 
 	builder(yargs)
 	{

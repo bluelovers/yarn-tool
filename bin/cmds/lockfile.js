@@ -18,7 +18,7 @@ const COMMAND_KEY = (0, cmd_dir_1.basenameStrip)(__filename);
 const cmdModule = (0, cmd_dir_1.createCommandModuleExports)({
     command: (0, cmd_dir_1.basenameStrip)(__filename),
     //aliases: [],
-    describe: `show yarn.lock info`,
+    describe: `顯示 yarn.lock 信息 / show yarn.lock info`,
     builder(yargs) {
         return yargs
             .option('duplicate', {
@@ -59,24 +59,24 @@ const cmdModule = (0, cmd_dir_1.createCommandModuleExports)({
             let file_package_lock_json_exists = fs.existsSync(file_package_lock_json);
             if (argv.npm || argv.shrinkwrap) {
                 if (!yl.yarnlock_exists) {
-                    (0, index_1.yargsProcessExit)(new Error(`yarn.lock not exists`));
+                    (0, index_1.yargsProcessExit)(new Error(`yarn.lock 不存在 / yarn.lock not exists`));
                 }
                 if (argv.npm) {
                     if (!argv.overwrite && file_package_lock_json_exists) {
-                        (0, index_1.yargsProcessExit)(new Error(`package-lock.json is exists, use --overwrite for overwrite file`));
+                        (0, index_1.yargsProcessExit)(new Error(`package-lock.json 已存在，請使用 --overwrite 選項覆蓋文件 / package-lock.json is exists, use --overwrite for overwrite file`));
                     }
                     else if (file_package_lock_json_exists) {
-                        index_1.consoleDebug.warn(`package-lock.json is exists, will got overwrite`);
+                        index_1.consoleDebug.warn(`package-lock.json 已存在，將會覆蓋 / package-lock.json is exists, will got overwrite`);
                     }
                 }
                 let file_shrinkwrap_json = path.join(rootData.pkg, 'npm-shrinkwrap.json');
                 let file_shrinkwrap_json_exists = fs.existsSync(file_shrinkwrap_json);
                 if (argv.shrinkwrap) {
                     if (!argv.overwrite && file_shrinkwrap_json_exists) {
-                        (0, index_1.yargsProcessExit)(new Error(`npm-shrinkwrap.json is exists, use --overwrite for overwrite file`));
+                        (0, index_1.yargsProcessExit)(new Error(`npm-shrinkwrap.json 已存在，請使用 --overwrite 選項覆蓋文件 / npm-shrinkwrap.json is exists, use --overwrite for overwrite file`));
                     }
                     else if (file_shrinkwrap_json_exists) {
-                        index_1.consoleDebug.warn(`npm-shrinkwrap.json is exists, will got overwrite`);
+                        index_1.consoleDebug.warn(`npm-shrinkwrap.json 已存在，將會覆蓋 / npm-shrinkwrap.json is exists, will got overwrite`);
                     }
                 }
                 let { name, version } = (0, package_dts_1.readPackageJson)(path.join(rootData.pkg, 'package.json'));
@@ -107,9 +107,9 @@ const cmdModule = (0, cmd_dir_1.createCommandModuleExports)({
                 let yarnlock_file_pkg = path.join(rootData.pkg, 'yarn.lock');
                 if (fs.existsSync(yarnlock_file_pkg)) {
                     if (!argv.overwrite) {
-                        (0, index_1.yargsProcessExit)(new Error(`yarn.lock is exists, use --overwrite for overwrite file`));
+                        (0, index_1.yargsProcessExit)(new Error(`yarn.lock 已存在，請使用 --overwrite 選項覆蓋文件 / yarn.lock is exists, use --overwrite for overwrite file`));
                     }
-                    index_1.consoleDebug.warn(`yarn.lock is exists, will got overwrite`);
+                    index_1.consoleDebug.warn(`yarn.lock 已存在，將會覆蓋 / yarn.lock is exists, will got overwrite`);
                 }
                 if (!file_package_lock_json_exists) {
                     if (yl.yarnlock_exists && rootData.hasWorkspace && !rootData.isWorkspace) {
@@ -119,7 +119,7 @@ const cmdModule = (0, cmd_dir_1.createCommandModuleExports)({
                         index_1.consoleDebug.info(`yarn.lock copied`);
                         return;
                     }
-                    (0, index_1.yargsProcessExit)(new Error(`package-lock.json not exists`));
+                    (0, index_1.yargsProcessExit)(new Error(`package-lock.json 不存在 / package-lock.json not exists`));
                 }
                 let s = npmToYarn(fs.readFileSync(file_package_lock_json).toString(), rootData.root);
                 s = (0, dedupe_1.Dedupe)(s).yarnlock_new;

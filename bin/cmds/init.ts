@@ -7,7 +7,7 @@ import { checkModileExists, crossSpawnOther, processArgvSlice } from '../../lib/
 const cmdModule = createCommandModuleExports({
 
 	command: basenameStrip(__filename),
-	describe: `create a npm package or update package.json file`,
+	describe: `創建 npm 套件或更新 package.json 文件 / create a npm package or update package.json file`,
 
 	builder(yargs)
 	{

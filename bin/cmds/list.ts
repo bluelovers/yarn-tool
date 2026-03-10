@@ -13,7 +13,7 @@ const cmdModule = createCommandModuleExports({
 
 	command,
 	aliases: [],
-	describe: `List installed packages.`,
+	describe: `列出已安裝的套件 / List installed packages.`,
 
 	builder(yargs)
 	{

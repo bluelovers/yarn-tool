@@ -9,7 +9,7 @@ const cmdModule = createCommandModuleExports({
 
 	command,
 	//aliases: [],
-	describe: `Run node with the hook already setup.`,
+	describe: `運行 node，並設置好鉤子 / Run node with the hook already setup.`,
 
 	builder(yargs)
 	{

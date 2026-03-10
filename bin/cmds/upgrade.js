@@ -9,7 +9,7 @@ const spawn_1 = require("../../lib/spawn");
 const cmdModule = (0, cmd_dir_1.createCommandModuleExports)({
     command: (0, cmd_dir_1.basenameStrip)(__filename),
     aliases: ['upgrade', 'up'],
-    describe: `Symlink a package folder during development.`,
+    describe: `升級套件 / Upgrade packages`,
     builder(yargs) {
         return yargs
             .option('latest', {

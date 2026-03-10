@@ -6,7 +6,7 @@ const cmd_dir_1 = require("../../lib/cmd_dir");
 const cmdModule = (0, cmd_dir_1.createCommandModuleExports)({
     command: (0, cmd_dir_1.basenameStrip)(__filename),
     //aliases: [],
-    describe: `Runs a defined package script.`,
+    describe: `運行定義的套件腳本 / Runs a defined package script.`,
     builder(yargs) {
         return yargs
             .help(false)

@@ -9,7 +9,7 @@ const cmdModule = createCommandModuleExports({
 
 	command,
 	//aliases: [],
-	describe: `Creates new projects from any create-* starter kits.`,
+	describe: `從任何 create-* 啟動器套件創建新項目 / Creates new projects from any create-* starter kits.`,
 
 	builder(yargs)
 	{

@@ -19,7 +19,7 @@ const cmdModule = createCommandModuleExports({
 	command: basenameStrip(__filename) + ' <cmd>',
 
 	aliases: ['ws', 'workspaces', 'workspace'],
-	describe: `yarn workspaces`,
+	describe: `yarn 工作區域 / yarn workspaces`,
 
 	builder(yargs)
 	{

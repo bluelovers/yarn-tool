@@ -7,7 +7,7 @@ const cmdModule = createCommandModuleExports({
 
 	command: basenameStrip(__filename),
 	//aliases: [],
-	describe: `Symlink a package folder during development.`,
+	describe: `在開發過程中為套件文件創建符號鏈接 / Symlink a package folder during development.`,
 
 	builder(yargs)
 	{

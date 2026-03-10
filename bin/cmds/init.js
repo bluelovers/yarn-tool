@@ -6,7 +6,7 @@ const cmd_dir_1 = require("../../lib/cmd_dir");
 const spawn_1 = require("../../lib/spawn");
 const cmdModule = (0, cmd_dir_1.createCommandModuleExports)({
     command: (0, cmd_dir_1.basenameStrip)(__filename),
-    describe: `create a npm package or update package.json file`,
+    describe: `創建 npm 套件或更新 package.json 文件 / create a npm package or update package.json file`,
     builder(yargs) {
         let ret = (0, spawn_1.checkModileExists)({
             name: 'npm-init2',

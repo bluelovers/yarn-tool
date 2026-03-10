@@ -7,7 +7,7 @@ const command = (0, cmd_dir_1.basenameStrip)(__filename);
 const cmdModule = (0, cmd_dir_1.createCommandModuleExports)({
     command,
     //aliases: [],
-    describe: `Run a package in a temporary environment. require yarn version >= 2`,
+    describe: `在臨時環境中運行套件。需要 yarn 版本 >= 2 / Run a package in a temporary environment. require yarn version >= 2`,
     builder(yargs) {
         return yargs
             .option('package', {

@@ -6,7 +6,7 @@ const cmd_dir_1 = require("../../lib/cmd_dir");
 const cmdModule = (0, cmd_dir_1.createCommandModuleExports)({
     command: (0, cmd_dir_1.basenameStrip)(__filename),
     //aliases: [],
-    describe: `Creates a compressed gzip archive of package dependencies.`,
+    describe: `創建套件依賴項的壓縮 gzip 歸檔 / Creates a compressed gzip archive of package dependencies.`,
     builder(yargs) {
         return yargs
             .option('dry-run', {

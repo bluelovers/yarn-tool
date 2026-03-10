@@ -7,7 +7,7 @@ const cmdModule = createCommandModuleExports({
 
 	command: basenameStrip(__filename),
 	//aliases: [],
-	describe: `Creates a compressed gzip archive of package dependencies.`,
+	describe: `創建套件依賴項的壓縮 gzip 歸檔 / Creates a compressed gzip archive of package dependencies.`,
 
 	builder(yargs)
 	{

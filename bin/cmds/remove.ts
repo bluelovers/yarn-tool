@@ -11,7 +11,7 @@ const cmdModule = createCommandModuleExports({
 
 	command,
 	aliases: ['rm'],
-	describe: `Running yarn remove foo will remove the package named foo from your direct dependencies updating your package.json and yarn.lock files in the process.`,
+	describe: `運行 yarn remove foo 將從直接依賴中刪除名為 foo 的套件，並更新 package.json 和 yarn.lock 文件 / Running yarn remove foo will remove the package named foo from your direct dependencies updating your package.json and yarn.lock files in the process.`,
 
 	builder(yargs)
 	{

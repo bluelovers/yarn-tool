@@ -29,7 +29,7 @@ const cmdModule = createCommandModuleExports({
 
 	command: basenameStrip(__filename) + ' [name]',
 	//aliases: [],
-	describe: `Installs a package`,
+	describe: `安裝套件 / Installs a package`,
 
 	builder(yargs)
 	{
@@ -59,11 +59,11 @@ const cmdModule = createCommandModuleExports({
 
 		//console.dir(argv);
 
-		if (!args.length)
-		{
+if (!args.length)
+{
 //			yargs.showHelp();
 
-			consoleDebug.error(`Missing list of packages to add to your project.`);
+			consoleDebug.error(`缺少要添加到項目的套件列表。 / Missing list of packages to add to your project.`);
 
 			return process.exit(1);
 		}

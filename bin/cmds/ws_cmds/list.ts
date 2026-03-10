@@ -16,7 +16,7 @@ const cmdModule = createCommandModuleExports({
 	aliases: [
 		'ls',
 	],
-	describe: `List local packages`,
+	describe: `列出本地套件 / List local packages`,
 
 	builder(yargs)
 	{

@@ -16,7 +16,7 @@ const spawn_1 = require("../../../lib/spawn");
 const cmdModule = (0, cmd_dir_1.createCommandModuleExports)({
     command: (0, cmd_dir_1.basenameStrip)(__filename),
     //aliases: [],
-    describe: `create yarn workspaces`,
+    describe: `創建 yarn 工作區域 / create yarn workspaces`,
     builder(yargs) {
         return (0, yargs_setting_1.setupWorkspacesInitToYargs)(yargs)
             .strict(false);

@@ -7,7 +7,7 @@ const cmdModule = createCommandModuleExports({
 
 	command: basenameStrip(__filename),
 	//aliases: [],
-	describe: `Show information about why a package is installed.`,
+	describe: `顯示為什麼安裝套件的信息 / Show information about why a package is installed.`,
 
 	builder(yargs)
 	{

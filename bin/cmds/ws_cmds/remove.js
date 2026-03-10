@@ -15,7 +15,7 @@ const index_1 = require("../../../lib/index");
 const cmdModule = (0, cmd_dir_1.createCommandModuleExports)({
     command: (0, cmd_dir_1.basenameStrip)(__filename),
     //aliases: [],
-    describe: `Remove a package in workspaces.`,
+    describe: `在工作區域中移除套件 / Remove a package in workspaces.`,
     builder(yargs) {
         return yargs
             .strict(false);

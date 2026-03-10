@@ -4,7 +4,7 @@ const fix_all_1 = require("@yarn-tool/fix-all");
 const yargs_setting_1 = require("@yarn-tool/fix-all/lib/util/yargs-setting");
 const cmdModule = (0, cmd_dir_1.createCommandModuleExports)({
     command: (0, cmd_dir_1.basenameStrip)(__filename),
-    describe: `auto check/fix workspaces/package`,
+    describe: `自動檢查/修復工作區域/套件 / auto check/fix workspaces/package`,
     // @ts-ignore
     builder(yargs) {
         return (0, yargs_setting_1.setupToYargs)(yargs);
