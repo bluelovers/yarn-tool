@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.0.3](https://github.com/bluelovers/yarn-tool/compare/yarn-tool@3.0.2...yarn-tool@3.0.3) (2026-03-12)
+
+
+
+### ♻️　Chores
+
+* **deps:** bump dependencies and update pnpm-lock.yaml ([48c6d74](https://github.com/bluelovers/yarn-tool/commit/48c6d744acfb286e6db7c189681a29e42b945814))
+
+
+
 ## [3.0.2](https://github.com/bluelovers/yarn-tool/compare/yarn-tool@2.2.4...yarn-tool@3.0.2) (2026-03-10)
 
 

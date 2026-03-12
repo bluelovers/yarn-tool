@@ -1,6 +1,6 @@
 <component name="ProjectRunConfigurationManager">
   <configuration default="false" name="npm:publish" type="js.build_tools.npm" nameIsGenerated="true">
-    <package-json value="$PROJECT_DIR$/../../nodejs-test/yarn-tool/package.json" />
+    <package-json value="$PROJECT_DIR$/package.json" />
     <command value="run" />
     <scripts>
       <script value="npm:publish" />
@@ -13,7 +13,7 @@
     </EXTENSION>
     <method v="2">
       <option name="NpmBeforeRunTask" enabled="true">
-        <package-json value="$PROJECT_DIR$/../../nodejs-test/yarn-tool/package.json" />
+        <package-json value="$PROJECT_DIR$/package.json" />
         <command value="run" />
         <scripts>
           <script value="ncu" />
@@ -22,7 +22,7 @@
         <envs />
       </option>
       <option name="NpmBeforeRunTask" enabled="true">
-        <package-json value="$PROJECT_DIR$/../../nodejs-test/yarn-tool/package.json" />
+        <package-json value="$PROJECT_DIR$/package.json" />
         <command value="run" />
         <scripts>
           <script value="install:resetLockfile" />
