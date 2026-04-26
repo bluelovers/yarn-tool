@@ -1,6 +1,6 @@
 {
   "name": "yarn-tool",
-  "version": "3.0.3",
+  "version": "3.0.5",
   "description": "yarn/pnpm/lerna cli tool helper - support pnpm and yarn",
   "keywords": [
     "cli",
@@ -53,11 +53,11 @@
     "npm:publish": "node --run version:bump && npm publish",
     "version:bump": "ts-node ./bin/yarn-tool version",
     "prepublish:yarn:install": "echo ts-node ./bin/yarn-tool install",
-    "prepublishOnly": "yarn run ncu && node --run prepublish:yarn:install && yarn run sort-package-json",
-    "prepublishOnly_": "node --run prepublishOnly:update && node --run prepublishOnly:check-bin && yarn run test",
+    "prepublishOnly": "pnpm run ncu && node --run prepublish:yarn:install && pnpm run sort-package-json",
+    "prepublishOnly_": "node --run prepublishOnly:update && node --run prepublishOnly:check-bin && pnpm run test",
     "prepublishOnly:check-bin": "ynpx --quiet @yarn-tool/check-pkg-bin",
     "prepublishOnly:lockfile": "ynpx --quiet sync-lockfile",
-    "prepublishOnly:update": "yarn run ncu && yarn run sort-package-json",
+    "prepublishOnly:update": "pnpmn run ncu && pnpm run sort-package-json",
     "postpublish": "node --run postpublish:changelog && node --run postpublish:git:commit && node --run postpublish:git:tag && node --run postpublish:git:push",
     "postpublish:changelog": "ynpx --quiet @yarn-tool/changelog && git add ./CHANGELOG.md",
     "postpublish:git:commit": "git commit -m \"chore(release): publish\" . & echo postpublish:git:commit",

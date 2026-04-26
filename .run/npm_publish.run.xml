@@ -6,6 +6,7 @@
       <script value="npm:publish" />
     </scripts>
     <node-interpreter value="project" />
+    <package-manager value="pnpm" />
     <envs />
     <EXTENSION ID="com.github.linuxchina.dotenvx.run.configuration.NodeRunConfiguration">
       <option name="DOTENVX_ENABLED" value="false" />
