@@ -7,7 +7,7 @@
 
 import yargs from 'yargs';
 import { extname, join } from 'upath2';
-import { updateNotifier } from '@yarn-tool/update-notifier';
+// import { updateNotifier } from '@yarn-tool/update-notifier';
 import { osLocaleSync } from '../lib/osLocaleSync';
 import { cliArgv } from '../lib/argv';
 
@@ -31,7 +31,7 @@ if (extname(__filename) === '.js' && !process.argv.filter(v => {
  * 檢查更新通知
  * Check for update notifications
  */
-updateNotifier(join(__dirname, '..'));
+// updateNotifier(join(__dirname, '..'));
 
 /**
  * 創建 Yargs CLI 實例
