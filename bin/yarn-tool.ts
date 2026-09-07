@@ -15,17 +15,17 @@ import { cliArgv } from '../lib/argv';
  * 如果是 .js 文件且未使用 ts-node 執行，則安裝 source-map-support
  * Install source-map-support if running as .js file without ts-node
  */
-if (extname(__filename) === '.js' && !process.argv.filter(v => {
-	if (typeof v === 'string')
-	{
-		return v.includes('ts-node') || v.includes('source-map-support') || v.includes('tsx')
-	}
-}).length)
-{
-	require('source-map-support').install({
-		hookRequire: true
-	});
-}
+// if (extname(__filename) === '.js' && !process.argv.filter(v => {
+// 	if (typeof v === 'string')
+// 	{
+// 		return v.includes('ts-node') || v.includes('source-map-support') || v.includes('tsx')
+// 	}
+// }).length)
+// {
+// 	require('source-map-support').install({
+// 		hookRequire: true
+// 	});
+// }
 
 /**
  * 檢查更新通知
