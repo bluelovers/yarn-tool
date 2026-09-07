@@ -1,6 +1,6 @@
 {
   "name": "yarn-tool",
-  "version": "3.0.6",
+  "version": "3.0.7",
   "description": "yarn/pnpm/lerna cli tool helper - support pnpm and yarn",
   "keywords": [
     "cli",
