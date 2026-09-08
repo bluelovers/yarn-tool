@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.0.10](https://github.com/bluelovers/yarn-tool/compare/yarn-tool@3.0.9...yarn-tool@3.0.10) (2026-09-08)
+
+
+
+### 🛠　Build System
+
+* **deps:** 更新依賴套件版本與 pnpm 工作區配置 ([b8b9d94](https://github.com/bluelovers/yarn-tool/commit/b8b9d9488a9343fc97c77a033ff5aa36255b3000))
+
+
+
 ## [3.0.9](https://github.com/bluelovers/yarn-tool/compare/yarn-tool@3.0.8...yarn-tool@3.0.9) (2026-09-07)
 
 **Note:** Version bump only for package yarn-tool
