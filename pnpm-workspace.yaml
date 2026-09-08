@@ -12,7 +12,7 @@ minimumReleaseAgeExclude:
   - '@yarn-tool/detect-package-manager@1.0.10'
   - '@yarn-tool/detect-yarnlock-version@2.0.10'
   - '@yarn-tool/find-root@2.0.25'
-  - '@yarn-tool/fix-all@3.0.17'
+  - '@yarn-tool/fix-all@3.0.17 || 3.0.19'
   - '@yarn-tool/fix-ws-versions@3.0.11'
   - '@yarn-tool/fnm-detect@1.0.8'
   - '@yarn-tool/get-global-dirs@1.0.6'
@@ -38,11 +38,11 @@ minimumReleaseAgeExclude:
   - '@yarn-tool/resolve-package@3.0.10'
   - '@yarn-tool/search-workspace-prefix-by-name@2.0.10'
   - '@yarn-tool/semver-diff@2.0.21'
-  - '@yarn-tool/setup-module-env@3.0.14'
+  - '@yarn-tool/setup-module-env@3.0.14 || 3.0.15'
   - '@yarn-tool/sort-lerna-json@3.0.11'
   - '@yarn-tool/sort-package-json-exports@1.0.8'
   - '@yarn-tool/sort-package-json-order@2.0.6'
-  - '@yarn-tool/static-file@3.0.17'
+  - '@yarn-tool/static-file@3.0.17 || 3.0.18'
   - '@yarn-tool/table@2.0.22'
   - '@yarn-tool/types@1.0.21'
   - '@yarn-tool/update-notifier@1.0.48'
@@ -70,13 +70,14 @@ minimumReleaseAgeExclude:
   - '@yarn-tool/yarnlock-util@3.0.10'
   - '@yarn-tool/yarnlock@3.0.10'
   - cache-path@4.0.12
-  - create-yarn-workspaces@3.0.19
+  - create-yarn-workspaces@3.0.19 || 3.0.21
   - find-pkg-ws@1.0.54
   - find-yarn-workspace-root2@1.2.55
-  - npm-init2@3.0.19
+  - npm-init2@3.0.19 || 3.0.21
   - npm-package-json-loader@3.0.15
   - sort-package-json-scripts@1.1.34
   - sort-package-json3@3.0.12
   - workspaces-config@2.0.11
   - ws-pkg-list@3.0.11
-  - ws-root-spawn@1.0.55
+  - ws-root-spawn@1.0.55 || 1.0.56
+  - '@types/node@26.5.0'
