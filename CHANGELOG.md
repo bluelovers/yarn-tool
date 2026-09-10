@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.0.11](https://github.com/bluelovers/yarn-tool/compare/yarn-tool@3.0.10...yarn-tool@3.0.11) (2026-09-10)
+
+
+
+### ✨　Features
+
+* **cli:** 支援根據套件管理器自動調整 workspace 參數 ([ae1aaa5](https://github.com/bluelovers/yarn-tool/commit/ae1aaa5603b8da7ac78742320db8b391bdafe8dc))
+
+
+### 🛠　Build System
+
+* **deps:** 更新多個依賴套件版本 ([92ffc97](https://github.com/bluelovers/yarn-tool/commit/92ffc971ac1f92b71906e2a40def302d448b8641))
+* **pm:** 優化套件管理器偵測邏輯並重構型別定義 ([5d95332](https://github.com/bluelovers/yarn-tool/commit/5d953328a5943403c9a40449e6d53a2787deb5f7))
+
+
+
 ## [3.0.10](https://github.com/bluelovers/yarn-tool/compare/yarn-tool@3.0.9...yarn-tool@3.0.10) (2026-09-08)
 
 
