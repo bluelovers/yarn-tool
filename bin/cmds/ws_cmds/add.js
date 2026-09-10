@@ -11,6 +11,7 @@ const index_1 = require("../../../index");
 const index_2 = require("../../../lib/index");
 const setupYarnAddToYargs_1 = require("@yarn-tool/pkg-deps-util/lib/cli/setupYarnAddToYargs");
 const find_root_1 = require("@yarn-tool/find-root");
+const pm_1 = require("../../../lib/pm");
 /**
  * 創建 workspaces add 命令模組
  * Create workspaces add command module
@@ -36,6 +37,7 @@ const cmdModule = (0, cmd_dir_1.createCommandModuleExports)({
         if (!rootData.hasWorkspace) {
             return (0, index_2.yargsProcessExit)(`workspace not exists`);
         }
+        const { npmClients, pmIsYarn } = (0, pm_1.detectPackageManager)(argv);
         (0, cmd_dir_1.lazySpawnArgvSlice)({
             command: key,
             bin: 'lerna',
@@ -55,7 +57,7 @@ const cmdModule = (0, cmd_dir_1.createCommandModuleExports)({
             cmd: [
                 require.resolve(index_1.YT_BIN),
                 'types',
-                '-W',
+                pmIsYarn ? '-W' : '-w',
             ],
             // @ts-ignore
             argv: {
