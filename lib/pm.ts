@@ -9,12 +9,27 @@ import {
 } from '@yarn-tool/detect-package-manager';
 import { ICliMainArgv } from './argv';
 
-export function detectPackageManager(argv?: ICliMainArgv)
+export type IDetectPackageManagerResult = {
+	npmClients: EnumPackageManager.yarn | EnumPackageManager.pnpm;
+	pmMap: Record<IPackageManager | "lerna" | "corepack", string>;
+	pmIsYarn: boolean;
+}
+
+let _cachedDetectPackageManager: Record<EnumPackageManager, IDetectPackageManagerResult> = {} as any;
+
+export function detectPackageManager(argv?: Pick<ICliMainArgv, 'npmClients'>): IDetectPackageManagerResult
 {
+	let input = argv?.npmClients;
+
+	if (_cachedDetectPackageManager[input])
+	{
+		return _cachedDetectPackageManager[input]!;
+	}
+
 	const pmMap: Record<IPackageManager | 'lerna' | 'corepack', string> = {} as any;
 
 	for (const client of _whichPackageManagerSyncGenerator([
-		argv?.npmClients,
+		input,
 		EnumPackageManager.pnpm,
 		'lerna' as any,
 		EnumPackageManager.yarn,
@@ -32,9 +47,11 @@ export function detectPackageManager(argv?: ICliMainArgv)
 		: EnumPackageManager.yarn as const
 	;
 
-	return {
+	const result = _cachedDetectPackageManager[input] = {
 		npmClients,
 		pmMap,
 		pmIsYarn: npmClients === EnumPackageManager.yarn,
-	}
+	};
+
+	return result!;
 }

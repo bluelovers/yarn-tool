@@ -11,6 +11,7 @@ import { YT_BIN } from '../../../index';
 import { yargsProcessExit } from '../../../lib/index';
 import { setupYarnAddToYargs } from '@yarn-tool/pkg-deps-util/lib/cli/setupYarnAddToYargs';
 import { findRoot } from '@yarn-tool/find-root';
+import { detectPackageManager } from '../../../lib/pm';
 
 /**
  * 創建 workspaces add 命令模組
@@ -46,6 +47,8 @@ const cmdModule = createCommandModuleExports({
 			return yargsProcessExit(`workspace not exists`)
 		}
 
+		const { npmClients, pmIsYarn } = detectPackageManager(argv);
+
 		lazySpawnArgvSlice({
 			command: key,
 			bin: 'lerna',
@@ -66,7 +69,7 @@ const cmdModule = createCommandModuleExports({
 			cmd: [
 				require.resolve(YT_BIN),
 				'types',
-				'-W',
+				pmIsYarn ? '-W' : '-w',
 			],
 			// @ts-ignore
 			argv: {
