@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.0.12](https://github.com/bluelovers/yarn-tool/compare/yarn-tool@3.0.11...yarn-tool@3.0.12) (2026-10-12)
+
+
+
+### 📌　Dependencies
+
+* update deps ([2dc21c8](https://github.com/bluelovers/yarn-tool/commit/2dc21c88cd18c2cce66754daf1555cc462eaf78b))
+
+
+
 ## [3.0.11](https://github.com/bluelovers/yarn-tool/compare/yarn-tool@3.0.10...yarn-tool@3.0.11) (2026-09-10)
 
 
