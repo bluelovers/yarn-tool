@@ -93,3 +93,5 @@ jest.config.js.map
 *.spec.js
 .nowignore
 /temp.txt
+.agentbridge
+
