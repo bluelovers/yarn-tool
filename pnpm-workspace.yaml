@@ -85,3 +85,4 @@ minimumReleaseAgeExclude:
   - '@lazy-array/util-unique'
   - '@yarn-tool/ignore'
   - sort-object-keys2
+  - ignore@7.0.14
