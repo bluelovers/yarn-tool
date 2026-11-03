@@ -11,6 +11,7 @@ import { Arguments } from 'yargs';
 import { console, consoleDebug } from './index';
 import { normalize } from 'upath2';
 import { requireResolveExtra } from '@yarn-tool/require-resolve';
+import { __ROOT } from '../__root';
 
 /**
  * 檢查模組是否存在，若不存在則提示安裝
@@ -29,6 +30,9 @@ export function checkModileExists(argv: {
 	let ret = requireResolveExtra(argv.requireName || argv.name, {
 		includeGlobal: true,
 		includeCurrentDirectory: true,
+		paths: [
+			__ROOT,
+		],
 	}).result;
 
 	if (!ret)
