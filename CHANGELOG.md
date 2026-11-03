@@ -3,6 +3,21 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.0.18](https://github.com/bluelovers/yarn-tool/compare/yarn-tool@3.0.17...yarn-tool@3.0.18) (2026-11-03)
+
+
+
+### 📦　Code Refactoring
+
+* **lib:** 在模組檢查時加入根目錄路徑 ([e266726](https://github.com/bluelovers/yarn-tool/commit/e2667268835d9b8a80938901ebed829d85a9e0c3))
+
+
+### 📌　Dependencies
+
+* update deps ([b933c06](https://github.com/bluelovers/yarn-tool/commit/b933c068f83568dd30a5ff061a95f4605095c097))
+
+
+
 ## [3.0.17](https://github.com/bluelovers/yarn-tool/compare/yarn-tool@3.0.16...yarn-tool@3.0.17) (2026-10-24)
 
 **Note:** Version bump only for package yarn-tool

@@ -86,3 +86,4 @@ minimumReleaseAgeExclude:
   - '@yarn-tool/ignore'
   - sort-object-keys2
   - ignore@7.0.14
+  - semver@7.8.6
