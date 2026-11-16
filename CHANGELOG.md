@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.0.21](https://github.com/bluelovers/yarn-tool/compare/yarn-tool@3.0.20...yarn-tool@3.0.21) (2026-11-16)
+
+
+
+### ♻️　Chores
+
+* **release:** publish ([ba39cf8](https://github.com/bluelovers/yarn-tool/commit/ba39cf849494a09c684e53a857f18802acfddc8c))
+
+
+
 ## [3.0.20](https://github.com/bluelovers/yarn-tool/compare/yarn-tool@3.0.20...yarn-tool@3.0.20) (2026-11-16)
 
 **Note:** Version bump only for package yarn-tool
