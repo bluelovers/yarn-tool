@@ -89,3 +89,4 @@ minimumReleaseAgeExclude:
   - semver@7.8.6
   - '@ts-type/package-dts@3.0.15'
   - ts-type@3.0.19
+  - '@bluelovers/jest-config@1.1.20'
