@@ -87,6 +87,7 @@ minimumReleaseAgeExclude:
   - sort-object-keys2
   - ignore@7.0.14
   - semver@7.8.6
-  - '@ts-type/package-dts@3.0.15'
-  - ts-type@3.0.19
-  - '@bluelovers/jest-config@1.1.20'
+  - '@ts-type/package-dts'
+  - ts-type
+  - '@bluelovers/jest-config'
+  - '@yarn-tool/version-style-jetbrains'
