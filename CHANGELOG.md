@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.0.24](https://github.com/bluelovers/yarn-tool/compare/yarn-tool@3.0.23...yarn-tool@3.0.24) (2026-11-20)
+
+
+
+### ♻️　Chores
+
+* **deps:** 更新依賴項目並調整 pnpm 工作區配置 ([9630c38](https://github.com/bluelovers/yarn-tool/commit/9630c383ffebb24edac78d1240d42105b3586155))
+
+
+
 ## [3.0.23](https://github.com/bluelovers/yarn-tool/compare/yarn-tool@3.0.22...yarn-tool@3.0.23) (2026-11-17)
 
 **Note:** Version bump only for package yarn-tool
